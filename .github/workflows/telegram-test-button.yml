@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       chat_id:
-        description: "Telegram chat/channel ID (for example -1001234567890)"
+        description: "Telegram chat/channel ID"
         required: true
         type: string
       message:
@@ -16,27 +16,42 @@ on:
 jobs:
   send:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Send Telegram message with Mini App button
+      - name: Send Telegram message
         env:
-          BOT_TOKEN: \${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT_ID: \${{ inputs.chat_id }}
-          MESSAGE: \${{ inputs.message }}
-          TEST_URL: "https://riturajgautam007-afk.github.io/MPPSC-IQ-TEST-/?v=60"
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ inputs.chat_id }}
+          MESSAGE: ${{ inputs.message }}
         run: |
           set -euo pipefail
+
           if [ -z "$BOT_TOKEN" ]; then
             echo "TELEGRAM_BOT_TOKEN secret is missing."
             exit 1
           fi
+
           payload=$(python3 - <<'PY'
           import json, os
+
           print(json.dumps({
               "chat_id": os.environ["CHAT_ID"],
               "text": os.environ["MESSAGE"],
               "parse_mode": "HTML",
-              "reply_markup": {"inline_keyboard": [[{"text": "टेस्ट 01", "web_app": {"url": os.environ["TEST_URL"]}}]]}
+              "reply_markup": {
+                  "inline_keyboard": [[
+                      {
+                          "text": "टेस्ट 01",
+                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test01"
+                      }
+                  ]]
+              }
           }, ensure_ascii=False))
           PY
           )
-          curl --fail-with-body -sS -X POST -H "Content-Type: application/json" "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" -d "$payload"
+
+          curl --fail-with-body -sS \
+            -X POST \
+            -H "Content-Type: application/json" \
+            "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d "$payload"
