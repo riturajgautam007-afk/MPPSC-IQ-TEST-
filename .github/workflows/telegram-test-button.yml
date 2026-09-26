@@ -1,0 +1,42 @@
+name: Send MPPSC IQ Test Button
+
+on:
+  workflow_dispatch:
+    inputs:
+      chat_id:
+        description: "Telegram chat/channel ID (for example -1001234567890)"
+        required: true
+        type: string
+      message:
+        description: "Message to send"
+        required: false
+        default: "📚 MPPSC IQ TEST 01\n\n100 MCQs • +3 / −1 / 0\n⏱️ समय: 60 मिनट\n\nनीचे दिए बटन से टेस्ट शुरू करें 👇"
+        type: string
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram message with Mini App button
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ inputs.chat_id }}
+          MESSAGE: ${{ inputs.message }}
+          TEST_URL: "https://riturajgautam007-afk.github.io/MPPSC-IQ-TEST-/?v=60"
+        run: |
+          set -euo pipefail
+          if [ -z "$BOT_TOKEN" ]; then
+            echo "TELEGRAM_BOT_TOKEN secret is missing."
+            exit 1
+          fi
+          payload=$(python3 - <<'PY'
+          import json, os
+          print(json.dumps({
+              "chat_id": os.environ["CHAT_ID"],
+              "text": os.environ["MESSAGE"],
+              "parse_mode": "HTML",
+              "reply_markup": {"inline_keyboard": [[{"text": "🚀 TEST START करें", "web_app": {"url": os.environ["TEST_URL"]}}]]}
+          }, ensure_ascii=False))
+          PY
+          )
+          curl --fail-with-body -sS -X POST -H "Content-Type: application/json" "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" -d "$payload"
