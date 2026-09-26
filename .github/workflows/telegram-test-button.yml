@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: Send Telegram message with Mini App button
         env:
-          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT_ID: ${{ inputs.chat_id }}
-          MESSAGE: ${{ inputs.message }}
+          BOT_TOKEN: \${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: \${{ inputs.chat_id }}
+          MESSAGE: \${{ inputs.message }}
           TEST_URL: "https://riturajgautam007-afk.github.io/MPPSC-IQ-TEST-/?v=60"
         run: |
           set -euo pipefail
@@ -35,7 +35,7 @@ jobs:
               "chat_id": os.environ["CHAT_ID"],
               "text": os.environ["MESSAGE"],
               "parse_mode": "HTML",
-              "reply_markup": {"inline_keyboard": [[{"text": "🚀 TEST START करें", "web_app": {"url": os.environ["TEST_URL"]}}]]}
+              "reply_markup": {"inline_keyboard": [[{"text": "टेस्ट 01", "web_app": {"url": os.environ["TEST_URL"]}}]]}
           }, ensure_ascii=False))
           PY
           )
