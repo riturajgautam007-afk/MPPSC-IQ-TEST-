@@ -1,47 +1,120 @@
-<!doctype html>
-<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1f3a"><title>MPPSC IQ TEST 01</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#172033;font-family:Arial,sans-serif}header{background:#0b1f3a;color:#fff;padding:16px;text-align:center;position:sticky;top:0;z-index:5}header h1{margin:0;font-size:22px}header small{opacity:.85}.wrap{max-width:760px;margin:auto;padding:10px 12px 30px}.card{background:#fff;border-radius:15px;padding:14px;margin:10px 0;box-shadow:0 3px 14px #00000010}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#eef3f9;border-radius:10px;text-align:center;padding:9px;font-size:12px}.stat b{display:block;font-size:17px;margin-top:3px}.timer{color:#9b1c1c}.qtop{display:flex;justify-content:space-between;gap:8px;font-weight:700}.q{font-size:18px;line-height:1.55;margin:12px 0}.en{font-size:14px;color:#667085;margin-top:-7px}.opt{width:100%;padding:13px 12px;margin:6px 0;border:1px solid #d7deea;border-radius:10px;background:#fff;text-align:left;font-size:15px}.opt.selected{border:2px solid #0b1f3a;background:#edf3fb}.nav{display:flex;gap:8px;margin-top:10px}.btn{border:0;border-radius:9px;padding:11px 15px;background:#0b1f3a;color:#fff;font-weight:700}.btn.alt{background:#e9eef5;color:#172033}.btn.stop{background:#8d1d1d}.palette{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}.p{aspect-ratio:1;border:0;border-radius:7px;background:#e7ecf3}.p.done{background:#0b1f3a;color:#fff}.p.current{outline:2px solid #c69b3c}.result h2{margin:4px 0 12px}.score{font-size:32px;font-weight:800}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mini{background:#f1f4f8;padding:10px;border-radius:9px;text-align:center}.hidden{display:none}.wrong{border-left:4px solid #9b1c1c;padding:10px;background:#fff5f5;margin:7px 0}.notice{font-size:12px;color:#667085}.tabs{display:flex;gap:7px;overflow:auto}.tab{white-space:nowrap;padding:9px 12px;border:0;border-radius:9px;background:#e7ecf3}.tab.active{background:#0b1f3a;color:#fff}
-</style></head>
-<body><header><h1>MPPSC IQ TEST 01</h1><small>Prelims 2027 • MPPSC IQ</small></header>
-<div class="wrap">
-<div class="card"><div class="stats"><div class="stat">कुल प्रश्न<b id="total"></b></div><div class="stat">समय<b class="timer" id="timer">30:00</b></div><div class="stat">मार्किंग<b>+3 / −1 / 0</b></div></div></div>
-<div class="card"><div class="tabs"><button class="tab active" id="quizTab" onclick="showQuiz()">Test</button><button class="tab" onclick="showHistory()">History</button><button class="tab" onclick="showWrong()">Wrong Questions</button></div></div>
-<section id="quizView">
-<div class="card"><div class="qtop"><span id="counter"></span><span id="progress"></span></div><div class="q" id="question"></div><div class="en" id="english"></div><div id="options"></div><div class="nav"><button class="btn alt" onclick="prev()">← पिछला</button><button class="btn" onclick="next()">अगला →</button></div></div>
-<div class="card"><b>Question Palette</b><div class="palette" id="palette"></div><div class="nav"><button class="btn stop" onclick="stopTest()">⏹ Test रोकें</button><button class="btn" onclick="submitTest()">Submit Test</button></div></div>
-</section>
-<section id="resultView" class="card result hidden"></section>
-<section id="historyView" class="card hidden"></section>
-<section id="wrongView" class="card hidden"></section>
-</div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1f3a"><title>MPPSC IQ TEST 01</title><script src="https://telegram.org/js/telegram-web-app.js"></script><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#172033;font-family:Arial,sans-serif}header{background:#0b1f3a;color:#fff;padding:15px;text-align:center;position:sticky;top:0;z-index:5}header h1{margin:0;font-size:22px}.wrap{max-width:760px;margin:auto;padding:10px 12px 30px}.card{background:#fff;border-radius:15px;padding:14px;margin:10px 0;box-shadow:0 3px 14px #0001}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#eef3f9;border-radius:10px;text-align:center;padding:9px;font-size:12px}.stat b{display:block;font-size:17px;margin-top:3px}.timer{color:#a11}.qtop{display:flex;justify-content:space-between;font-weight:700}.q{font-size:17px;line-height:1.55;margin:12px 0}.opt{width:100%;padding:13px;margin:6px 0;border:1px solid #d7deea;border-radius:10px;background:#fff;text-align:left;font-size:15px}.opt.selected{border:2px solid #0b1f3a;background:#edf3fb}.nav{display:flex;gap:8px;margin-top:10px}.btn{border:0;border-radius:9px;padding:11px 15px;background:#0b1f3a;color:#fff;font-weight:700}.btn.alt{background:#e8edf4;color:#172033}.btn.stop{background:#8d1d1d}.palette{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}.p{aspect-ratio:1;border:0;border-radius:7px;background:#e7ecf3}.p.done{background:#0b1f3a;color:#fff}.p.current{outline:2px solid #c69b3c}.hidden{display:none}.score{font-size:32px;font-weight:800}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mini{background:#f1f4f8;padding:10px;border-radius:9px;text-align:center;margin:5px 0}.wrong{border-left:4px solid #9b1c1c;padding:10px;background:#fff5f5;margin:7px 0}.tabs{display:flex;gap:7px;overflow:auto}.tab{padding:9px 12px;border:0;border-radius:9px;background:#e7ecf3}.tab.active{background:#0b1f3a;color:#fff}</style></head><body>
+<header><h1>MPPSC IQ TEST 01</h1><div>100 MCQs • +3 / −1 / 0 • 30 Minutes</div></header><div class="wrap">
+<div class="card"><div class="stats"><div class="stat">Total Questions<b id="total">100</b></div><div class="stat">Time<b class="timer" id="timer">30:00</b></div><div class="stat">Marking<b>+3 / −1 / 0</b></div></div></div>
+<div class="card"><div class="tabs"><button class="tab active" onclick="show('quiz')">Test</button><button class="tab" onclick="history()">History</button><button class="tab" onclick="wrong()">Wrong Questions</button></div></div>
+<section id="quiz"><div class="card"><div class="qtop"><span id="counter"></span><span id="pct"></span></div><div class="q" id="question"></div><div id="options"></div><div class="nav"><button class="btn alt" onclick="prev()">← Previous</button><button class="btn" onclick="next()">Next →</button></div></div>
+<div class="card"><b>Question Palette</b><div class="palette" id="palette"></div><div class="nav"><button class="btn stop" onclick="stopTest()">⏹ Stop Test</button><button class="btn" onclick="submitTest()">Submit Test</button></div></div></section>
+<section id="result" class="card hidden"></section><section id="historyView" class="card hidden"></section><section id="wrongView" class="card hidden"></section></div>
 <script>
 const qs=[
-{q:"मध्यप्रदेश की राजधानी कौन-सी है?",e:"What is the capital of Madhya Pradesh?",o:["इंदौर","भोपाल","जबलपुर","ग्वालियर"],a:1},
-{q:"भारत का संविधान कब लागू हुआ?",e:"When did the Constitution of India come into force?",o:["15 अगस्त 1947","26 नवंबर 1949","26 जनवरी 1950","2 अक्टूबर 1950"],a:2},
-{q:"नर्मदा नदी का उद्गम कहाँ से होता है?",e:"Where does the Narmada River originate?",o:["अमरकंटक","पचमढ़ी","मांडू","शिवपुरी"],a:0},
-{q:"मौर्य साम्राज्य के संस्थापक कौन थे?",e:"Who founded the Mauryan Empire?",o:["अशोक","बिंदुसार","चंद्रगुप्त मौर्य","समुद्रगुप्त"],a:2},
-{q:"पंचायती राज संस्थाओं को संवैधानिक दर्जा किस संशोधन से मिला?",e:"Which amendment gave constitutional status to Panchayati Raj institutions?",o:["42वां","44वां","73वां","74वां"],a:2},
-{q:"सांची स्तूप मध्यप्रदेश के किस जिले में स्थित है?",e:"Sanchi Stupa is located in which district of Madhya Pradesh?",o:["रायसेन","विदिशा","भोपाल","सीहोर"],a:0},
-{q:"भारतीय संविधान में मौलिक अधिकार किस भाग में हैं?",e:"Fundamental Rights are contained in which Part of the Constitution?",o:["भाग II","भाग III","भाग IV","भाग V"],a:1},
-{q:"लोकसभा का सामान्य कार्यकाल कितना है?",e:"What is the normal term of the Lok Sabha?",o:["4 वर्ष","5 वर्ष","6 वर्ष","7 वर्ष"],a:1},
-{q:"हरित क्रांति मुख्यतः किससे संबंधित है?",e:"The Green Revolution is mainly associated with:",o:["दुग्ध उत्पादन","खाद्यान्न उत्पादन","मत्स्य उत्पादन","वन उत्पादन"],a:1},
-{q:"मध्यप्रदेश का राज्य पशु कौन-सा है?",e:"What is the state animal of Madhya Pradesh?",o:["बाघ","बारहसिंगा","चीतल","गौर"],a:1}
+["Who was the founder of the Naga dynasty?",["Bhava Naga","Vrisha Naga","Nava Naga","Brihaspatinaga"],1],
+["Where was the initial capital of the Naga dynasty?",["Pataliputra","Vidisha","Ujjain","Pawaya"],1],
+["Which ruler of the Naga dynasty made Pawaya the capital of the Naga dynasty in place of Vidisha?",["Bhava Naga","Vrisha Naga","Bhima Naga","Ganapatinaga"],2],
+["From which place have the largest number of coins of the Naga dynasty been found?",["Vidisha","Ujjain","Pawaya","Nalanda"],2],
+["Which Naga ruler was defeated by Samudragupta?",["Bhava Naga","Ganapatinaga","Brihaspatinaga","Vrisha Naga"],1],
+["Who was the founder of the Bharashiva Naga dynasty?",["Vrisha Naga","Nava Naga","Bhava Naga","Ganapatinaga"],1],
+["Which Naga ruler performed the Ashvamedha sacrifice?",["Bhava Naga","Vrisha Naga","Bhima Naga","Ganapatinaga"],0],
+["The Naga Empire was established after the decline of which dynasty?",["Maurya dynasty","Shunga dynasty","Kushana dynasty","Satavahana dynasty"],2],
+["Which was the principal area of rule of the Naga dynasty?",["Ujjain and Dhar","Gwalior and Vidisha","Pataliputra and Nalanda","Sanchi and Sagar"],1],
+["From the excavation of which place have copper coins of Naga ruler Ganapatinaga been found?",["Pawaya","Besnagar","Ujjain","Sanchi"],1],
+["Modern Besnagar is identified with which ancient city?",["Kaushambi","Vidisha","Taxila","Pataliputra"],1],
+["Who was the last known ruler of the Naga dynasty?",["Bhava Naga","Brihaspatinaga","Ganapatinaga","Vrisha Naga"],2],
+["Which Gupta ruler brought an end to the Naga dynasty?",["Chandragupta I","Samudragupta","Kumaragupta","Skandagupta"],1],
+["Who defeated Ganapatinaga, the ruler of the Naga dynasty?",["Chandragupta Maurya","Samudragupta","Skandagupta","Chandragupta II"],1],
+["Who is referred to by the title “Avanti-Nripa” in Varahamihira’s ‘Brihat Samhita’?",["Jayavarman","Dravyavardhana","Prakashadharman","Yashodharman"],1],
+["Which Aulikara ruler defeated Toramana and established control over eastern Malwa?",["Jayavarma","Simhavarma","Prakashadharman","Yashodharman"],2],
+["Which inscription provides information about the victory of Aulikara ruler Prakashadharman over Huna king Toramana?",["Mandsaur inscription","Sanchi inscription","Risthal inscription","Vidisha inscription"],2],
+["Which inscription provides information about the guild of silk weavers?",["Dashpur inscription","Prayaga Prashasti","Eran inscription","Hathigumpha inscription"],0],
+["From which place was the Dashpur inscription obtained?",["Ujjain","Mandsaur","Sonagiri","Vidisha"],1],
+["Which inscription provides information about the guild of silk weavers?",["Prayaga Prashasti","Eran inscription","Dashpur inscription","Hathigumpha inscription"],2],
+["The “Pattavaya guild” mentioned in the Dashpur inscription was associated with—",["Blacksmiths","Silk yarn weavers","Merchant class","Royal priests"],1],
+["The Dashpur inscription is associated with the reign of which ruler?",["Samudragupta","Chandragupta II","Kumaragupta","Skandagupta"],2],
+["Who was the governor mentioned in the Dashpur inscription?",["Vasudeva","Bandhuvarma","Vishnuvarma","Mahendravarma"],1],
+["The Dashpur inscription mentions the construction of a temple dedicated to which deity?",["Shiva temple","Sun temple","Vishnu temple","Kartikeya temple"],1],
+["Which of the following inscriptions is known as the “world’s first advertisement”?",["Sohgaura inscription","Supia inscription","Eran inscription","Dashpur inscription"],3],
+["Who was the founder of the Aulikara dynasty?",["Prakashadharman","Jayavarma","Yashodharman","Simhavarma"],1],
+["Where was the capital of the Aulikara dynasty?",["Ujjain","Dashpur","Vidisha","Dhar"],1],
+["Which was the area of rule of the Aulikara dynasty?",["Bundelkhand and Chambal","Malwa, Ujjain, Gwalior","Vidisha and Pataliputra","Sanchi and Sagar"],1],
+["Which of the following is not a major source of information about the Aulikara dynasty?",["Bhojpur inscription","Dashpur inscription","Mandsaur inscription","Risthal inscription"],0],
+["What was the title of Aulikara ruler Jayavarma?",["Devendravikrama","Maharajadhiraja","Suryanripanandana","Rajarajeshvara"],0],
+["Which Aulikara ruler was a contemporary of Samudragupta?",["Jayavarma","Simhavarma","Prakashadharman","Bandhuvarma"],1],
+["Mridulaka was the minister of which ruler?",["Vishvavarma","Jayavarma","Bandhuvarma","Naravarma"],0],
+["Who built the Sun Temple of Dashpur?",["Prakashadharman","Yashodharman","Bandhuvarma","Jayavarma"],2],
+["Who defeated Huna king Toramana?",["Jayavarma","Prakashadharman","Yashodharman","Naravarma"],1],
+["Who was given the title ‘Vibhishana Tadaga’?",["Yashodharman","Prakashadharman","Bandhuvarma","Jayavarma"],1],
+["During the reign of which ruler did the Hunas come to an end?",["Jayavarma","Naravarma","Yashodharman","Simhavarma"],2],
+["Which Huna ruler was defeated by Yashodharman of the Aulikara dynasty?",["Toramana","Mihirakula","Khusro","Alakhananda"],1],
+["What information do we obtain from the Dashpur inscription?",["Urban planning","Silk weavers","Agrarian society","Trade guilds"],1],
+["On the bank of which river is the Pashupatinath Temple located?",["Narmada","Shivna","Shipra","Parvati"],1],
+["Which inscription describes Yashodharman’s victory over Mihirakula?",["Sanchi inscription","Mandsaur inscription","Vidisha copper plate","Ujjain inscription"],1],
+["In which year did the Malava Samvat begin?",["532 CE","443 CE","593 CE","643 CE"],0],
+["Who was the author of the Mandsaur inscription?",["Vatsabhatti","Vallabha Ghosha","Kalidasa","Damodara Bhatta"],0],
+["In which inscription is ‘Pratham Bar Gram’ mentioned?",["Dashpur inscription","Mandsaur inscription","Sanchi inscription","Risthal inscription"],1],
+["Who was the founder of the Maukhari dynasty?",["Grahavarma","Shurvarma","Harivarma","Ishanavarma"],2],
+["Harshavardhana’s sister Rajyashri was married to which Maukhari ruler?",["Harivarma","Shurvarma","Grahavarma","Ishanavarma"],2],
+["Which region of Madhya Pradesh was ruled by the Maukhari dynasty?",["Malwa","Chambal Valley","Eastern Nimar","Bundelkhand"],2],
+["From where was the grant of Shurvarma obtained?",["Asirgarh","Mandsaur","Vidisha","Ujjain"],0],
+["What information is obtained from Bhojadeva’s Bada grant?",["Shurvarma ruled over Vidisha.","Shurvarma had direct control over the Bundelkhand region.","Ujjain was the capital of the Maukhari dynasty.","Grahavarma performed the Ashvamedha sacrifice."],1],
+["Who was the founder of the Shaila dynasty?",["Putthuvardhana","Shrivardhana","Harivarma","Bhuvardhana"],1],
+["Which was the area of rule of the Shaila dynasty?",["Malwa","Bundelkhand","Mahakoshal","Nimar"],2],
+["From which inscription is information about the genealogy of the Shaila dynasty obtained?",["Mandsaur inscription","Raghogli copper plate","Ujjain copper plate","Vidisha inscription"],1],
+["Which ruler of the Shaila dynasty was called the ‘Lord of the Vindhya region’?",["Putthuvardhana","Shrivardhana II","Bhuvardhana","Jayavardhana"],1],
+["Putthuvardhana, who conquered the Gurjara regions, was a ruler of which dynasty?",["Aulikara dynasty","Shaila dynasty","Naga dynasty","Maukhari dynasty"],1],
+["Which was the area of rule of the Bodhi dynasty?",["Malwa","Tripuri","Ujjain","Vidisha"],1],
+["Who was the founder of the Bodhi dynasty?",["Shribodhi","Devadaya","Bhimasena","Hastin"],0],
+["Who was the founder of the Magha dynasty?",["Shribodhi","Bhimasena","Hastin","Devadaya"],1],
+["Which was the area of rule of the Magha dynasty?",["Bundelkhand","Baghelkhand","Mahakoshal","Nimar"],1],
+["Where have coins of the Magha rulers been found?",["Vidisha","Bandhavgarh","Ujjain","Jabalpur"],1],
+["Which region of Madhya Pradesh was ruled by the Parivrajaka dynasty?",["Tripuri","Bundelkhand","Malwa","Nimar"],1],
+["The rulers of the Parivrajaka dynasty were feudatories of whom?",["Shunga","Kushana","Gupta","Naga"],2],
+["Who was the first ruler of the Parivrajaka dynasty?",["Hastin","Sankshobha","Devadaya","Shribodhi"],2],
+["Who was the illustrious ruler of the Parivrajaka dynasty?",["Hastin","Devadaya","Sankshobha","Shribodhi"],0],
+["The Khoh inscription is associated with which ruler?",["Hastin","Devadaya","Shribodhi","Sankshobha"],0],
+["From where was the copper plate of Sankshobha, son of Parivrajaka ruler Hastin, obtained?",["Vidisha and Ujjain","Betul and Khoh","Sanchi and Mandsaur","Jabalpur and Panna"],1],
+["Which was the area of rule of the Maikala dynasty?",["Vidisha region","Amarkantak region","Ujjain region","Baghelkhand"],1],
+["Who was the founder of the Maikala dynasty?",["Nagabala","Jayabala","Vyaghra Deva","Sarvanatha"],1],
+["From where was the copper plate of Maikala ruler Nagabala obtained?",["Basni","Amarkantak","Shahdol","Satna"],0],
+["Which was the area of rule of the Parivrajaka dynasty?",["Panna region","Ujjain region","Amarkantak region","Baghelkhand"],0],
+["Who was the founder of the Uchchhakalpa dynasty?",["Oghadeva","Vyaghra Deva","Sarvanatha","Jayabala"],0],
+["Where was the area of rule of the Uchchhakalpa dynasty?",["Vidisha","Uchehra","Panna","Amarkantak"],1],
+["Who was the last ruler of the Uchchhakalpa dynasty?",["Oghadeva","Vyaghra Deva","Sarvanatha","Nagabala"],2],
+["Which ruler of the Uchchhakalpa dynasty has been described as a feudatory of the Vakataka king?",["Vyaghra Deva","Sarvanatha","Oghadeva","Jayabala"],0],
+["Who was the founder of the Kshaharata dynasty?",["Nahapana","Bhumaka","Chashtana","Rudradaman"],1],
+["Who was the most illustrious ruler of the Kshaharata dynasty?",["Bhumaka","Nahapana","Rudradaman","Chashtana"],1],
+["From which place have the restruck coins of Kshaharata ruler Nahapana been found?",["Ujjain","Jugal Thumbi","Shivpuri","Nashik"],1],
+["From which place in Madhya Pradesh have the coins of Kshaharata ruler Nahapana been found?",["Ujjain","Morena","Shivpuri","Dhar"],2],
+["Who defeated Kshaharata ruler Nahapana?",["Chashtana","Rudradaman","Gautamiputra Satakarni","Yajna Shri Satakarni"],2],
+["Who was the founder of the Kardamaka dynasty?",["Nahapana","Chashtana","Rudrasimha","Gautamiputra Satakarni"],1],
+["Which was the area of rule of the Kardamaka dynasty?",["Ujjain region","Tripuri region","Gwalior region","Vidisha region"],0],
+["Where was the capital of the Kardamaka dynasty?",["Dhar","Ujjain","Vidisha","Pataliputra"],1],
+["From which places have the coins of Kardamaka ruler Chashtana been found?",["Ujjain and Shivpuri","Nashik and Vidisha","Pawaya and Morena","Mandsaur and Ujjain"],0],
+["Match the following— (A) Naga dynasty — (1) Vrisha Naga (B) Aulikara dynasty — (2) Jayavarma (C) Shaila dynasty — (3) Shrivardhana (D) Magha dynasty — (4) Bhimasena",["A–1, B–2, C–3, D–4","A–2, B–3, C–4, D–1","A–3, B–4, C–1, D–2","A–4, B–1, C–2, D–3"],0],
+["Match the following— (A) Bodhi dynasty — (1) Shribodhi (B) Maukhari dynasty — (2) Harivarma (C) Uchchhakalpa dynasty — (3) Oghadeva (D) Maikala dynasty — (4) Jayabala",["A–1, B–2, C–3, D–4","A–2, B–3, C–4, D–1","A–3, B–4, C–1, D–2","A–4, B–1, C–2, D–3"],0],
+["Match the following— (A) Naga dynasty — (1) Gwalior region (B) Aulikara dynasty — (2) Mandsaur (C) Shaila dynasty — (3) Mahakoshal (D) Magha dynasty — (4) Baghelkhand",["A–1, B–2, C–3, D–4","A–2, B–3, C–4, D–1","A–3, B–4, C–1, D–2","A–4, B–1, C–2, D–3"],0],
+["Match the following— (A) Bodhi dynasty — (1) Tripuri region (B) Maukhari dynasty — (2) Eastern Nimar (C) Uchchhakalpa dynasty — (3) Uchehra (Satna) (D) Maikala dynasty — (4) Amarkantak region",["A–1, B–2, C–3, D–4","A–2, B–3, C–4, D–1","A–3, B–4, C–1, D–2","A–4, B–1, C–2, D–3"],0],
+["The ancient rulers Bhimasena, Bhadramagha and Shivamagha belonged to which dynasty?",["Parivrajaka dynasty","Magha dynasty","Shaila dynasty","Bodhi dynasty"],1],
+["According to Jain texts, which Gardabhilla ruler of Ujjayini defeated the Shakas and initiated the ‘Vikrami Samvat’ in Malwa?",["Bhartrihari","Vikramaditya","Gardabhilla","Sura"],1],
+["The famous king Bhartrihari of Ujjayini, who renounced worldly life and abandoned his throne, belonged to which dynasty?",["Gupta dynasty","Vakataka dynasty","Gardabhilla dynasty","Aulikara dynasty"],2],
+["Which of the following is not included among the famous literary works of King Bhartrihari?",["Shringara Shataka","Niti Shataka","Vairagya Shataka","Malavikagnimitram"],3],
+["Who was the first known ruler of the Aulikara dynasty established in the Mandsaur region of Madhya Pradesh, who ruled in the latter part of the fourth century?",["Naravarman","Jayavarman","Yashodharman","Kumaragupta"],1],
+["From the Mandsaur inscription of which illustrious ruler of the Aulikara dynasty is it known that he accepted the suzerainty of Gupta emperor Kumaragupta I?",["Naravarman","Bandhuvarma","Yashodharman","Jayavarman"],1],
+["According to authentic evidence obtained from Mandsaur, who was the most illustrious and greatest ruler of the Aulikara dynasty?",["Vishvavarman","Yashodharman","Naravarman","Bandhuvarma"],1],
+["What did historian M. C. Choubey consider to be the immediate cause of the decline of the Gupta dynasty?",["Invasion of the Hunas","Campaign of Yashodharman","Internal conflict","Pressure from the Vakatakas"],1],
+["Which prestigious titles did Aulikara ruler Yashodharman assume after his conquest?",["Janendra and Nareshadhipati","Maharajadhiraja and Parameshvara","Both (a) and (b)","None of the above"],2],
+["Coins or inscriptions of which ruler obtained from the Dashpur region of Mandsaur preserve evidence of the construction of a huge Sun Temple by the guild of silk weavers?",["Samudragupta","Bandhuvarma","Bhanugupta","Pravarasena"],1],
+["Who initiated the Abhira era?",["Ishvarasena","Virasena","Lakshmanasena","Pravarasena"],0],
+["Which of the following is mentioned as “Ayudhajivi” in Panini’s Ashtadhyayi?",["Gupta dynasty","Kaula dynasty","Rishitulya dynasty","Malava dynasty"],3],
+["Kayatha, Ujjain district, is associated with which mathematician?",["Bhaskaracharya II","Acharya Varahamihira","Aryabhata","Sridharacharya"],1],
+["The “Pattavaya guild” mentioned in the Dashpur inscription was primarily associated with which activity?",["Metal manufacturing","Weaving silk textiles","Agricultural work","Sculpture"],1],
+["Which ruler of the Aulikara dynasty defeated Huna king Mihirakula?",["Jayavarman","Bandhuvarma","Yashodharman","Naravarman"],2]
 ];
 let i=0,ans=Array(qs.length).fill(null),sec=1800,submitted=false,stopped=false;
-total.textContent=qs.length;
-function render(){counter.textContent="प्रश्न "+(i+1)+" / "+qs.length;progress.textContent=Math.round((i+1)/qs.length*100)+"%";question.textContent=qs[i].q;english.textContent=qs[i].e;options.innerHTML=qs[i].o.map((x,j)=>'<button class="opt '+(ans[i]===j?'selected':'')+'" onclick="pick('+j+')">'+String.fromCharCode(65+j)+". "+x+'</button>').join("");palette.innerHTML=qs.map((_,j)=>'<button class="p '+(ans[j]!=null?'done ':'')+(i===j?'current':'')+'" onclick="go('+j+')">'+(j+1)+'</button>').join("")}
-function pick(j){if(submitted||stopped)return;ans[i]=j;render();if(i<qs.length-1)setTimeout(next,220)}
-function next(){if(i<qs.length-1){i++;render()}}function prev(){if(i>0){i--;render()}}function go(j){i=j;render()}
-function saveHistory(score,c,w,b){let h=JSON.parse(localStorage.getItem("mppsc_iq_history")||"[]");h.unshift({date:new Date().toLocaleString("hi-IN"),score,c,w,b});localStorage.setItem("mppsc_iq_history",JSON.stringify(h.slice(0,20)))}
-function submitTest(){if(submitted)return;if(!confirm("क्या आप टेस्ट Submit करना चाहते हैं?"))return;submitted=true;finish()}
-function stopTest(){if(stopped||submitted)return;if(!confirm("टेस्ट रोकें? बाद में इसी session में जारी नहीं किया जाएगा।"))return;stopped=true;showResult("टेस्ट रोक दिया गया।")}
-function finish(){let c=0,w=0,b=0;ans.forEach((x,j)=>x==null?b++:x===qs[j].a?c++:w++);let score=c*3-w;saveHistory(score,c,w,b);showResult("Test Submitted",c,w,b,score);localStorage.setItem("mppsc_iq_wrong_"+Date.now(),JSON.stringify(ans.map((x,j)=>x!=null&&x!==qs[j].a?j:null).filter(x=>x!==null)))}
-function showResult(title,c=0,w=0,b=0,score=0){quizView.classList.add("hidden");resultView.classList.remove("hidden");resultView.innerHTML='<h2>'+title+'</h2><div class="score">'+score+' Marks</div><div class="grid2"><div class="mini">सही<br><b>'+c+'</b></div><div class="mini">गलत<br><b>'+w+'</b></div><div class="mini">छोड़े<br><b>'+b+'</b></div><div class="mini">कुल<br><b>'+qs.length+'</b></div></div><p class="notice">Wrong Questions में केवल Submit किए गए गलत प्रश्न सेव होते हैं।</p>'}
-function showQuiz(){hideAll();quizView.classList.remove("hidden");render()}function hideAll(){[quizView,resultView,historyView,wrongView].forEach(x=>x.classList.add("hidden"))}
-function showHistory(){hideAll();historyView.classList.remove("hidden");let h=JSON.parse(localStorage.getItem("mppsc_iq_history")||"[]");historyView.innerHTML="<h2>Test History</h2>"+(h.length?h.map(x=>'<div class="mini" style="margin:6px 0;text-align:left">'+x.date+' — Score <b>'+x.score+'</b> | सही '+x.c+' | गलत '+x.w+' | छोड़े '+x.b+'</div>').join(""):"<p>अभी कोई submitted test नहीं है।</p>")}
-function showWrong(){hideAll();wrongView.classList.remove("hidden");let keys=Object.keys(localStorage).filter(k=>k.startsWith("mppsc_iq_wrong_"));let ids=[];keys.forEach(k=>{try{ids.push(...JSON.parse(localStorage.getItem(k)))}catch(e){}});ids=[...new Set(ids)];wrongView.innerHTML="<h2>Wrong Questions</h2>"+(ids.length?ids.map(j=>'<div class="wrong"><b>Q'+(j+1)+'.</b> '+qs[j].q+'<br><small>सही उत्तर: '+qs[j].o[qs[j].a]+'</small></div>').join(""):"<p>बिना test submit किए Wrong Questions खाली रहेगा।")}
+function render(){counter.textContent="Question "+(i+1)+" / "+qs.length;pct.textContent=Math.round((i+1)/qs.length*100)+"%";question.textContent=qs[i][0];options.innerHTML=qs[i][1].map((x,j)=>'<button class="opt '+(ans[i]===j?'selected':'')+'" onclick="pick('+j+')">'+String.fromCharCode(65+j)+". "+x+'</button>').join("");palette.innerHTML=qs.map((_,j)=>'<button class="p '+(ans[j]!=null?'done ':'')+(j===i?'current':'')+'" onclick="go('+j+')">'+(j+1)+'</button>').join("")}
+function pick(j){if(submitted||stopped)return;ans[i]=j;render();if(i<qs.length-1)setTimeout(next,250)}function next(){if(i<qs.length-1){i++;render()}}function prev(){if(i>0){i--;render()}}function go(j){i=j;render()}
+function submitTest(){if(submitted)return;if(confirm("Submit Test?")){submitted=true;finish()}}function stopTest(){if(stopped||submitted)return;if(confirm("Stop Test?")){stopped=true;result.classList.remove("hidden");result.innerHTML="<h2>Test Stopped</h2><p>Test was stopped. Submit a test to save Wrong Questions.</p>";quiz.classList.add("hidden")}}
+function finish(){let c=0,w=0,b=0;ans.forEach((x,j)=>x==null?b++:x===qs[j][2]?c++:w++);let score=c*3-w;let h=JSON.parse(localStorage.getItem("mppsc_iq_history")||"[]");h.unshift({date:new Date().toLocaleString(),score,c,w,b});localStorage.setItem("mppsc_iq_history",JSON.stringify(h.slice(0,20)));let wrongIds=ans.map((x,j)=>x!=null&&x!==qs[j][2]?j:null).filter(x=>x!==null);localStorage.setItem("mppsc_iq_wrong",JSON.stringify(wrongIds));quiz.classList.add("hidden");result.classList.remove("hidden");result.innerHTML='<h2>Test Submitted</h2><div class="score">'+score+' Marks</div><div class="grid2"><div class="mini">Correct<br><b>'+c+'</b></div><div class="mini">Wrong<br><b>'+w+'</b></div><div class="mini">Skipped<br><b>'+b+'</b></div><div class="mini">Total<br><b>'+qs.length+'</b></div></div>'}
+function show(x){quiz.classList.remove("hidden");result.classList.add("hidden");historyView.classList.add("hidden");wrongView.classList.add("hidden")}function history(){quiz.classList.add("hidden");result.classList.add("hidden");wrongView.classList.add("hidden");historyView.classList.remove("hidden");let h=JSON.parse(localStorage.getItem("mppsc_iq_history")||"[]");historyView.innerHTML="<h2>Test History</h2>"+(h.length?h.map(x=>'<div class="mini" style="text-align:left">'+x.date+" — Score "+x.score+" | Correct "+x.c+" | Wrong "+x.w+" | Skipped "+x.b+"</div>").join(""):"<p>No submitted tests.</p>")}function wrong(){quiz.classList.add("hidden");result.classList.add("hidden");historyView.classList.add("hidden");wrongView.classList.remove("hidden");let ids=JSON.parse(localStorage.getItem("mppsc_iq_wrong")||"[]");wrongView.innerHTML="<h2>Wrong Questions</h2>"+(ids.length?ids.map(j=>'<div class="wrong"><b>Q'+(j+1)+'.</b> '+qs[j][0]+'<br><small>Correct answer: '+qs[j][1][qs[j][2]]+'</small></div>').join(""):"<p>Wrong Questions is empty until a test is submitted.</p>")}
 setInterval(()=>{if(sec>0&&!submitted&&!stopped){sec--;timer.textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}else if(sec===0&&!submitted&&!stopped){submitted=true;finish()}},1000);
-render();try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}
+render();try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(e){}
 </script></body></html>
