@@ -5,45 +5,32 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MPPSC IQ Test</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}a{display:block;max-width:320px;margin:12px auto;padding:14px;background:#0b1f3a;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}</style>
+<style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}</style>
 </head>
 <body>
 <h2>MPPSC IQ TEST</h2>
-<p>Test खोलने के लिए नीचे बटन दबाएँ।</p>
-<a href="test01.html">MP HISTORY TEST 01</a>
+<p id="status">Test खोल रहा है...</p>
 <script>
 (function(){
-  const routes={
-    history01:"test01.html",
-    test01:"test01.html",
-    history02:"test02.html",
-    test02:"test02.html",
-    test02v3:"test02.html",
-    history02v4:"test02.html",
-    test02v4:"test02.html"
-  };
-  function openTest(p){
-    p=(p||"").trim();
-    if(routes[p]){
-      location.replace("./"+routes[p]+"?v="+Date.now());
-      return true;
-    }
-    return false;
+  function getParam(){
+    try{
+      if(window.Telegram && Telegram.WebApp){
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+        const d=Telegram.WebApp.initDataUnsafe||{};
+        if(d.start_param) return d.start_param;
+      }
+    }catch(e){}
+    try{
+      const q=new URLSearchParams(location.search);
+      return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||"";
+    }catch(e){return ""}
   }
-  let p="";
-  try{
-    if(window.Telegram && Telegram.WebApp){
-      Telegram.WebApp.ready();
-      Telegram.WebApp.expand();
-      p=Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.start_param || "";
-    }
-  }catch(e){}
-  if(!p){
-    const u=new URL(location.href);
-    p=u.searchParams.get("tgWebAppStartParam") || u.searchParams.get("startapp") || u.searchParams.get("start_param") || "";
-  }
-  if(!openTest(p)){
-    document.getElementById("status").textContent="Test link parameter not received. Please open the latest Test 02 button.";
+  const p=getParam();
+  if(p==="history02"||p==="history02v4"||p==="test02"||p==="test02v3"){
+    location.replace("test02.html");
+  }else{
+    location.replace("test01.html");
   }
 })();
 </script>
