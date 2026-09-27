@@ -42,7 +42,7 @@ jobs:
                   "inline_keyboard": [[
                       {
                           "text": "टेस्ट 02",
-                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test02v2"
+                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test02v3"
                       }
                   ]]
               }
