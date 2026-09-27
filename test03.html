@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1f3a"><title>MP HISTORY TEST 03</title><script src="https://telegram.org/js/telegram-web-app.js"></script><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#172033;font-family:Arial,sans-serif}header{background:#0b1f3a;color:#fff;padding:15px;text-align:center;position:sticky;top:0;z-index:5}header h1{margin:0;font-size:22px}.wrap{max-width:760px;margin:auto;padding:10px 12px 30px}.card{background:#fff;border-radius:15px;padding:14px;margin:10px 0;box-shadow:0 3px 14px #0001}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#eef3f9;border-radius:10px;text-align:center;padding:9px;font-size:12px}.stat b{display:block;font-size:17px;margin-top:3px}.timer{color:#a11}.qtop{display:flex;justify-content:space-between;font-weight:700}.q{font-size:17px;line-height:1.55;margin:12px 0}.opt{width:100%;padding:13px;margin:6px 0;border:1px solid #d7deea;border-radius:10px;background:#fff;text-align:left;font-size:15px}.opt.selected{border:2px solid #0b1f3a;background:#edf3fb}.opt.correct{border:2px solid #218739;background:#e8f5e9;color:#146c2e}.opt.wrong{border:2px solid #d93025;background:#fdecea;color:#b3261e}.nav{display:flex;gap:8px;margin-top:10px}.btn{border:0;border-radius:9px;padding:11px 15px;background:#0b1f3a;color:#fff;font-weight:700}.btn.alt{background:#e8edf4;color:#172033}.btn.stop{background:#8d1d1d}.palette{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}.p{aspect-ratio:1;border:0;border-radius:7px;background:#e7ecf3}.p.done{background:#0b1f3a;color:#fff}.p.current{outline:2px solid #c69b3c}.hidden{display:none}.score{font-size:32px;font-weight:800}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mini{background:#f1f4f8;padding:10px;border-radius:9px;text-align:center;margin:5px 0}.wrong{border-left:4px solid #9b1c1c;padding:10px;background:#fff5f5;margin:7px 0}.tabs{display:flex;gap:7px;overflow:auto}.tab{padding:9px 12px;border:0;border-radius:9px;background:#e7ecf3}.tab.active{background:#0b1f3a;color:#fff}</style></head><body>
+<header><h1>MP HISTORY TEST 03</h1><div>100 MCQs • +3 / −1 / 0 • 60 Minutes</div><div>Shaka, Satavahana, Kushana, Gupta &amp; Vakataka Dynasties</div></header><div class="wrap"><div class="card"><div class="stats"><div class="stat">Total Questions<b>100</b></div><div class="stat">Time<b class="timer" id="timer">60:00</b></div><div class="stat">Marking<b>+3 / −1 / 0</b></div></div></div><div id="feedback" class="card hidden"></div><div class="card"><div class="tabs"><button class="tab active" onclick="show('quiz')">Test</button><button class="tab" onclick="wrong()">Wrong / Skipped</button><button class="tab" onclick="notes()">Notes</button></div></div><section id="quiz"><div class="card"><div class="qtop"><span id="counter"></span><span id="pct"></span></div><div class="q" id="question"></div><div id="options"></div><div class="nav"><button class="btn alt" onclick="prev()">← Previous</button><button class="btn" onclick="next()">Next →</button></div></div><div class="card"><b>Question Palette</b><div class="palette" id="palette"></div><div class="nav"><button class="btn stop" onclick="stopTest()">⏹ Stop Test</button><button class="btn" onclick="submitTest()">Submit Test</button></div></div></section><section id="result" class="card hidden"></section><section id="wrongView" class="card hidden"></section><section id="notesView" class="card hidden"></section></div>
+<script>
+const qs=[
+["From which places in Madhya Pradesh have the coins of Samudragupta been found?",["Bamanala and Sanchi","Eran and Vidisha","Vidisha and Sanchi","Eran and Sanchi"],0],
+["From which places in Madhya Pradesh have the coins of the ruler Kacha been found?",["Vidisha and Sanchi","Eran and Vidisha","Bamanala and Sanchi","Eran and Sanchi"],0],
+["From which places in Madhya Pradesh have the copper coins of Samudragupta been found?",["Bamanala and Sanchi","Eran and Vidisha","Vidisha and Sanchi","Sagar and Vidisha"],1],
+["From which places in Madhya Pradesh have the coins of Kumaragupta been found?",["Bamanala and Pathara","Eran and Vidisha","Sanchi and Vidisha","Sagar and Panna"],0],
+["From which place in Madhya Pradesh have the gold coins of Skandagupta been found?",["Eran","Vidisha","Sakor","Sanchi"],2],
+["Which of the following titles was adopted by Chandragupta I?",["Mahendraditya","Maharajadhiraja","Vikramaditya","Shakraditya"],1],
+["Which era was started by Chandragupta I?",["Shaka Era","Gupta Era","Vikrama Era","Harsha Era"],1],
+["The achievements of Samudragupta are mainly known from which eulogy?",["Eran Prashasti","Prayaga Prashasti","Sanchi Prashasti","Mandsaur Prashasti"],1],
+["Who composed the Prayaga Prashasti?",["Kalidasa","Harishena","Varahamihira","Amarasimha"],1],
+["Which of the following was one of the major titles of Samudragupta?",["Kaviraja","Mahendraditya","Shakraditya","Vikramaditya"],0],
+["Which scholar called Samudragupta the ‘Napoleon of India’?",["Fa-Hien","Vincent Arthur Smith","Xuanzang","Megasthenes"],1],
+["Samudragupta was famous for playing which musical instrument?",["Veena","Mridanga","Flute","Conch"],0],
+["Who was the court poet of Samudragupta?",["Kalidasa","Harishena","Bharavi","Vishakhadatta"],1],
+["Which Buddhist scholar was patronized by Samudragupta?",["Nagarjuna","Vasubandhu","Ashvaghosa","Buddhaghosa"],1],
+["Which of the following Naga rulers was defeated by Samudragupta?",["Ganapati Naga","Nagasena","Nahapana","Rudradaman"],0],
+["Which ruler of Vidisha was incorporated into the kingdom of Samudragupta?",["Sanakanika","Ganapati Naga","Nagasena","Rudrasena"],0],
+["How many states of South India were defeated by Samudragupta?",["8","10","12","14"],2],
+["By what name was Eran known during the reign of Samudragupta?",["Svabhoga Nagar","Vijaya Nagar","Dharma Nagar","Gupta Nagar"],0],
+["Who is mentioned in the Prayaga Prashasti as the last Naga ruler of the Gupta period?",["Nagasena","Ganapati Naga","Nagadatta","Rudrasena"],1],
+["During the reign of which Gupta ruler did Fa-Hien visit India?",["Samudragupta","Chandragupta II","Kumaragupta","Skandagupta"],1],
+["What description did Fa-Hien use for the climate of Malwa?",["Best climate","Cold climate","Hot climate","Temperate climate"],0],
+["Who is the author of ‘Ritusamhara’?",["Kalidasa","Vishakhadatta","Bharavi","Amarasimha"],0],
+["Who is the author of ‘Meghaduta’?",["Kalidasa","Shudraka","Dandin","Bharavi"],0],
+["Who is the author of ‘Kumarasambhava’?",["Vishakhadatta","Kalidasa","Amarasimha","Bharavi"],1],
+["Who is the author of ‘Raghuvamsha’?",["Kalidasa","Dandin","Bharavi","Vishakhadatta"],0],
+["Who is the author of ‘Malavikagnimitram’?",["Kalidasa","Shudraka","Vishakhadatta","Amarasimha"],0],
+["Who is the author of ‘Abhijnanashakuntalam’?",["Kalidasa","Bharavi","Dandin","Shudraka"],0],
+["Who is the author of ‘Vikramorvashiyam’?",["Kalidasa","Vishakhadatta","Bharavi","Amarasimha"],0],
+["Who is the author of ‘Mudrarakshasa’?",["Kalidasa","Vishakhadatta","Shudraka","Dandin"],1],
+["Who is the author of ‘Devichandraguptam’?",["Vishakhadatta","Kalidasa","Bharavi","Amarasimha"],0],
+["Who is the author of ‘Amarakosha’?",["Varahamihira","Amarasimha","Kalidasa","Dandin"],1],
+["Who is considered the author of ‘Charaka Samhita’?",["Charaka","Vagbhata","Sushruta","Dhanvantari"],0],
+["Who is the author of ‘Kamasutra’?",["Vatsyayana","Bharavi","Dandin","Shudraka"],0],
+["Who is the author of ‘Kiratarjuniya’?",["Bharavi","Kalidasa","Dandin","Vishakhadatta"],0],
+["Who is the author of ‘Hitopadesha’?",["Narayana Pandita","Vishnu Sharma","Dandin","Bhasa"],0],
+["Who is traditionally credited as the author of ‘Panchatantra’?",["Vishnu Sharma","Narayana Pandita","Shudraka","Amarasimha"],0],
+["Who is the author of ‘Nitisara’?",["Kamandaka","Dandin","Bharavi","Amarasimha"],0],
+["Who is the author of ‘Mrichchhakatikam’?",["Shudraka","Kalidasa","Vishakhadatta","Bharavi"],0],
+["Who is the author of ‘Brihat Samhita’?",["Aryabhata","Varahamihira","Amarasimha","Brahmagupta"],1],
+["Who is the author of ‘Pancha Siddhantika’?",["Kalidasa","Varahamihira","Aryabhata","Bharavi"],1],
+["Who is the author of ‘Aryabhatiya’?",["Varahamihira","Aryabhata","Amarasimha","Brahmagupta"],1],
+["Who is the author of ‘Nyayavatara’?",["Siddhasena","Dandin","Shudraka","Kamandaka"],0],
+["Who is the author of ‘Dashakumaracharita’?",["Dandin","Kalidasa","Vishakhadatta","Bharavi"],0],
+["Who is the author of ‘Visuddhimagga’?",["Buddhaghosa","Asanga","Vasubandhu","Nagarjuna"],0],
+["Who is the author of ‘Chandra Vyakarana’?",["Chandragomin","Varahamihira","Aryabhata","Siddhasena"],0],
+["Who is the author of ‘Svapnavasavadatta’?",["Bhasa","Kalidasa","Shudraka","Bharavi"],0],
+["Who is the author of ‘Ashtanga Sangraha’?",["Vagbhata","Charaka","Sushruta","Dhanvantari"],0],
+["Which inscription contains the earliest epigraphic evidence of the practice of Sati?",["Sanchi Inscription","Eran Inscription","Udayagiri Inscription","Supia Inscription"],1],
+["In which inscription is Amrakardava, the general of Chandragupta II, mentioned?",["Eran Inscription","Sanchi Inscription","Tumain Inscription","Mandsaur Inscription"],1],
+["Which inscription mentions a donation to the Arya Sangha?",["Sanchi Inscription","Supia Inscription","Eran Inscription","Udayagiri Inscription"],0],
+["Which inscription is known for mentioning the village council?",["Mandsaur Inscription","Eran Inscription","Sanchi Inscription","Tumain Inscription"],2],
+["Which inscription mentions the Hun invasion of Toramana?",["Supia Inscription","Eran Inscription","Udayagiri Inscription","Sanchi Inscription"],1],
+["In which inscription is Virasena, the Sandhivigrahika of Chandragupta II, mentioned?",["Eran Inscription","Mandsaur Inscription","Udayagiri Inscription","Supia Inscription"],2],
+["Which of the following inscriptions is associated with Kumaragupta?",["Tumain Inscription","Sanchi Inscription","Eran Inscription","Supia Inscription"],0],
+["Which of the following inscriptions is associated with Skandagupta?",["Mandsaur Inscription","Supia Inscription","Tumain Inscription","Sanchi Inscription"],1],
+["Which inscription provides the Gupta genealogy beginning with Ghatotkacha?",["Eran Inscription","Supia Inscription","Udayagiri Inscription","Sanchi Inscription"],1],
+["Which inscription mentions the construction of a Sun Temple by silk weavers?",["Mandsaur Inscription","Eran Inscription","Sanchi Inscription","Tumain Inscription"],0],
+["In which district of Madhya Pradesh is the Khoh Shiva Temple located?",["Panna","Satna","Sagar","Vidisha"],1],
+["In which district of Madhya Pradesh is the Nagod Shiva Temple located?",["Satna","Panna","Rewa","Sagar"],0],
+["The Udayagiri Caves are mainly associated with which religions?",["Buddhist and Jain","Hindu and Jain","Hindu and Buddhist","Buddhist only"],1],
+["Which avatar has the famous sculpture in Cave No. 5 of Udayagiri?",["Vamana Avatar","Varaha Avatar","Narasimha Avatar","Kurma Avatar"],1],
+["In which district of Madhya Pradesh are the Udayagiri Caves located?",["Sagar","Vidisha","Rewa","Dhar"],1],
+["The Gupta-period Bagh Caves are located in which district of Madhya Pradesh?",["Dhar","Sagar","Vidisha","Satna"],0],
+["Who discovered the Bagh Caves?",["James Tod","Dangerfield","Cunningham","Fergusson"],1],
+["What is Cave No. 1 of the Bagh Caves known as?",["Pandava Cave","Griha Cave","Rang Mahal","Pathshala"],1],
+["What is Cave No. 2 of the Bagh Caves known as?",["Griha Cave","Pandava Cave","Rang Mahal","Pathshala"],1],
+["Which is the largest cave among the Bagh Caves?",["Cave 1","Cave 2","Cave 4","Cave 5"],2],
+["The paintings of the Bagh Caves are said to resemble which art tradition?",["Ellora Art","Ajanta Art","Sanchi Art","Khajuraho Art"],1],
+["In which year did Heliodorus come to Vidisha to the court of the Shunga ruler Bhagabhadra?",["5th year","10th year","14th year","20th year"],2],
+["What is the local name of the Heliodorus Pillar at Vidisha?",["Garuda Dhvaja","Kham Baba","Dharma Stambha","Vishnu Dhvaja"],1],
+["The Heliodorus Pillar is associated with which religious tradition?",["Shaiva","Buddhist","Jain","Vaishnava"],3],
+["During the rule of which dynasty did Heliodorus come to Vidisha?",["Maurya","Gupta","Shunga","Shaka"],2],
+["Which of the following statements is incorrect? 1. Heliodorus was the ambassador of Antialcidas. 2. He established the Garuda Pillar at Vidisha. 3. This pillar is dedicated to Lord Shiva. 4. It is locally known as Kham Baba.",["Only 1","Only 2","Only 3","Only 4"],2],
+["From which places in Madhya Pradesh have the coins of Gautamiputra Satakarni been found?",["Sanchi and Mandsaur","Ujjain and Raisen","Vidisha and Dhar","Balaghat and Jabalpur"],1],
+["From which district of Madhya Pradesh have the coins of the Indo-Greek ruler Menander been found?",["Ujjain","Vidisha","Balaghat","Dhar"],2],
+["From where in Madhya Pradesh have the coins of Vashishthiputra Pulumavi been found?",["Bhilsa and Dewas","Ujjain and Raisen","Mandsaur and Dhar","Tewar and Balaghat"],0],
+["From which places in Madhya Pradesh have the coins of Yajna Sri Satakarni been found?",["Ujjain and Raisen","Tewar, Besnagar and Dewas","Sanchi and Vidisha","Balaghat and Mandla"],1],
+["From which district of Madhya Pradesh have 340 coins of the Kushana ruler Kanishka been found?",["Vidisha","Shahdol","Mandsaur","Ujjain"],1],
+["From which place in Madhya Pradesh have the coins of the Kushana ruler Vima Kadphises been found?",["Ujjain","Vidisha","Sanchi","Harda"],1],
+["From which districts of Madhya Pradesh have the coins of the Kushana ruler Huvishka been found?",["Mandsaur and Ujjain","Shahdol and Harda","Vidisha and Raisen","Sagar and Dhar"],1],
+["Where was the inscription of the Kushana ruler Vasishka found in Madhya Pradesh?",["Vidisha","Sanchi","Ujjain","Shahdol"],1],
+["From which region of Madhya Pradesh have the maximum number of Kushana-period inscriptions and coins been found?",["Shahdol–Vidisha region","Mandsaur–Dhar region","Panna–Sagar region","Raisen–Ujjain region"],0],
+["Who was the founder of the Vakataka dynasty?",["Rudrasena I","Vindhyashakti","Prithvisena II","Harishena"],1],
+["Vakataka ruler Vindhyashakti was the ruler of which region?",["Ujjain","Vidisha","Nagpur","Amravati"],1],
+["The Balaghat inscription is associated with which Vakataka ruler?",["Harishena","Rudrasena I","Prithvisena II","Vindhyashakti"],2],
+["In which inscription is the Vakataka ruler Prithvisena II called ‘Paramabhagavata’?",["Mandsaur Inscription","Balaghat Inscription","Nasik Inscription","Ajanta Inscription"],1],
+["Which ruler is called the ‘uplifter of the sunken dynasty’ in the Balaghat inscription?",["Harishena","Prithvisena II","Rudrasena I","Vindhyashakti"],1],
+["At which of the following sites is the famous sculptural representation of Vishnu’s Varaha avatar found?",["Udayagiri Cave, Vidisha","Ellora Caves, Aurangabad","Hathigumpha Cave, Bhubaneswar","Elephanta Caves, Mumbai"],0],
+["Which Indo-Greek ruler is mentioned in the Besnagar (Vidisha) pillar inscription?",["Antialcidas","Menander","Demetrius","Heliodorus"],0],
+["Which Gupta ruler is mentioned on the Jain Tirthankara images found at Durjanpur near Vidisha?",["Samudragupta","Chandragupta I","Ramagupta","Kumaragupta"],2],
+["Which of the following rulers are mentioned in the inscriptions found at Eran? 1. Toramana 2. Budhagupta 3. Samudragupta",["Only 1","1 and 2","1, 2 and 3","1 and 3"],2],
+["During the reign of which Gupta ruler was Eran called ‘Svabhoga Nagar’?",["Chandragupta I","Kumaragupta","Samudragupta","Skandagupta"],2],
+["Consider the following statements regarding the Eran inscription: 1. This inscription is located in Sagar district. 2. It provides the earliest evidence of Sati in India. 3. It provides information about the Hun invasion.",["Only 1 and 2","Only 2 and 3","Only 1 and 3","1, 2 and 3"],3],
+["Consider the following statements regarding the Supia inscription: 1. This inscription is located in Rewa district. 2. This inscription is associated with the Gupta ruler Skandagupta. 3. It provides the Gupta genealogy beginning with Ghatotkacha.",["Only 1 and 2","Only 2 and 3","Only 1 and 3","1, 2 and 3"],3],
+["Consider the following statements regarding the Tumain inscription: 1. This inscription was found in Ashoknagar district. 2. It is associated with the Gupta ruler Kumaragupta. 3. The king is described as being like the autumn sun.",["Only 1 and 2","Only 2 and 3","Only 1 and 3","1, 2 and 3"],3],
+["Consider the following statements regarding the Udayagiri inscription: 1. This inscription is located in Vidisha district. 2. This inscription is associated with Virasena, the Sandhivigrahika of Chandragupta II. 3. It mentions Sanakanika, a feudatory of Chandragupta II. 4. It mentions the installation of an image of Parshvanatha by a person named Shankara.",["Only 1 and 2","Only 1, 2 and 3","Only 2, 3 and 4","1, 2, 3 and 4"],3],
+["Consider the following statements regarding the Sanchi inscription: 1. This inscription is located in Raisen district. 2. It mentions a donation to the Arya Sangha. 3. It mentions the village council. 4. It mentions Amrakardava, the general of Chandragupta II.",["Only 1 and 2","Only 1, 2 and 3","Only 2, 3 and 4","1, 2, 3 and 4"],3],
+["The earliest epigraphic evidence of the practice of Sati is found in which of the following inscriptions?",["Bhanugupta’s Eran Pillar Inscription","Rudradaman’s Junagadh Inscription","Samudragupta’s Allahabad Pillar Inscription","Harsha’s Maddhan Inscription"],0],
+["Who among the following was the earliest known Greek follower of the Bhagavata religion?",["Demetrius","Antialcidas","Heliodorus","Menander"],2],
+["Where is the earliest epigraphic evidence of the Bhagavata religion in India found?",["Ghosundi Inscription of King Sarvatata","Besnagar Inscription of Heliodorus","Nanaghat Inscription of Satavahana Queen Naganika","Mehrauli Pillar Inscription of Chandragupta II"],1]
+];
+let i=0,ans=Array(qs.length).fill(null),sec=3600,submitted=false,stopped=false,feedbackTimer=null;
+function render(){counter.textContent="Question "+(i+1)+" / "+qs.length;pct.textContent=Math.round((i+1)/qs.length*100)+"%";question.innerHTML="<strong>"+qs[i][0]+"</strong>";options.innerHTML=qs[i][1].map((x,j)=>{let cls="opt";if(ans[i]!==null){if(j===qs[i][2])cls+=" correct";if(j===ans[i]&&j!==qs[i][2])cls+=" wrong";if(j===ans[i])cls+=" selected"}return '<button class="'+cls+'" onclick="pick('+j+')" '+(ans[i]!==null?"disabled":"")+'>'+String.fromCharCode(65+j)+". "+x+"</button>"}).join("");palette.innerHTML=qs.map((_,j)=>'<button class="p '+(ans[j]!=null?'done ':'')+(j===i?'current':'')+'" onclick="go('+j+')">'+(j+1)+"</button>").join("")}
+function pick(j){if(stopped||ans[i]!==null)return;ans[i]=j;render();showFeedback(j);if(i<qs.length-1)feedbackTimer=setTimeout(next,900);else feedbackTimer=setTimeout(()=>showFeedback(j,true),900)}
+function showFeedback(j,last=false){feedback.classList.remove("hidden");const c=qs[i][2];feedback.innerHTML=j===c?'<b style="color:#137333">✓ Correct Answer</b>':'<b style="color:#b3261e">✗ Incorrect</b><br>Correct answer: <b>'+String.fromCharCode(65+c)+". "+qs[i][1][c]+"</b>";if(last)feedback.innerHTML+="<br><br><button class=\"btn\" onclick=\"submitTest()\">Submit Test</button>"}
+function next(){if(feedbackTimer){clearTimeout(feedbackTimer);feedbackTimer=null}feedback.classList.add("hidden");if(i<qs.length-1){i++;render()}}
+function prev(){if(i>0){i--;render()}}
+function go(j){if(feedbackTimer){clearTimeout(feedbackTimer);feedbackTimer=null}feedback.classList.add("hidden");i=j;render()}
+function submitTest(){if(submitted||stopped)return;if(confirm("Submit Test?")){if(feedbackTimer)clearTimeout(feedbackTimer);submitted=true;finish()}}
+function stopTest(){if(stopped||submitted)return;if(confirm("Stop Test?")){if(feedbackTimer)clearTimeout(feedbackTimer);stopped=true;result.classList.remove("hidden");result.innerHTML="<h2>Test Stopped</h2><p>Test was stopped. Submit a test to save Wrong Questions.</p>";quiz.classList.add("hidden")}}
+function finish(){let c=0,w=0,b=0;ans.forEach((x,j)=>x==null?b++:x===qs[j][2]?c++:w++);let score=c*3-w;localStorage.setItem("mppsc_iq_wrong_test03",JSON.stringify(ans.map((x,j)=>x!=null&&x!==qs[j][2]?j:null).filter(x=>x!==null)));localStorage.setItem("mppsc_iq_skipped_test03",JSON.stringify(ans.map((x,j)=>x==null?j:null).filter(x=>x!==null)));quiz.classList.add("hidden");feedback.classList.add("hidden");result.classList.remove("hidden");result.innerHTML="<h2>Test Submitted</h2><div class=\"score\">"+score+" Marks</div><div class=\"grid2\"><div class=\"mini\">Correct<br><b>"+c+"</b></div><div class=\"mini\">Wrong<br><b>"+w+"</b></div><div class=\"mini\">Skipped<br><b>"+b+"</b></div><div class=\"mini\">Total Questions<br><b>"+qs.length+"</b></div></div>"}
+function show(){quiz.classList.remove("hidden");result.classList.add("hidden");wrongView.classList.add("hidden");notesView.classList.add("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===0))}
+function wrong(){quiz.classList.add("hidden");result.classList.add("hidden");notesView.classList.add("hidden");wrongView.classList.remove("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===1));let a=JSON.parse(localStorage.getItem("mppsc_iq_wrong_test03")||"[]").map(j=>({j,t:"Wrong"})),b=JSON.parse(localStorage.getItem("mppsc_iq_skipped_test03")||"[]").map(j=>({j,t:"Skipped"})),all=[...a,...b].sort((x,y)=>x.j-y.j);wrongView.innerHTML="<h2>Wrong / Skipped Questions</h2>"+(all.length?all.map(o=>'<div class="wrong"><b>Q'+(o.j+1)+" — "+o.t+"</b><br>"+qs[o.j][0]+"<br><small>Correct answer: <b>"+String.fromCharCode(65+qs[o.j][2])+". "+qs[o.j][1][qs[o.j][2]]+"</b></small></div>").join(""):"<p>No wrong or skipped questions.</p>")}
+function notes(){quiz.classList.add("hidden");result.classList.add("hidden");wrongView.classList.add("hidden");notesView.classList.remove("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===2));notesView.innerHTML="<h2>Notes — One Liner Facts</h2>"+qs.map((q,j)=>'<div class="mini" style="text-align:left"><b>'+(j+1)+".</b> "+q[0]+" → <b>"+q[1][q[2]]+"</b></div>").join("")}
+setInterval(()=>{if(sec>0&&!submitted&&!stopped){sec--;timer.textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}else if(sec===0&&!submitted&&!stopped){submitted=true;finish()}},1000);
+render();try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(e){}
+</script></body></html>
