@@ -32,20 +32,19 @@ const qs=[
 ];
 let i=0,ans=Array(qs.length).fill(null),sec=3600,submitted=false,stopped=false,feedbackTimer=null;
 function bilingualOption(x){
-  const m=x.match(/<div class="ohi">([\\s\\S]*?)<\\/div><div class="oen">([\\s\\S]*?)<\\/div>/);
+  const m=x.match(/<div class="ohi">([\s\S]*?)<\/div><div class="oen">([\s\S]*?)<\/div>/);
   if(!m)return x;
-  let hi=m[1].trim(), en=m[2].trim();
+  const hi=m[1].trim(), en=m[2].trim();
   if(hi===en)return hi;
-  const units=[["करोड़","crore"],["प्रतिशत","percent"],["प्रतिशत","%"],["वर्ष","year"],["वर्षों","years"],["लाख","lakh"],["करोड़","crores"]];
-  for(const [h,e] of units){
-    if(en.toLowerCase().startsWith(e.toLowerCase()) && hi.endsWith(h)){
-      const hnum=hi.slice(0,-h.length).trim(), enumv=en.slice(e.length).trim();
-      if(hnum.replace(/[^0-9.,₹-]/g,"")===enumv.replace(/[^0-9.,₹-]/g,"")) return hi+" / "+e;
+  const hn=(hi.match(/[0-9][0-9,]*(?:\.[0-9]+)?/g)||[]).join("|");
+  const enN=(en.match(/[0-9][0-9,]*(?:\.[0-9]+)?/g)||[]).join("|");
+  if(hn && hn===enN){
+    const units=[["करोड़","crore"],["प्रतिशत","percent"],["लाख","lakh"],["वर्ष","year"]];
+    for(const u of units){
+      if(hi.endsWith(u[0]) && en.toLowerCase().endsWith(u[1])) return hi+" / "+u[1];
     }
+    return hi+" / "+en;
   }
-  const hn=(hi.match(/[0-9][0-9,]*(?:\\.[0-9]+)?/g)||[]).join("|");
-  const enN=(en.match(/[0-9][0-9,]*(?:\\.[0-9]+)?/g)||[]).join("|");
-  if(hn&&hn===enN)return hi+" / "+en;
   return '<div class="ohi">'+hi+'</div><div class="oen">'+en+'</div>';
 }
 function render(){document.getElementById("counter").textContent="Question "+(i+1)+" / "+qs.length;document.getElementById("pct").textContent=Math.round((i+1)/qs.length*100)+"%";document.getElementById("question").innerHTML=qs[i][0];document.getElementById("options").innerHTML=qs[i][1].map((x,j)=>{x=bilingualOption(x);let cls="opt";if(ans[i]!==null){if(j===qs[i][2])cls+=" correct";if(j===ans[i]&&j!==qs[i][2])cls+=" wrong";if(j===ans[i])cls+=" selected"}else if(ans[i]===j)cls+=" selected";return '<button class="'+cls+'" onclick="pick('+j+')" '+(ans[i]!==null?"disabled":"")+'>'+String.fromCharCode(65+j)+". "+x+'</button>'}).join("");document.getElementById("palette").innerHTML=qs.map((_,j)=>'<button class="p '+(ans[j]!=null?'done ':'')+(j===i?'current':'')+'" onclick="go('+j+')">'+(j+1)+'</button>').join("")}
