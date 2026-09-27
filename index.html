@@ -1,1 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MPPSC IQ Test</title><style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}a{display:block;max-width:320px;margin:12px auto;padding:14px;background:#0b1f3a;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}</style></head><body><h2>MPPSC IQ TEST</h2><p>Test खोलने के लिए नीचे बटन दबाएँ।</p><a href="test01.html">MP HISTORY TEST 01</a><script>try{const p=Telegram.WebApp.initDataUnsafe.start_param}catch(e){}const p=new URLSearchParams(location.search).get("startapp");const routes={history01:"test01.html",test01:"test01.html",test02:"test02.html",test02v3:"test02.html"};if(routes[p])location.replace(routes[p]);</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MPPSC IQ Test</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}a{display:block;max-width:320px;margin:12px auto;padding:14px;background:#0b1f3a;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}</style>
+</head>
+<body>
+<h2>MPPSC IQ TEST</h2>
+<p>Test खोलने के लिए नीचे बटन दबाएँ।</p>
+<a href="test01.html">MP HISTORY TEST 01</a>
+<script>
+(function(){
+  const routes={
+    history01:"test01.html",
+    test01:"test01.html",
+    history02:"test02.html",
+    test02:"test02.html",
+    test02v3:"test02.html"
+  };
+  let p="";
+  try{
+    if(window.Telegram && Telegram.WebApp){
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand();
+      p=Telegram.WebApp.initDataUnsafe.start_param || "";
+    }
+  }catch(e){}
+  if(!p) p=new URLSearchParams(location.search).get("startapp") || "";
+  if(routes[p]) location.replace(routes[p]);
+})();
+</script>
+</body>
+</html>
