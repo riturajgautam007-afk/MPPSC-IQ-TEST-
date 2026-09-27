@@ -18,18 +18,33 @@
     test01:"test01.html",
     history02:"test02.html",
     test02:"test02.html",
-    test02v3:"test02.html",history02v4:"test02.html",test02v4:"test02.html"
+    test02v3:"test02.html",
+    history02v4:"test02.html",
+    test02v4:"test02.html"
   };
+  function openTest(p){
+    p=(p||"").trim();
+    if(routes[p]){
+      location.replace("./"+routes[p]+"?v="+Date.now());
+      return true;
+    }
+    return false;
+  }
   let p="";
   try{
     if(window.Telegram && Telegram.WebApp){
       Telegram.WebApp.ready();
       Telegram.WebApp.expand();
-      p=Telegram.WebApp.initDataUnsafe.start_param || "";
+      p=Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.start_param || "";
     }
   }catch(e){}
-  if(!p) p=new URLSearchParams(location.search).get("startapp") || "";
-  if(routes[p]) location.replace(routes[p]);
+  if(!p){
+    const u=new URL(location.href);
+    p=u.searchParams.get("tgWebAppStartParam") || u.searchParams.get("startapp") || u.searchParams.get("start_param") || "";
+  }
+  if(!openTest(p)){
+    document.getElementById("status").textContent="Test link parameter not received. Please open the latest Test 02 button.";
+  }
 })();
 </script>
 </body>
