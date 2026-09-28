@@ -9,14 +9,13 @@
 </head>
 <body>
 <h2>MPPSC IQ TEST</h2>
-<p id="status">Test खोल रहा है...</p>
+<p id="status">Test खोल रहा है... / Opening test...</p>
 <script>
 (function(){
   function getParam(){
     try{
       if(window.Telegram && Telegram.WebApp){
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
+        Telegram.WebApp.ready(); Telegram.WebApp.expand();
         const d=Telegram.WebApp.initDataUnsafe||{};
         if(d.start_param) return d.start_param;
       }
@@ -27,8 +26,8 @@
     }catch(e){return ""}
   }
   const p=getParam();
-  if(p==="economic-survey-2025-26"||p==="economicsurvey2526"){
-    location.replace("economic-survey-2025-26.html");
+  if(p==="economic-survey-2025-26"||p==="economicsurvey2526"||p==="economic-survey-2025-26-v2"){
+    location.replace("economic-survey-2025-26.html?v=2");
   }else if(p==="test03"||p==="history03"){
     location.replace("test03.html");
   }else if(p==="test02"||p==="history02"||p==="history02v4"||p==="test02v3"){
