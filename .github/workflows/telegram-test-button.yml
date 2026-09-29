@@ -42,7 +42,7 @@ jobs:
                   "inline_keyboard": [[
                       {
                           "text": "MP HISTORY TEST 06",
-                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test06"
+                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test06v2"
                       }
                   ]]
               }
