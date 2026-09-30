@@ -1,47 +1,19 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MPPSC IQ Test</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}</style>
-</head>
-<body>
-<h2>MPPSC IQ TEST</h2>
-<p id="status">Test खोल रहा है... / Opening test...</p>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MPPSC IQ Test</title><script src="https://telegram.org/js/telegram-web-app.js"></script><style>body{font-family:Arial,sans-serif;background:#f3f6fa;text-align:center;padding:40px;color:#172033}</style></head>
+<body><h2>MPPSC IQ TEST</h2><p id="status">Test खोल रहा है... / Opening test...</p>
 <script>
 (function(){
-  function getParam(){
-    try{
-      if(window.Telegram && Telegram.WebApp){
-        Telegram.WebApp.ready(); Telegram.WebApp.expand();
-        const d=Telegram.WebApp.initDataUnsafe||{};
-        if(d.start_param) return d.start_param;
-      }
-    }catch(e){}
-    try{
-      const q=new URLSearchParams(location.search);
-      return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||"";
-    }catch(e){return ""}
-  }
-  const p=getParam();
-  if(p==="mcq1041"||p==="unit02mcq1041"||p==="mcq1041v2"){ location.replace("unit2-revision-1041-1047.html?v=1"); return; }
-  if(p==="notes04"||p==="unit04"||p==="quickfacts04"){ location.replace("notes04.html?v=2");
-  }else if(p==="test06"||p==="test06v2"||p==="history06"){ location.replace("test06.html");
-  }else if(p==="test05"||p==="history05"){ location.replace("test05.html");
-  }else if(p==="test03"||p==="history03"){ location.replace("test03.html");
-  }else if(p==="pyq01"||p==="mppsc-pyq-01"){ location.replace("pyq-test-01.html");
-  }else if(p==="economic-survey-2025-26"||p==="economicsurvey2526"||p==="economic-survey-2025-26-v2"){
-    location.replace("economic-survey-2025-26.html?v=2");
-  }else if(p==="test03"||p==="history03"){
-    location.replace("test03.html");
-  }else if(p==="test02"||p==="history02"||p==="history02v4"||p==="test02v3"){
-    location.replace("test02.html");
-  }else{
-    location.replace("test01.html");
-  }
+ function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
+ const p=getParam();
+ if(p==="guptasculpture"||p==="gupta-sculpture"||p==="unit02gupta"){location.replace("gupta-sculpture-revision.html?v=20260930");return;}
+ if(p==="mcq1041"||p==="unit02mcq1041"||p==="mcq1041v2"){location.replace("unit2-revision-1041-1047.html?v=1");return;}
+ if(p==="notes04"||p==="unit04"||p==="quickfacts04"){location.replace("notes04.html?v=2");}
+ else if(p==="test06"||p==="test06v2"||p==="history06"){location.replace("test06.html");}
+ else if(p==="test05"||p==="history05"){location.replace("test05.html");}
+ else if(p==="test03"||p==="history03"){location.replace("test03.html");}
+ else if(p==="pyq01"||p==="mppsc-pyq-01"){location.replace("pyq-test-01.html");}
+ else if(p==="economic-survey-2025-26"||p==="economicsurvey2526"||p==="economic-survey-2025-26-v2"){location.replace("economic-survey-2025-26.html?v=2");}
+ else if(p==="test02"||p==="history02"||p==="history02v4"||p==="test02v3"){location.replace("test02.html");}
+ else{location.replace("test01.html");}
 })();
-</script>
-</body>
-</html>
+</script></body></html>
