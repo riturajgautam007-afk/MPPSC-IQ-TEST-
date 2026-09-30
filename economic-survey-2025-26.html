@@ -3,14 +3,59 @@
 const enQ=["What is the estimated Gross State Domestic Product (GSDP) of Madhya Pradesh at current prices in FY 2025-26?","What was the Gross State Domestic Product (GSDP) of Madhya Pradesh at current prices in FY 2024-25?","What percentage growth in GSDP at current prices is estimated for Madhya Pradesh in FY 2025-26?","What is the estimated GSDP of Madhya Pradesh at constant (2011-12) prices in FY 2025-26?","What was the GSDP of Madhya Pradesh at constant (2011-12) prices in FY 2024-25?","What percentage growth in GSDP at constant (2011-12) prices is estimated for Madhya Pradesh in FY 2025-26?","What is the contribution of the primary sector to GSVA at current prices in Madhya Pradesh in FY 2025-26?","What is the contribution of the primary sector to GSVA at constant (2011-12) prices in Madhya Pradesh in FY 2025-26?","What is the contribution of the secondary sector to GSVA at current prices in Madhya Pradesh in FY 2025-26?","What is the contribution of the secondary sector to GSVA at constant (2011-12) prices in Madhya Pradesh in FY 2025-26?","What is the contribution of the tertiary sector to GSVA at current prices in Madhya Pradesh in FY 2025-26?","What is the contribution of the tertiary sector to GSVA at constant (2011-12) prices in Madhya Pradesh in FY 2025-26?","Which sector has the highest contribution to GSVA at current prices in Madhya Pradesh in FY 2025-26?","Which sector has the highest contribution to GSVA at constant (2011-12) prices in Madhya Pradesh in FY 2025-26?","What are the respective contributions of the primary, secondary and tertiary sectors to GSVA at current prices in Madhya Pradesh in FY 2025-26?","What are the respective contributions of the primary, secondary and tertiary sectors to GSVA at constant (2011-12) prices in Madhya Pradesh in FY 2025-26?","According to the advance estimates for FY 2025-26, what is the per capita net income of Madhya Pradesh at current prices?","What was the per capita net income of Madhya Pradesh at constant (2011-12) prices in 2011-12?","What is the per capita net income of Madhya Pradesh at constant (2011-12) prices in FY 2025-26?","At current prices, from ₹38,497 in 2011-12, to what amount has the per capita net income of Madhya Pradesh increased in FY 2025-26?","At constant (2011-12) prices, from ₹38,497 in 2011-12, to what amount has the per capita net income of Madhya Pradesh increased in FY 2025-26?"];
 const enO=[["₹15,02,428 crore","₹16,69,750 crore","₹7,81,911 crore","₹7,23,724 crore"],["₹14,69,750 crore","₹15,02,428 crore","₹16,69,750 crore","₹7,23,724 crore"],["8.04%","9.37%","11.14%","12.96%"],["₹7,23,724 crore","₹7,81,911 crore","₹16,69,750 crore","₹15,02,428 crore"],["₹7,23,724 crore","₹7,81,911 crore","₹15,02,428 crore","₹16,69,750 crore"],["6.38%","8.04%","11.14%","10.81%"],["33.54%","37.12%","43.09%","40.28%"],["43.09%","33.54%","26.18%","40.28%"],["19.79%","26.18%","33.54%","40.28%"],["19.79%","26.18%","33.54%","37.12%"],["37.12%","40.28%","43.09%","19.79%"],["37.12%","40.28%","33.54%","26.18%"],["Primary sector / प्राथमिक क्षेत्र","Secondary sector / द्वितीयक क्षेत्र","Tertiary sector / तृतीयक क्षेत्र","All contribute equally / सभी का समान योगदान है"],["Primary sector / प्राथमिक क्षेत्र","Secondary sector / द्वितीयक क्षेत्र","Tertiary sector / तृतीयक क्षेत्र","Primary and tertiary sectors are equal / प्राथमिक एवं तृतीयक क्षेत्र समान हैं"],["43.09%, 19.79%, 37.12%","33.54%, 26.18%, 40.28%","43.09%, 26.18%, 30.73%","37.12%, 19.79%, 43.09%"],["43.09%, 19.79%, 37.12%","33.54%, 26.18%, 40.28%","30.17%, 7.22%, 2.96%","40.28%, 26.18%, 33.54%"],["₹76,971","₹1,42,565","₹1,69,050","₹1,55,959"],["₹38,497","₹76,971","₹1,69,050","₹66,441"],["₹38,497","₹76,971","₹1,69,050","₹1,42,565"],["₹76,971","₹1,42,565","₹1,69,050","₹1,55,000"],["₹76,971","₹1,69,050","₹1,42,565","₹66,441"]];
 qs.forEach((q,k)=>{q[0]=q[0]+'<br><span style="font-weight:600;color:#334155">'+enQ[k]+'</span>';q[1]=q[1].map((x,j)=>{const e=enO[k][j];let en='';if(/crore$/i.test(e))en='crore';else if(!/^₹?[\d,]+(?:\.\d+)?%?$/.test(e))en=e;return x+(en?' / '+en:'')})});
+
 let i=0,ans=Array(qs.length).fill(null),sec=3600,submitted=false;
-function openView(v,btn){document.getElementById("quizView").style.display=v==="quiz"?"block":"none";document.getElementById("wrongView").style.display=v==="wrong"?"block":"none";document.getElementById("notesView").style.display=v==="notes"?"block":"none";document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");if(v==="notes")buildNotes();if(v==="wrong")buildWrong();}
-function buildNotes(){document.getElementById("notesView").innerHTML=`
+function openView(v,btn){
+  document.getElementById("quizView").style.display=v==="quiz"?"block":"none";
+  document.getElementById("wrongView").style.display=v==="wrong"?"block":"none";
+  document.getElementById("notesView").style.display=v==="notes"?"block":"none";
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  btn.classList.add("active");
+  if(v==="notes") buildNotes();
+  if(v==="wrong") buildWrong();
+}
+function buildNotes(){
+ document.getElementById("notesView").innerHTML=`
 <h2>Notes / नोट्स</h2>
-<hr><h3 class="blue">📊 Madhya Pradesh GSDP</h3><table class="table"><tr style="background:#e8eef7"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th class="green">GSDP</th><td><b>₹16,69,750 crore</b></td><td><b>₹7,81,911 crore</b></td></tr><tr><th class="green">GSDP Growth</th><td><b>11.14%</b></td><td><b>8.04%</b></td></tr></table>
-<h3 class="gold">📈 Sector-wise Contribution to GSVA</h3><table class="table"><tr style="background:#e8eef7"><th>Sector</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th class="green">Primary</th><td><b>43.09%</b></td><td><b>33.54%</b></td></tr><tr><th class="yellow">Secondary</th><td><b>19.79%</b></td><td><b>26.18%</b></td></tr><tr><th class="purple">Tertiary</th><td><b>37.12%</b></td><td><b>40.28%</b></td></tr></table>
-<h3 class="cyan">💰 Per Capita Net Income</h3><table class="table"><tr style="background:#e8eef7"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th style="background:#dff1f7">Per Capita Net Income</th><td><b>₹1,69,050</b></td><td><b>₹76,971</b></td></tr></table>`;`;}function buildWrong(){document.getElementById("wrongView").innerHTML="<h2>Wrong / Skipped</h2><p>Submit the test to view your wrong and skipped questions.</p>";}
-function render(){counter.textContent="Question "+(i+1)+" / "+qs.length;pct.textContent=Math.round((i+1)/qs.length*100)+"%";question.innerHTML="<strong>"+qs[i][0]+"</strong>";options.innerHTML=qs[i][1].map((x,j)=>"<button class='opt' onclick='answer("+j+")'>"+x+"</button>").join("");palette.innerHTML=qs.map((q,j)=>"<button class='p "+(ans[j]!==null?"done ":"")+(j===i?"current":"")+"' onclick='i="+j+";render()'>"+(j+1)+"</button>").join("")}
-function answer(j){ans[i]=j;render();setTimeout(()=>{if(i<qs.length-1){i++;render()}},350)}
-function next(){if(i<qs.length-1){i++;render()}}function prev(){if(i>0){i--;render()}}function submitTest(){alert("Test submitted. Score calculation is available in the full version.");}
-setInterval(()=>{if(sec>0&&!submitted){sec--;timer.textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}},1000);render();try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(e){}</script></body></html>
+<h3 class="blue">📊 मध्यप्रदेश GSDP</h3>
+<table class="table"><tr style="background:#e8eef7"><th>सूचकांक</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr>
+<tr><th class="green">GSDP</th><td><b>₹16,69,750 करोड़</b></td><td><b>₹7,81,911 करोड़</b></td></tr>
+<tr><th class="green">GSDP वृद्धि</th><td><b>11.14%</b></td><td><b>8.04%</b></td></tr></table>
+<h3 class="gold">📈 GSVA में क्षेत्रवार योगदान</h3>
+<table class="table"><tr style="background:#e8eef7"><th>क्षेत्र</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr>
+<tr><th class="green">प्राथमिक</th><td><b>43.09%</b></td><td><b>33.54%</b></td></tr>
+<tr><th class="yellow">द्वितीयक</th><td><b>19.79%</b></td><td><b>26.18%</b></td></tr>
+<tr><th class="purple">तृतीयक</th><td><b>37.12%</b></td><td><b>40.28%</b></td></tr></table>
+<h3 class="cyan">💰 प्रति व्यक्ति शुद्ध आय</h3>
+<table class="table"><tr style="background:#e8eef7"><th>सूचकांक</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr>
+<tr><th style="background:#dff1f7">प्रति व्यक्ति शुद्ध आय</th><td><b>₹1,69,050</b></td><td><b>₹76,971</b></td></tr></table>
+<hr>
+<h3 class="blue">📊 Madhya Pradesh GSDP</h3>
+<table class="table"><tr style="background:#e8eef7"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr>
+<tr><th class="green">GSDP</th><td><b>₹16,69,750 crore</b></td><td><b>₹7,81,911 crore</b></td></tr>
+<tr><th class="green">GSDP Growth</th><td><b>11.14%</b></td><td><b>8.04%</b></td></tr></table>
+<h3 class="gold">📈 Sector-wise Contribution to GSVA</h3>
+<table class="table"><tr style="background:#e8eef7"><th>Sector</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr>
+<tr><th class="green">Primary</th><td><b>43.09%</b></td><td><b>33.54%</b></td></tr>
+<tr><th class="yellow">Secondary</th><td><b>19.79%</b></td><td><b>26.18%</b></td></tr>
+<tr><th class="purple">Tertiary</th><td><b>37.12%</b></td><td><b>40.28%</b></td></tr></table>
+<h3 class="cyan">💰 Per Capita Net Income</h3>
+<table class="table"><tr style="background:#e8eef7"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr>
+<tr><th style="background:#dff1f7">Per Capita Net Income</th><td><b>₹1,69,050</b></td><td><b>₹76,971</b></td></tr></table>`;
+}
+function buildWrong(){document.getElementById("wrongView").innerHTML="<h2>Wrong / Skipped</h2><p>Submit the test to view your wrong and skipped questions.</p>";}
+function render(){
+ counter.textContent="Question "+(i+1)+" / "+qs.length;
+ pct.textContent=Math.round((i+1)/qs.length*100)+"%";
+ question.innerHTML="<strong>"+qs[i][0]+"</strong>";
+ options.innerHTML=qs[i][1].map((x,j)=>"<button class='opt' onclick='answer("+j+")'>"+x+"</button>").join("");
+ palette.innerHTML=qs.map((q,j)=>"<button class='p "+(ans[j]!==null?"done ":"")+"' onclick='i="+j+";render()'>"+(j+1)+"</button>").join("");
+}
+function answer(j){ans[i]=j;render();setTimeout(()=>{if(i<qs.length-1){i++;render()}},350);}
+function next(){if(i<qs.length-1){i++;render();}}
+function prev(){if(i>0){i--;render();}}
+function submitTest(){alert("Test submitted.");}
+setInterval(()=>{if(sec>0&&!submitted){sec--;timer.textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");}},1000);
+render();
+try{Telegram.WebApp.ready();Telegram.WebApp.expand();}catch(e){}
+</script></body></html>
