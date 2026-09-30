@@ -1,4 +1,4 @@
-name: Send MPPSC IQ Test Button
+name: Send MPPSC IQ Notes Button
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
       message:
         description: "Message to send"
         required: false
-        default: "📚 MP HISTORY TEST 06 – KALACHURI DYNASTY PART 2\n\n100 MCQs • +3 / −1 / 0\n⏱️ समय: 60 मिनट\n\nनीचे दिए बटन से टेस्ट शुरू करें 👇"
+        default: "📚 UNIT 04 : QUICK FACTS\n\nमध्यप्रदेश की नवीन सिंचाई परियोजनाएँ\n\nनीचे दिए बटन से Notes देखें 👇"
         type: string
 
 jobs:
@@ -41,8 +41,8 @@ jobs:
               "reply_markup": {
                   "inline_keyboard": [[
                       {
-                          "text": "MP HISTORY TEST 06",
-                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=test06v2"
+                          "text": "UNIT 04 : QUICK FACTS",
+                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=notes04"
                       }
                   ]]
               }
