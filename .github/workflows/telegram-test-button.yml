@@ -10,7 +10,7 @@ on:
       message:
         description: "Message to send"
         required: false
-        default: "📚 UNIT 04 : QUICK FACTS\n\nमध्यप्रदेश की नवीन सिंचाई परियोजनाएँ\n\nनीचे दिए बटन से Notes देखें 👇"
+        default: "📚 SHORT NOTES | REVISION | UNIT 1\n\nटॉपिक: भारतवर्ष\n\nनीचे दिए बटन से Notes देखें 👇"
         type: string
 
 jobs:
@@ -41,8 +41,8 @@ jobs:
               "reply_markup": {
                   "inline_keyboard": [[
                       {
-                          "text": "UNIT 04 : QUICK FACTS",
-                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=notes04"
+                          "text": "SHORT NOTES | REVISION | UNIT 1",
+                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=unit01bharat"
                       }
                   ]]
               }
