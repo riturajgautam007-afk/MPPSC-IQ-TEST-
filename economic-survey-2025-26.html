@@ -38,25 +38,21 @@ function finish(){let c=0,w=0,b=0;ans.forEach((x,j)=>x==null?b++:x===qs[j][2]?c+
 function show(){quiz.classList.remove("hidden");result.classList.add("hidden");wrongView.classList.add("hidden");notesView.classList.add("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===0))}
 function wrong(){quiz.classList.add("hidden");result.classList.add("hidden");notesView.classList.add("hidden");wrongView.classList.remove("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===1));let a=JSON.parse(localStorage.getItem("mppsc_iq_wrong_economic_survey_2025_26")||"[]").map(j=>({j,t:"Wrong"})),b=JSON.parse(localStorage.getItem("mppsc_iq_skipped_economic_survey_2025_26")||"[]").map(j=>({j,t:"Skipped"})),all=[...a,...b].sort((x,y)=>x.j-y.j);wrongView.innerHTML="<h2>Wrong / Skipped Questions / गलत / छोड़े गए प्रश्न</h2>"+(all.length?all.map(o=>'<div class="wrong"><b>Q'+(o.j+1)+" — "+o.t+"</b><br>"+qs[o.j][0]+"<br><small>Correct answer: <b>"+String.fromCharCode(65+qs[o.j][2])+". "+qs[o.j][1][qs[o.j][2]]+"</b></small></div>").join(""):"<p>No wrong or skipped questions. / कोई गलत या छोड़ा गया प्रश्न नहीं है।</p>")}
 function notes(){quiz.classList.add("hidden");result.classList.add("hidden");wrongView.classList.add("hidden");notesView.classList.remove("hidden");document.querySelectorAll(".tab").forEach((b,n)=>b.classList.toggle("active",n===2));notesView.innerHTML=`
-<h2>Notes / नोट्स</h2>
+<h2 style="background:#0b1f3a;color:#fff;padding:12px;border-radius:10px">📚 Notes / नोट्स</h2>
 <h3 style="background:#0b1f3a;color:#fff;padding:10px;border-radius:10px">📊 मध्यप्रदेश GSDP</h3>
-<table style="width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:10px;text-align:center;box-shadow:0 2px 8px #0002">
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">सूचकांक</th><th style="border:1px solid #ccd5e0;padding:8px">प्रचलित भाव</th><th style="border:1px solid #ccd5e0;padding:8px">स्थिर भाव (2011-12)</th></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">GSDP</th><td style="border:1px solid #ccd5e0;padding:8px"><b>₹16,69,750 करोड़</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>₹7,81,911 करोड़</b></td></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">GSDP वृद्धि</th><td style="border:1px solid #ccd5e0;padding:8px"><b>11.14%</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>8.04%</b></td></tr>
-</table>
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#dbeafe"><th>सूचकांक</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr><tr><th>GSDP</th><td><b>₹16,69,750 करोड़</b></td><td><b>₹7,81,911 करोड़</b></td></tr><tr><th>GSDP वृद्धि</th><td><b>11.14%</b></td><td><b>8.04%</b></td></tr></table>
 <h3 style="background:#b8860b;color:#fff;padding:10px;border-radius:10px">📈 GSVA में क्षेत्रवार योगदान</h3>
-<table style="width:100%;border-collapse:collapse;text-align:center">
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">क्षेत्र</th><th style="border:1px solid #ccd5e0;padding:8px">प्रचलित भाव</th><th style="border:1px solid #ccd5e0;padding:8px">स्थिर भाव (2011-12)</th></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">प्राथमिक</th><td style="border:1px solid #ccd5e0;padding:8px"><b>43.09%</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>33.54%</b></td></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">द्वितीयक</th><td style="border:1px solid #ccd5e0;padding:8px"><b>19.79%</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>26.18%</b></td></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">तृतीयक</th><td style="border:1px solid #ccd5e0;padding:8px"><b>37.12%</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>40.28%</b></td></tr>
-</table>
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#fef3c7"><th>क्षेत्र</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr><tr><th style="background:#dcfce7">प्राथमिक</th><td><b>43.09%</b></td><td><b>33.54%</b></td></tr><tr><th style="background:#ffedd5">द्वितीयक</th><td><b>19.79%</b></td><td><b>26.18%</b></td></tr><tr><th style="background:#f3e8ff">तृतीयक</th><td><b>37.12%</b></td><td><b>40.28%</b></td></tr></table>
 <h3 style="background:#146c94;color:#fff;padding:10px;border-radius:10px">💰 प्रति व्यक्ति शुद्ध आय</h3>
-<table style="width:100%;border-collapse:collapse;text-align:center">
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">सूचकांक</th><th style="border:1px solid #ccd5e0;padding:8px">प्रचलित भाव</th><th style="border:1px solid #ccd5e0;padding:8px">स्थिर भाव (2011-12)</th></tr>
-<tr style="background:#e8eef7"><th style="border:1px solid #ccd5e0;padding:9px">प्रति व्यक्ति शुद्ध आय</th><td style="border:1px solid #ccd5e0;padding:8px"><b>₹1,69,050</b></td><td style="border:1px solid #ccd5e0;padding:8px"><b>₹76,971</b></td></tr>
-</table>`;}
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#cffafe"><th>सूचकांक</th><th>प्रचलित भाव</th><th>स्थिर भाव (2011-12)</th></tr><tr><th>प्रति व्यक्ति शुद्ध आय</th><td><b>₹1,69,050</b></td><td><b>₹76,971</b></td></tr></table>
+<hr style="margin:25px 0;border:0;border-top:3px solid #0b1f3a">
+<h2 style="background:#0b1f3a;color:#fff;padding:12px;border-radius:10px">📚 English Notes</h2>
+<h3 style="background:#0b1f3a;color:#fff;padding:10px;border-radius:10px">📊 Madhya Pradesh GSDP</h3>
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#dbeafe"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th>GSDP</th><td><b>₹16,69,750 crore</b></td><td><b>₹7,81,911 crore</b></td></tr><tr><th>GSDP Growth</th><td><b>11.14%</b></td><td><b>8.04%</b></td></tr></table>
+<h3 style="background:#b8860b;color:#fff;padding:10px;border-radius:10px">📈 Sector-wise Contribution to GSVA</h3>
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#fef3c7"><th>Sector</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th style="background:#dcfce7">Primary</th><td><b>43.09%</b></td><td><b>33.54%</b></td></tr><tr><th style="background:#ffedd5">Secondary</th><td><b>19.79%</b></td><td><b>26.18%</b></td></tr><tr><th style="background:#f3e8ff">Tertiary</th><td><b>37.12%</b></td><td><b>40.28%</b></td></tr></table>
+<h3 style="background:#146c94;color:#fff;padding:10px;border-radius:10px">💰 Per Capita Net Income</h3>
+<table style="width:100%;border-collapse:collapse;text-align:center"><tr style="background:#cffafe"><th>Indicator</th><th>Current Prices</th><th>Constant Prices (2011-12)</th></tr><tr><th>Per Capita Net Income</th><td><b>₹1,69,050</b></td><td><b>₹76,971</b></td></tr></table>`;}
 setInterval(()=>{if(sec>0&&!submitted&&!stopped){sec--;timer.textContent=String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}else if(sec===0&&!submitted&&!stopped){submitted=true;finish()}},1000);
 render();try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(e){}
 </script></body></html>
