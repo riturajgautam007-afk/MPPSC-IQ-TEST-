@@ -6,7 +6,7 @@
  function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
  const p=getParam();
   if(p==="unit01bharat"||p==="bharatvarsh"){ location.replace("unit01-bharatvarsh-notes.html?v=2"); return; }
- if(p==="unit01vedas"||p==="revisionunit01vedas"||p==="vedas"){ location.replace("revision-unit01-vedas.html?v=7"); return; }
+ if(p==="unit01vedas"||p==="revisionunit01vedas"||p==="vedas"){ location.replace("revision-unit01-vedas.html?v=8"); return; }
  if(p==="guptasculpture"||p==="gupta-sculpture"||p==="unit02gupta"){location.replace("gupta-sculpture-revision.html?v=20260930");return;}
  if(p==="mcq1041"||p==="unit02mcq1041"||p==="mcq1041v2"){location.replace("unit2-revision-1041-1047.html?v=1");return;}
  if(p==="notes04"||p==="unit04"||p==="quickfacts04"){location.replace("notes04.html?v=2");}
