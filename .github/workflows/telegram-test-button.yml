@@ -10,7 +10,7 @@ on:
       message:
         description: "Message to send"
         required: false
-        default: "📚 SHORT NOTES | REVISION | UNIT 1\n\nटॉपिक: भारतवर्ष\n\nनीचे दिए बटन से Notes देखें 👇"
+        default: "📚 REVISION | MP HISTORY | MCQs\n\nप्रागैतिहासिक एवं आद्य ऐतिहासिक मध्यप्रदेश\n\nनीचे दिए बटन से 100 MCQs देखें 👇"
         type: string
 
 jobs:
@@ -41,8 +41,8 @@ jobs:
               "reply_markup": {
                   "inline_keyboard": [[
                       {
-                          "text": "SHORT NOTES | REVISION | UNIT 1",
-                          "url": "https://t.me/MPPSC_IQ_Quiz_Bot?startapp=unit01bharat"
+                          "text": "REVISION | MP HISTORY | MCQs",
+                          "url": "https://riturajgautam007-afk.github.io/MPPSC-IQ-TEST-/unit01-mp-history-revision-mcqs-01-100.html?v=4"
                       }
                   ]]
               }
