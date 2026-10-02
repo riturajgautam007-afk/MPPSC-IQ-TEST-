@@ -5,6 +5,7 @@
 (function(){
  function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
  const p=getParam();
+ if(p==="pre2027"||p==="prelims2027"||p==="program2027"){location.replace("prelims-2027-program-notes.html?v=1");return;}
  if(p==="milkday"||p==="nationalmilkday"){location.replace("national-milk-day-quiz.html?v=1");return;}
  
  if(p==="historymcq100"){ location.replace("unit01-mp-history-revision-mcqs-01-100.html?v=4"); return; }
