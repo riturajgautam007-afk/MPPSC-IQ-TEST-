@@ -142,67 +142,101 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE UI — one consistent table width */
+}\n/* FINAL TABLE SYSTEM — identical outer width for every table */
 table:not(.combined){
- width:100%!important;min-width:100%!important;max-width:100%!important;
- table-layout:fixed!important;margin:8px 0 16px!important;
+ display:table!important;
+ width:100%!important;
+ min-width:100%!important;
+ max-width:100%!important;
+ margin:8px 0 16px!important;
+ table-layout:fixed!important;
  border-collapse:collapse!important;
 }
 table:not(.combined) th,table:not(.combined) td{
- box-sizing:border-box!important;padding:6px 7px!important;
- line-height:1.3!important;vertical-align:middle!important;
+ box-sizing:border-box!important;
+ padding:6px 7px!important;
+ line-height:1.3!important;
+ vertical-align:middle!important;
 }
-table:not(.combined) th:first-child,table:not(.combined) td:first-child{width:50%!important}
-table:not(.combined) th:nth-child(2),table:not(.combined) td:nth-child(2){width:50%!important}
-table:not(.combined) th:nth-child(3),table:not(.combined) td:nth-child(3){width:33.3333%!important}
-table:not(.combined) th:nth-child(4),table:not(.combined) td:nth-child(4){width:25%!important}
-
 .table-scroll{
- display:block!important;width:100%!important;max-width:100%!important;
- overflow-x:auto!important;overflow-y:hidden!important;
- -webkit-overflow-scrolling:touch!important;touch-action:pan-x!important;
- overscroll-behavior-x:contain!important;scroll-behavior:smooth!important;
- margin:8px 0 16px!important;padding:0 0 5px!important;
+ display:block!important;
+ width:100%!important;
+ max-width:100%!important;
+ overflow-x:auto!important;
+ overflow-y:hidden!important;
+ -webkit-overflow-scrolling:touch!important;
+ touch-action:pan-x!important;
+ overscroll-behavior-x:contain!important;
+ scroll-behavior:smooth!important;
+ margin:8px 0 16px!important;
+ padding:0 0 5px!important;
 }
-.table-scroll table.combined{
- display:table!important;width:max-content!important;min-width:100%!important;
- max-width:none!important;margin:0!important;table-layout:auto!important;
- border-collapse:separate!important;border-spacing:0!important;font-size:11px!important;
+.table-scroll table.combined,
+.table-scroll table.wide-table{
+ display:table!important;
+ width:max-content!important;
+ min-width:100%!important;
+ max-width:none!important;
+ margin:0!important;
+ table-layout:auto!important;
+ border-collapse:separate!important;
+ border-spacing:0!important;
+ font-size:11px!important;
 }
-.table-scroll table.combined th,.table-scroll table.combined td{
- box-sizing:border-box!important;padding:6px 7px!important;
- line-height:1.25!important;vertical-align:middle!important;white-space:nowrap!important;
+.table-scroll table.combined th,.table-scroll table.combined td,
+.table-scroll table.wide-table th,.table-scroll table.wide-table td{
+ box-sizing:border-box!important;
+ padding:6px 7px!important;
+ line-height:1.25!important;
+ vertical-align:middle!important;
+ white-space:nowrap!important;
 }
-.table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{
- position:sticky!important;left:0!important;z-index:4!important;
- width:120px!important;min-width:120px!important;max-width:120px!important;
- white-space:normal!important;text-align:left!important;
+.table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child,
+.table-scroll table.wide-table th:first-child,.table-scroll table.wide-table td:first-child{
+ position:sticky!important;
+ left:0!important;
+ z-index:4!important;
+ width:120px!important;
+ min-width:120px!important;
+ max-width:120px!important;
+ white-space:normal!important;
+ text-align:left!important;
  box-shadow:2px 0 5px rgba(16,42,67,.14)!important;
 }
-.table-scroll table.combined th:not(:first-child),
-.table-scroll table.combined td:not(:first-child){
- width:105px!important;min-width:105px!important;max-width:105px!important;
+.table-scroll table.combined th:not(:first-child),.table-scroll table.combined td:not(:first-child),
+.table-scroll table.wide-table th:not(:first-child),.table-scroll table.wide-table td:not(:first-child){
+ width:105px!important;
+ min-width:105px!important;
+ max-width:105px!important;
 }
-.table-scroll table.combined thead th{
- background:linear-gradient(135deg,#102a43,#173f5f)!important;color:#fff!important;
- font-weight:800!important;white-space:normal!important;text-align:center!important;line-height:1.18!important;
+.table-scroll table.combined thead th,.table-scroll table.wide-table thead th{
+ background:linear-gradient(135deg,#102a43,#173f5f)!important;
+ color:#fff!important;
+ font-weight:800!important;
+ white-space:normal!important;
+ text-align:center!important;
+ line-height:1.18!important;
 }
-.table-scroll table.combined thead th:first-child{z-index:6!important;text-align:left!important}
-.table-scroll table.combined tbody tr:nth-child(4n+1) td{background:#eef7ff!important}
-.table-scroll table.combined tbody tr:nth-child(4n+2) td{background:#fff8e8!important}
-.table-scroll table.combined tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
-.table-scroll table.combined tbody tr:nth-child(4n) td{background:#f6f0ff!important}
-.table-scroll table.combined tbody tr:hover td{background:#fff1b8!important}
+.table-scroll table.combined thead th:first-child,.table-scroll table.wide-table thead th:first-child{
+ z-index:6!important;
+ text-align:left!important;
+}
+.table-scroll table.combined tbody tr:nth-child(4n+1) td,
+.table-scroll table.wide-table tbody tr:nth-child(4n+1) td{background:#eef7ff!important}
+.table-scroll table.combined tbody tr:nth-child(4n+2) td,
+.table-scroll table.wide-table tbody tr:nth-child(4n+2) td{background:#fff8e8!important}
+.table-scroll table.combined tbody tr:nth-child(4n+3) td,
+.table-scroll table.wide-table tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
+.table-scroll table.combined tbody tr:nth-child(4n) td,
+.table-scroll table.wide-table tbody tr:nth-child(4n) td{background:#f6f0ff!important}
+.table-scroll table.combined tbody tr:hover td,
+.table-scroll table.wide-table tbody tr:hover td{background:#fff1b8!important}
 @media(max-width:600px){
- table:not(.combined) th,table:not(.combined) td{padding:5px 6px!important;font-size:11.5px!important}
- .table-scroll table.combined{font-size:10.5px!important}
- .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px!important}
- .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{
-   width:120px!important;min-width:120px!important;max-width:120px!important;
- }
- .table-scroll table.combined th:not(:first-child),.table-scroll table.combined td:not(:first-child){
-   width:105px!important;min-width:105px!important;max-width:105px!important;
- }
+ table:not(.combined){font-size:11.5px!important}
+ table:not(.combined) th,table:not(.combined) td{padding:5px 6px!important}
+ .table-scroll table.combined,.table-scroll table.wide-table{font-size:10.5px!important}
+ .table-scroll table.combined th,.table-scroll table.combined td,
+ .table-scroll table.wide-table th,.table-scroll table.wide-table td{padding:5px 6px!important}
 }</style>
 </head>
 <body>
@@ -657,16 +691,19 @@ window.addEventListener('load',syncStickyLanguageBar);
 window.addEventListener('resize',syncStickyLanguageBar);
 <script>
 document.addEventListener('DOMContentLoaded',function(){
- document.querySelectorAll('table:not(.combined)').forEach(function(table){
-   var firstRow=table.rows[0];
-   if(firstRow && firstRow.cells.length>=5){
-     var wrap=document.createElement('div');
-     wrap.className='table-scroll';
-     table.parentNode.insertBefore(wrap,table);
-     wrap.appendChild(table);
-     table.classList.add('combined');
-   }
- });
+  document.querySelectorAll('table').forEach(function(table){
+    var cells=table.rows.length ? table.rows[0].cells.length : 0;
+    if(table.classList.contains('combined')){
+      return;
+    }
+    if(cells>=5){
+      table.classList.add('wide-table');
+      var wrap=document.createElement('div');
+      wrap.className='table-scroll';
+      table.parentNode.insertBefore(wrap,table);
+      wrap.appendChild(table);
+    }
+  });
 });
 </script>
 </body>
