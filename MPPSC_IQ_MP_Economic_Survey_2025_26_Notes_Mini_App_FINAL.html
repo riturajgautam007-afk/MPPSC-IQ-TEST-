@@ -43,6 +43,19 @@ tbody tr:nth-child(4n+3) td{background:#eefaf4}
 tbody tr:nth-child(4n) td{background:#f6f0ff}
 td strong{color:#0d5278}
 table tr:hover td{background:#fff1b8}
+/* FINAL: one identical outer table frame; wide tables scroll inside it */
+.content{box-sizing:border-box;width:100%;max-width:100%;}
+.content .table-frame{box-sizing:border-box;width:100%!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;margin:8px 0 16px!important;padding:0!important;}
+.content .table-frame>table{margin:0!important;}
+.content .table-frame>table:not(.combined){width:100%!important;min-width:100%!important;max-width:100%!important;table-layout:fixed!important;}
+.content .table-frame>table.combined{width:max-content!important;min-width:100%!important;max-width:none!important;table-layout:auto!important;}
+.content .table-frame>table.combined th,.content .table-frame>table.combined td{white-space:nowrap;}
+@media(max-width:700px){
+ .content{padding:14px!important;}
+ .content .table-frame{width:100%!important;}
+ .content .table-frame>table.combined{min-width:100%!important;width:max-content!important;}
+}
+
 strong{color:var(--navy)}
 .note{background:#fff8e8;border-left:4px solid var(--gold);padding:10px 12px;border-radius:8px;margin:10px 0;font-size:13px}
 .key{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:10px 0}
@@ -252,7 +265,7 @@ strong{color:var(--navy)}
 <tbody><tr><th>आधार</th><th>क्षेत्रवार क्रम</th></tr>
 <tr><td>प्रचलित भाव</td><td><strong>प्राथमिक &gt; तृतीयक &gt; द्वितीयक</strong></td></tr>
 <tr><td>स्थिर भाव</td><td><strong>तृतीयक &gt; प्राथमिक &gt; द्वितीयक</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="income">
@@ -305,7 +318,7 @@ strong{color:var(--navy)}
 <h3>10. वानिकी</h3>
 <div class="table-frame"><table><tbody><tr><th>संकेतक</th><th>2025-26</th></tr>
 <tr><td>GSVA में योगदान</td><td><strong>2.13%</strong></td></tr><tr><td>प्रचलित भाव पर GSVA</td><td><strong>₹33,633 करोड़</strong></td></tr><tr><td>प्रचलित भाव पर वृद्धि दर</td><td><strong>7.44%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="secondary">
@@ -321,7 +334,7 @@ strong{color:var(--navy)}
 <tr><td>GSVA योगदान का क्रम</td><td><strong>निर्माण &gt; विनिर्माण &gt; विद्युत, गैस, जलापूर्ति</strong></td></tr>
 <tr><td>प्रचलित भाव पर सर्वाधिक वृद्धि</td><td><strong>निर्माण — 13.41%</strong></td></tr>
 <tr><td>स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>निर्माण — 8.45%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="tertiary">
@@ -337,7 +350,7 @@ strong{color:var(--navy)}
 <tr><td>GSVA योगदान का शीर्ष क्रम</td><td><strong>व्यापार &gt; अन्य सेवाएँ &gt; रियल एस्टेट &gt; लोक प्रशासन</strong></td></tr>
 <tr><td>प्रचलित भाव पर सर्वाधिक वृद्धि</td><td><strong>अन्य सेवाएँ — 24.96%</strong></td></tr>
 <tr><td>स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>लोक प्रशासन — 18.36%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="comparison">
@@ -346,7 +359,8 @@ strong{color:var(--navy)}
 <tr><td>GSVA योगदान का क्रम</td><td><strong>प्राथमिक &gt; तृतीयक &gt; द्वितीयक</strong></td></tr>
 <tr><td>प्रचलित भाव पर वृद्धि का क्रम</td><td><strong>तृतीयक &gt; द्वितीयक &gt; प्राथमिक</strong></td></tr>
 <tr><td>स्थिर भाव पर वृद्धि का क्रम</td><td><strong>तृतीयक &gt; द्वितीयक &gt; प्राथमिक</strong></td></tr>
-</tbody></table></div></div></div></section>
+</tbody></table></div>
+</div></section>
 <section class="section" id="final-revision-hi">
 <div class="sec-head">📌 महत्वपूर्ण वन-लाइनर तथ्य — त्वरित पुनरावृत्ति</div>
 <div class="content">
@@ -412,7 +426,8 @@ strong{color:var(--navy)}
 <tr><td>60</td><td>तृतीयक क्षेत्र में सर्वाधिक वृद्धि</td><td><strong>अन्य सेवाएँ — 24.96%</strong></td></tr>
 <tr><td>61</td><td>तृतीयक क्षेत्र में स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>लोक प्रशासन — 18.36%</strong></td></tr>
 <tr><td>62</td><td>तृतीयक क्षेत्र में GSVA योगदान का प्रमुख क्रम</td><td><strong>व्यापार > अन्य सेवाएँ > रियल एस्टेट > लोक प्रशासन</strong></td></tr>
-</tbody></table></div></div></div></section>
+</tbody></table></div>
+</div></section>
 </main>
 </div>
 <div id="enNotes" class="language-notes" style="display:none;">
@@ -438,7 +453,7 @@ strong{color:var(--navy)}
 <tbody><tr><th>Basis</th><th>Sector-wise Ranking</th></tr>
 <tr><td>Current Prices</td><td><strong>Primary &gt; Tertiary &gt; Secondary</strong></td></tr>
 <tr><td>Constant Prices</td><td><strong>Tertiary &gt; Primary &gt; Secondary</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="income">
@@ -504,7 +519,7 @@ strong{color:var(--navy)}
 <tr><td>Share in GSVA</td><td><strong>2.13%</strong></td></tr>
 <tr><td>Current Prices at GSVA</td><td><strong>₹33,633 crore</strong></td></tr>
 <tr><td>Current Prices at Growth Rate</td><td><strong>7.44%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="secondary">
@@ -529,7 +544,7 @@ strong{color:var(--navy)}
 <tr><td>GSVA Share Ranking</td><td><strong>Construction &gt; Manufacturing &gt; विद्युत, गैस, जलापूर्ति</strong></td></tr>
 <tr><td>Highest Growth at Current Prices</td><td><strong>Construction — 13.41%</strong></td></tr>
 <tr><td>Highest Growth at Constant Prices</td><td><strong>Construction — 8.45%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="tertiary">
@@ -544,7 +559,7 @@ strong{color:var(--navy)}
 <tr><td>Top GSVA Share Ranking</td><td><strong>व्यापार &gt; Other Services &gt; रियल एस्टेट &gt; Public Administration</strong></td></tr>
 <tr><td>Highest Growth at Current Prices</td><td><strong>Other Services — 24.96%</strong></td></tr>
 <tr><td>Highest Growth at Constant Prices</td><td><strong>Public Administration — 18.36%</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 
 <section class="section" id="comparison">
@@ -554,7 +569,7 @@ strong{color:var(--navy)}
 <tr><td>GSVA Share Ranking</td><td><strong>Primary &gt; Tertiary &gt; Secondary</strong></td></tr>
 <tr><td>Growth Ranking at Current Prices</td><td><strong>Tertiary &gt; Secondary &gt; Primary</strong></td></tr>
 <tr><td>Growth Ranking at Constant Prices</td><td><strong>Tertiary &gt; Secondary &gt; Primary</strong></td></tr>
-</tbody></table></div></div>
+</tbody></table></div>
 </div></section>
 <section class="section" id="final-revision-en">
 <div class="sec-head">📌 Important One-Liner Facts — Quick Revision</div>
@@ -622,7 +637,8 @@ strong{color:var(--navy)}
 <tr><td>61</td><td>Highest growth at constant prices in Tertiary Sector</td><td><strong>Public Administration — 18.36%</strong></td></tr>
 <tr><td>62</td><td>Trade, Repair, Hotels & Restaurants GSVA</td><td><strong>₹1,63,336 crore</strong></td></tr>
 <tr><td>63</td><td>Tertiary Sector ranking by GSVA contribution</td><td><strong>Trade > Other Services > Real Estate > Public Administration</strong></td></tr>
-</tbody></table></div></div></div></section>
+</tbody></table></div>
+</div></section>
 </main>
 </div>
 <footer class="footer">MPPSC IQ • मध्यप्रदेश आर्थिक सर्वेक्षण 2025-26</footer>
