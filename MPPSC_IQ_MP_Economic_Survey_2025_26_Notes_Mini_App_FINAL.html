@@ -142,76 +142,70 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE UI — compact, smooth and colour-safe */
+}\n/* FINAL TABLE UI — all tables compact, readable and swipeable */
 .table-scroll{
-  display:block!important;width:100%!important;max-width:100%!important;
-  overflow-x:auto!important;overflow-y:hidden!important;
-  -webkit-overflow-scrolling:touch!important;
-  scroll-behavior:smooth!important;
-  touch-action:pan-x!important;
-  overscroll-behavior-x:contain!important;
-  scrollbar-width:thin;
-  margin:8px 0 14px!important;padding:0 0 5px!important;
-  border-radius:7px;
+ display:block!important;width:100%!important;max-width:100%!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ -webkit-overflow-scrolling:touch!important;touch-action:pan-x!important;
+ scroll-behavior:smooth!important;overscroll-behavior-x:contain!important;
+ margin:8px 0 14px!important;padding:0 0 4px!important;
 }
-.table-scroll::-webkit-scrollbar{height:5px}
-.table-scroll::-webkit-scrollbar-thumb{background:#9aabba;border-radius:8px}
 .table-scroll table.combined{
-  display:table!important;width:max-content!important;min-width:0!important;
-  max-width:none!important;margin:0!important;
-  border-collapse:separate!important;border-spacing:0!important;
-  table-layout:auto!important;font-size:11px!important;
+ display:table!important;width:max-content!important;min-width:0!important;
+ max-width:none!important;margin:0!important;table-layout:auto!important;
+ border-collapse:separate!important;border-spacing:0!important;
 }
-.table-scroll table.combined th,
-.table-scroll table.combined td{
-  box-sizing:border-box!important;
-  padding:5px 6px!important;
-  width:auto!important;min-width:0!important;max-width:none!important;
-  white-space:nowrap!important;vertical-align:middle!important;
-  line-height:1.25!important;
+.table-scroll table.combined th,.table-scroll table.combined td{
+ box-sizing:border-box!important;width:auto!important;
+ padding:5px 5px!important;line-height:1.2!important;
+ vertical-align:middle!important;
 }
 .table-scroll table.combined th:not(:first-child),
 .table-scroll table.combined td:not(:first-child){
-  width:1%!important;
+ width:auto!important;min-width:0!important;
 }
 .table-scroll table.combined th:first-child,
 .table-scroll table.combined td:first-child{
-  position:sticky!important;left:0!important;z-index:4!important;
-  width:auto!important;min-width:86px!important;max-width:125px!important;
-  white-space:normal!important;text-align:left!important;
-  padding:5px 7px!important;
-  box-shadow:2px 0 5px rgba(16,42,67,.14)!important;
+ position:sticky!important;left:0!important;z-index:4!important;
+ min-width:82px!important;max-width:118px!important;
+ padding:5px 6px!important;white-space:normal!important;
+ box-shadow:2px 0 5px rgba(16,42,67,.14)!important;
 }
 .table-scroll table.combined thead th{
-  background:linear-gradient(135deg,#102a43,#173f5f)!important;
-  color:#fff!important;font-weight:800!important;
+ background:linear-gradient(135deg,#102a43,#173f5f)!important;
+ color:#fff!important;font-weight:800!important;
+ white-space:normal!important;line-height:1.15!important;
 }
-.table-scroll table.combined thead th:first-child{
-  z-index:6!important;
-  background:linear-gradient(135deg,#102a43,#173f5f)!important;
-}
+.table-scroll table.combined thead th:first-child{z-index:6!important}
 .table-scroll table.combined tbody tr:nth-child(4n+1) td{background:#eef7ff!important}
 .table-scroll table.combined tbody tr:nth-child(4n+2) td{background:#fff8e8!important}
 .table-scroll table.combined tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
 .table-scroll table.combined tbody tr:nth-child(4n) td{background:#f6f0ff!important}
 .table-scroll table.combined tbody tr:hover td{background:#fff1b8!important}
-.table-scroll table.combined tbody tr:nth-child(4n+1) td:first-child,
-.table-scroll table.combined tbody tr:nth-child(4n+2) td:first-child,
-.table-scroll table.combined tbody tr:nth-child(4n+3) td:first-child,
-.table-scroll table.combined tbody tr:nth-child(4n) td:first-child{position:sticky!important;left:0!important}
-.table-scroll table.combined thead th:not(:first-child){
-  white-space:normal!important;word-break:normal!important;
-  min-width:0!important;max-width:105px!important;
-  line-height:1.15!important;
+
+/* Compact ALL ordinary tables too */
+table:not(.combined){
+ width:auto!important;max-width:100%!important;
+ table-layout:auto!important;
+}
+table:not(.combined) th,table:not(.combined) td{
+ padding:6px 6px!important;line-height:1.25!important;
+}
+table:not(.combined) th:first-child,table:not(.combined) td:first-child{
+ min-width:0!important;
 }
 @media(max-width:600px){
-  .table-scroll table.combined{font-size:10.5px!important}
-  .table-scroll table.combined th,.table-scroll table.combined td{padding:4.5px 5px!important}
-  .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{
-    min-width:84px!important;max-width:118px!important;padding:4.5px 6px!important;
-  }
-}
-</style>
+ .table-scroll table.combined{font-size:10.5px!important}
+ .table-scroll table.combined th,.table-scroll table.combined td{
+   padding:4px 4.5px!important;
+ }
+ .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{
+   min-width:78px!important;max-width:112px!important;padding:4px 5px!important;
+ }
+ table:not(.combined) th,table:not(.combined) td{
+   padding:5px 5px!important;font-size:11.5px!important;
+ }
+}</style>
 </head>
 <body>
 <body>
