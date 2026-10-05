@@ -298,6 +298,57 @@ strong{color:var(--navy)}
  .content .table-frame.table-scroll>table.combined,
  .content .table-frame.table-scroll>table.wide-table{min-width:900px!important;}
 }
+
+/* FINAL WIDE-TABLE FIX v2 — adequate column widths + wrapping, with horizontal swipe */
+.content .table-frame.table-scroll>table,
+.content .table-frame.table-scroll>table.combined,
+.content .table-frame.table-scroll>table.wide-table{
+  width:max-content!important;
+  min-width:1260px!important;
+  max-width:none!important;
+  table-layout:auto!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+}
+.content .table-frame.table-scroll>table th,
+.content .table-frame.table-scroll>table td{
+  box-sizing:border-box!important;
+  min-width:160px!important;
+  width:160px!important;
+  max-width:none!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  vertical-align:middle!important;
+}
+.content .table-frame.table-scroll>table th{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  line-height:1.35!important;
+  padding:9px 8px!important;
+}
+.content .table-frame.table-scroll>table td{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  line-height:1.35!important;
+  padding:9px 8px!important;
+}
+.content .table-frame.table-scroll>table th:first-child,
+.content .table-frame.table-scroll>table td:first-child{
+  min-width:190px!important;
+  width:190px!important;
+  position:sticky!important;
+  left:0!important;
+  z-index:5!important;
+  background-clip:padding-box!important;
+}
+.content .table-frame.table-scroll>table th:first-child{z-index:6!important;}
+@media(max-width:700px){
+ .content .table-frame.table-scroll>table,
+ .content .table-frame.table-scroll>table.combined,
+ .content .table-frame.table-scroll>table.wide-table{min-width:1260px!important;}
+}
 </style>
 </head>
 <body>
