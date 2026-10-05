@@ -112,6 +112,12 @@ strong{color:var(--navy)}
 }
 .table-scroll table.combined thead th:not(:first-child){
   background:linear-gradient(135deg,#102a43,#173f5f);color:#fff;
+  position:static;z-index:1;
+}
+.table-scroll table.combined th:not(:first-child),
+.table-scroll table.combined td:not(:first-child){
+  position:static;
+  left:auto;
 }
 .table-scroll table.combined tbody tr:nth-child(4n+1) td:first-child{background:#eef7ff}
 .table-scroll table.combined tbody tr:nth-child(4n+2) td:first-child{background:#fff8e8}
