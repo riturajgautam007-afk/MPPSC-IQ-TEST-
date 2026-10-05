@@ -517,6 +517,39 @@ table tbody tr:nth-child(8n) td{background:#f1f4f8!important;}
 .master-notes .table-scroll>table tbody tr:nth-child(8n) td{background:#f1f4f8!important;}
 /* Hover remains distinct but does not destroy the row system */
 table tr:hover td{background:#fff1b8!important;}
+
+/* FINAL UNIFIED CURVED TABLE FRAME — every table gets identical rounded corners */
+.master-notes .table-frame,
+.content .table-frame,
+.section .content>.table-frame{
+  border:1px solid #d7e2eb!important;
+  border-radius:10px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  box-shadow:0 1px 3px rgba(16,42,67,.06)!important;
+}
+.master-notes .table-frame.table-scroll,
+.content .table-frame.table-scroll,
+.section .content>.table-frame.table-scroll{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  border-radius:10px!important;
+}
+.master-notes .table-frame>table,
+.content .table-frame>table,
+.section .content>.table-frame>table{
+  border-radius:0!important;
+  overflow:visible!important;
+}
+/* Rounded outer corners are created by the common frame, not individual cells */
+.master-notes .table-frame table tr:first-child th:first-child,
+.content .table-frame table tr:first-child th:first-child{border-top-left-radius:0!important;}
+.master-notes .table-frame table tr:first-child th:last-child,
+.content .table-frame table tr:first-child th:last-child{border-top-right-radius:0!important;}
+.master-notes .table-frame table tr:last-child td:first-child,
+.content .table-frame table tr:last-child td:first-child{border-bottom-left-radius:0!important;}
+.master-notes .table-frame table tr:last-child td:last-child,
+.content .table-frame table tr:last-child td:last-child{border-bottom-right-radius:0!important;}
 </style>
 </head>
 <body>
