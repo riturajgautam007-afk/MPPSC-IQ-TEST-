@@ -367,6 +367,13 @@ strong{color:var(--navy)}
 
 /* Force all sector sections to the same 850px alignment frame */
 .section-align-fix{width:100%;max-width:850px;margin:0 auto;box-sizing:border-box;}
+
+/* MASTER ALIGNMENT LOCK — every section uses the exact same outer frame */
+#hiNotes,#enNotes{display:block;width:100%;max-width:100%;margin:0;padding:0;box-sizing:border-box;}
+#hiNotes-main,#notes,#enNotes-main,#notes-en{display:block;width:100%;max-width:100%;margin:0;padding:0;box-sizing:border-box;}
+.section{display:block;width:100%!important;max-width:850px!important;min-width:0!important;box-sizing:border-box!important;margin:10px auto!important;}
+.section .content{display:block;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;}
+@media(max-width:850px){.section{width:100%!important;margin:10px 0!important;}}
 </style>
 </head>
 <body>
