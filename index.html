@@ -5,7 +5,7 @@
 (function(){
  function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
  const p=getParam();
- if(p==="economicnotesfinal20261005"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_CLEAN.html?v=20261006clean");return;}
+ if(p==="economicnotesfinal20261005"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006long");return;}
  if(p==="economicnotesfinal20261005h"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_FINAL.html?v=20261005h");return;}
  
  if(p==="test08"||p==="test08en"||p==="paramara08"){location.replace("test08.html?v=5");return;}if(p==="test07"||p==="test07en"||p==="history07"){location.replace("test07.html?v=2");return;}
