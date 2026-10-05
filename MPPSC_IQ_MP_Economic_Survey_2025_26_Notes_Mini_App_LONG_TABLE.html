@@ -695,6 +695,37 @@ table tr:hover td{background:#fff1b8!important;}
 .content .table-frame:not(.table-scroll)>table>tbody:last-child>tr:last-child>td:last-child{
   border-bottom-right-radius:13px!important;
 }
+
+/* VERIFIED FINAL FIX: scope is language-notes, not .content */
+.language-notes .table-frame:not(.table-scroll),
+.single-long-table .table-frame:not(.table-scroll){
+  width:100%!important;
+  margin:8px 0 16px!important;
+  padding:0!important;
+  border:1px solid #cfdbe5!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  clip-path:inset(0 round 14px)!important;
+}
+.language-notes .table-frame:not(.table-scroll)>table,
+.single-long-table .table-frame:not(.table-scroll)>table{
+  width:100%!important;
+  margin:0!important;
+  border:0!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  border-radius:13px!important;
+  overflow:hidden!important;
+}
+.language-notes .table-frame:not(.table-scroll)>table th:first-child,
+.single-long-table .table-frame:not(.table-scroll)>table th:first-child{border-top-left-radius:13px!important}
+.language-notes .table-frame:not(.table-scroll)>table th:last-child,
+.single-long-table .table-frame:not(.table-scroll)>table th:last-child{border-top-right-radius:13px!important}
+.language-notes .table-frame:not(.table-scroll)>table tbody tr:last-child td:first-child,
+.single-long-table .table-frame:not(.table-scroll)>table tbody tr:last-child td:first-child{border-bottom-left-radius:13px!important}
+.language-notes .table-frame:not(.table-scroll)>table tbody tr:last-child td:last-child,
+.single-long-table .table-frame:not(.table-scroll)>table tbody tr:last-child td:last-child{border-bottom-right-radius:13px!important}
 </style>
 
 
