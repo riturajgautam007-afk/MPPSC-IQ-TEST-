@@ -142,37 +142,43 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE SYSTEM — perfectly aligned outer edges */
+}\n/* FINAL TABLE SYSTEM — identical visible frame for every table */
 .content{
  box-sizing:border-box!important;
  width:100%!important;
  max-width:100%!important;
- padding-left:14px!important;
- padding-right:14px!important;
+ min-width:0!important;
+ padding-left:11px!important;
+ padding-right:11px!important;
 }
 .content>table:not(.combined),
 .content>.table-scroll{
+ display:block!important;
+ box-sizing:border-box!important;
  width:100%!important;
+ min-width:0!important;
  max-width:100%!important;
  margin-left:0!important;
  margin-right:0!important;
- box-sizing:border-box!important;
 }
 .content>table:not(.combined){
  display:table!important;
- min-width:100%!important;
  table-layout:fixed!important;
 }
 .content>.table-scroll{
- display:block!important;
+ position:relative!important;
+ flex:none!important;
+ align-self:stretch!important;
  overflow-x:auto!important;
  overflow-y:hidden!important;
- box-sizing:border-box!important;
  -webkit-overflow-scrolling:touch!important;
  touch-action:pan-x!important;
  overscroll-behavior-x:contain!important;
  scroll-behavior:smooth!important;
+ scrollbar-width:thin!important;
  padding:0 0 5px!important;
+ border:1px solid #dbe3ea!important;
+ border-radius:7px!important;
 }
 .content>.table-scroll>table{
  margin:0!important;
@@ -181,13 +187,9 @@ strong{color:var(--navy)}
 .content>.table-scroll>table.wide-table{
  display:table!important;
  width:max-content!important;
- min-width:100%!important;
+ min-width:max-content!important;
  max-width:none!important;
  table-layout:auto!important;
-}
-.content>table:not(.combined) th,
-.content>table:not(.combined) td{
- box-sizing:border-box!important;
 }
 .content>.table-scroll>table.combined th:first-child,
 .content>.table-scroll>table.combined td:first-child,
@@ -196,9 +198,9 @@ strong{color:var(--navy)}
  position:sticky!important;
  left:0!important;
  z-index:4!important;
- width:120px!important;
- min-width:120px!important;
- max-width:120px!important;
+}
+.content>table:not(.combined){
+ border:1px solid #dbe3ea!important;
 }
 @media(max-width:600px){
  .content{
@@ -208,6 +210,7 @@ strong{color:var(--navy)}
  .content>table:not(.combined),
  .content>.table-scroll{
    width:100%!important;
+   min-width:0!important;
    max-width:100%!important;
  }
 }</style>
