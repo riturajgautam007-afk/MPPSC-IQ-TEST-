@@ -28,7 +28,7 @@ function setup(sectionId){
  const section=document.getElementById(sectionId); if(!section)return;
  section.querySelectorAll('.card').forEach(function(card){
    const ans=card.querySelector('.ans'); if(!ans)return;
-   const m=ans.textContent.match(/Answer:\s*([A-D])/i); if(!m)return;
+   const m=ans.textContent.match(/(?:Answer|उत्तर):?\s*([A-D])/i); if(!m)return;
    card.dataset.correct=m[1].toUpperCase();
    const opts=card.querySelectorAll('.opt');
    opts.forEach(function(opt){
