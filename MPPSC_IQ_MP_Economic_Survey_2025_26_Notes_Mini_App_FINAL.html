@@ -349,6 +349,14 @@ strong{color:var(--navy)}
  .content .table-frame.table-scroll>table.combined,
  .content .table-frame.table-scroll>table.wide-table{min-width:1260px!important;}
 }
+
+/* WIDE TABLE FINAL: JS sets exact width; frame provides horizontal swipe */
+.content .table-frame.table-scroll{overflow-x:auto!important;overflow-y:hidden!important;width:100%!important;max-width:100%!important;min-width:0!important;-webkit-overflow-scrolling:touch!important;}
+.content .table-frame.table-scroll>table.wide-table{display:table!important;table-layout:fixed!important;max-width:none!important;border-collapse:collapse!important;}
+.content .table-frame.table-scroll>table.wide-table th,
+.content .table-frame.table-scroll>table.wide-table td{white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;overflow:visible!important;vertical-align:middle!important;}
+.content .table-frame.table-scroll>table.wide-table th:first-child,
+.content .table-frame.table-scroll>table.wide-table td:first-child{position:sticky!important;left:0!important;z-index:5!important;}
 </style>
 </head>
 <body>
@@ -809,9 +817,27 @@ window.addEventListener('resize',syncStickyLanguageBar);
 <script>
 document.addEventListener('DOMContentLoaded',function(){
  document.querySelectorAll('.table-frame>table').forEach(function(t){
-   if(t.rows.length && t.rows[0].cells.length>=5){
+   var cols=t.rows.length ? t.rows[0].cells.length : 0;
+   if(cols>=5){
      t.classList.add('wide-table');
-     t.parentElement.classList.add('table-scroll');
+     var frame=t.parentElement;
+     frame.classList.add('table-scroll');
+     var total=cols*200+20;
+     t.style.setProperty('width',total+'px','important');
+     t.style.setProperty('min-width',total+'px','important');
+     t.style.setProperty('max-width','none','important');
+     t.style.setProperty('table-layout','fixed','important');
+     Array.from(t.rows).forEach(function(row){
+       Array.from(row.cells).forEach(function(cell,idx){
+         cell.style.setProperty('width',(idx===0?220:200)+'px','important');
+         cell.style.setProperty('min-width',(idx===0?220:200)+'px','important');
+         cell.style.setProperty('max-width',(idx===0?220:200)+'px','important');
+         cell.style.setProperty('white-space','normal','important');
+         cell.style.setProperty('overflow-wrap','anywhere','important');
+         cell.style.setProperty('word-break','normal','important');
+         cell.style.setProperty('box-sizing','border-box','important');
+       });
+     });
    }
  });
 });
