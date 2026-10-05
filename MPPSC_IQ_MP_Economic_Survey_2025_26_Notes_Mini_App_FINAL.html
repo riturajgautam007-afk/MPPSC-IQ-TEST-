@@ -254,7 +254,51 @@ strong{color:var(--navy)}
   min-width:100%!important;
   max-width:100%!important;
  }
-}</style>
+}
+/* FINAL OVERRIDE — 5+ column tables MUST scroll, never compress/overlap */
+.content .table-frame.table-scroll{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  box-sizing:border-box!important;
+  position:relative!important;
+}
+.content .table-frame.table-scroll>table,
+.content .table-frame.table-scroll>table.combined,
+.content .table-frame.table-scroll>table.wide-table{
+  display:table!important;
+  width:max-content!important;
+  min-width:900px!important;
+  max-width:none!important;
+  table-layout:auto!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  white-space:nowrap!important;
+}
+.content .table-frame.table-scroll>table th,
+.content .table-frame.table-scroll>table td{
+  white-space:nowrap!important;
+  width:auto!important;
+  min-width:105px!important;
+  max-width:none!important;
+}
+.content .table-frame.table-scroll>table th:first-child,
+.content .table-frame.table-scroll>table td:first-child{
+  position:sticky!important;
+  left:0!important;
+  z-index:5!important;
+  min-width:110px!important;
+  background-clip:padding-box!important;
+}
+@media(max-width:700px){
+ .content .table-frame.table-scroll>table,
+ .content .table-frame.table-scroll>table.combined,
+ .content .table-frame.table-scroll>table.wide-table{min-width:900px!important;}
+}
+</style>
 </head>
 <body>
 <body>
