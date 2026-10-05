@@ -562,6 +562,42 @@ table tr:hover td{background:#fff1b8!important;}
 .table-frame>table:not(:has(thead)) tbody tr:first-child th:last-child{border-top-right-radius:12px!important;}
 .table-frame>table:not(:has(thead)) tbody tr:last-child td:first-child{border-bottom-left-radius:12px!important;}
 .table-frame>table:not(:has(thead)) tbody tr:last-child td:last-child{border-bottom-right-radius:12px!important;}
+
+/* TABLE FRAME REBUILD — one visible rounded frame for every table */
+.table-frame{
+  position:relative!important;
+  border:1px solid #cfdbe5!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  box-shadow:0 1px 4px rgba(16,42,67,.10)!important;
+  clip-path:none!important;
+}
+.table-frame.table-scroll{
+  border-radius:14px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+}
+.table-frame>table{
+  border:0!important;
+  border-radius:0!important;
+  margin:0!important;
+  box-shadow:none!important;
+}
+.table-frame>table thead tr:first-child th:first-child,
+.table-frame>table tbody tr:first-child th:first-child{
+  border-top-left-radius:13px!important;
+}
+.table-frame>table thead tr:first-child th:last-child,
+.table-frame>table tbody tr:first-child th:last-child{
+  border-top-right-radius:13px!important;
+}
+.table-frame>table tbody tr:last-child td:first-child{
+  border-bottom-left-radius:13px!important;
+}
+.table-frame>table tbody tr:last-child td:last-child{
+  border-bottom-right-radius:13px!important;
+}
 </style>
 </head>
 <body>
