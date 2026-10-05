@@ -598,6 +598,53 @@ table tr:hover td{background:#fff1b8!important;}
 .table-frame>table tbody tr:last-child td:last-child{
   border-bottom-right-radius:13px!important;
 }
+
+/* MASTER TABLE FRAME — absolute uniformity for all tables, including quick facts and sub-sector tables */
+.master-notes .table-frame,
+.master-notes .table-frame.table-scroll,
+.content .table-frame,
+.content .table-frame.table-scroll,
+.section .content .table-frame{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  margin:10px 0 18px!important;
+  padding:0!important;
+  border:1px solid #cfdbe5!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  box-shadow:0 1px 4px rgba(16,42,67,.09)!important;
+}
+.master-notes .table-frame.table-scroll,
+.content .table-frame.table-scroll{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  border-radius:14px!important;
+}
+.master-notes .table-frame>table,
+.content .table-frame>table,
+.section .content .table-frame>table{
+  display:table!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.master-notes .table-frame:not(.table-scroll)>table,
+.content .table-frame:not(.table-scroll)>table{
+  width:100%!important;
+  min-width:100%!important;
+  max-width:100%!important;
+}
+/* Ensure every table gets the same visible outer boundary even when its content is wide */
+.master-notes .table-frame.table-scroll>table,
+.content .table-frame.table-scroll>table{
+  margin:0!important;
+}
 </style>
 </head>
 <body>
