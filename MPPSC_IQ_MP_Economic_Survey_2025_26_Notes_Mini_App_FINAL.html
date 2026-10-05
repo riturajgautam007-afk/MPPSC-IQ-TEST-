@@ -509,6 +509,67 @@ strong{color:var(--navy)}
  .master-table .content{padding:11px!important;}
  .master-table .table-scroll>table.wide-table{min-width:1260px!important;}
 }
+
+/* FINAL CONTAINER FIX — master table behaves as one full-width vertical table without width expansion */
+.master-table{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-collapse:separate!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+.master-table tbody,
+.master-table .master-row,
+.master-table .master-cell{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  box-sizing:border-box!important;
+}
+.master-table .master-cell{
+  overflow:hidden!important;
+}
+.master-table .section{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+.master-table .sec-head{
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+.master-table .content{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+.master-table .table-frame{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+.master-table .table-frame.table-scroll{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  width:100%!important;
+  max-width:100%!important;
+}
 </style>
 </head>
 <body>
