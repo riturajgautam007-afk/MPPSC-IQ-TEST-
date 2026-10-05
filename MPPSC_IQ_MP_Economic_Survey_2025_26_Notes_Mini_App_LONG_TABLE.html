@@ -550,6 +550,18 @@ table tr:hover td{background:#fff1b8!important;}
 .content .table-frame table tr:last-child td:first-child{border-bottom-left-radius:0!important;}
 .master-notes .table-frame table tr:last-child td:last-child,
 .content .table-frame table tr:last-child td:last-child{border-bottom-right-radius:0!important;}
+
+/* UNIVERSAL TABLE CORNER LOCK — force every table itself to inherit the same rounded outer corners */
+.table-frame{border-radius:12px!important;overflow:hidden!important;clip-path:inset(0 round 12px)!important;}
+.table-frame>table{border-radius:12px!important;overflow:hidden!important;}
+.table-frame>table thead:first-child tr:first-child th:first-child{border-top-left-radius:12px!important;}
+.table-frame>table thead:first-child tr:first-child th:last-child{border-top-right-radius:12px!important;}
+.table-frame>table tbody tr:last-child td:first-child{border-bottom-left-radius:12px!important;}
+.table-frame>table tbody tr:last-child td:last-child{border-bottom-right-radius:12px!important;}
+.table-frame>table:not(:has(thead)) tbody tr:first-child th:first-child{border-top-left-radius:12px!important;}
+.table-frame>table:not(:has(thead)) tbody tr:first-child th:last-child{border-top-right-radius:12px!important;}
+.table-frame>table:not(:has(thead)) tbody tr:last-child td:first-child{border-bottom-left-radius:12px!important;}
+.table-frame>table:not(:has(thead)) tbody tr:last-child td:last-child{border-bottom-right-radius:12px!important;}
 </style>
 </head>
 <body>
