@@ -142,79 +142,50 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE SYSTEM — one exact outer frame for every table */
+}\n/* FINAL TABLE SYSTEM — every table gets the same outer frame */
 .content{
- box-sizing:border-box!important;
- width:100%!important;
- max-width:100%!important;
- min-width:0!important;
- padding:14px!important;
- overflow:visible!important;
+ box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+ min-width:0!important;padding:14px!important;
 }
-.content table,
-.content .table-scroll{
- box-sizing:border-box!important;
+.table-frame{
+ display:block!important;box-sizing:border-box!important;
+ width:100%!important;min-width:100%!important;max-width:100%!important;
+ margin:8px 0 16px!important;padding:0!important;
+ overflow:hidden!important;
+ border:1px solid #d7e2eb!important;border-radius:8px!important;
+ background:#fff!important;
 }
-.content>table:not(.combined),
-.content>.table-scroll{
- width:100%!important;
- max-width:100%!important;
- min-width:100%!important;
- margin-left:0!important;
- margin-right:0!important;
+.table-frame.table-scroll{
+ overflow-x:auto!important;overflow-y:hidden!important;
+ -webkit-overflow-scrolling:touch!important;
+ touch-action:pan-x!important;overscroll-behavior-x:contain!important;
+ scroll-behavior:smooth!important;
 }
-.content>table:not(.combined){
- display:table!important;
- table-layout:fixed!important;
+.table-frame>table{
+ margin:0!important;border:0!important;
+}
+.table-frame:not(.table-scroll)>table{
+ display:table!important;width:100%!important;min-width:100%!important;
+ max-width:100%!important;table-layout:fixed!important;
  border-collapse:collapse!important;
 }
-.content>.table-scroll{
- display:block!important;
- position:relative!important;
- overflow-x:auto!important;
- overflow-y:hidden!important;
- -webkit-overflow-scrolling:touch!important;
- touch-action:pan-x!important;
- overscroll-behavior-x:contain!important;
- scroll-behavior:smooth!important;
- padding:0!important;
- margin-top:8px!important;
- margin-bottom:16px!important;
- border:1px solid #d7e2eb!important;
- border-radius:8px!important;
+.table-frame.table-scroll>table{
+ display:table!important;width:max-content!important;
+ min-width:max-content!important;max-width:none!important;
+ table-layout:auto!important;border-collapse:separate!important;border-spacing:0!important;
 }
-.content>.table-scroll>table{
- display:table!important;
- margin:0!important;
- border:0!important;
+.table-frame.table-scroll>table th,
+.table-frame.table-scroll>table td{
+ box-sizing:border-box!important;
 }
-.content>.table-scroll>table.combined,
-.content>.table-scroll>table.wide-table{
- width:max-content!important;
- min-width:max-content!important;
- max-width:none!important;
- table-layout:auto!important;
+.table-frame.table-scroll>table th:first-child,
+.table-frame.table-scroll>table td:first-child{
+ position:sticky!important;left:0!important;z-index:4!important;
 }
-.content>.table-scroll>table.combined th,
-.content>.table-scroll>table.combined td,
-.content>.table-scroll>table.wide-table th,
-.content>.table-scroll>table.wide-table td{
- border-right:1px solid #d7e2eb!important;
- border-bottom:1px solid #d7e2eb!important;
-}
-.content>table:not(.combined){
- border:1px solid #d7e2eb!important;
-}
+.table-frame.table-scroll>table thead th:first-child{z-index:6!important}
 @media(max-width:600px){
- .content{
-   padding:11px!important;
- }
- .content>table:not(.combined),
- .content>.table-scroll{
-   width:100%!important;
-   min-width:100%!important;
-   max-width:100%!important;
- }
+ .content{padding:11px!important}
+ .table-frame{width:100%!important;min-width:100%!important;max-width:100%!important}
 }</style>
 </head>
 <body>
@@ -667,20 +638,23 @@ function syncStickyLanguageBar(){
 }
 window.addEventListener('load',syncStickyLanguageBar);
 window.addEventListener('resize',syncStickyLanguageBar);
+
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.table-scroll').forEach(function(wrap){
+    var table=wrap.querySelector('table');
+    if(table && table.parentElement===wrap){
+      wrap.parentNode.insertBefore(table,wrap);
+      wrap.remove();
+    }
+  });
   document.querySelectorAll('table').forEach(function(table){
     var cells=table.rows.length ? table.rows[0].cells.length : 0;
-    if(table.classList.contains('combined')){
-      return;
-    }
-    if(cells>=5){
-      table.classList.add('wide-table');
-      var wrap=document.createElement('div');
-      wrap.className='table-scroll';
-      table.parentNode.insertBefore(wrap,table);
-      wrap.appendChild(table);
-    }
+    var wrap=document.createElement('div');
+    wrap.className='table-frame'+(cells>=5?' table-scroll':'');
+    table.parentNode.insertBefore(wrap,table);
+    wrap.appendChild(table);
+    if(cells>=5) table.classList.add('wide-table');
   });
 });
 </script>
