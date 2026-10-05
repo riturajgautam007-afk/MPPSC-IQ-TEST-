@@ -410,166 +410,6 @@ strong{color:var(--navy)}
 .master-notes .table-frame:not(.table-scroll)>table tr>*:nth-child(4):last-child{width:25%!important;}
 .master-notes .table-frame:not(.table-scroll)>table th,
 .master-notes .table-frame:not(.table-scroll)>table td{overflow-wrap:anywhere!important;word-break:normal!important;vertical-align:top!important;}
-
-/* ONE MASTER TABLE — entire notes from top to bottom */
-.master-table{
-  display:table!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  margin:0!important;
-  padding:0!important;
-  border-collapse:collapse!important;
-  table-layout:fixed!important;
-  background:transparent!important;
-}
-.master-table tbody{display:table-row-group!important;width:100%!important;}
-.master-table .master-row{display:table-row!important;width:100%!important;}
-.master-table .master-cell{
-  display:table-cell!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  padding:0!important;
-  border:0!important;
-  vertical-align:top!important;
-}
-.master-table .section{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  margin:10px 0!important;
-  box-sizing:border-box!important;
-}
-.master-table .content{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  box-sizing:border-box!important;
-  padding:14px!important;
-}
-.master-table .table-frame{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  box-sizing:border-box!important;
-  overflow:hidden!important;
-  margin:8px 0 16px!important;
-  padding:0!important;
-}
-.master-table .table-frame>table:not(.wide-table){
-  width:100%!important;
-  min-width:100%!important;
-  max-width:100%!important;
-  table-layout:fixed!important;
-  border-collapse:collapse!important;
-}
-.master-table .table-scroll{
-  width:100%!important;
-  max-width:100%!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  -webkit-overflow-scrolling:touch!important;
-  touch-action:pan-x!important;
-  scrollbar-width:thin!important;
-}
-.master-table .table-scroll>table.wide-table{
-  width:max-content!important;
-  min-width:1260px!important;
-  max-width:none!important;
-  table-layout:fixed!important;
-  border-collapse:collapse!important;
-}
-.master-table .table-scroll>table.wide-table th,
-.master-table .table-scroll>table.wide-table td{
-  min-width:170px!important;
-  width:170px!important;
-  max-width:170px!important;
-  box-sizing:border-box!important;
-  white-space:normal!important;
-  overflow-wrap:anywhere!important;
-  vertical-align:top!important;
-}
-.master-table .table-scroll>table.wide-table th:first-child,
-.master-table .table-scroll>table.wide-table td:first-child{
-  min-width:210px!important;
-  width:210px!important;
-  max-width:210px!important;
-  position:sticky!important;
-  left:0!important;
-  z-index:5!important;
-}
-.master-table .table-frame>table:not(.wide-table) th,
-.master-table .table-frame>table:not(.wide-table) td{
-  box-sizing:border-box!important;
-  overflow-wrap:anywhere!important;
-  vertical-align:top!important;
-}
-@media(max-width:600px){
- .master-table .content{padding:11px!important;}
- .master-table .table-scroll>table.wide-table{min-width:1260px!important;}
-}
-
-/* FINAL CONTAINER FIX — master table behaves as one full-width vertical table without width expansion */
-.master-table{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  margin:0!important;
-  padding:0!important;
-  border:0!important;
-  border-collapse:separate!important;
-  overflow:hidden!important;
-  box-sizing:border-box!important;
-}
-.master-table tbody,
-.master-table .master-row,
-.master-table .master-cell{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  margin:0!important;
-  padding:0!important;
-  border:0!important;
-  box-sizing:border-box!important;
-}
-.master-table .master-cell{
-  overflow:hidden!important;
-}
-.master-table .section{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  overflow:hidden!important;
-  box-sizing:border-box!important;
-}
-.master-table .sec-head{
-  width:100%!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
-}
-.master-table .content{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  overflow:hidden!important;
-  box-sizing:border-box!important;
-}
-.master-table .table-frame{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  box-sizing:border-box!important;
-}
-.master-table .table-frame.table-scroll{
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  width:100%!important;
-  max-width:100%!important;
-}
 </style>
 </head>
 <body>
@@ -590,8 +430,8 @@ strong{color:var(--navy)}
   <button id="hiBtn" class="lang-btn active" onclick="showLang('hi')">🇮🇳 Hindi Notes</button>
   <button id="enBtn" class="lang-btn" onclick="showLang('en')">🇬🇧 English Notes</button>
 </div>
-<div id="hiNotes" class="language-notes" style="display:block;">
-<table class="master-table"><tbody><tr class="master-row"><td class="master-cell"><section class="section" id="gsdp">
+<div id="hiNotes" class="language-notes" style="display:block;"><div class="master-notes">
+<section class="section" id="gsdp">
 <div class="sec-head">1. सकल राज्य घरेलू उत्पाद (GSDP)</div>
 <div class="content">
 <div class="table-frame"><table>
@@ -601,9 +441,9 @@ strong{color:var(--navy)}
 <tr><td>वृद्धि दर</td><td><strong>11.14%</strong></td><td><strong>8.04%</strong></td></tr>
 </tbody></table></div>
 <div class="note">वित्तीय वर्ष 2025-26 में प्रचलित भाव पर GSDP में <strong>11.14%</strong> तथा स्थिर (2011-12) भाव पर <strong>8.04%</strong> वृद्धि अनुमानित है।</div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="gsva">
+<section class="section" id="gsva">
 <div class="sec-head">2. GSVA में क्षेत्रवार योगदान</div>
 <div class="content">
 <div class="table-frame table-scroll"><table class="wide-table"><colgroup><col style="width:220px;min-width:220px;max-width:220px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"></colgroup><thead><tr><th>क्षेत्र</th><th>2024-25 — प्रचलित भाव</th><th>2024-25 — स्थिर भाव</th><th>2024-25 — योगदान</th><th>2025-26 — प्रचलित भाव</th><th>2025-26 — स्थिर भाव</th><th>2025-26 — योगदान</th></tr></thead><tbody><tr><td>प्राथमिक</td><td><strong>₹6,33,532</strong></td><td><strong>₹2,34,594</strong></td><td><strong>44.51%</strong></td><td><strong>₹6,79,817</strong></td><td><strong>₹2,41,338</strong></td><td><strong>43.09%</strong></td></tr><tr><td>द्वितीयक</td><td><strong>₹2,84,125</strong></td><td><strong>₹1,76,329</strong></td><td><strong>19.96%</strong></td><td><strong>₹3,12,350</strong></td><td><strong>₹1,88,441</strong></td><td><strong>19.79%</strong></td></tr><tr><td>तृतीयक</td><td><strong>₹5,05,679</strong></td><td><strong>₹2,58,616</strong></td><td><strong>35.53%</strong></td><td><strong>₹5,85,588</strong></td><td><strong>—</strong></td><td><strong>37.12%</strong></td></tr></tbody></table></div>
@@ -613,9 +453,9 @@ strong{color:var(--navy)}
 <tr><td>प्रचलित भाव</td><td><strong>प्राथमिक &gt; तृतीयक &gt; द्वितीयक</strong></td></tr>
 <tr><td>स्थिर भाव</td><td><strong>तृतीयक &gt; प्राथमिक &gt; द्वितीयक</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="income">
+<section class="section" id="income">
 <div class="sec-head">3. प्रति व्यक्ति शुद्ध आय</div>
 <div class="content">
 <div class="table-frame"><table>
@@ -624,9 +464,9 @@ strong{color:var(--navy)}
 <tr><td><strong>2025-26</strong></td><td><strong>₹76,971</strong></td><td><strong>₹1,69,050</strong></td></tr>
 </tbody></table></div>
 <div class="note">2025-26 में प्रचलित भाव पर प्रति व्यक्ति शुद्ध आय <strong>₹1,69,050</strong> तथा स्थिर भाव पर <strong>₹76,971</strong> अनुमानित है।</div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="primary">
+<section class="section" id="primary">
 <div class="sec-head">प्राथमिक क्षेत्र</div>
 <div class="content">
 <h3>4. प्राथमिक क्षेत्र का कुल GSVA</h3>
@@ -666,9 +506,9 @@ strong{color:var(--navy)}
 <div class="table-frame"><table><tbody><tr><th>संकेतक</th><th>2025-26</th></tr>
 <tr><td>GSVA में योगदान</td><td><strong>2.13%</strong></td></tr><tr><td>प्रचलित भाव पर GSVA</td><td><strong>₹33,633 करोड़</strong></td></tr><tr><td>प्रचलित भाव पर वृद्धि दर</td><td><strong>7.44%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="secondary">
+<section class="section" id="secondary">
 <div class="sec-head">द्वितीयक क्षेत्र</div><div class="content">
 <h3>11. द्वितीयक क्षेत्र का कुल GSVA</h3>
 <div class="table-frame"><table><thead><tr><th>संकेतक</th><th>2024-25</th><th>2025-26</th></tr></thead><tbody><tr><td>प्रचलित भाव पर GSVA</td><td><strong>₹2,84,125 करोड़</strong></td><td><strong>₹3,12,350 करोड़</strong></td></tr><tr><td>स्थिर भाव पर GSVA</td><td><strong>₹1,76,329 करोड़</strong></td><td><strong>₹1,88,441 करोड़</strong></td></tr><tr><td>GSVA में योगदान — प्रचलित भाव</td><td><strong>19.96%</strong></td><td><strong>19.79%</strong></td></tr><tr><td>GSVA में योगदान — स्थिर भाव</td><td><strong>—</strong></td><td><strong>26.18%</strong></td></tr><tr><td>प्रचलित भाव पर वृद्धि दर</td><td><strong>—</strong></td><td><strong>9.93%</strong></td></tr><tr><td>स्थिर भाव पर वृद्धि दर</td><td><strong>—</strong></td><td><strong>6.87%</strong></td></tr></tbody></table></div>
@@ -682,9 +522,9 @@ strong{color:var(--navy)}
 <tr><td>प्रचलित भाव पर सर्वाधिक वृद्धि</td><td><strong>निर्माण — 13.41%</strong></td></tr>
 <tr><td>स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>निर्माण — 8.45%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="tertiary">
+<section class="section" id="tertiary">
 <div class="sec-head">तृतीयक क्षेत्र (सेवा क्षेत्र) — 2025-26</div><div class="content">
 <h3>14. तृतीयक क्षेत्र का कुल GSVA</h3>
 <div class="table-frame"><table><thead><tr><th>संकेतक</th><th>2024-25</th><th>2025-26</th></tr></thead><tbody><tr><td>प्रचलित भाव पर GSVA</td><td><strong>₹5,05,679 करोड़</strong></td><td><strong>₹5,85,588 करोड़</strong></td></tr><tr><td>स्थिर भाव पर GSVA</td><td><strong>₹2,58,616 करोड़</strong></td><td><strong>—</strong></td></tr><tr><td>GSVA में योगदान — प्रचलित भाव</td><td><strong>35.53%</strong></td><td><strong>37.12%</strong></td></tr><tr><td>GSVA में योगदान — स्थिर भाव</td><td><strong>—</strong></td><td><strong>40.28%</strong></td></tr></tbody></table></div>
@@ -698,18 +538,18 @@ strong{color:var(--navy)}
 <tr><td>प्रचलित भाव पर सर्वाधिक वृद्धि</td><td><strong>अन्य सेवाएँ — 24.96%</strong></td></tr>
 <tr><td>स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>लोक प्रशासन — 18.36%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="comparison">
+<section class="section" id="comparison">
 <div class="sec-head">तीनों क्षेत्रों की तुलना</div><div class="content">
 <div class="table-frame"><table><thead><tr><th>तथ्य</th><th>उत्तर</th></tr></thead><tbody>
 <tr><td>GSVA योगदान का क्रम</td><td><strong>प्राथमिक &gt; तृतीयक &gt; द्वितीयक</strong></td></tr>
 <tr><td>प्रचलित भाव पर वृद्धि का क्रम</td><td><strong>तृतीयक &gt; द्वितीयक &gt; प्राथमिक</strong></td></tr>
 <tr><td>स्थिर भाव पर वृद्धि का क्रम</td><td><strong>तृतीयक &gt; द्वितीयक &gt; प्राथमिक</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="final-revision-hi">
+<section class="section" id="final-revision-hi">
 <div class="sec-head">📌 महत्वपूर्ण वन-लाइनर तथ्य — त्वरित पुनरावृत्ति</div>
 <div class="content">
 <div class="table-frame"><table><thead><tr><th>क्र.</th><th>महत्वपूर्ण तथ्य</th><th>उत्तर / आंकड़ा</th></tr></thead><tbody><tr><td>1</td><td>2025-26 में प्रचलित भाव पर GSDP</td><td><strong>₹16,69,750 करोड़</strong></td></tr>
@@ -775,11 +615,10 @@ strong{color:var(--navy)}
 <tr><td>61</td><td>तृतीयक क्षेत्र में स्थिर भाव पर सर्वाधिक वृद्धि</td><td><strong>लोक प्रशासन — 18.36%</strong></td></tr>
 <tr><td>62</td><td>तृतीयक क्षेत्र में GSVA योगदान का प्रमुख क्रम</td><td><strong>व्यापार > अन्य सेवाएँ > रियल एस्टेट > लोक प्रशासन</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 </div></div>
-</td></tr></tbody></table></div>
-<div id="enNotes" class="language-notes" style="display:none;">
-<table class="master-table"><tbody><tr class="master-row"><td class="master-cell"><section class="section" id="gsdp">
+<div id="enNotes" class="language-notes" style="display:none;"><div class="master-notes">
+<section class="section" id="gsdp">
 <div class="sec-head">1. Gross State Domestic Product (GSDP)</div>
 <div class="content">
 <div class="table-frame"><table>
@@ -789,9 +628,9 @@ strong{color:var(--navy)}
 <tr><td>Growth Rate</td><td><strong>11.14%</strong></td><td><strong>8.04%</strong></td></tr>
 </tbody></table></div>
 <div class="note">vittiy Year 2025-26 in Current Prices at GSDP in <strong>11.14%</strong> at constant (2011-12) prices <strong>8.04%</strong> is estimated to grow.</div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="gsva">
+<section class="section" id="gsva">
 <div class="sec-head">2. Sector-wise Contribution to GSVA</div>
 <div class="content">
 <div class="table-frame table-scroll"><table class="wide-table"><colgroup><col style="width:220px;min-width:220px;max-width:220px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"></colgroup><thead><tr><th>Sector</th><th>2024-25 — Current</th><th>2024-25 — Constant</th><th>2024-25 — Share</th><th>2025-26 — Current</th><th>2025-26 — Constant</th><th>2025-26 — Share</th></tr></thead><tbody><tr><td>Primary</td><td><strong>₹6,33,532 crore</strong></td><td><strong>₹2,34,594 crore</strong></td><td><strong>44.51%</strong></td><td><strong>₹6,79,817 crore</strong></td><td><strong>₹2,41,338 crore</strong></td><td><strong>43.09%</strong></td></tr><tr><td>Secondary</td><td><strong>₹2,84,125 crore</strong></td><td><strong>₹1,76,329 crore</strong></td><td><strong>19.96%</strong></td><td><strong>₹3,12,350 crore</strong></td><td><strong>₹1,88,441 crore</strong></td><td><strong>19.79%</strong></td></tr><tr><td>Tertiary</td><td><strong>₹5,05,679 crore</strong></td><td><strong>₹2,58,616 crore</strong></td><td><strong>35.53%</strong></td><td><strong>₹5,85,588 crore</strong></td><td><strong>—</strong></td><td><strong>37.12%</strong></td></tr></tbody></table></div>
@@ -801,9 +640,9 @@ strong{color:var(--navy)}
 <tr><td>Current Prices</td><td><strong>Primary &gt; Tertiary &gt; Secondary</strong></td></tr>
 <tr><td>Constant Prices</td><td><strong>Tertiary &gt; Primary &gt; Secondary</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="income">
+<section class="section" id="income">
 <div class="sec-head">3. Per Capita Net Income</div>
 <div class="content">
 <div class="table-frame"><table>
@@ -812,9 +651,9 @@ strong{color:var(--navy)}
 <tr><td><strong>2025-26</strong></td><td><strong>₹76,971</strong></td><td><strong>₹1,69,050</strong></td></tr>
 </tbody></table></div>
 <div class="note">2025-26 in Current Prices at Per Capita Net Income <strong>₹1,69,050</strong> and at constant prices <strong>₹76,971</strong> is estimated.</div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="primary">
+<section class="section" id="primary">
 <div class="sec-head">Primary Sector</div>
 <div class="content">
 <h3>4. Major Changes from 2024-25 to 2025-26</h3>
@@ -867,17 +706,17 @@ strong{color:var(--navy)}
 <tr><td>Current Prices at GSVA</td><td><strong>₹33,633 crore</strong></td></tr>
 <tr><td>Current Prices at Growth Rate</td><td><strong>7.44%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="secondary">
+<section class="section" id="secondary">
 <div class="sec-head">Secondary Sector</div>
 <div class="content">
 <h3>11. Secondary Sector of GSVA</h3>
 <div class="table-frame"><table><thead><tr><th>Indicator</th><th>2024-25</th><th>2025-26</th></tr></thead><tbody><tr><td>GSVA at Current Prices</td><td><strong>₹2,84,125 crore</strong></td><td><strong>₹3,12,350 crore</strong></td></tr><tr><td>GSVA at Constant Prices</td><td><strong>₹1,76,329 crore</strong></td><td><strong>₹1,88,441 crore</strong></td></tr><tr><td>Share in GSVA — Current Prices</td><td><strong>19.96%</strong></td><td><strong>19.79%</strong></td></tr><tr><td>Share in GSVA — Constant Prices</td><td><strong>—</strong></td><td><strong>26.18%</strong></td></tr><tr><td>Growth at Current Prices</td><td><strong>—</strong></td><td><strong>9.93%</strong></td></tr><tr><td>Growth at Constant Prices</td><td><strong>—</strong></td><td><strong>6.87%</strong></td></tr></tbody></table></div>
 
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="secondary-detail">
+<section class="section" id="secondary-detail">
 <div class="sec-head">Secondary Sector — Key Figures</div>
 <div class="content">
 <div class="table-frame table-scroll"><table class="wide-table"><colgroup><col style="width:220px;min-width:220px;max-width:220px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"></colgroup><thead><tr><th>Sub-sector</th><th>2024-25 — Current</th><th>2024-25 — Constant</th><th>2024-25 — Share</th><th>2025-26 — Current</th><th>2025-26 — Constant</th><th>2025-26 — Share</th></tr></thead><tbody><tr><td>Manufacturing</td><td><strong>₹1,06,552 crore</strong></td><td><strong>₹75,634 crore</strong></td><td><strong>7.49%</strong></td><td><strong>₹1,13,933 crore</strong></td><td><strong>₹79,262 crore</strong></td><td><strong>7.22%</strong></td></tr><tr><td>Electricity, Gas, Water Supply & Other Utilities</td><td><strong>₹49,262 crore</strong></td><td><strong>₹35,084 crore</strong></td><td><strong>3.46%</strong></td><td><strong>₹52,894 crore</strong></td><td><strong>₹38,024 crore</strong></td><td><strong>3.35%</strong></td></tr><tr><td>Construction</td><td><strong>₹1,28,311 crore</strong></td><td><strong>₹65,612 crore</strong></td><td><strong>9.01%</strong></td><td><strong>₹1,45,523 crore</strong></td><td><strong>₹71,155 crore</strong></td><td><strong>9.22%</strong></td></tr></tbody></table></div></div>
@@ -890,9 +729,9 @@ strong{color:var(--navy)}
 <tr><td>Highest Growth at Current Prices</td><td><strong>Construction — 13.41%</strong></td></tr>
 <tr><td>Highest Growth at Constant Prices</td><td><strong>Construction — 8.45%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="tertiary">
+<section class="section" id="tertiary">
 <div class="sec-head">Tertiary Sector (Services Sector) — 2025-26</div>
 <div class="content">
 <div class="table-frame table-scroll"><table class="wide-table"><colgroup><col style="width:220px;min-width:220px;max-width:220px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"></colgroup><thead><tr><th>Sub-sector</th><th>2024-25 — Current</th><th>2024-25 — Constant</th><th>2024-25 — Share</th><th>2025-26 — Current</th><th>2025-26 — Constant</th><th>2025-26 — Share</th></tr></thead><tbody><tr><td>Trade, Repair, Hotels & Restaurants</td><td><strong>₹1,47,319 crore</strong></td><td><strong>₹71,055 crore</strong></td><td><strong>10.35%</strong></td><td><strong>₹1,63,336 crore</strong></td><td><strong>₹78,221 crore</strong></td><td><strong>10.35%</strong></td></tr><tr><td>Transport & Storage</td><td><strong>₹40,250 crore</strong></td><td><strong>₹22,468 crore</strong></td><td><strong>2.83%</strong></td><td><strong>₹44,162 crore</strong></td><td><strong>₹24,140 crore</strong></td><td><strong>2.80%</strong></td></tr><tr><td>Railways</td><td><strong>₹11,624 crore</strong></td><td><strong>₹6,423 crore</strong></td><td><strong>0.82%</strong></td><td><strong>₹12,874 crore</strong></td><td><strong>₹6,966 crore</strong></td><td><strong>0.82%</strong></td></tr><tr><td>Communication & Broadcasting</td><td><strong>₹24,102 crore</strong></td><td><strong>₹13,800 crore</strong></td><td><strong>1.69%</strong></td><td><strong>₹26,511 crore</strong></td><td><strong>₹14,865 crore</strong></td><td><strong>1.68%</strong></td></tr><tr><td>Financial Services</td><td><strong>₹50,481 crore</strong></td><td><strong>₹29,881 crore</strong></td><td><strong>3.55%</strong></td><td><strong>₹58,790 crore</strong></td><td><strong>₹32,733 crore</strong></td><td><strong>3.73%</strong></td></tr><tr><td>Real Estate, Ownership of Dwellings & Professional Services</td><td><strong>₹68,499 crore</strong></td><td><strong>₹35,184 crore</strong></td><td><strong>4.81%</strong></td><td><strong>₹78,533 crore</strong></td><td><strong>₹38,523 crore</strong></td><td><strong>4.98%</strong></td></tr><tr><td>Public Administration</td><td><strong>₹64,879 crore</strong></td><td><strong>₹33,519 crore</strong></td><td><strong>4.56%</strong></td><td><strong>₹78,270 crore</strong></td><td><strong>₹39,674 crore</strong></td><td><strong>4.96%</strong></td></tr><tr><td>Other Services</td><td><strong>₹98,525 crore</strong></td><td><strong>₹46,286 crore</strong></td><td><strong>6.92%</strong></td><td><strong>₹1,23,112 crore</strong></td><td><strong>₹54,715 crore</strong></td><td><strong>7.80%</strong></td></tr></tbody></table></div></div>
@@ -905,9 +744,9 @@ strong{color:var(--navy)}
 <tr><td>Highest Growth at Current Prices</td><td><strong>Other Services — 24.96%</strong></td></tr>
 <tr><td>Highest Growth at Constant Prices</td><td><strong>Public Administration — 18.36%</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="comparison">
+<section class="section" id="comparison">
 <div class="sec-head">Comparison of All Three Sectors</div>
 <div class="content">
 <div class="table-frame"><table><thead><tr><th>Fact</th><th>Answer</th></tr></thead><tbody>
@@ -915,9 +754,9 @@ strong{color:var(--navy)}
 <tr><td>Growth Ranking at Current Prices</td><td><strong>Tertiary &gt; Secondary &gt; Primary</strong></td></tr>
 <tr><td>Growth Ranking at Constant Prices</td><td><strong>Tertiary &gt; Secondary &gt; Primary</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 
-</td></tr><tr class="master-row"><td class="master-cell"><section class="section" id="final-revision-en">
+<section class="section" id="final-revision-en">
 <div class="sec-head">📌 Important One-Liner Facts — Quick Revision</div>
 <div class="content">
 <div class="table-frame"><table><thead><tr><th>क्र.</th><th>Important Fact</th><th>Answer / Data</th></tr></thead><tbody><tr><td>1</td><td>GSDP at current prices in 2025-26</td><td><strong>₹16,69,750 crore</strong></td></tr>
@@ -984,9 +823,8 @@ strong{color:var(--navy)}
 <tr><td>62</td><td>Trade, Repair, Hotels & Restaurants GSVA</td><td><strong>₹1,63,336 crore</strong></td></tr>
 <tr><td>63</td><td>Tertiary Sector ranking by GSVA contribution</td><td><strong>Trade > Other Services > Real Estate > Public Administration</strong></td></tr>
 </tbody></table></div>
-</div></section>
+</div></section
 </div></div>
-</td></tr></tbody></table></div>
 <footer class="footer">MPPSC IQ • मध्यप्रदेश आर्थिक सर्वेक्षण 2025-26</footer>
 </div>
 
