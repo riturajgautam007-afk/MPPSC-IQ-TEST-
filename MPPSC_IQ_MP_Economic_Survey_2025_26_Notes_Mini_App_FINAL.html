@@ -142,16 +142,30 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE UI — uniform mobile alignment */
+}\n/* FINAL TABLE UI — one consistent table width */
+table:not(.combined){
+ width:100%!important;min-width:100%!important;max-width:100%!important;
+ table-layout:fixed!important;margin:8px 0 16px!important;
+ border-collapse:collapse!important;
+}
+table:not(.combined) th,table:not(.combined) td{
+ box-sizing:border-box!important;padding:6px 7px!important;
+ line-height:1.3!important;vertical-align:middle!important;
+}
+table:not(.combined) th:first-child,table:not(.combined) td:first-child{width:50%!important}
+table:not(.combined) th:nth-child(2),table:not(.combined) td:nth-child(2){width:50%!important}
+table:not(.combined) th:nth-child(3),table:not(.combined) td:nth-child(3){width:33.3333%!important}
+table:not(.combined) th:nth-child(4),table:not(.combined) td:nth-child(4){width:25%!important}
+
 .table-scroll{
  display:block!important;width:100%!important;max-width:100%!important;
  overflow-x:auto!important;overflow-y:hidden!important;
  -webkit-overflow-scrolling:touch!important;touch-action:pan-x!important;
  overscroll-behavior-x:contain!important;scroll-behavior:smooth!important;
- margin:8px 0 14px!important;padding:0 0 5px!important;
+ margin:8px 0 16px!important;padding:0 0 5px!important;
 }
 .table-scroll table.combined{
- display:table!important;width:max-content!important;min-width:0!important;
+ display:table!important;width:max-content!important;min-width:100%!important;
  max-width:none!important;margin:0!important;table-layout:auto!important;
  border-collapse:separate!important;border-spacing:0!important;font-size:11px!important;
 }
@@ -165,7 +179,8 @@ strong{color:var(--navy)}
  white-space:normal!important;text-align:left!important;
  box-shadow:2px 0 5px rgba(16,42,67,.14)!important;
 }
-.table-scroll table.combined th:not(:first-child),.table-scroll table.combined td:not(:first-child){
+.table-scroll table.combined th:not(:first-child),
+.table-scroll table.combined td:not(:first-child){
  width:105px!important;min-width:105px!important;max-width:105px!important;
 }
 .table-scroll table.combined thead th{
@@ -178,30 +193,8 @@ strong{color:var(--navy)}
 .table-scroll table.combined tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
 .table-scroll table.combined tbody tr:nth-child(4n) td{background:#f6f0ff!important}
 .table-scroll table.combined tbody tr:hover td{background:#fff1b8!important}
-
-/* 2/3/4-column tables: identical full-width alignment */
-table:not(.combined){
- width:100%!important;min-width:100%!important;max-width:100%!important;
- table-layout:fixed!important;margin:8px 0 16px!important;
- border-collapse:collapse!important;
-}
-table:not(.combined) th,table:not(.combined) td{
- box-sizing:border-box!important;padding:6px 7px!important;
- line-height:1.3!important;vertical-align:middle!important;
-}
-table:not(.combined):has(tr > :nth-child(2)):not(:has(tr > :nth-child(3))) th,
-table:not(.combined):has(tr > :nth-child(2)):not(:has(tr > :nth-child(3))) td{
- width:50%!important;
-}
-table:not(.combined):has(tr > :nth-child(3)):not(:has(tr > :nth-child(4))) th,
-table:not(.combined):has(tr > :nth-child(3)):not(:has(tr > :nth-child(4))) td{
- width:33.3333%!important;
-}
-table:not(.combined):has(tr > :nth-child(4)):not(:has(tr > :nth-child(5))) th,
-table:not(.combined):has(tr > :nth-child(4)):not(:has(tr > :nth-child(5))) td{
- width:25%!important;
-}
 @media(max-width:600px){
+ table:not(.combined) th,table:not(.combined) td{padding:5px 6px!important;font-size:11.5px!important}
  .table-scroll table.combined{font-size:10.5px!important}
  .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px!important}
  .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{
@@ -209,9 +202,6 @@ table:not(.combined):has(tr > :nth-child(4)):not(:has(tr > :nth-child(5))) td{
  }
  .table-scroll table.combined th:not(:first-child),.table-scroll table.combined td:not(:first-child){
    width:105px!important;min-width:105px!important;max-width:105px!important;
- }
- table:not(.combined) th,table:not(.combined) td{
-   padding:5px 6px!important;font-size:11.5px!important;
  }
 }</style>
 </head>
@@ -665,5 +655,19 @@ function syncStickyLanguageBar(){
 }
 window.addEventListener('load',syncStickyLanguageBar);
 window.addEventListener('resize',syncStickyLanguageBar);
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('table:not(.combined)').forEach(function(table){
+   var firstRow=table.rows[0];
+   if(firstRow && firstRow.cells.length>=5){
+     var wrap=document.createElement('div');
+     wrap.className='table-scroll';
+     table.parentNode.insertBefore(wrap,table);
+     wrap.appendChild(table);
+     table.classList.add('combined');
+   }
+ });
+});
+</script>
 </body>
 </html>
