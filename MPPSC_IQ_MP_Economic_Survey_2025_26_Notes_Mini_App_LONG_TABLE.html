@@ -645,6 +645,24 @@ table tr:hover td{background:#fff1b8!important;}
 .content .table-frame.table-scroll>table{
   margin:0!important;
 }
+
+/* GUARANTEED UNIFORM FRAME FOR THE FOUR RECURRING OUTLIER TABLES */
+.uniform-table-frame{
+  display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;
+  margin:10px 0 18px!important;padding:0!important;
+  border:1px solid #cfdbe5!important;border-radius:14px!important;
+  background:#fff!important;overflow:hidden!important;
+  box-shadow:0 1px 4px rgba(16,42,67,.09)!important;
+}
+.uniform-table-frame>table{
+  width:100%!important;min-width:100%!important;max-width:100%!important;
+  margin:0!important;border:0!important;border-radius:0!important;
+  border-collapse:collapse!important;
+}
+.uniform-table-frame>table tr:first-child th:first-child{border-top-left-radius:13px!important}
+.uniform-table-frame>table tr:first-child th:last-child{border-top-right-radius:13px!important}
+.uniform-table-frame>table tr:last-child td:first-child{border-bottom-left-radius:13px!important}
+.uniform-table-frame>table tr:last-child td:last-child{border-bottom-right-radius:13px!important}
 </style>
 </head>
 <body>
@@ -1067,5 +1085,23 @@ document.addEventListener('DOMContentLoaded',function(){
     if(cols>=5) frame.classList.add('wide-scroll');
   });
 });
-</script></body>
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const targets=['प्राथमिक क्षेत्र — त्वरित तथ्य','Primary Sector — Quick Facts','फसलें','Crops','पशुधन','Livestock','वानिकी','Forestry'];
+  document.querySelectorAll('h3').forEach(function(h){
+    const t=h.textContent.trim();
+    if(targets.includes(t) || targets.some(x=>t.endsWith(x))){
+      const frame=h.nextElementSibling;
+      if(frame && frame.classList.contains('table-frame')){
+        frame.classList.remove('table-scroll');
+        frame.classList.add('uniform-table-frame');
+        const table=frame.querySelector(':scope > table');
+        if(table){table.classList.remove('wide-table','combined');}
+      }
+    }
+  });
+});
+</script>
+</body>
 </html>
