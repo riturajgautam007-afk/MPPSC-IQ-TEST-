@@ -195,6 +195,15 @@ strong{color:var(--navy)}
 .table-scroll table.combined tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
 .table-scroll table.combined tbody tr:nth-child(4n) td{background:#f6f0ff!important}
 .table-scroll table.combined tbody tr:hover td{background:#fff1b8!important}
+.table-scroll table.combined tbody tr:nth-child(4n+1) td:first-child,
+.table-scroll table.combined tbody tr:nth-child(4n+2) td:first-child,
+.table-scroll table.combined tbody tr:nth-child(4n+3) td:first-child,
+.table-scroll table.combined tbody tr:nth-child(4n) td:first-child{position:sticky!important;left:0!important}
+.table-scroll table.combined thead th:not(:first-child){
+  white-space:normal!important;word-break:normal!important;
+  min-width:0!important;max-width:105px!important;
+  line-height:1.15!important;
+}
 @media(max-width:600px){
   .table-scroll table.combined{font-size:10.5px!important}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:4.5px 5px!important}
