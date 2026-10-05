@@ -664,6 +664,78 @@ table tr:hover td{background:#fff1b8!important;}
 .uniform-table-frame>table tr:last-child td:first-child{border-bottom-left-radius:13px!important}
 .uniform-table-frame>table tr:last-child td:last-child{border-bottom-right-radius:13px!important}
 </style>
+
+<style id="FOUR-TABLE-EXACT-MATCH">
+/* EXACT MATCH FOR THE FOUR REMAINING OUTLIERS */
+.single-long-table .four-exact-match{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:10px 0 18px!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  border:1px solid #cfdbe5!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  clip-path:inset(0 round 12px)!important;
+  box-shadow:0 2px 7px rgba(16,42,67,.08)!important;
+}
+.single-long-table .four-exact-match>table{
+  display:table!important;
+  width:100%!important;
+  min-width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-collapse:collapse!important;
+  table-layout:fixed!important;
+  box-sizing:border-box!important;
+}
+.single-long-table .four-exact-match th,
+.single-long-table .four-exact-match td{
+  box-sizing:border-box!important;
+}
+.single-long-table .four-exact-match th:first-child{
+  width:50%!important;
+}
+.single-long-table .four-exact-match th:last-child{
+  width:50%!important;
+}
+.single-long-table .four-exact-match tbody td:first-child{
+  width:50%!important;
+}
+.single-long-table .four-exact-match tbody td:last-child{
+  width:50%!important;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const names = new Set([
+    'Primary Sector — Quick Facts','प्राथमिक क्षेत्र — त्वरित तथ्य',
+    'Crops','फसलें','Livestock','पशुधन','Forestry','वानिकी'
+  ]);
+  document.querySelectorAll('.single-long-table h3').forEach(function(h){
+    const title=h.textContent.trim();
+    if(!names.has(title)) return;
+    const frame=h.nextElementSibling;
+    if(!frame || !frame.classList.contains('table-frame')) return;
+    frame.classList.remove('table-scroll','wide-scroll','uniform-table-frame');
+    frame.classList.add('four-exact-match');
+    const table=frame.querySelector(':scope > table');
+    if(table){
+      table.classList.remove('wide-table','combined');
+      table.style.removeProperty('width');
+      table.style.removeProperty('min-width');
+      table.style.removeProperty('max-width');
+      table.style.removeProperty('table-layout');
+    }
+  });
+});
+</script>
+
 </head>
 <body>
 <body>
