@@ -86,20 +86,28 @@ strong{color:var(--navy)}
 #enNotes { display:none; }
 #hiNotes[style*="display: none"] { display:none !important; }
 #enNotes[style*="display: block"] { display:block !important; }
-table.combined{width:100%;min-width:0;border-collapse:collapse;font-size:10.5px;line-height:1.25;table-layout:auto}
-.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;margin:8px 0 14px;padding-bottom:5px}
-.table-scroll table.combined{width:max-content;min-width:100%;margin:0}
-table.combined thead tr:first-child th{background:#eaf0f6;font-weight:800;text-align:center;border-bottom:1px solid #c8d3de}
-table.combined thead tr:nth-child(2) th{background:#f5f8fb;font-size:9.5px;text-align:center}
-table.combined th,table.combined td{border:1px solid #dbe3ea}
+table.combined{width:max-content;min-width:100%;border-collapse:separate;border-spacing:0;font-size:10.5px;line-height:1.3;table-layout:auto;background:#fff}
+.table-scroll{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;margin:10px 0 16px;padding:0 0 6px;border-radius:8px}
+.table-scroll table.combined{width:max-content;min-width:680px;margin:0}
+table.combined th,table.combined td{padding:7px 8px;white-space:nowrap;vertical-align:middle;border-right:1px solid #dbe3ea;border-bottom:1px solid #dbe3ea}
+table.combined th:first-child,table.combined td:first-child{position:sticky;left:0;z-index:2;min-width:125px;max-width:170px;white-space:normal;text-align:left;background:#fff}
+table.combined thead th{font-weight:800;text-align:center;background:#f4f7fa}
+table.combined thead tr:first-child th{background:#dfe9f2;font-size:11px;padding:7px 8px;border-top:1px solid #cbd7e2}
+table.combined thead tr:nth-child(2) th{background:#f7f9fb;font-size:9.5px;font-weight:700}
+table.combined thead tr:first-child th:first-child{border-top-left-radius:7px}
+table.combined thead tr:first-child th:last-child{border-top-right-radius:7px}
+table.combined tbody tr:nth-child(even) td{background:#fafcfd}
+table.combined tbody tr:nth-child(even) td:first-child{background:#fafcfd}
 table.combined td:not(:first-child),table.combined th:not(:first-child){text-align:center}
-table.combined th,table.combined td{padding:5px 6px;white-space:nowrap;vertical-align:middle}
-table.combined th:first-child,table.combined td:first-child{white-space:normal;min-width:125px;max-width:180px}
 @media(max-width:600px){
+ .table-scroll table.combined{min-width:650px}
  table.combined{font-size:10px}
- table.combined th,table.combined td{padding:4px 5px}
- table.combined th:first-child,table.combined td:first-child{min-width:115px;max-width:150px}
-}@media(max-width:600px){table.combined{font-size:11px}}\n</style>
+ table.combined th,table.combined td{padding:6px 7px}
+ table.combined th:first-child,table.combined td:first-child{min-width:110px;max-width:145px}
+ table.combined thead tr:first-child th{font-size:10px}
+ table.combined thead tr:nth-child(2) th{font-size:9px}
+}
+</style>
 </head>
 <body>
 <body>
