@@ -374,6 +374,13 @@ strong{color:var(--navy)}
 .section{display:block;width:100%!important;max-width:850px!important;min-width:0!important;box-sizing:border-box!important;margin:10px auto!important;}
 .section .content{display:block;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;}
 @media(max-width:850px){.section{width:100%!important;margin:10px 0!important;}}
+
+/* FINAL TABLE FRAME ALIGNMENT — every non-wide table exactly matches its section content */
+.section .content{width:100%!important;max-width:100%!important;min-width:0!important;padding-left:0!important;padding-right:0!important;box-sizing:border-box!important;}
+.section .content>.table-frame{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important;}
+.section .content>.table-frame>table:not(.wide-table){display:table!important;width:100%!important;min-width:100%!important;max-width:100%!important;box-sizing:border-box!important;table-layout:fixed!important;}
+.section .content>.table-frame>table.combined:not(.wide-table){width:100%!important;min-width:100%!important;max-width:100%!important;table-layout:fixed!important;}
+.section .content>.table-frame.table-scroll{width:100%!important;max-width:100%!important;overflow-x:auto!important;}
 </style>
 </head>
 <body>
