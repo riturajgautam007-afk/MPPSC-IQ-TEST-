@@ -480,6 +480,43 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
  .single-long-table td.master-section-content{padding:11px!important;}
  .single-long-table .table-frame.table-scroll>table{min-width:1100px!important;}
 }
+
+/* FINAL ROW COLOR IMPROVEMENT — clearly separated light alternating rows */
+table tbody tr:nth-child(8n+1) td{background:#eef7ff!important;}
+table tbody tr:nth-child(8n+2) td{background:#fff8e8!important;}
+table tbody tr:nth-child(8n+3) td{background:#eefaf4!important;}
+table tbody tr:nth-child(8n+4) td{background:#f6f0ff!important;}
+table tbody tr:nth-child(8n+5) td{background:#fff0f3!important;}
+table tbody tr:nth-child(8n+6) td{background:#edf8f8!important;}
+table tbody tr:nth-child(8n+7) td{background:#f8f5ea!important;}
+table tbody tr:nth-child(8n) td{background:#f1f4f8!important;}
+/* Keep the same distinct row colours in horizontally scrollable wide tables */
+.table-scroll table tbody tr:nth-child(8n+1) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+1) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+1) td{background:#eef7ff!important;}
+.table-scroll table tbody tr:nth-child(8n+2) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+2) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+2) td{background:#fff8e8!important;}
+.table-scroll table tbody tr:nth-child(8n+3) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+3) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+3) td{background:#eefaf4!important;}
+.table-scroll table tbody tr:nth-child(8n+4) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+4) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+4) td{background:#f6f0ff!important;}
+.table-scroll table tbody tr:nth-child(8n+5) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+5) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+5) td{background:#fff0f3!important;}
+.table-scroll table tbody tr:nth-child(8n+6) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+6) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+6) td{background:#edf8f8!important;}
+.table-scroll table tbody tr:nth-child(8n+7) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n+7) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n+7) td{background:#f8f5ea!important;}
+.table-scroll table tbody tr:nth-child(8n) td,
+.content .table-frame.table-scroll>table tbody tr:nth-child(8n) td,
+.master-notes .table-scroll>table tbody tr:nth-child(8n) td{background:#f1f4f8!important;}
+/* Hover remains distinct but does not destroy the row system */
+table tr:hover td{background:#fff1b8!important;}
 </style>
 </head>
 <body>
