@@ -96,13 +96,20 @@ strong{color:var(--navy)}
 .table-scroll::-webkit-scrollbar{height:5px}
 .table-scroll table.combined{display:table;width:max-content!important;min-width:max-content!important;max-width:none!important}
 .table-scroll table.combined{
-  width:max-content;min-width:0;margin:0;border-collapse:separate;border-spacing:0;
+  width:max-content!important;min-width:0!important;margin:0;border-collapse:separate;border-spacing:0;
   font-size:11px;table-layout:auto;
 }
 .table-scroll table.combined th,
 .table-scroll table.combined td{
-  padding:6px 7px;white-space:nowrap;vertical-align:middle;
+  width:auto;max-width:none;padding:5px 6px;white-space:nowrap;
+  vertical-align:middle;
 }
+.table-scroll table.combined th:not(:first-child),
+.table-scroll table.combined td:not(:first-child){
+  min-width:0!important;width:1%;
+}
+.table-scroll table.combined th:first-child,
+.table-scroll table.combined td:first-child{min-width:86px;max-width:125px;padding-left:7px;padding-right:7px;}
 .table-scroll table.combined th:first-child,
 .table-scroll table.combined td:first-child{
   position:sticky;left:0;z-index:3;min-width:92px;max-width:135px;
