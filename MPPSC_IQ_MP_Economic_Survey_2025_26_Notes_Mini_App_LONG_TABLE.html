@@ -1236,6 +1236,32 @@ document.addEventListener('DOMContentLoaded',function(){
     clip-path:inset(0 round 12px)!important;
   }
 }
+
+/* FINAL VISUAL CORNER REPAIR — applies after all previous table rules */
+.single-long-table .table-frame:not(.table-scroll){
+  border:1px solid #cfdbe5!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  clip-path:none!important;
+  isolation:isolate!important;
+}
+.single-long-table .table-frame:not(.table-scroll)>table{
+  width:100%!important;
+  min-width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  border:0!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  border-radius:13px!important;
+  overflow:hidden!important;
+}
+.single-long-table .table-frame:not(.table-scroll)>table>tbody>tr:first-child>th:first-child,
+.single-long-table .table-frame:not(.table-scroll)>table>thead>tr:first-child>th:first-child{border-top-left-radius:13px!important}
+.single-long-table .table-frame:not(.table-scroll)>table>tbody>tr:first-child>th:last-child,
+.single-long-table .table-frame:not(.table-scroll)>table>thead>tr:first-child>th:last-child{border-top-right-radius:13px!important}
+.single-long-table .table-frame:not(.table-scroll)>table>tbody>tr:last-child>td:first-child{border-bottom-left-radius:13px!important}
+.single-long-table .table-frame:not(.table-scroll)>table>tbody>tr:last-child>td:last-child{border-bottom-right-radius:13px!important}
 </style>
 </body>
 </html>
