@@ -86,7 +86,42 @@ strong{color:var(--navy)}
 #enNotes { display:none; }
 #hiNotes[style*="display: none"] { display:none !important; }
 #enNotes[style*="display: block"] { display:block !important; }
-table.combined{min-width:720px}@media(max-width:600px){table.combined{font-size:11px}}\n</style>
+/* Compact, swipeable wide tables */
+.table-scroll{
+  width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;touch-action:pan-x;
+  overscroll-behavior-x:contain;margin:8px 0 14px;padding-bottom:4px;
+  scrollbar-width:thin;
+}
+.table-scroll table.combined{
+  width:max-content;min-width:0;margin:0;border-collapse:separate;border-spacing:0;
+  font-size:11px;table-layout:auto;
+}
+.table-scroll table.combined th,
+.table-scroll table.combined td{
+  padding:6px 7px;white-space:nowrap;vertical-align:middle;
+}
+.table-scroll table.combined th:first-child,
+.table-scroll table.combined td:first-child{
+  position:sticky;left:0;z-index:3;min-width:92px;max-width:135px;
+  white-space:normal;text-align:left;font-weight:800;
+  box-shadow:2px 0 4px rgba(16,42,67,.10);
+}
+.table-scroll table.combined thead th:first-child{
+  background:linear-gradient(135deg,#102a43,#173f5f);color:#fff;z-index:5;
+}
+.table-scroll table.combined thead th:not(:first-child){
+  background:linear-gradient(135deg,#102a43,#173f5f);color:#fff;
+}
+.table-scroll table.combined tbody tr:nth-child(4n+1) td:first-child{background:#eef7ff}
+.table-scroll table.combined tbody tr:nth-child(4n+2) td:first-child{background:#fff8e8}
+.table-scroll table.combined tbody tr:nth-child(4n+3) td:first-child{background:#eefaf4}
+.table-scroll table.combined tbody tr:nth-child(4n) td:first-child{background:#f6f0ff}
+@media(max-width:600px){
+  .table-scroll table.combined{font-size:10.5px}
+  .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
+  .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
+}\n</style>
 </head>
 <body>
 <body>
@@ -538,6 +573,17 @@ function syncStickyLanguageBar(){
 }
 window.addEventListener('load',syncStickyLanguageBar);
 window.addEventListener('resize',syncStickyLanguageBar);
+<script>
+/* Make wide tables genuinely swipeable on mobile without changing the master design. */
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('table.combined').forEach(function(table){
+    if(table.parentElement.classList.contains('table-scroll')) return;
+    var wrap=document.createElement('div');
+    wrap.className='table-scroll';
+    table.parentNode.insertBefore(wrap,table);
+    wrap.appendChild(table);
+  });
+});
 </script>
 </body>
 </html>
