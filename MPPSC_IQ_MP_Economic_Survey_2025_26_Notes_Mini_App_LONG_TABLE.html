@@ -933,11 +933,11 @@ table tr:hover td{background:#fff1b8!important;}
 </td></tr><tr><th class="master-section-head">Tertiary Sector (Services Sector) — 2025-26</th></tr><tr><td class="master-section-content">
 <div class="table-frame table-scroll"><table class="wide-table"><colgroup><col style="width:220px;min-width:220px;max-width:220px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"><col style="width:180px;min-width:180px;max-width:180px"></colgroup><thead><tr><th>Sub-sector</th><th>2024-25 — Current</th><th>2024-25 — Constant</th><th>2024-25 — Share</th><th>2025-26 — Current</th><th>2025-26 — Constant</th><th>2025-26 — Share</th></tr></thead><tbody><tr><td>Trade, Repair, Hotels & Restaurants</td><td><strong>₹1,47,319 crore</strong></td><td><strong>₹71,055 crore</strong></td><td><strong>10.35%</strong></td><td><strong>₹1,63,336 crore</strong></td><td><strong>₹78,221 crore</strong></td><td><strong>10.35%</strong></td></tr><tr><td>Transport & Storage</td><td><strong>₹40,250 crore</strong></td><td><strong>₹22,468 crore</strong></td><td><strong>2.83%</strong></td><td><strong>₹44,162 crore</strong></td><td><strong>₹24,140 crore</strong></td><td><strong>2.80%</strong></td></tr><tr><td>Railways</td><td><strong>₹11,624 crore</strong></td><td><strong>₹6,423 crore</strong></td><td><strong>0.82%</strong></td><td><strong>₹12,874 crore</strong></td><td><strong>₹6,966 crore</strong></td><td><strong>0.82%</strong></td></tr><tr><td>Communication & Broadcasting</td><td><strong>₹24,102 crore</strong></td><td><strong>₹13,800 crore</strong></td><td><strong>1.69%</strong></td><td><strong>₹26,511 crore</strong></td><td><strong>₹14,865 crore</strong></td><td><strong>1.68%</strong></td></tr><tr><td>Financial Services</td><td><strong>₹50,481 crore</strong></td><td><strong>₹29,881 crore</strong></td><td><strong>3.55%</strong></td><td><strong>₹58,790 crore</strong></td><td><strong>₹32,733 crore</strong></td><td><strong>3.73%</strong></td></tr><tr><td>Real Estate, Ownership of Dwellings & Professional Services</td><td><strong>₹68,499 crore</strong></td><td><strong>₹35,184 crore</strong></td><td><strong>4.81%</strong></td><td><strong>₹78,533 crore</strong></td><td><strong>₹38,523 crore</strong></td><td><strong>4.98%</strong></td></tr><tr><td>Public Administration</td><td><strong>₹64,879 crore</strong></td><td><strong>₹33,519 crore</strong></td><td><strong>4.56%</strong></td><td><strong>₹78,270 crore</strong></td><td><strong>₹39,674 crore</strong></td><td><strong>4.96%</strong></td></tr><tr><td>Other Services</td><td><strong>₹98,525 crore</strong></td><td><strong>₹46,286 crore</strong></td><td><strong>6.92%</strong></td><td><strong>₹1,23,112 crore</strong></td><td><strong>₹54,715 crore</strong></td><td><strong>7.80%</strong></td></tr></tbody></table></div></div>
 
-<h3>Tertiary क्षेत्र — त्वरित Fact</h3>
+<h3>Tertiary Sector — Quick Facts</h3>
 <div class="table-frame"><table><thead><tr><th>Fact</th><th>Answer</th></tr></thead><tbody>
 <tr><td>Highest Share in GSVA</td><td><strong>Trade, Repair, Hotels & Restaurants — 10.35%</strong></td></tr>
 <tr><td>Lowest Share in GSVA</td><td><strong>Railways — 0.82%</strong></td></tr>
-<tr><td>Top GSVA Share Ranking</td><td><strong>व्यापार &gt; Other Services &gt; रियल एस्टेट &gt; Public Administration</strong></td></tr>
+<tr><td>Top GSVA Share Ranking</td><td><strong>Trade &gt; Other Services &gt; Real Estate &gt; Public Administration</strong></td></tr>
 <tr><td>Highest Growth at Current Prices</td><td><strong>Other Services — 24.96%</strong></td></tr>
 <tr><td>Highest Growth at Constant Prices</td><td><strong>Public Administration — 18.36%</strong></td></tr>
 </tbody></table></div>
@@ -1086,22 +1086,104 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  const targets=['प्राथमिक क्षेत्र — त्वरित तथ्य','Primary Sector — Quick Facts','फसलें','Crops','पशुधन','Livestock','वानिकी','Forestry'];
-  document.querySelectorAll('h3').forEach(function(h){
-    const t=h.textContent.trim();
-    if(targets.includes(t) || targets.some(x=>t.endsWith(x))){
-      const frame=h.nextElementSibling;
-      if(frame && frame.classList.contains('table-frame')){
-        frame.classList.remove('table-scroll');
-        frame.classList.add('uniform-table-frame');
-        const table=frame.querySelector(':scope > table');
-        if(table){table.classList.remove('wide-table','combined');}
-      }
-    }
-  });
-});
-</script>
+<style id="MASTER-UNIFORM-TABLE-FIX">
+/* ONE PHYSICAL FRAME — all tables inside the master long-table use the exact same outer geometry */
+.single-long-table,
+.single-long-table > tbody,
+.single-long-table > tbody > tr,
+.single-long-table > tbody > tr > td.master-section-content{
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+.single-long-table > tbody > tr > td.master-section-content{
+  padding:14px!important;
+  overflow:visible!important;
+}
+.single-long-table .table-frame{
+  display:block!important;
+  position:relative!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:10px 0 18px!important;
+  padding:0!important;
+  border:1px solid #cfdbe5!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  box-shadow:0 2px 7px rgba(16,42,67,.08)!important;
+  overflow:hidden!important;
+  clip-path:inset(0 round 12px)!important;
+}
+.single-long-table .table-frame > table{
+  display:table!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  border:0!important;
+}
+.single-long-table .table-frame:not(.table-scroll) > table{
+  width:100%!important;
+  min-width:100%!important;
+  max-width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:collapse!important;
+}
+.single-long-table .table-frame.table-scroll{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  clip-path:inset(0 round 12px)!important;
+}
+.single-long-table .table-frame.table-scroll > table,
+.single-long-table .table-frame.table-scroll > table.wide-table{
+  width:max-content!important;
+  min-width:1260px!important;
+  max-width:none!important;
+  table-layout:fixed!important;
+  border-collapse:collapse!important;
+}
+.single-long-table .table-frame.table-scroll > table th,
+.single-long-table .table-frame.table-scroll > table td{
+  box-sizing:border-box!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+.single-long-table .table-frame > table > thead:first-child > tr:first-child > th:first-child,
+.single-long-table .table-frame > table > tbody > tr:first-child > th:first-child{
+  border-top-left-radius:11px!important;
+}
+.single-long-table .table-frame > table > thead:first-child > tr:first-child > th:last-child,
+.single-long-table .table-frame > table > tbody > tr:first-child > th:last-child{
+  border-top-right-radius:11px!important;
+}
+.single-long-table .table-frame > table > tbody > tr:last-child > td:first-child{
+  border-bottom-left-radius:11px!important;
+}
+.single-long-table .table-frame > table > tbody > tr:last-child > td:last-child{
+  border-bottom-right-radius:11px!important;
+}
+/* The four previously inconsistent tables are explicitly normalized to the same physical frame. */
+.single-long-table h3 + .table-frame{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+@media(max-width:600px){
+  .single-long-table > tbody > tr > td.master-section-content{
+    padding:11px!important;
+  }
+  .single-long-table .table-frame{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    border-radius:12px!important;
+    clip-path:inset(0 round 12px)!important;
+  }
+}
+</style>
 </body>
 </html>
