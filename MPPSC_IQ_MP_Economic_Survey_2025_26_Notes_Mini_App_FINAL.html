@@ -142,51 +142,17 @@ strong{color:var(--navy)}
   .table-scroll table.combined{font-size:10.5px}
   .table-scroll table.combined th,.table-scroll table.combined td{padding:5px 6px}
   .table-scroll table.combined th:first-child,.table-scroll table.combined td:first-child{min-width:88px;max-width:125px}
-}\n/* FINAL TABLE SYSTEM — every table gets the same outer frame */
-.content{
- box-sizing:border-box!important;width:100%!important;max-width:100%!important;
- min-width:0!important;padding:14px!important;
-}
-.table-frame{
- display:block!important;box-sizing:border-box!important;
- width:100%!important;min-width:100%!important;max-width:100%!important;
- margin:8px 0 16px!important;padding:0!important;
- overflow:hidden!important;
- border:1px solid #d7e2eb!important;border-radius:8px!important;
- background:#fff!important;
-}
-.table-frame.table-scroll{
- overflow-x:auto!important;overflow-y:hidden!important;
- -webkit-overflow-scrolling:touch!important;
- touch-action:pan-x!important;overscroll-behavior-x:contain!important;
- scroll-behavior:smooth!important;
-}
-.table-frame>table{
- margin:0!important;border:0!important;
-}
-.table-frame:not(.table-scroll)>table{
- display:table!important;width:100%!important;min-width:100%!important;
- max-width:100%!important;table-layout:fixed!important;
- border-collapse:collapse!important;
-}
-.table-frame.table-scroll>table{
- display:table!important;width:max-content!important;
- min-width:max-content!important;max-width:none!important;
- table-layout:auto!important;border-collapse:separate!important;border-spacing:0!important;
-}
-.table-frame.table-scroll>table th,
-.table-frame.table-scroll>table td{
- box-sizing:border-box!important;
-}
-.table-frame.table-scroll>table th:first-child,
-.table-frame.table-scroll>table td:first-child{
- position:sticky!important;left:0!important;z-index:4!important;
-}
-.table-frame.table-scroll>table thead th:first-child{z-index:6!important}
-@media(max-width:600px){
- .content{padding:11px!important}
- .table-frame{width:100%!important;min-width:100%!important;max-width:100%!important}
-}</style>
+}\n/* FINAL TABLE SYSTEM — one exact frame across ALL tables */
+.content{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;padding:14px!important}
+.content .table-frame{display:block!important;box-sizing:border-box!important;width:100%!important;min-width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;padding:0!important;border:1px solid #d7e2eb!important;border-radius:8px!important;background:#fff!important;overflow:hidden!important}
+.content .table-frame.table-scroll{overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-x!important;overscroll-behavior-x:contain!important;scroll-behavior:smooth!important}
+.content .table-frame>table{margin:0!important;border:0!important}
+.content .table-frame:not(.table-scroll)>table{display:table!important;width:100%!important;min-width:100%!important;max-width:100%!important;table-layout:fixed!important;border-collapse:collapse!important}
+.content .table-frame.table-scroll>table{display:table!important;width:max-content!important;min-width:max-content!important;max-width:none!important;table-layout:auto!important;border-collapse:separate!important;border-spacing:0!important}
+.content .table-frame.table-scroll>table th:first-child,.content .table-frame.table-scroll>table td:first-child{position:sticky!important;left:0!important;z-index:4!important}
+.content .table-frame.table-scroll>table thead th:first-child{z-index:6!important}
+.content>div,.content>div>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}
+@media(max-width:600px){.content{padding:11px!important}.content .table-frame{width:100%!important;min-width:100%!important;max-width:100%!important}}</style>
 </head>
 <body>
 <body>
