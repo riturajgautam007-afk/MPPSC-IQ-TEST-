@@ -976,6 +976,40 @@ table tr:hover td{background:#fff1b8!important;}
  }
 }
 </style>
+
+<style id="NO-CUT-OFF-TEXT">
+/* Never clip table text in Hindi or English */
+.content .table-frame table th,
+.content .table-frame table td,
+.content .table-frame.table-scroll>table th,
+.content .table-frame.table-scroll>table td{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  height:auto!important;
+  max-height:none!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  vertical-align:top!important;
+}
+/* Let each row grow to show the complete sentence */
+.content .table-frame.table-scroll>table.wide-table th,
+.content .table-frame.table-scroll>table.wide-table td{
+  height:auto!important;
+  max-height:none!important;
+  line-height:1.5!important;
+  padding-top:8px!important;
+  padding-bottom:8px!important;
+}
+/* Keep first column readable without clipping */
+.content .table-frame.table-scroll>table.wide-table th:first-child,
+.content .table-frame.table-scroll>table.wide-table td:first-child{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+</style>
 </head>
 <body>
 <div class="app">
