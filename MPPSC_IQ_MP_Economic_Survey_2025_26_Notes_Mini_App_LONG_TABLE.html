@@ -1735,6 +1735,8 @@ document.addEventListener('DOMContentLoaded',function(){
 document.addEventListener('DOMContentLoaded',function(){
  document.querySelectorAll('.table-frame > table').forEach(function(t){
    if(t.dataset.splitFixed==='1') return;
+   var prev=t.parentElement.previousElementSibling;
+   if(prev && prev.tagName==='H3' && (prev.textContent.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1 || prev.textContent.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1)) return;
    var first=t.rows[0];
    if(!first || first.cells.length<5) return;
    t.dataset.splitFixed='1';
@@ -1814,5 +1816,30 @@ document.addEventListener('DOMContentLoaded',function(){
   width:145px!important;min-width:145px!important;max-width:145px!important;
  }
 }
-</style></body>
+</style><style id="FINAL-SECTOR-NATIVE-STICKY-FIX">
+.table-frame.sector-subtable-long>.sticky-table-wrap{display:block!important;overflow-x:auto!important}
+.table-frame.sector-subtable-long>.sticky-table-wrap .sticky-table-fixed,
+.table-frame.sector-subtable-long>.sticky-table-wrap .sticky-table-scroll{display:none!important}
+.table-frame.sector-subtable-long>table{display:table!important;width:max-content!important;min-width:720px!important;max-width:none!important;table-layout:fixed!important}
+.table-frame.sector-subtable-long>table th:first-child,
+.table-frame.sector-subtable-long>table td:first-child{position:sticky!important;left:0!important;z-index:30!important;width:195px!important;min-width:195px!important;max-width:195px!important;background:#fff!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important}
+.table-frame.sector-subtable-long>table th:not(:first-child),
+.table-frame.sector-subtable-long>table td:not(:first-child){width:160px!important;min-width:160px!important;max-width:160px!important;white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important}
+.table-frame.sector-subtable-long>table th:first-child{background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important}
+@media(max-width:700px){
+.table-frame.sector-subtable-long>table{min-width:610px!important}
+.table-frame.sector-subtable-long>table th:first-child,
+.table-frame.sector-subtable-long>table td:first-child{width:175px!important;min-width:175px!important;max-width:175px!important}
+.table-frame.sector-subtable-long>table th:not(:first-child),
+.table-frame.sector-subtable-long>table td:not(:first-child){width:145px!important;min-width:145px!important;max-width:145px!important}
+}
+</style>
+<script id="MARK-SECTOR-BEFORE-STICKY">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame').forEach(function(frame){
+  var h=frame.previousElementSibling;
+  if(h&&h.tagName==='H3'&&(h.textContent.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1||h.textContent.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1)) frame.classList.add('sector-subtable-long');
+ });
+});
+</script></body>
 </html>
