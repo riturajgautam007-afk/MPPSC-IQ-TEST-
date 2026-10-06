@@ -1955,5 +1955,50 @@ document.addEventListener('DOMContentLoaded',function(){
   }
  });
 });
+</script><style id="TERTIARY-HINDI-STICKY-HARD-FINAL">
+#hiNotes .table-frame.tertiary-hindi-sticky{
+ overflow-x:auto!important;overflow-y:hidden!important;position:relative!important;
+}
+#hiNotes .table-frame.tertiary-hindi-sticky>table{
+ width:max-content!important;min-width:1260px!important;max-width:none!important;
+ table-layout:fixed!important;border-collapse:separate!important;border-spacing:0!important;
+}
+#hiNotes .table-frame.tertiary-hindi-sticky>table th:first-child,
+#hiNotes .table-frame.tertiary-hindi-sticky>table td:first-child{
+ position:sticky!important;left:0!important;z-index:100!important;
+ width:195px!important;min-width:195px!important;max-width:195px!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;
+ background:#fff!important;box-shadow:2px 0 5px rgba(16,42,67,.18)!important;
+}
+#hiNotes .table-frame.tertiary-hindi-sticky>table thead th:first-child{
+ z-index:110!important;background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+@media(max-width:700px){
+ #hiNotes .table-frame.tertiary-hindi-sticky>table{min-width:1010px!important}
+ #hiNotes .table-frame.tertiary-hindi-sticky>table th:first-child,
+ #hiNotes .table-frame.tertiary-hindi-sticky>table td:first-child{
+  width:175px!important;min-width:175px!important;max-width:175px!important;
+ }
+}
+</style>
+<script id="TERTIARY-HINDI-STICKY-HARD-FINAL-JS">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('#hiNotes .table-frame').forEach(function(frame){
+  var h=frame.previousElementSibling;
+  if(!h||h.tagName!=='H3') return;
+  if(h.textContent.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')===-1) return;
+  frame.classList.add('tertiary-hindi-sticky','table-scroll');
+  var t=frame.querySelector(':scope > table');
+  if(!t) return;
+  t.classList.add('wide-table');
+  Array.from(t.rows).forEach(function(row){
+   if(row.cells[0]){
+    row.cells[0].style.setProperty('position','sticky','important');
+    row.cells[0].style.setProperty('left','0','important');
+    row.cells[0].style.setProperty('z-index','100','important');
+   }
+  });
+ });
+});
 </script></body>
 </html>
