@@ -1762,38 +1762,28 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 <script id="ROBUST-FIXED-FIRST-COLUMN">
+/* Native sticky-column mode: do not split tables into separate panes. */
 document.addEventListener('DOMContentLoaded',function(){
  document.querySelectorAll('.table-frame > table').forEach(function(t){
-   if(t.dataset.splitFixed==='1') return;
-   return;
-   var prev=t.parentElement.previousElementSibling;
-   if(prev && prev.tagName==='H3' && (prev.textContent.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1 || prev.textContent.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1 || prev.textContent.indexOf('Secondary Sector Sub-sectors')!==-1 || prev.textContent.indexOf('Tertiary Sector Sub-sectors')!==-1)) return;
-   var first=t.rows[0];
-   if(!first || first.cells.length<5) return;
-   t.dataset.splitFixed='1';
+   if(!t.rows.length || t.rows[0].cells.length<5) return;
+   t.classList.add('wide-table');
    var frame=t.parentElement;
-   var wrap=document.createElement('div');
-   wrap.className='sticky-table-wrap';
-   var fixed=document.createElement('div');
-   fixed.className='sticky-table-fixed';
-   var scroll=document.createElement('div');
-   scroll.className='sticky-table-scroll';
-   var ft=t.cloneNode(true), st=t.cloneNode(true);
-   Array.from(ft.rows).forEach(function(r){while(r.cells.length>1)r.deleteCell(1)});
-   Array.from(st.rows).forEach(function(r){r.deleteCell(0)});
-   ft.className=t.className; st.className=t.className;
-   fixed.appendChild(ft); scroll.appendChild(st);
-   wrap.appendChild(fixed); wrap.appendChild(scroll);
-   frame.replaceChild(wrap,t);
-   function sync(){
-     var a=Array.from(ft.rows),b=Array.from(st.rows);
-     for(var i=0;i<Math.min(a.length,b.length);i++){
-       a[i].style.height='auto'; b[i].style.height='auto';
-       var h=Math.max(a[i].getBoundingClientRect().height,b[i].getBoundingClientRect().height);
-       a[i].style.height=h+'px'; b[i].style.height=h+'px';
+   frame.classList.add('table-scroll');
+   Array.from(t.rows).forEach(function(row){
+     var cell=row.cells[0];
+     if(cell){
+       cell.style.setProperty('position','sticky','important');
+       cell.style.setProperty('left','0','important');
+       cell.style.setProperty('z-index','30','important');
+       cell.style.setProperty('background','#fff','important');
      }
+   });
+   var head=t.querySelector('thead th:first-child');
+   if(head){
+     head.style.setProperty('background','linear-gradient(135deg,#123b5d,#1d587d)','important');
+     head.style.setProperty('color','#fff','important');
+     head.style.setProperty('z-index','35','important');
    }
-   requestAnimationFrame(sync); window.addEventListener('resize',sync);
  });
 });
 </script>
@@ -2197,6 +2187,29 @@ document.addEventListener('DOMContentLoaded',function(){
 .single-long-table .table-frame.sector-subtable-long>table thead th:first-child{
  background:linear-gradient(135deg,#123b5d,#1d587d)!important;
  color:#fff!important;visibility:visible!important;opacity:1!important;
+}
+</style><style id="FINAL-NATIVE-STICKY-ALL-WIDE-TABLES">
+/* Final: every 5+ column table uses one physical table; first column remains sticky. */
+.table-frame.table-scroll{overflow-x:auto!important;overflow-y:hidden!important;position:relative!important;-webkit-overflow-scrolling:touch!important}
+.table-frame.table-scroll>table.wide-table{position:relative!important;display:table!important;width:max-content!important;min-width:760px!important;max-width:none!important;table-layout:fixed!important;border-collapse:separate!important;border-spacing:0!important}
+.table-frame.table-scroll>table.wide-table th:first-child,
+.table-frame.table-scroll>table.wide-table td:first-child{
+ position:sticky!important;left:0!important;z-index:30!important;
+ background:#fff!important;box-shadow:2px 0 4px rgba(16,42,67,.14)!important;
+}
+.table-frame.table-scroll>table.wide-table thead th:first-child{
+ z-index:40!important;background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+.table-frame.table-scroll>table.wide-table tbody tr:nth-child(4n+1) td:first-child{background:#eef7ff!important}
+.table-frame.table-scroll>table.wide-table tbody tr:nth-child(4n+2) td:first-child{background:#fff8e8!important}
+.table-frame.table-scroll>table.wide-table tbody tr:nth-child(4n+3) td:first-child{background:#eefaf4!important}
+.table-frame.table-scroll>table.wide-table tbody tr:nth-child(4n) td:first-child{background:#f6f0ff!important}
+.table-frame.sector-subtable-long>table.wide-table th:first-child,
+.table-frame.sector-subtable-long>table.wide-table td:first-child{width:195px!important;min-width:195px!important;max-width:195px!important}
+@media(max-width:700px){
+ .table-frame.table-scroll>table.wide-table{min-width:700px!important}
+ .table-frame.sector-subtable-long>table.wide-table th:first-child,
+ .table-frame.sector-subtable-long>table.wide-table td:first-child{width:175px!important;min-width:175px!important;max-width:175px!important}
 }
 </style></body>
 </html>
