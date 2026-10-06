@@ -1387,5 +1387,52 @@ document.addEventListener('DOMContentLoaded',function(){
  });
 });
 </script>
+<style id="TELEGRAM-FIXED-FIRST-COLUMN">
+.sticky-table-wrap{display:flex!important;width:100%!important;max-width:100%!important;overflow:hidden!important;margin:0!important}
+.sticky-table-fixed{flex:0 0 220px!important;width:220px!important;overflow:hidden!important;z-index:10!important;background:#fff!important}
+.sticky-table-scroll{flex:1 1 auto!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important}
+.sticky-table-fixed table,.sticky-table-scroll table{margin:0!important;border-collapse:collapse!important;width:max-content!important;min-width:0!important;table-layout:fixed!important}
+.sticky-table-fixed td,.sticky-table-fixed th{width:220px!important;min-width:220px!important;max-width:220px!important}
+.sticky-table-scroll td,.sticky-table-scroll th{width:200px!important;min-width:200px!important;max-width:200px!important;white-space:normal!important}
+.sticky-table-fixed thead th{background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important}
+@media(max-width:700px){
+ .sticky-table-fixed{flex-basis:120px!important;width:120px!important}
+ .sticky-table-fixed td,.sticky-table-fixed th{width:120px!important;min-width:120px!important;max-width:120px!important}
+ .sticky-table-scroll td,.sticky-table-scroll th{width:180px!important;min-width:180px!important;max-width:180px!important}
+}
+</style>
+<script id="ROBUST-FIXED-FIRST-COLUMN">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame > table').forEach(function(t){
+   if(t.dataset.splitFixed==='1') return;
+   var first=t.rows[0];
+   if(!first || first.cells.length<5) return;
+   t.dataset.splitFixed='1';
+   var frame=t.parentElement;
+   var wrap=document.createElement('div');
+   wrap.className='sticky-table-wrap';
+   var fixed=document.createElement('div');
+   fixed.className='sticky-table-fixed';
+   var scroll=document.createElement('div');
+   scroll.className='sticky-table-scroll';
+   var ft=t.cloneNode(true), st=t.cloneNode(true);
+   Array.from(ft.rows).forEach(function(r){while(r.cells.length>1)r.deleteCell(1)});
+   Array.from(st.rows).forEach(function(r){r.deleteCell(0)});
+   ft.className=''; st.className='';
+   fixed.appendChild(ft); scroll.appendChild(st);
+   wrap.appendChild(fixed); wrap.appendChild(scroll);
+   frame.replaceChild(wrap,t);
+   function sync(){
+     var a=Array.from(ft.rows),b=Array.from(st.rows);
+     for(var i=0;i<Math.min(a.length,b.length);i++){
+       a[i].style.height='auto'; b[i].style.height='auto';
+       var h=Math.max(a[i].getBoundingClientRect().height,b[i].getBoundingClientRect().height);
+       a[i].style.height=h+'px'; b[i].style.height=h+'px';
+     }
+   }
+   requestAnimationFrame(sync); window.addEventListener('resize',sync);
+ });
+});
+</script>
 </body>
 </html>
