@@ -78,6 +78,19 @@ table tr:hover td{background:#fff1b8}
   .content .table-frame.table-scroll>table th,
   .content .table-frame.table-scroll>table td{min-width:105px!important;}
 }
+/* WIDE TABLE: keep first column fixed while the remaining columns slide horizontally */
+.content .table-frame.table-scroll > table th:first-child,
+.content .table-frame.table-scroll > table td:first-child{
+  position:sticky!important;
+  left:0!important;
+  z-index:5!important;
+  background:inherit!important;
+  box-shadow:2px 0 3px rgba(16,42,67,.12)!important;
+}
+.content .table-frame.table-scroll > table thead th:first-child{
+  z-index:7!important;
+  background:linear-gradient(135deg,#123b5d,#1d587d)!important;
+}
 /* FINAL: one identical outer table frame; wide tables scroll inside it */
 .content{box-sizing:border-box;width:100%;max-width:100%;}
 .content .table-frame{box-sizing:border-box;width:100%!important;min-width:0!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;margin:8px 0 16px!important;padding:0!important;}
