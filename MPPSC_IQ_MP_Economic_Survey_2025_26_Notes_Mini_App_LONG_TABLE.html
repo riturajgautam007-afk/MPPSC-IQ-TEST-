@@ -1468,5 +1468,18 @@ document.addEventListener('DOMContentLoaded',function(){
  document.addEventListener('DOMContentLoaded',setStickySize);
 })();
 </script>
+<style id="COMPACT-LAST-ONELINER-NO">
+/* Compact only the first column of the final one-liner table */
+#hiNotes .one-liner-table th:first-child,
+#hiNotes .one-liner-table td:first-child{
+  width:44px!important;min-width:44px!important;max-width:44px!important;
+  padding-left:3px!important;padding-right:3px!important;
+  text-align:center!important;white-space:nowrap!important;
+}
+#hiNotes .one-liner-table th:nth-child(2),
+#hiNotes .one-liner-table td:nth-child(2){
+  width:auto!important;min-width:0!important;
+}
+</style>
 </body>
 </html>
