@@ -2030,5 +2030,30 @@ document.addEventListener('DOMContentLoaded',function(){
   });
  });
 });
+</script><style id="FINAL-STICKY-FIRST-COLUMN-ALL-WIDE">
+.table-frame.table-scroll>table.wide-table th:first-child,
+.table-frame.table-scroll>table.wide-table td:first-child{
+ position:sticky!important;left:0!important;z-index:100!important;
+ box-shadow:2px 0 5px rgba(16,42,67,.16)!important;
+}
+.table-frame.table-scroll>table.wide-table thead th:first-child{
+ z-index:110!important;background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+</style>
+<script id="FINAL-STICKY-FIRST-COLUMN-ALL-WIDE">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame.table-scroll>table').forEach(function(t){
+   if(t.rows.length && t.rows[0].cells.length>=5){
+     t.classList.add('wide-table');
+     Array.from(t.rows).forEach(function(row){
+       if(row.cells[0]){
+         row.cells[0].style.setProperty('position','sticky','important');
+         row.cells[0].style.setProperty('left','0px','important');
+         row.cells[0].style.setProperty('z-index','100','important');
+       }
+     });
+   }
+ });
+});
 </script></body>
 </html>
