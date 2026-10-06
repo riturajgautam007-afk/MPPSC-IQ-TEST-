@@ -1052,6 +1052,38 @@ table tr:hover td{background:#fff1b8!important;}
 #enNotes .one-liner-table th:nth-child(2),
 #enNotes .one-liner-table td:nth-child(2){width:auto!important;min-width:0!important;}
 </style>
+
+<style id="FIX-SPLIT-COLUMN-CLIPPING-AND-ONELINER">
+/* Split-table fixed pane must not clip long first-column labels */
+.sticky-table-fixed{overflow:visible!important;flex-basis:180px!important;width:180px!important;}
+.sticky-table-fixed table{width:180px!important;min-width:180px!important;max-width:180px!important;table-layout:fixed!important;}
+.sticky-table-fixed th,.sticky-table-fixed td{
+ width:180px!important;min-width:180px!important;max-width:180px!important;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ overflow-wrap:anywhere!important;word-break:normal!important;height:auto!important;
+ line-height:1.4!important;padding:7px 6px!important;
+}
+.sticky-table-scroll{min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important;}
+@media(max-width:700px){
+ .sticky-table-fixed{flex-basis:145px!important;width:145px!important;}
+ .sticky-table-fixed table{width:145px!important;min-width:145px!important;max-width:145px!important;}
+ .sticky-table-fixed th,.sticky-table-fixed td{width:145px!important;min-width:145px!important;max-width:145px!important;padding:6px 5px!important;}
+}
+/* One-liner table: compact serial-number column, regardless of language */
+.one-liner-compact th:first-child,.one-liner-compact td:first-child{
+ width:38px!important;min-width:38px!important;max-width:38px!important;
+ padding:5px 2px!important;text-align:center!important;white-space:nowrap!important;
+}
+.one-liner-compact th:nth-child(2),.one-liner-compact td:nth-child(2){width:auto!important;min-width:0!important;}
+</style>
+<script id="MARK-ONELINER-COMPACT">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame > table').forEach(function(t){
+   var h=t.querySelector('thead th:first-child');
+   if(h && h.textContent.trim()==='क्रमांक') t.classList.add('one-liner-compact');
+ });
+});
+</script>
 </head>
 <body>
 <div class="app">
