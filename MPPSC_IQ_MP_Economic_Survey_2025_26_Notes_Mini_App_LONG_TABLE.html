@@ -845,7 +845,13 @@ table tr:hover td{background:#fff1b8!important;}
     max-width:105px!important;
   }
 }
-</style></head>
+</style><style id="compact-major-changes">
+/* compact major changes columns */
+.major-changes-table{table-layout:fixed!important;width:100%!important}
+.major-changes-table th:first-child,.major-changes-table td:first-child{width:220px!important;min-width:220px!important}
+.major-changes-table th:not(:first-child),.major-changes-table td:not(:first-child){width:105px!important;min-width:105px!important;padding:7px 5px!important;line-height:1.3!important;word-break:normal!important;overflow-wrap:anywhere!important}
+@media(max-width:700px){.major-changes-table th:first-child,.major-changes-table td:first-child{width:120px!important;min-width:120px!important}.major-changes-table th:not(:first-child),.major-changes-table td:not(:first-child){width:92px!important;min-width:92px!important;padding:6px 4px!important;font-size:.88em!important}}
+</style>\n</head>
 <body>
 <div class="app">
 <header class="hero">
@@ -891,7 +897,7 @@ table tr:hover td{background:#fff1b8!important;}
 <div class="table-frame"><table><thead><tr><th>संकेतक</th><th>2024-25</th><th>2025-26</th></tr></thead><tbody><tr><td>प्रचलित भाव पर GSVA</td><td><strong>₹6,33,532 करोड़</strong></td><td><strong>₹6,79,817 करोड़</strong></td></tr><tr><td>स्थिर भाव पर GSVA</td><td><strong>₹2,34,594 करोड़</strong></td><td><strong>₹2,41,338 करोड़</strong></td></tr><tr><td>GSVA में योगदान</td><td><strong>44.51%</strong></td><td><strong>43.09%</strong></td></tr><tr><td>प्रचलित भाव पर वृद्धि दर</td><td><strong>—</strong></td><td><strong>7.31%</strong></td></tr><tr><td>स्थिर भाव पर वृद्धि दर</td><td><strong>—</strong></td><td><strong>2.87%</strong></td></tr></tbody></table></div>
 
 <h3>5. 2024-25 से 2025-26 में प्रमुख परिवर्तन</h3>
-<div class="table-frame"><table><tbody>
+<div class="table-frame"><table class="major-changes-table"><tbody>
 <tr><th>उप-क्षेत्र</th><th>2024-25<br>प्रचलित भाव</th><th>2024-25<br>स्थिर भाव</th><th>2024-25<br>GSVA योगदान</th><th>2025-26<br>प्रचलित भाव</th><th>2025-26<br>स्थिर भाव</th><th>2025-26<br>GSVA योगदान</th></tr>
 <tr><td>फसलें</td><td>₹4,47,476</td><td>₹1,55,068</td><td>31.44%</td><td>₹4,76,024</td><td>₹1,55,959</td><td>30.17%</td></tr>
 <tr><td>पशुधन</td><td>₹1,00,845</td><td>₹39,990</td><td>7.08%</td><td>₹1,13,913</td><td>₹44,312</td><td>7.22%</td></tr>
