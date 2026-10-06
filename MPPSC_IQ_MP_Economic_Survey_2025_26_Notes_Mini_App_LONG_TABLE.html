@@ -2178,5 +2178,25 @@ document.addEventListener('DOMContentLoaded',function(){
    });
  });
 });
-</script></body>
+</script><style id="ULTIMATE-STICKY-FIRST-COLUMN-HEADER-FIX">
+/* Final: every wide table keeps first column sticky; header remains visible */
+.single-long-table .table-frame.table-scroll>table th:first-child,
+.single-long-table .table-frame.table-scroll>table td:first-child{
+ position:sticky!important;left:0!important;z-index:80!important;
+}
+.single-long-table .table-frame.table-scroll>table thead th:first-child{
+ position:sticky!important;left:0!important;z-index:100!important;
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;
+ color:#fff!important;
+ visibility:visible!important;opacity:1!important;
+}
+.single-long-table .table-frame.table-scroll>table.wide-table thead th:first-child{
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;
+ color:#fff!important;visibility:visible!important;opacity:1!important;
+}
+.single-long-table .table-frame.sector-subtable-long>table thead th:first-child{
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;
+ color:#fff!important;visibility:visible!important;opacity:1!important;
+}
+</style></body>
 </html>
