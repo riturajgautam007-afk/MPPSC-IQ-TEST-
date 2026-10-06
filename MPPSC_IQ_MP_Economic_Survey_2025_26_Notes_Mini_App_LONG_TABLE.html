@@ -955,6 +955,27 @@ table tr:hover td{background:#fff1b8!important;}
  .content .table-frame.table-scroll>table.wide-table td:first-child{min-width:110px!important;max-width:200px!important;}
 }
 </style>
+
+<style id="COMPACT-FIRST-COLUMN-READABLE">
+/* Compact only the left/first column of wide tables, while keeping long labels readable */
+.content .table-frame.table-scroll>table.wide-table th:first-child,
+.content .table-frame.table-scroll>table.wide-table td:first-child{
+  min-width:105px!important;
+  max-width:175px!important;
+  width:auto!important;
+  padding:7px 6px!important;
+  line-height:1.35!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+}
+@media(max-width:700px){
+ .content .table-frame.table-scroll>table.wide-table th:first-child,
+ .content .table-frame.table-scroll>table.wide-table td:first-child{
+   min-width:95px!important;max-width:155px!important;padding:6px 5px!important;
+ }
+}
+</style>
 </head>
 <body>
 <div class="app">
