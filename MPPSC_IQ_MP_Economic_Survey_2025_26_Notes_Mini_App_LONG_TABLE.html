@@ -851,7 +851,20 @@ table tr:hover td{background:#fff1b8!important;}
 .major-changes-table th:first-child,.major-changes-table td:first-child{width:220px!important;min-width:220px!important}
 .major-changes-table th:not(:first-child),.major-changes-table td:not(:first-child){width:105px!important;min-width:105px!important;padding:7px 5px!important;line-height:1.3!important;word-break:normal!important;overflow-wrap:anywhere!important}
 @media(max-width:700px){.major-changes-table th:first-child,.major-changes-table td:first-child{width:120px!important;min-width:120px!important}.major-changes-table th:not(:first-child),.major-changes-table td:not(:first-child){width:92px!important;min-width:92px!important;padding:6px 4px!important;font-size:.88em!important}}
-</style>\n</head>
+</style>\n<style id="COMPACT-MAJOR-CHANGES-COLUMNS">
+#hiNotes .major-changes-table th:not(:first-child),
+#hiNotes .major-changes-table td:not(:first-child){
+  width:145px!important;min-width:145px!important;max-width:145px!important;
+  padding:7px 6px!important;font-size:13px!important;line-height:1.25!important;
+}
+@media(max-width:700px){
+#hiNotes .major-changes-table th:not(:first-child),
+#hiNotes .major-changes-table td:not(:first-child){
+  width:115px!important;min-width:115px!important;max-width:115px!important;
+  padding:6px 5px!important;font-size:12px!important;
+}}
+</style>
+</head>
 <body>
 <div class="app">
 <header class="hero">
