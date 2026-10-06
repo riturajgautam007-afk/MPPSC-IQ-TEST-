@@ -2055,5 +2055,39 @@ document.addEventListener('DOMContentLoaded',function(){
    }
  });
 });
-</script></body>
+</script><style id="FINAL-FIRST-COLUMN-STICKY-COLOR-FIX">
+/* Final universal first-column sticky + preserve row colours */
+.table-frame.table-scroll>table th:first-child,
+.table-frame.table-scroll>table td:first-child{
+ position:sticky!important;left:0!important;z-index:30!important;
+}
+.table-frame.table-scroll>table thead th:first-child{
+ z-index:40!important;
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;
+ color:#fff!important;
+}
+.table-frame.table-scroll>table tbody tr:nth-child(4n+1) td:first-child{background:#eef7ff!important}
+.table-frame.table-scroll>table tbody tr:nth-child(4n+2) td:first-child{background:#fff8e8!important}
+.table-frame.table-scroll>table tbody tr:nth-child(4n+3) td:first-child{background:#eefaf4!important}
+.table-frame.table-scroll>table tbody tr:nth-child(4n) td:first-child{background:#f6f0ff!important}
+
+/* Split sticky tables: fixed pane keeps the exact row colour of the original table */
+.sticky-table-fixed{z-index:50!important;background:#fff!important}
+.sticky-table-fixed thead th{
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+.sticky-table-fixed tbody tr:nth-child(4n+1) td{background:#eef7ff!important}
+.sticky-table-fixed tbody tr:nth-child(4n+2) td{background:#fff8e8!important}
+.sticky-table-fixed tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
+.sticky-table-fixed tbody tr:nth-child(4n) td{background:#f6f0ff!important}
+.sticky-table-fixed td,.sticky-table-fixed th{
+ position:sticky!important;left:0!important;z-index:35!important;
+}
+.sticky-table-fixed td{color:inherit!important}
+.sticky-table-scroll{position:relative!important;z-index:1!important}
+
+/* Never hide the adjacent columns */
+.sticky-table-wrap{width:100%!important;max-width:100%!important}
+.sticky-table-scroll{min-width:0!important;flex:1 1 auto!important;overflow-x:auto!important}
+</style></body>
 </html>
