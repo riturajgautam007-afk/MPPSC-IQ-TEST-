@@ -7,7 +7,7 @@
 .card .opt:hover,.card .opt:active,.card .opt:focus,.card .opt:focus-visible,.card .opt.selected{background:transparent!important;border-color:transparent!important;outline:none!important;box-shadow:none!important}
 .card .opt.correct{background:#e7f7ed!important;border-color:#249653!important;color:#176b3a}
 .card .opt.wrong{background:#fdeaea!important;border-color:#d94b4b!important;color:#9b1c1c}
-.card .opt.locked{cursor:default}
+.card{scroll-margin-top:110px}.card .opt.locked{cursor:default}
 .card .result{display:block!important;margin-top:8px;padding:8px 10px;border-radius:8px;font-weight:700}
 .card .result.right{background:#e7f7ed;color:#176b3a}
 .card .result.wrong{background:#fdeaea;color:#9b1c1c}
@@ -26,47 +26,75 @@ function setLang(lang){
 }
 </script><script id="interactive-test-js">
 (function(){
-function setup(sectionId){
+const state={hi:0,en:0};
+function setup(sectionId,lang){
  const section=document.getElementById(sectionId); if(!section)return;
- section.querySelectorAll('.card').forEach(function(card){
+ const cards=[...section.querySelectorAll('.card')];
+ cards.forEach((card,index)=>{
+   card.dataset.index=index;
+   card.style.display=index===0?'block':'none';
    const ans=card.querySelector('.ans'); if(!ans)return;
    const m=ans.textContent.match(/(?:Answer|उत्तर):?\s*([A-D])/i); if(!m)return;
    card.dataset.correct=m[1].toUpperCase();
-   const opts=card.querySelectorAll('.opt');
-   opts.forEach(function(opt){
+   card.querySelectorAll('.opt').forEach(function(opt){
      const letter=(opt.querySelector('b')?.textContent||'').replace('.','').trim().toUpperCase();
      opt.dataset.letter=letter;
      opt.addEventListener('click',function(){
        if(card.classList.contains('answered'))return;
        card.classList.add('answered');
-       opts.forEach(function(o){o.classList.add('locked');});
-       const result=document.createElement('div'); result.className='result';
+       const opts=card.querySelectorAll('.opt');
+       opts.forEach(o=>o.classList.add('locked'));
+       const result=document.createElement('div');
+       result.className='result';
        if(letter===card.dataset.correct){
-         opt.classList.add('correct'); result.classList.add('right');
+         opt.classList.add('correct');
+         result.classList.add('right');
          result.textContent='✓ Correct';
        }else{
-         opt.classList.add('wrong'); result.classList.add('wrong');
+         opt.classList.add('wrong');
+         result.classList.add('wrong');
          result.textContent='✗ Wrong — Correct answer: '+card.dataset.correct;
-         opts.forEach(function(o){if(o.dataset.letter===card.dataset.correct)o.classList.add('correct');});
+         opts.forEach(o=>{if(o.dataset.letter===card.dataset.correct)o.classList.add('correct');});
        }
        card.appendChild(result);
+       setTimeout(function(){
+         const nextIndex=index+1;
+         if(nextIndex<cards.length){
+           card.style.display='none';
+           cards[nextIndex].style.display='block';
+           state[lang]=nextIndex;
+           cards[nextIndex].scrollIntoView({behavior:'smooth',block:'start'});
+         }else{
+           document.getElementById('scoreBtn').scrollIntoView({behavior:'smooth',block:'start'});
+         }
+       },350);
      });
    });
  });
+}
+function setLang(lang){
+ document.getElementById('hiBtn').classList.toggle('active',lang==='hi');
+ document.getElementById('enBtn').classList.toggle('active',lang==='en');
+ document.getElementById('notes').style.display=lang==='hi'?'block':'none';
+ document.getElementById('notesEn').style.display=lang==='en'?'block':'none';
+ const section=lang==='hi'?document.getElementById('notes'):document.getElementById('notesEn');
+ const cards=[...section.querySelectorAll('.card')];
+ cards.forEach((c,i)=>c.style.display=i===state[lang]?'block':'none');
 }
 function getVisibleSection(){return document.getElementById('notes').style.display!=='none'?document.getElementById('notes'):document.getElementById('notesEn');}
 function score(){
  const sec=getVisibleSection(), cards=sec.querySelectorAll('.card');
  let attempted=0,correct=0,wrong=0;
- cards.forEach(function(card){if(card.classList.contains('answered')){attempted++; if(card.querySelector('.result.right'))correct++; else wrong++;}});
+ cards.forEach(function(card){if(card.classList.contains('answered')){attempted++;if(card.querySelector('.result.right'))correct++;else wrong++;}});
  const pct=cards.length?Math.round(correct/cards.length*100):0;
  const box=document.getElementById('scoreBox');
  box.style.display='block';
  box.textContent='Score: '+correct+' / '+cards.length+'  |  Correct: '+correct+'  |  Wrong: '+wrong+'  |  Attempted: '+attempted+'  |  '+pct+'%';
  box.scrollIntoView({behavior:'smooth',block:'center'});
 }
+window.setLang=setLang;
 document.addEventListener('DOMContentLoaded',function(){
- setup('notes'); setup('notesEn');
+ setup('notes','hi'); setup('notesEn','en');
  document.getElementById('scoreBtn').addEventListener('click',score);
  document.getElementById('refreshBtn').addEventListener('click',function(){window.location.replace(window.location.href);});
 });
