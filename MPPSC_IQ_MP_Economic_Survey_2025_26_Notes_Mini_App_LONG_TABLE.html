@@ -902,7 +902,36 @@ table tr:hover td{background:#fff1b8!important;}
    max-width:150px!important;
  }
 }
-</style></head>
+</style>
+<style id="BALANCED-WIDE-TABLES">
+/* Balanced column sizing: readable without excessive width */
+.content .table-frame.table-scroll>table.wide-table th,
+.content .table-frame.table-scroll>table.wide-table td{
+  width:145px!important;
+  min-width:145px!important;
+  max-width:145px!important;
+  padding:8px 7px!important;
+  line-height:1.35!important;
+}
+.content .table-frame.table-scroll>table.wide-table th:first-child,
+.content .table-frame.table-scroll>table.wide-table td:first-child{
+  width:170px!important;
+  min-width:170px!important;
+  max-width:170px!important;
+}
+@media(max-width:700px){
+ .content .table-frame.table-scroll>table.wide-table th,
+ .content .table-frame.table-scroll>table.wide-table td{
+   width:135px!important;min-width:135px!important;max-width:135px!important;
+   padding:7px 6px!important;
+ }
+ .content .table-frame.table-scroll>table.wide-table th:first-child,
+ .content .table-frame.table-scroll>table.wide-table td:first-child{
+   width:145px!important;min-width:145px!important;max-width:145px!important;
+ }
+}
+</style>
+</head>
 <body>
 <div class="app">
 <header class="hero">
