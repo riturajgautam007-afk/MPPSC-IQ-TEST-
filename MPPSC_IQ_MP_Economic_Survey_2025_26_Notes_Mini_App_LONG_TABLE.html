@@ -931,6 +931,30 @@ table tr:hover td{background:#fff1b8!important;}
  }
 }
 </style>
+
+<style id="CONTENT-AWARE-WIDTHS">
+/* Content-aware widths for wide tables: long text gets room, short numeric columns stay compact */
+.content .table-frame.table-scroll>table.wide-table{table-layout:auto!important;width:max-content!important;min-width:0!important;}
+.content .table-frame.table-scroll>table.wide-table th,
+.content .table-frame.table-scroll>table.wide-table td{
+  width:auto!important;min-width:90px!important;max-width:300px!important;
+  padding:8px 8px!important;line-height:1.4!important;
+  white-space:normal!important;overflow-wrap:break-word!important;word-break:normal!important;
+}
+.content .table-frame.table-scroll>table.wide-table th:first-child,
+.content .table-frame.table-scroll>table.wide-table td:first-child{
+  min-width:125px!important;max-width:230px!important;
+}
+/* Long phrase/value cells naturally expand instead of being crushed */
+.content .table-frame.table-scroll>table.wide-table td strong,
+.content .table-frame.table-scroll>table.wide-table th strong{white-space:normal!important;}
+@media(max-width:700px){
+ .content .table-frame.table-scroll>table.wide-table th,
+ .content .table-frame.table-scroll>table.wide-table td{min-width:80px!important;max-width:260px!important;padding:7px 7px!important;}
+ .content .table-frame.table-scroll>table.wide-table th:first-child,
+ .content .table-frame.table-scroll>table.wide-table td:first-child{min-width:110px!important;max-width:200px!important;}
+}
+</style>
 </head>
 <body>
 <div class="app">
