@@ -746,7 +746,6 @@ table tr:hover td{background:#fff1b8!important;}
 }
 </style></head>
 <body>
-<body>
 <div class="app">
 <header class="hero">
   <div class="logo">MPPSC IQ</div>
@@ -1110,18 +1109,16 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
-<script>
+<script id="STICKY-LANGUAGE-SYNC">
 function syncStickyLanguageBar(){
   const hero=document.querySelector('.hero');
   const bar=document.querySelector('.lang-switch');
-  if(hero && bar){
-    bar.style.top=hero.offsetHeight+'px';
-  }
+  if(hero && bar){ bar.style.top=hero.offsetHeight+'px'; }
 }
 window.addEventListener('load',syncStickyLanguageBar);
 window.addEventListener('resize',syncStickyLanguageBar);
-
-
+document.addEventListener('DOMContentLoaded',syncStickyLanguageBar);
+</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
  document.querySelectorAll('.table-frame>table').forEach(function(t){
