@@ -2039,5 +2039,55 @@ document.addEventListener('DOMContentLoaded',function(){
      td.classList.add('sector-order');
  });
 });
-</script></body>
+</script><style id="FINAL-READABILITY-FIX-ALL-NOTES">
+/* Every normal 2-column note table: readable, complete sentences, alternating colors */
+#hiNotes .table-frame:not(.table-scroll)>table,
+#enNotes .table-frame:not(.table-scroll)>table{
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ table-layout:auto!important;border-collapse:separate!important;border-spacing:0!important;
+ white-space:normal!important;
+}
+#hiNotes .table-frame:not(.table-scroll)>table th,
+#hiNotes .table-frame:not(.table-scroll)>table td,
+#enNotes .table-frame:not(.table-scroll)>table th,
+#enNotes .table-frame:not(.table-scroll)>table td{
+ width:auto!important;min-width:0!important;max-width:none!important;
+ height:auto!important;max-height:none!important;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ overflow-wrap:anywhere!important;word-break:normal!important;
+ vertical-align:top!important;line-height:1.55!important;
+ padding:9px 8px!important;
+}
+#hiNotes .table-frame:not(.table-scroll)>table th:first-child,
+#enNotes .table-frame:not(.table-scroll)>table th:first-child,
+#hiNotes .table-frame:not(.table-scroll)>table td:first-child,
+#enNotes .table-frame:not(.table-scroll)>table td:first-child{
+ width:48%!important;min-width:0!important;max-width:55%!important;
+}
+#hiNotes .table-frame:not(.table-scroll)>table th:nth-child(2),
+#enNotes .table-frame:not(.table-scroll)>table th:nth-child(2),
+#hiNotes .table-frame:not(.table-scroll)>table td:nth-child(2),
+#enNotes .table-frame:not(.table-scroll)>table td:nth-child(2){
+ width:52%!important;min-width:0!important;max-width:55%!important;
+}
+#hiNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+1) td,
+#enNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+1) td{background:#eef7ff!important}
+#hiNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+2) td,
+#enNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+2) td{background:#fff8e8!important}
+#hiNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+3) td,
+#enNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n+3) td{background:#eefaf4!important}
+#hiNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n) td,
+#enNotes .table-frame:not(.table-scroll)>table tbody tr:nth-child(4n) td{background:#f6f0ff!important}
+
+/* Quick-revision tables: compact first/No. column without squeezing the answer column */
+#hiNotes .one-liner-compact th:first-child,#hiNotes .one-liner-compact td:first-child,
+#enNotes .one-liner-compact th:first-child,#enNotes .one-liner-compact td:first-child{
+ width:42px!important;min-width:42px!important;max-width:42px!important;
+ padding:6px 3px!important;text-align:center!important;
+}
+#hiNotes .one-liner-compact th:nth-child(2),#hiNotes .one-liner-compact td:nth-child(2),
+#enNotes .one-liner-compact th:nth-child(2),#enNotes .one-liner-compact td:nth-child(2){
+ width:auto!important;min-width:0!important;max-width:none!important;
+}
+</style></body>
 </html>
