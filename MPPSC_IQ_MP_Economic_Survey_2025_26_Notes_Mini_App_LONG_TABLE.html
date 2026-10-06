@@ -1084,16 +1084,18 @@ function showLang(lang){
   const en=document.getElementById('enNotes');
   const hb=document.getElementById('hiBtn');
   const eb=document.getElementById('enBtn');
-  const isEnglish = lang === 'en';
-
-  hi.style.display = isEnglish ? 'none' : 'block';
-  en.style.display = isEnglish ? 'block' : 'none';
-
-  hb.classList.toggle('active', !isEnglish);
-  eb.classList.toggle('active', isEnglish);
-
+  const isEnglish = String(lang).toLowerCase() === 'en';
+  if(!hi || !en) return;
+  hi.style.setProperty('display', isEnglish ? 'none' : 'block', 'important');
+  en.style.setProperty('display', isEnglish ? 'block' : 'none', 'important');
+  if(hb) hb.classList.toggle('active', !isEnglish);
+  if(eb) eb.classList.toggle('active', isEnglish);
   window.scrollTo({top:0, behavior:'smooth'});
 }
+document.addEventListener('DOMContentLoaded', function(){
+  const lang = new URLSearchParams(window.location.search).get('lang');
+  showLang(lang === 'en' ? 'en' : 'hi');
+});
 </script>
 
 <script>
