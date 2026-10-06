@@ -1777,5 +1777,42 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 <style id="SECTOR-SUBTABLE-ACTUAL-FIX">.table-frame.sector-subtable-long .sticky-table-fixed{flex-basis:230px!important;width:230px!important;min-width:230px!important;overflow:visible!important}.table-frame.sector-subtable-long .sticky-table-fixed table{width:230px!important;min-width:230px!important;max-width:230px!important;table-layout:fixed!important}.table-frame.sector-subtable-long .sticky-table-fixed th,.table-frame.sector-subtable-long .sticky-table-fixed td{width:230px!important;min-width:230px!important;max-width:230px!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere!important;word-break:normal!important;line-height:1.45!important;padding:8px 7px!important;height:auto!important}@media(max-width:700px){.table-frame.sector-subtable-long .sticky-table-fixed{flex-basis:180px!important;width:180px!important;min-width:180px!important}.table-frame.sector-subtable-long .sticky-table-fixed table,.table-frame.sector-subtable-long .sticky-table-fixed th,.table-frame.sector-subtable-long .sticky-table-fixed td{width:180px!important;min-width:180px!important;max-width:180px!important}}</style>
-<script id="MARK-SECTOR-SUBTABLE-AFTER-SPLIT">document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.table-frame').forEach(function(frame){var h=frame.previousElementSibling;if(!h||h.tagName!=='H3')return;var title=h.textContent.trim();if(title.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1||title.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1)frame.classList.add('sector-subtable-long');});});</script></body>
+<script id="MARK-SECTOR-SUBTABLE-AFTER-SPLIT">document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.table-frame').forEach(function(frame){var h=frame.previousElementSibling;if(!h||h.tagName!=='H3')return;var title=h.textContent.trim();if(title.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1||title.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1)frame.classList.add('sector-subtable-long');});});</script><style id="SECTOR-SUBTABLE-SIDE-COLUMN-FIX">
+.table-frame.sector-subtable-long .sticky-table-fixed,
+.table-frame.sector-subtable-long .sticky-table-fixed table{
+ width:195px!important;min-width:195px!important;max-width:195px!important;flex-basis:195px!important;
+}
+.table-frame.sector-subtable-long .sticky-table-fixed th,
+.table-frame.sector-subtable-long .sticky-table-fixed td{
+ width:195px!important;min-width:195px!important;max-width:195px!important;
+ padding:7px 6px!important;line-height:1.4!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;
+}
+.table-frame.sector-subtable-long .sticky-table-scroll{
+ flex:1 1 auto!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important;
+}
+.table-frame.sector-subtable-long .sticky-table-scroll table{
+ width:max-content!important;min-width:640px!important;max-width:none!important;
+}
+.table-frame.sector-subtable-long .sticky-table-scroll th,
+.table-frame.sector-subtable-long .sticky-table-scroll td{
+ width:160px!important;min-width:160px!important;max-width:160px!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;
+}
+@media(max-width:700px){
+ .table-frame.sector-subtable-long .sticky-table-fixed,
+ .table-frame.sector-subtable-long .sticky-table-fixed table{
+  width:175px!important;min-width:175px!important;max-width:175px!important;flex-basis:175px!important;
+ }
+ .table-frame.sector-subtable-long .sticky-table-fixed th,
+ .table-frame.sector-subtable-long .sticky-table-fixed td{
+  width:175px!important;min-width:175px!important;max-width:175px!important;
+ }
+ .table-frame.sector-subtable-long .sticky-table-scroll table{min-width:600px!important}
+ .table-frame.sector-subtable-long .sticky-table-scroll th,
+ .table-frame.sector-subtable-long .sticky-table-scroll td{
+  width:145px!important;min-width:145px!important;max-width:145px!important;
+ }
+}
+</style></body>
 </html>
