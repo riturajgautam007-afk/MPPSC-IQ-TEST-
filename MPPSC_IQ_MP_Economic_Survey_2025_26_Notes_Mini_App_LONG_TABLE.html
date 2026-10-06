@@ -1010,6 +1010,48 @@ table tr:hover td{background:#fff1b8!important;}
   overflow-wrap:anywhere!important;
 }
 </style>
+
+<style id="FINAL-TEXT-VISIBILITY-AND-ONELINER-NO">
+/* Final: ensure long Hindi/English labels are never clipped */
+.content .table-frame.table-scroll>table.wide-table th,
+.content .table-frame.table-scroll>table.wide-table td{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  height:auto!important;
+  max-height:none!important;
+}
+/* Specifically protect long labels such as Trade, Repair, Hotels & Restaurants */
+.content .table-frame.table-scroll>table.wide-table td:first-child,
+.content .table-frame.table-scroll>table.wide-table th:first-child{
+  overflow:visible!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  min-width:110px!important;
+  max-width:190px!important;
+  width:auto!important;
+}
+/* One-liner serial-number column: compact but readable */
+#hiNotes .one-liner-table th:first-child,
+#hiNotes .one-liner-table td:first-child,
+#enNotes .one-liner-table th:first-child,
+#enNotes .one-liner-table td:first-child{
+  width:38px!important;
+  min-width:38px!important;
+  max-width:38px!important;
+  padding-left:2px!important;
+  padding-right:2px!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+#hiNotes .one-liner-table th:nth-child(2),
+#hiNotes .one-liner-table td:nth-child(2),
+#enNotes .one-liner-table th:nth-child(2),
+#enNotes .one-liner-table td:nth-child(2){width:auto!important;min-width:0!important;}
+</style>
 </head>
 <body>
 <div class="app">
