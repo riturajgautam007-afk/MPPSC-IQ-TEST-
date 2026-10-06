@@ -864,7 +864,45 @@ table tr:hover td{background:#fff1b8!important;}
   padding:6px 5px!important;font-size:12px!important;
 }}
 </style>
-</head>
+<style id="COMPACT-SLIDE-COLUMNS">
+/* Compact but readable horizontal-scroll columns */
+#hiNotes .table-scroll,
+#hiNotes .sticky-table-scroll{
+  overflow-x:auto!important;
+}
+#hiNotes .table-scroll th,
+#hiNotes .table-scroll td{
+  padding:8px 7px!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+#hiNotes .table-scroll th:not(:first-child),
+#hiNotes .table-scroll td:not(:first-child){
+  width:145px!important;
+  min-width:145px!important;
+  max-width:145px!important;
+}
+#hiNotes .table-scroll th:first-child,
+#hiNotes .table-scroll td:first-child{
+  width:185px!important;
+  min-width:185px!important;
+  max-width:185px!important;
+}
+@media(max-width:700px){
+ #hiNotes .table-scroll th:not(:first-child),
+ #hiNotes .table-scroll td:not(:first-child){
+   width:125px!important;
+   min-width:125px!important;
+   max-width:125px!important;
+ }
+ #hiNotes .table-scroll th:first-child,
+ #hiNotes .table-scroll td:first-child{
+   width:150px!important;
+   min-width:150px!important;
+   max-width:150px!important;
+ }
+}
+</style></head>
 <body>
 <div class="app">
 <header class="hero">
