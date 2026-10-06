@@ -822,7 +822,30 @@ table tr:hover td{background:#fff1b8!important;}
 }
 .app{padding-top:var(--sticky-total-height,125px)!important;}
 </style>
-</head>
+<style id="COMPACT-MAJOR-CHANGES-COLUMNS">
+/* 2024-25 से 2025-26 — compact but readable columns; first column unchanged */
+#hiNotes .table-frame table th:not(:first-child),
+#hiNotes .table-frame table td:not(:first-child){
+  padding-left:6px!important;
+  padding-right:6px!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+#hiNotes .table-frame table th:nth-child(n+2),
+#hiNotes .table-frame table td:nth-child(n+2){
+  width:118px!important;
+  min-width:118px!important;
+  max-width:118px!important;
+}
+@media(max-width:700px){
+  #hiNotes .table-frame table th:nth-child(n+2),
+  #hiNotes .table-frame table td:nth-child(n+2){
+    width:105px!important;
+    min-width:105px!important;
+    max-width:105px!important;
+  }
+}
+</style></head>
 <body>
 <div class="app">
 <header class="hero">
