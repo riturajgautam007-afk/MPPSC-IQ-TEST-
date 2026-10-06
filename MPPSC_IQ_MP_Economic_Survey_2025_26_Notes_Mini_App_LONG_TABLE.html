@@ -1954,5 +1954,51 @@ document.addEventListener('DOMContentLoaded',function(){
 #hiNotes .table-frame td strong{overflow-wrap:normal!important;word-break:normal!important}
 #enNotes .table-frame td strong{white-space:nowrap!important}
 #hiNotes .table-frame td strong{white-space:nowrap!important}
+</style><style id="FINAL-SECTOR-RANKING-PRIMARY-QUICK-FIX">
+/* Sector ranking must stay horizontal */
+#hiNotes table td strong,#enNotes table td strong{white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}
+#hiNotes .table-frame table:has(th:first-child:nth-last-child(2)) td:last-child strong,
+#enNotes .table-frame table:has(th:first-child:nth-last-child(2)) td:last-child strong{display:inline-block!important;white-space:nowrap!important}
+
+/* Primary sub-sector tables: native horizontal scroll, stable rows, no missing adjacent column */
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7)),
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7)){
+ overflow-x:auto!important;overflow-y:hidden!important;width:100%!important;
+}
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table,
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table{
+ display:table!important;width:max-content!important;min-width:1280px!important;max-width:none!important;table-layout:fixed!important;
+}
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table th:first-child,
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table td:first-child,
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table th:first-child,
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table td:first-child{
+ position:sticky!important;left:0!important;z-index:30!important;width:220px!important;min-width:220px!important;max-width:220px!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;word-break:normal!important;background:#fff!important;
+}
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table th:not(:first-child),
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table td:not(:first-child),
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table th:not(:first-child),
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table td:not(:first-child){
+ width:180px!important;min-width:180px!important;max-width:180px!important;white-space:normal!important;overflow:visible!important;
+ overflow-wrap:anywhere!important;word-break:normal!important;vertical-align:top!important;height:auto!important;line-height:1.45!important;
+}
+#hiNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table thead th:first-child,
+#enNotes h3:has(+.table-frame) + .table-frame:has(>table th:first-child:nth-last-child(7))>table thead th:first-child{
+ background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+
+/* Quick revision serial number column more compact */
+#hiNotes .master-section-content .table-frame table th:first-child:first-child,
+#hiNotes .master-section-content .table-frame table td:first-child:first-child,
+#enNotes .master-section-content .table-frame table th:first-child:first-child,
+#enNotes .master-section-content .table-frame table td:first-child:first-child{
+}
+#hiNotes .master-section-head + .master-section-content .table-frame table:has(th:first-child:nth-last-child(3)) th:first-child,
+#hiNotes .master-section-head + .master-section-content .table-frame table:has(th:first-child:nth-last-child(3)) td:first-child,
+#enNotes .master-section-head + .master-section-content .table-frame table:has(th:first-child:nth-last-child(3)) th:first-child,
+#enNotes .master-section-head + .master-section-content .table-frame table:has(th:first-child:nth-last-child(3)) td:first-child{
+ width:32px!important;min-width:32px!important;max-width:32px!important;padding:5px 2px!important;text-align:center!important;white-space:nowrap!important;
+}
 </style></body>
 </html>
