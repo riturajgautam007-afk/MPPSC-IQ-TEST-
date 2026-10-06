@@ -1084,6 +1084,52 @@ document.addEventListener('DOMContentLoaded',function(){
  });
 });
 </script>
+
+<style id="SECTOR-SUBTABLE-LONG-FIRST-COLUMN">
+/* Secondary + tertiary sub-sector tables: give long sector names enough room */
+.table-frame.sector-subtable-long .sticky-table-fixed,
+.table-frame.sector-subtable-long .sticky-table-fixed table{
+  width:230px!important;min-width:230px!important;max-width:230px!important;
+  flex-basis:230px!important;
+}
+.table-frame.sector-subtable-long .sticky-table-fixed th,
+.table-frame.sector-subtable-long .sticky-table-fixed td{
+  width:230px!important;min-width:230px!important;max-width:230px!important;
+  white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+  overflow-wrap:break-word!important;word-break:normal!important;
+  line-height:1.45!important;padding:8px 7px!important;height:auto!important;
+}
+.table-frame.sector-subtable-long .sticky-table-scroll th,
+.table-frame.sector-subtable-long .sticky-table-scroll td{
+  width:145px!important;min-width:145px!important;max-width:145px!important;
+}
+@media(max-width:700px){
+ .table-frame.sector-subtable-long .sticky-table-fixed,
+ .table-frame.sector-subtable-long .sticky-table-fixed table{
+   width:180px!important;min-width:180px!important;max-width:180px!important;flex-basis:180px!important;
+ }
+ .table-frame.sector-subtable-long .sticky-table-fixed th,
+ .table-frame.sector-subtable-long .sticky-table-fixed td{
+   width:180px!important;min-width:180px!important;max-width:180px!important;
+ }
+ .table-frame.sector-subtable-long .sticky-table-scroll th,
+ .table-frame.sector-subtable-long .sticky-table-scroll td{
+   width:135px!important;min-width:135px!important;max-width:135px!important;
+ }
+}
+</style>
+<script id="MARK-SECTOR-SUBTABLE-LONG">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame').forEach(function(frame){
+   var h=frame.previousElementSibling;
+   if(!h || h.tagName!=='H3') return;
+   var t=h.textContent.trim();
+   if(t.indexOf('द्वितीयक क्षेत्र के उप-क्षेत्र')!==-1 || t.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1){
+     frame.classList.add('sector-subtable-long');
+   }
+ });
+});
+</script>
 </head>
 <body>
 <div class="app">
