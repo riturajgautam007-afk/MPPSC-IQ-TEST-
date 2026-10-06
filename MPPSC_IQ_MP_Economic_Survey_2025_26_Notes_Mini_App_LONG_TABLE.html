@@ -1921,5 +1921,39 @@ document.addEventListener('DOMContentLoaded',function(){
    }
  });
 });
+</script><style id="FINAL-TERTIARY-FIRST-COLUMN-STICKY">
+.table-frame.sector-subtable-long.tertiary-sticky-final>table{
+ width:max-content!important;min-width:720px!important;max-width:none!important;
+ table-layout:fixed!important;border-collapse:separate!important;border-spacing:0!important;
+}
+.table-frame.sector-subtable-long.tertiary-sticky-final>table th:first-child,
+.table-frame.sector-subtable-long.tertiary-sticky-final>table td:first-child{
+ position:sticky!important;left:0!important;z-index:50!important;
+ width:195px!important;min-width:195px!important;max-width:195px!important;
+ white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;
+ background:#fff!important;box-shadow:2px 0 4px rgba(16,42,67,.14)!important;
+}
+.table-frame.sector-subtable-long.tertiary-sticky-final>table thead th:first-child{
+ z-index:60!important;background:linear-gradient(135deg,#123b5d,#1d587d)!important;color:#fff!important;
+}
+@media(max-width:700px){
+ .table-frame.sector-subtable-long.tertiary-sticky-final>table{min-width:610px!important}
+ .table-frame.sector-subtable-long.tertiary-sticky-final>table th:first-child,
+ .table-frame.sector-subtable-long.tertiary-sticky-final>table td:first-child{
+  width:175px!important;min-width:175px!important;max-width:175px!important;
+ }
+}
+</style>
+<script id="MARK-TERTIARY-STICKY-FINAL">
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('.table-frame').forEach(function(frame){
+  var h=frame.previousElementSibling;
+  if(h&&h.tagName==='H3'&&h.textContent.indexOf('तृतीयक क्षेत्र के उप-क्षेत्र')!==-1){
+   frame.classList.add('sector-subtable-long','tertiary-sticky-final');
+   var t=frame.querySelector(':scope > table');
+   if(t) t.style.setProperty('width','max-content','important');
+  }
+ });
+});
 </script></body>
 </html>
