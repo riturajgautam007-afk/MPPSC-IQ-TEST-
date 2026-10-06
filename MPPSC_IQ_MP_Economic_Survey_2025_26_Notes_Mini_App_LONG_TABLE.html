@@ -732,7 +732,19 @@ table tr:hover td{background:#fff1b8!important;}
 
 
 
-\n</head>
+\n<style id="STICKY-HEADER-LANGUAGE-BAR">
+.hero{
+  position:sticky!important;
+  top:0!important;
+  z-index:1000!important;
+}
+.lang-switch{
+  position:sticky!important;
+  top:var(--hero-height,70px)!important;
+  z-index:999!important;
+  background:#f4f7fa!important;
+}
+</style></head>
 <body>
 <body>
 <div class="app">
@@ -1294,5 +1306,15 @@ document.addEventListener('DOMContentLoaded',function(){
 .single-long-table h3 + .table-frame > table tr:last-child td:first-child{border-bottom-left-radius:13px!important}
 .single-long-table h3 + .table-frame > table tr:last-child td:last-child{border-bottom-right-radius:13px!important}
 </style>
-</body>
+<script id="STICKY-HEADER-SYNC">
+(function(){
+function syncSticky(){
+ const hero=document.querySelector('.hero');
+ if(hero) document.documentElement.style.setProperty('--hero-height',hero.offsetHeight+'px');
+}
+window.addEventListener('load',syncSticky);
+window.addEventListener('resize',syncSticky);
+document.addEventListener('DOMContentLoaded',syncSticky);
+})();
+</script></body>
 </html>
