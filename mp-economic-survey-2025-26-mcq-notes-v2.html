@@ -46,6 +46,16 @@ function setLang(lang){
       card.querySelectorAll('.opt').forEach(o=>{if(o.dataset.letter===card.dataset.correct)o.classList.add('correct')});
      }
      card.appendChild(result);
+     const next=card.nextElementSibling;
+     if(next && next.classList.contains('card')){
+      setTimeout(()=>{
+       const header=document.querySelector('.head');
+       const langbar=document.querySelector('.langbar,.language-switch,.lang-buttons');
+       const offset=(header?.offsetHeight||0)+(langbar?.offsetHeight||0)+10;
+       const y=next.getBoundingClientRect().top+window.pageYOffset-offset;
+       window.scrollTo({top:y,behavior:'smooth'});
+      },180);
+     }
     });
    });
   });
