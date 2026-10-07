@@ -106,18 +106,19 @@ document.addEventListener('DOMContentLoaded',function(){
 </script><script id="one-question-js">
 (function(){
 function initSection(sectionId){
- const section=document.getElementById(sectionId); if(!section)return;
- const cards=[...section.querySelectorAll('.card')];
+ const section=document.getElementById(sectionId);
+ if(!section)return;
+ const cards=Array.from(section.querySelectorAll('.card'));
  if(!cards.length)return;
+ cards.forEach((card,i)=>{card.dataset.index=i;card.style.display=i===0?'block':'none';});
  let current=0;
- cards.forEach((card,i)=>card.dataset.index=i);
- function show(i){
-   if(i>=cards.length)return;
-   cards.forEach(c=>c.classList.remove('current'));
-   cards[i].classList.add('current');
-   current=i;
+ function showNext(){
+   if(current>=cards.length-1)return;
+   cards[current].style.display='none';
+   current++;
+   cards[current].style.display='block';
+   cards[current].scrollIntoView({behavior:'smooth',block:'start'});
  }
- show(0);
  cards.forEach(function(card){
    const ans=card.querySelector('.ans'); if(!ans)return;
    const m=ans.textContent.match(/(?:Answer|उत्तर):?\s*([A-D])/i); if(!m)return;
@@ -128,39 +129,50 @@ function initSection(sectionId){
      opt.addEventListener('click',function(){
        if(card.classList.contains('answered'))return;
        card.classList.add('answered');
-       const opts=card.querySelectorAll('.opt');
-       opts.forEach(o=>o.classList.add('locked'));
-       const result=document.createElement('div'); result.className='result';
+       card.querySelectorAll('.opt').forEach(o=>o.classList.add('locked'));
+       const result=document.createElement('div');
+       result.className='result';
        if(letter===card.dataset.correct){
-         opt.classList.add('correct'); result.classList.add('right'); result.textContent='✓ Correct';
+         opt.classList.add('correct');
+         result.classList.add('right');
+         result.textContent='✓ Correct';
        }else{
-         opt.classList.add('wrong'); result.classList.add('wrong'); result.textContent='✗ Wrong — Correct answer: '+card.dataset.correct;
-         opts.forEach(o=>{if(o.dataset.letter===card.dataset.correct)o.classList.add('correct')});
+         opt.classList.add('wrong');
+         result.classList.add('wrong');
+         result.textContent='✗ Wrong — Correct answer: '+card.dataset.correct;
+         card.querySelectorAll('.opt').forEach(o=>{
+           if(o.dataset.letter===card.dataset.correct)o.classList.add('correct');
+         });
        }
        card.appendChild(result);
-       setTimeout(function(){
-         show(current+1);
-         window.scrollTo({top:0,behavior:'smooth'});
-       },220);
+       setTimeout(showNext,180);
      });
    });
  });
 }
-function setupAll(){
- initSection('notes'); initSection('notesEn');
+function setup(){
+ initSection('notes');
+ initSection('notesEn');
  const scoreBtn=document.getElementById('scoreBtn');
  const refreshBtn=document.getElementById('refreshBtn');
- scoreBtn.addEventListener('click',function(){
-   const visible=document.getElementById('notes').style.display!=='none'?document.getElementById('notes'):document.getElementById('notesEn');
-   const cards=visible.querySelectorAll('.card'); let attempted=0,correct=0,wrong=0;
-   cards.forEach(c=>{if(c.classList.contains('answered')){attempted++;if(c.querySelector('.result.right'))correct++;else wrong++;}});
+ scoreBtn.onclick=function(){
+   const sec=document.getElementById('notes').style.display!=='none'?document.getElementById('notes'):document.getElementById('notesEn');
+   const cards=sec.querySelectorAll('.card');
+   let attempted=0,correct=0,wrong=0;
+   cards.forEach(c=>{
+     if(c.classList.contains('answered')){
+       attempted++;
+       if(c.querySelector('.result.right'))correct++; else wrong++;
+     }
+   });
    const pct=cards.length?Math.round(correct/cards.length*100):0;
-   const box=document.getElementById('scoreBox'); box.style.display='block';
+   const box=document.getElementById('scoreBox');
+   box.style.display='block';
    box.textContent='Score: '+correct+' / '+cards.length+' | Correct: '+correct+' | Wrong: '+wrong+' | Attempted: '+attempted+' | '+pct+'%';
    box.scrollIntoView({behavior:'smooth',block:'center'});
- });
- refreshBtn.addEventListener('click',function(){window.location.replace(window.location.href);});
+ };
+ refreshBtn.onclick=function(){location.reload();};
 }
-document.addEventListener('DOMContentLoaded',setupAll);
+document.addEventListener('DOMContentLoaded',setup);
 })();
 </script></body></html>
