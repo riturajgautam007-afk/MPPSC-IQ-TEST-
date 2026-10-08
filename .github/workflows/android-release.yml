@@ -1,4 +1,4 @@
-name: Build MPPSC IQ Signed Release AAB
+name: Build MPPSC IQ Signed Release AAB + APK
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
       - '.github/workflows/android-release.yml'
 
 jobs:
-  build-release-aab:
+  build-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,7 +43,7 @@ jobs:
           test -n "$KEYSTORE_BASE64"
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/mppsc-iq-release.jks"
 
-      - name: Build signed release AAB
+      - name: Build signed release AAB and APK
         env:
           MPPSC_KEYSTORE_FILE: ${{ runner.temp }}/mppsc-iq-release.jks
           MPPSC_KEYSTORE_PASSWORD: ${{ secrets.MPPSC_KEYSTORE_PASSWORD }}
@@ -53,11 +53,18 @@ jobs:
           test -n "$MPPSC_KEYSTORE_PASSWORD"
           test -n "$MPPSC_KEY_ALIAS"
           test -n "$MPPSC_KEY_PASSWORD"
-          gradle --no-daemon --stacktrace bundleRelease
+          gradle --no-daemon --stacktrace bundleRelease assembleRelease
 
       - name: Upload signed AAB
         uses: actions/upload-artifact@v4
         with:
           name: mppsc-iq-release-aab-signed
           path: app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
+
+      - name: Upload signed APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mppsc-iq-release-apk-signed
+          path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
