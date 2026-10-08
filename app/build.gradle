@@ -12,9 +12,27 @@ android {
         versionCode 1
         versionName '1.0.0'
     }
+    signingConfigs {
+        release {
+            def ksFile = System.getenv('MPPSC_KEYSTORE_FILE')
+            def ksPassword = System.getenv('MPPSC_KEYSTORE_PASSWORD')
+            def ksAlias = System.getenv('MPPSC_KEY_ALIAS')
+            def keyPassword = System.getenv('MPPSC_KEY_PASSWORD')
+            if (ksFile && ksPassword && ksAlias && keyPassword) {
+                storeFile file(ksFile)
+                storePassword ksPassword
+                keyAlias ksAlias
+                keyPassword keyPassword
+            }
+        }
+    }
     buildTypes {
         debug { versionNameSuffix '-debug' }
-        release { minifyEnabled false; shrinkResources false }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
     }
 }
 dependencies {
@@ -25,4 +43,4 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore'
 }
 
-// Cloud build trigger: AndroidX enabled.
+// Play Store release signing is supplied only through GitHub Actions secrets.
