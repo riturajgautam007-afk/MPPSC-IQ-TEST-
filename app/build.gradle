@@ -17,12 +17,12 @@ android {
             def ksFile = System.getenv('MPPSC_KEYSTORE_FILE')
             def ksPassword = System.getenv('MPPSC_KEYSTORE_PASSWORD')
             def ksAlias = System.getenv('MPPSC_KEY_ALIAS')
-            def keyPassword = System.getenv('MPPSC_KEY_PASSWORD')
-            if (ksFile && ksPassword && ksAlias && keyPassword) {
+            def keyPwd = System.getenv('MPPSC_KEY_PASSWORD')
+            if (ksFile && ksPassword && ksAlias && keyPwd) {
                 storeFile file(ksFile)
                 storePassword ksPassword
                 keyAlias ksAlias
-                keyPassword keyPassword
+                keyPassword keyPwd
             }
         }
     }
