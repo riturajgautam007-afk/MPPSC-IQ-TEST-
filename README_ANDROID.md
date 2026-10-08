@@ -9,3 +9,5 @@ Release signing is intentionally not stored in this repository. Create the signi
 
 
 Cloud build workflow updated.
+
+Build configuration fixed.
