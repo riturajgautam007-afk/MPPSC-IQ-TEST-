@@ -1,0 +1,17 @@
+{
+  "project_info": {
+    "project_number": "933540789062",
+    "project_id": "mppsc-iq",
+    "storage_bucket": "mppsc-iq.firebasestorage.app"
+  },
+  "client": [{
+    "client_info": {
+      "mobilesdk_app_id": "1:933540789062:android:48fdc441523386749f8347",
+      "android_client_info": {"package_name": "com.mppsciq.app"}
+    },
+    "oauth_client": [],
+    "api_key": [{"current_key": "AIzaSyB20mkcyG92bQjlXoDu1oUf_oouk-jEemA"}],
+    "services": {"appinvite_service": {"other_platform_oauth_client": []}}
+  }],
+  "configuration_version": "1"
+}
