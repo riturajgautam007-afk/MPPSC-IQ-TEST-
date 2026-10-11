@@ -65,13 +65,19 @@ function setLang(lang){
   document.getElementById('enBtn').classList.toggle('active',lang==='en');
   document.getElementById('notes').style.display=lang==='hi'?'block':'none';
   document.getElementById('notesEn').style.display=lang==='en'?'block':'none';
+  document.getElementById('scoreBtn').textContent=lang==='hi'?'कुल स्कोर':'Total Score';
+  document.getElementById('refreshBtn').textContent=lang==='hi'?'रिफ्रेश / पुनः प्रयास':'Refresh / Try Again';
+  document.documentElement.lang=lang==='hi'?'hi':'en';
  };
  function score(){
   const sec=document.getElementById('notes').style.display!=='none'?document.getElementById('notes'):document.getElementById('notesEn');
   const cards=sec.querySelectorAll('.card'); let attempted=0,correct=0,wrong=0;
   cards.forEach(c=>{if(c.classList.contains('answered')){attempted++;if(c.querySelector('.result.right'))correct++;else wrong++;}});
   const box=document.getElementById('scoreBox'); box.style.display='block';
-  box.textContent='Score: '+correct+' / '+cards.length+' | Correct: '+correct+' | Wrong: '+wrong+' | Attempted: '+attempted+' | '+(cards.length?Math.round(correct/cards.length*100):0)+'%';
+  const pct=(cards.length?Math.round(correct/cards.length*100):0);
+  box.textContent=(document.getElementById('notes').style.display!=='none'
+   ?'स्कोर: '+correct+' / '+cards.length+' | सही: '+correct+' | गलत: '+wrong+' | प्रयास: '+attempted+' | '+pct+'%'
+   :'Score: '+correct+' / '+cards.length+' | Correct: '+correct+' | Wrong: '+wrong+' | Attempted: '+attempted+' | '+pct+'%');
   box.scrollIntoView({behavior:'smooth',block:'center'});
  }
  document.addEventListener('DOMContentLoaded',()=>{
