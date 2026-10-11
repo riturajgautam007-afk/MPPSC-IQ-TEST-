@@ -91,4 +91,22 @@ function setLang(lang){
   document.getElementById('refreshBtn').onclick=()=>window.location.reload();
  });
 })();
-</script></body></html>
+</script><script>
+(function(){
+ const original=window.setLang;
+ window.setLang=function(lang){
+   const hi=document.getElementById('notes');
+   const en=document.getElementById('notesEn');
+   if(hi) hi.style.display=(lang==='hi'?'block':'none');
+   if(en) { en.style.display=(lang==='en'?'block':'none'); en.style.visibility='visible'; en.style.height='auto'; }
+   const hb=document.getElementById('hiBtn'), eb=document.getElementById('enBtn');
+   if(hb) hb.classList.toggle('active',lang==='hi');
+   if(eb) eb.classList.toggle('active',lang==='en');
+   const sb=document.getElementById('scoreBtn'), rb=document.getElementById('refreshBtn');
+   if(sb) sb.textContent=lang==='hi'?'कुल स्कोर':'Total Score';
+   if(rb) rb.textContent=lang==='hi'?'रिफ्रेश / पुनः प्रयास':'Refresh / Try Again';
+   document.documentElement.lang=lang==='hi'?'hi':'en';
+ };
+})();
+</script>
+</body></html>
