@@ -23,6 +23,11 @@ function setLang(lang){
  document.getElementById('enBtn').classList.toggle('active',lang==='en');
  document.getElementById('notes').style.display=lang==='hi'?'block':'none';
  document.getElementById('notesEn').style.display=lang==='en'?'block':'none';
+ const sb=document.getElementById('scoreBtn');
+ const rb=document.getElementById('refreshBtn');
+ if(sb) sb.textContent=lang==='hi'?'कुल स्कोर':'Total Score';
+ if(rb) rb.textContent=lang==='hi'?'रिफ्रेश / पुनः प्रयास':'Refresh / Try Again';
+ document.documentElement.lang=lang==='hi'?'hi':'en';
 }
 </script><script id="interactive-test-js">
 (function(){
