@@ -121,4 +121,19 @@ function forceLang(lang){
  document.documentElement.lang=lang==='hi'?'hi':'en';
 }
 </script>
-</body></html>
+<style>
+body.show-english #notes{display:none!important}
+body.show-english #notesEn{display:block!important;visibility:visible!important;height:auto!important}
+body:not(.show-english) #notes{display:block!important;visibility:visible!important}
+body:not(.show-english) #notesEn{display:none!important}
+</style>
+<script>
+function forceLang(lang){
+ document.body.classList.toggle('show-english',lang==='en');
+ document.getElementById('hiBtn').classList.toggle('active',lang==='hi');
+ document.getElementById('enBtn').classList.toggle('active',lang==='en');
+ document.getElementById('scoreBtn').textContent=lang==='hi'?'कुल स्कोर':'Total Score';
+ document.getElementById('refreshBtn').textContent=lang==='hi'?'रिफ्रेश / पुनः प्रयास':'Refresh / Try Again';
+ document.documentElement.lang=lang==='hi'?'hi':'en';
+}
+</script></body></html>
