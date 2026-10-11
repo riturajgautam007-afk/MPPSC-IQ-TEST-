@@ -6,7 +6,7 @@
  function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
  const p=getParam();
  const direct=new URLSearchParams(location.search);
- if(direct.get("openEconomicRevision02")==="1"){location.replace("mp-economic-survey-2025-26-revision-test-02.html?v=20261011direct5");return;}
+ if(direct.get("openEconomicRevision02")==="1"){location.replace("mp-economic-survey-2025-26-revision-test-02.html?v=20261011direct6");return;}
  if(p==="economicnotesfinal20261005"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006long");return;}
  if(p==="economicnotesfinal20261005h"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_FINAL.html?v=20261005h");return;}
  
@@ -16,7 +16,7 @@
  if(p==="economicnotesv3"||p==="economicnotessticky"||p==="economicnotes20261006"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006sticky7");return;} if(p==="economicnotes"||p==="mpeconomicnotes"||p==="economicsurvey-notes-miniapp"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006sticky3");return;} if(p==="economicnotesen"||p==="economicnotesenglish"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006sticky7&lang=en");return;}
  
  if(p==="mpeconomicsurvey"||p==="mpeconomicsurveynotes"||p==="economicsurvey2025new"){location.replace("economic-survey-2025-26-notes-miniapp.html?v=20261005");return;} if(p==="historymcq100"){ location.replace("unit01-mp-history-revision-mcqs-01-100.html?v=4"); return; } if(p==="economicsurveynotes50"||p==="economicsurvey50notesv2"){location.replace("mp-economic-survey-2025-26-mcq-notes-v2.html?v=20261007r1");return;}
- if(p==="economicsurveyrev02"||p==="economicrevision02"||p==="economicsurveyrev02fix"){location.replace("mp-economic-survey-2025-26-revision-test-02.html?v=20261011r7");return;}
+ if(p==="economicsurveyrev02"||p==="economicrevision02"||p==="economicsurveyrev02fix"){location.replace("mp-economic-survey-2025-26-revision-test-02.html?v=20261011r8");return;}
   if(p==="unit01bharat"||p==="bharatvarsh"){ location.replace("unit01-bharatvarsh-notes.html?v=3"); return; }
  if(p==="unit01vedas"||p==="revisionunit01vedas"||p==="vedas"){ location.replace("revision-unit01-vedas.html?v=9"); return; }
  if(p==="guptasculpture"||p==="gupta-sculpture"||p==="unit02gupta"){location.replace("gupta-sculpture-revision.html?v=20260930");return;}
