@@ -10,7 +10,7 @@ if(!opt||!notes.contains(opt))return;
 var card=opt.closest('.card');
 if(!card||card.classList.contains('answered'))return;
 var ans=card.querySelector('.ans');
-var m=ans?ans.textContent.match(/उत्तर:\\s*\\(?([A-D])\\)?/):null;
+var m=ans?ans.textContent.match(/उत्तर:\s*\(?([A-D])\)?/):null;
 if(!m)return;
 var correct=m[1];
 var opts=card.querySelectorAll('.opt');
