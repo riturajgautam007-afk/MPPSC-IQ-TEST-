@@ -39,11 +39,11 @@ Set this claim only with the Firebase Admin SDK in a trusted environment. Never 
 - Published course reads from Firestore.
 - Admin-only course/lesson publishing and deletion (custom claim required).
 - Quiz attempts written to `attempts` for signed-in students.
-- Local draft, wrong-question list, and detailed progress still remain on the current device unless separately synced.
+- Mains draft, wrong-question list, test history, completed lessons, and quiz attempts are synced to Firebase for signed-in students.
 
 ## 5. Not yet enabled
 - Paid-course checkout and secure payment verification.
-- Server-controlled paid enrollment / entitlement checks.
+- Server-controlled paid enrollment creation / payment verification (rules now require an active enrollment for paid course records and Storage files).
 - Private course-file uploads and protected video delivery.
 - Full cross-device sync for every progress item and mains draft.
 - Production admin-claim provisioning automation.
@@ -52,9 +52,9 @@ Payment must be verified server-side using a trusted backend/Cloud Function and 
 
 ## Data model
 - `users/{uid}`: student profile.
-- `courses/{courseId}`: course fields and nested lesson list; `published` controls student visibility.
-- `enrollments/{id}`: server/admin-controlled course access grants.
+- `courses/{courseId}`: course fields, `pricePaise` (integer paise), and nested lesson list; `published` controls visibility. Use `pricePaise: 0` for free courses.
+- `enrollments/{uid_courseId}`: server/admin-controlled course access grant; the document ID must be the student UID, an underscore, then course ID (for example `abc123_pre2027`), with `uid`, `courseId`, and `status: "active"` fields.
 - `questions/{questionId}`: question bank (rules support published questions).
 - `attempts/{attemptId}`: signed-in student's quiz attempts.
 
-Never put service-account private keys, payment secrets, or passwords in HTML/JavaScript. Firebase web config is project-identification data; actual authorization is enforced by Firebase rules and Auth.
+Before publishing paid courses, add and test the trusted server-side payment verifier and create enrollment documents only after verified payment. Never put service-account private keys, payment secrets, or passwords in HTML/JavaScript. Firebase web config is project-identification data; actual authorization is enforced by Firebase rules and Auth.
