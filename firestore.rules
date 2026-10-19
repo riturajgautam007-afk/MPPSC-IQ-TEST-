@@ -54,6 +54,13 @@ service cloud.firestore {
       allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
       allow update, delete: if isAdmin();
     }
+    match /leaderboard/{uid} {
+      allow read: if signedIn();
+      allow create, update: if owns(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.keys().hasOnly(['uid','name','quizzes','totalQuestions','correct','score','best','accuracy','updatedAt']);
+      allow delete: if owns(uid) || isAdmin();
+    }
     match /questions/{questionId} {
       allow read: if isAdmin() || (signedIn() && resource.data.published == true);
       allow create, update, delete: if isAdmin();
