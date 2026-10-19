@@ -81,3 +81,15 @@ Confirm the project shown by `firebase use` is `mppsc-iq` before deploying. Clou
 - Questions loaded only from the local/demo bank cannot be independently verified by the server and must not be counted in the competitive leaderboard.
 - The callable function rejects duplicate question IDs and repeated attempt IDs. The function is not considered live until deployment completes successfully.
 - Existing unverified legacy leaderboard records should be cleared by an administrator before announcing a clean competitive ranking.
+
+
+## 7. Optional GitHub Actions deployment
+A workflow is included at `.github/workflows/deploy-firebase.yml`. It deploys the Functions and Firestore rules when backend files change, or when manually triggered in GitHub Actions.
+
+One-time setup required by the repository owner:
+1. In Google Cloud / Firebase project `mppsc-iq`, create a dedicated service account with only the permissions required to deploy Cloud Functions and Firestore rules.
+2. Create a JSON key for that account only if your organization permits key-based CI authentication. Store the entire JSON as a GitHub Actions repository secret named `FIREBASE_SERVICE_ACCOUNT_MPPSc_IQ`. Never commit the JSON file to the repository.
+3. Ensure the project has billing and required APIs enabled for Cloud Functions deployment.
+4. Open GitHub → Actions → Deploy Firebase backend → Run workflow. Review the logs and confirm deployment succeeded.
+
+Until that secret is configured and a workflow run succeeds, backend deployment is **not active**. If the secret name is changed, update the workflow to match exactly.
