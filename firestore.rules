@@ -4,13 +4,25 @@ service cloud.firestore {
     function signedIn() { return request.auth != null; }
     function isAdmin() { return signedIn() && request.auth.token.admin == true; }
     function owns(uid) { return signedIn() && request.auth.uid == uid; }
+    function hasEnrollment(courseId) {
+      return signedIn()
+        && exists(/databases/$(database)/documents/enrollments/$(request.auth.uid + "_" + courseId))
+        && get(/databases/$(database)/documents/enrollments/$(request.auth.uid + "_" + courseId)).data.status == 'active';
+    }
+    function canReadCourse(courseId) {
+      let course = get(/databases/$(database)/documents/courses/$(courseId)).data;
+      return course.published == true
+        && (!course.keys().hasAny(['pricePaise']) || course.pricePaise <= 0 || hasEnrollment(courseId));
+    }
 
     match /courses/{courseId} {
-      allow read: if isAdmin() || (signedIn() && resource.data.published == true);
+      allow read: if isAdmin() || (signedIn() && resource.data.published == true
+        && (!resource.data.keys().hasAny(['pricePaise']) || resource.data.pricePaise <= 0 || hasEnrollment(courseId)));
       allow create, update, delete: if isAdmin();
     }
     match /lessons/{lessonId} {
-      allow read: if isAdmin() || (signedIn() && resource.data.published == true);
+      allow read: if isAdmin() || (signedIn() && resource.data.published == true
+        && canReadCourse(resource.data.courseId));
       allow create, update, delete: if isAdmin();
     }
     match /users/{uid} {
@@ -23,9 +35,16 @@ service cloud.firestore {
         || isAdmin();
       allow delete: if isAdmin();
     }
+    match /studentProgress/{uid} {
+      allow read: if owns(uid) || isAdmin();
+      allow create, update: if owns(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.keys().hasOnly(['uid','draft','wrong','history','lessonsDone','updatedAt']);
+      allow delete: if owns(uid) || isAdmin();
+    }
     match /enrollments/{enrollmentId} {
       allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
-      // Enrollment grants are server/admin controlled; clients cannot self-grant paid access.
+      // Access grants are controlled by trusted admin/server only. Never allow students to self-enroll.
       allow create, update, delete: if isAdmin();
     }
     match /attempts/{attemptId} {
