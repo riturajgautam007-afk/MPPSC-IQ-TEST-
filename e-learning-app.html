@@ -37,7 +37,7 @@ body{background:var(--bg);color:var(--ink)}
 .announcement{border:1px solid #343640;background:linear-gradient(115deg,#1d2028,#29261b);border-radius:26px;padding:19px;margin:10px 0 18px}
 .announcement .eyebrow{font-size:10px;letter-spacing:3px;color:#f4cf58;font-weight:900}.announcement h2{font-size:24px;margin:8px 0}.announcement p{font-size:12px;color:#b4b6c0;margin:0}
 @media(max-width:390px){.home-category{min-height:130px;padding:15px;font-size:15px}.home-category .category-icon{width:50px;height:50px}.brand{font-size:17px}}
-</style></head><body><div class="shell">
+/* Screenshot-inspired fixed bottom navigation */.bottom{background:#0b0d12f5;border-top:1px solid #292c35;backdrop-filter:blur(16px);padding-top:4px}.nav{max-width:900px;padding:8px 5px max(9px,env(safe-area-inset-bottom));gap:3px}.nav button{min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:6px 2px;border-radius:22px;font-size:10px;font-weight:750;color:#9296a4;white-space:nowrap}.nav button span{height:39px;width:39px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:linear-gradient(145deg,#333640,#14161c);border:1px solid #4b4e58;color:#f4cf58;box-shadow:0 3px 10px #0005}.nav button.active{color:#fff;background:linear-gradient(180deg,#292c35,#171920);box-shadow:0 0 0 1px #f4cf5855,inset 0 0 0 2px #f4cf5833}.nav button.active span{background:#f4cf58;color:#101116;border:2px solid #fff0a5;box-shadow:0 0 0 3px #f4cf5830}.main{padding-bottom:115px}@media(max-width:390px){.nav button{font-size:9px}.nav button span{height:35px;width:35px;font-size:20px}}</style></head><body><div class="shell">
 <header class="top"><div class="toprow"><div class="brand"><div class="logo">IQ</div><div>MPPSC IQ<small>E-LEARNING PLATFORM</small></div></div><div class="topactions"><button class="topbtn" onclick="openLogin()">👤 <span id="userLabel">Student</span></button><button class="topbtn" onclick="openAdmin()">⚙ Admin</button></div></div><div class="hero"><div><span class="badge">PRELIMS 2027 • MAHAABHYAS 2.0</span><h1>तैयारी का अगला स्तर।</h1><p>सीखें • अभ्यास करें • रिवीजन करें • आगे बढ़ें</p></div><div class="heroemoji">🎓</div></div></header>
 <main class="main">
 <section id="home" class="page active">
@@ -62,7 +62,13 @@ body{background:var(--bg);color:var(--ink)}
 <section id="revision" class="page"><div class="heading"><h2>🔄 Revision Center</h2></div><div id="wrongList" class="list"></div><button class="btn gold full" style="margin-top:12px" onclick="startQuiz()">फिर से अभ्यास करें</button></section>
 <section id="progress" class="page"><div class="heading"><h2>📊 My Progress</h2></div><div class="stats"><div class="stat"><b id="pTests">0</b><span>टेस्ट</span></div><div class="stat"><b id="pScore">0</b><span>कुल अंक</span></div><div class="stat"><b id="pAcc">—</b><span>सटीकता</span></div><div class="stat"><b id="pWrong">0</b><span>रिवीजन प्रश्न</span></div></div><div class="heading"><h2>टेस्ट हिस्ट्री</h2></div><div id="history" class="list"></div></section>
 </main></div>
-<nav class="bottom"><div class="nav"><button class="active" data-page="home" onclick="go('home',this)"><span>🏠</span>होम</button><button data-page="courses" onclick="go('courses',this)"><span>📚</span>कोर्स</button><button data-page="practice" onclick="go('practice',this)"><span>📝</span>प्रैक्टिस</button><button data-page="notes" onclick="go('notes',this)"><span>📄</span>मटेरियल</button><button data-page="progress" onclick="go('progress',this)"><span>📊</span>प्रोग्रेस</button></div></nav>
+<nav class="bottom"><div class="nav">
+<button class="active" data-page="home" onclick="go('home',this)"><span>⌂</span>Home</button>
+<button data-page="progress" onclick="go('progress',this)"><span>▦</span>Dashboard</button>
+<button data-page="courses" onclick="go('courses',this)"><span>♟</span>Batches</button>
+<button data-page="notes" onclick="go('notes',this)"><span>▤</span>Library</button>
+<button data-page="practice" onclick="go('practice',this)"><span>✦</span>MPPSC IQ</button>
+</div></nav>
 <div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()"><div class="modalbox"><div class="modalhead"><h2 id="modalTitle">MPPSC IQ</h2><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div><div id="toast" class="toast hidden"></div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
