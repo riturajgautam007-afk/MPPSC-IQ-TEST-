@@ -1,46 +1,60 @@
-# MPPSC IQ E-Learning — Firebase backend setup
+# MPPSC IQ E-Learning — Firebase setup and launch
 
-This repository now contains a backend setup scaffold. The live e-learning HTML currently remains a front-end prototype; shared accounts, paid enrollment and shared progress are **not active until Firebase is configured and the app is connected to it**.
+The e-learning page now includes Firebase Email/Password registration/login, password reset, Firestore course loading/publishing for verified admins, and cloud saving of quiz attempts. The live features depend on Firebase Console services and rules being enabled.
 
-## 1. Create Firebase project
-1. Open https://console.firebase.google.com/ and create a project named for MPPSC IQ.
-2. Add a Web App and copy its Firebase web configuration.
-3. In Authentication → Sign-in method, enable Email/Password. Add Google sign-in only if you need it.
-4. In Firestore Database, create a production database.
-5. In Storage, enable a bucket for course files.
-6. In Project settings → General, register the deployed GitHub Pages domain in authorized domains if required.
+## Firebase project already identified
+The existing Android configuration identifies:
+- Project ID: `mppsc-iq`
+- Project number / sender ID: `933540789062`
+- Android package: `com.mppsciq.app`
 
-## 2. Add web configuration
-1. Copy `firebase-config.example.js` to `firebase-config.js`.
-2. Replace the placeholder values with the Firebase Web App config.
-3. Do not put service-account JSON, private keys, payment gateway secrets, or admin credentials in this file.
-4. Firebase web config identifies the project; Firestore/Storage rules and Authentication control access.
+The page currently reuses values recovered from the supplied Android `google-services.json`. **For a correct web deployment, register a Web App in this same Firebase project and replace the `appId` in `e-learning-app.html` with the Web App's appId.** Do not create a second Firebase project.
 
-## 3. Deploy rules
-Install Firebase CLI on a trusted computer, sign in, select your project, and deploy:
+## 1. Enable Firebase services
+1. Open Firebase Console and select project `mppsc-iq`.
+2. In Project settings → General, add a **Web App** and copy its config. Replace `appId` in the configuration near the top of `e-learning-app.html` with the Web App appId. The other project values should remain for `mppsc-iq`.
+3. In Authentication → Sign-in method, enable **Email/Password**.
+4. In Authentication → Settings → Authorized domains, ensure the GitHub Pages domain is allowed.
+5. Create a Cloud Firestore database.
+
+## 2. Deploy Firestore rules
+Install Firebase CLI on a trusted computer, sign in, select the existing project, and deploy:
 ```bash
 firebase login
 firebase use --add
+# Select the existing project: mppsc-iq
 firebase deploy --only firestore:rules,storage
 ```
-Check `firebase.json` and make sure the selected project is correct before deployment. Test rules in the Firebase Emulator first if possible.
+Verify the selected project before deployment. Test rules before inviting students.
 
-## 4. Data model
-- `users/{uid}`: student profile; Auth UID is the document ID.
-- `courses/{courseId}`: title, description, category, published, pricePaise, createdAt.
-- `lessons/{lessonId}`: courseId, title, type, storagePath/url, published, order.
-- `enrollments/{id}`: uid, courseId, status, providerOrderId, createdAt. Only trusted admin/server grants enrollment.
-- `questions/{questionId}`: courseId/testId, questionHi, questionEn, options, answerIndex, explanationHi, explanationEn, published.
-- `attempts/{attemptId}`: uid, courseId, testId, score, correct, wrong, unanswered, total, createdAt.
+## 3. Admin access
+The page intentionally does not let a user grant themselves admin access. The Firestore rules require the Firebase custom claim `admin: true`; without it, the Admin Panel stays locked and a normal student cannot publish or delete courses.
 
-## 5. Admin access
-The security rules expect a Firebase custom claim `admin: true`. Set it only from a trusted Admin SDK environment using a service account that is never shipped to the browser. Do not make a public “make me admin” form.
+Set this claim only with the Firebase Admin SDK in a trusted environment. Never commit service-account JSON or admin credentials to this repository. The Admin Panel then publishes course records in `courses/{courseId}`; student accounts can read only documents with `published: true`.
 
-## 6. Paid courses
-Payment must be verified server-side using a trusted backend/Cloud Function and the payment provider's signature verification. Only after successful verification should the server create/update an enrollment. Never unlock a paid course based only on a browser redirect or client-side flag. No payment gateway is configured in this repository yet.
+## 4. What is connected
+- Email/password registration and login through Firebase Authentication.
+- Password reset email.
+- Student profile document in `users/{uid}`.
+- Published course reads from Firestore.
+- Admin-only course/lesson publishing and deletion (custom claim required).
+- Quiz attempts written to `attempts` for signed-in students.
+- Local draft, wrong-question list, and detailed progress still remain on the current device unless separately synced.
 
-## 7. Important security notes
-- Review and test all rules before real students use the platform.
-- Current storage read rule allows authenticated users to read course materials; for paid/private materials, tighten it to require a matching active enrollment before uploading real paid content.
-- Do not upload copyrighted or private student data without permission.
-- GitHub Pages is static hosting; it cannot safely run payment verification or server-only admin code. Use Firebase Cloud Functions or another trusted backend for those operations.
+## 5. Not yet enabled
+- Paid-course checkout and secure payment verification.
+- Server-controlled paid enrollment / entitlement checks.
+- Private course-file uploads and protected video delivery.
+- Full cross-device sync for every progress item and mains draft.
+- Production admin-claim provisioning automation.
+
+Payment must be verified server-side using a trusted backend/Cloud Function and the payment provider's signature verification. Never unlock paid content from a browser redirect or client-side flag. GitHub Pages cannot safely run server-only admin/payment code.
+
+## Data model
+- `users/{uid}`: student profile.
+- `courses/{courseId}`: course fields and nested lesson list; `published` controls student visibility.
+- `enrollments/{id}`: server/admin-controlled course access grants.
+- `questions/{questionId}`: question bank (rules support published questions).
+- `attempts/{attemptId}`: signed-in student's quiz attempts.
+
+Never put service-account private keys, payment secrets, or passwords in HTML/JavaScript. Firebase web config is project-identification data; actual authorization is enforced by Firebase rules and Auth.
