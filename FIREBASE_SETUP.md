@@ -58,3 +58,26 @@ Payment must be verified server-side using a trusted backend/Cloud Function and 
 - `attempts/{attemptId}`: signed-in student's quiz attempts.
 
 Before publishing paid courses, add and test the trusted server-side payment verifier and create enrollment documents only after verified payment. Never put service-account private keys, payment secrets, or passwords in HTML/JavaScript. Firebase web config is project-identification data; actual authorization is enforced by Firebase rules and Auth.
+
+
+## 6. Secure, server-verified leaderboard (Cloud Functions)
+The repository now includes a callable Cloud Function, `submitRankedAttempt`. It calculates +3/−1/0 from the answer keys stored in published `questions/{questionId}` documents and writes the trusted attempt and aggregate leaderboard record with the Admin SDK. A browser must never send a score as the source of truth.
+
+### Deploy to the existing Firebase project
+From the repository root on a trusted computer:
+```bash
+npm install -g firebase-tools
+firebase login
+firebase use mppsc-iq
+cd functions
+npm install
+cd ..
+firebase deploy --only functions,firestore:rules
+```
+Confirm the project shown by `firebase use` is `mppsc-iq` before deploying. Cloud Functions deployment may require the project to be on the Blaze billing plan. Do not commit service-account keys.
+
+### Ranked-question requirements
+- Each ranked question must be a document in `questions/{questionId}` with `published: true`, a four-item `opts` array, and integer answer index `ans` from 0 to 3.
+- Questions loaded only from the local/demo bank cannot be independently verified by the server and must not be counted in the competitive leaderboard.
+- The callable function rejects duplicate question IDs and repeated attempt IDs. The function is not considered live until deployment completes successfully.
+- Existing unverified legacy leaderboard records should be cleared by an administrator before announcing a clean competitive ranking.
