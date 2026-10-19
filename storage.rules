@@ -3,8 +3,21 @@ service firebase.storage {
   match /b/{bucket}/o {
     function signedIn() { return request.auth != null; }
     function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function hasEnrollment(courseId) {
+      let enrollmentPath = /databases/(default)/documents/enrollments/$(request.auth.uid + "_" + courseId);
+      return signedIn()
+        && firestore.exists(enrollmentPath)
+        && firestore.get(enrollmentPath).data.status == 'active';
+    }
+    function canReadCourse(courseId) {
+      let coursePath = /databases/(default)/documents/courses/$(courseId);
+      let course = firestore.get(coursePath).data;
+      return course.published == true
+        && (!course.keys().hasAny(['pricePaise']) || course.pricePaise <= 0 || hasEnrollment(courseId));
+    }
     match /course-materials/{courseId}/{fileName} {
-      allow read: if isAdmin() || (signedIn());
+      // Free published course files or an active enrollment are required.
+      allow read: if isAdmin() || (signedIn() && canReadCourse(courseId));
       allow write: if isAdmin()
         && request.resource.size < 100 * 1024 * 1024
         && request.resource.contentType.matches('(application/pdf|video/.*|image/.*)');
