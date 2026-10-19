@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function owns(uid) { return signedIn() && request.auth.uid == uid; }
+
+    match /courses/{courseId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.published == true);
+      allow create, update, delete: if isAdmin();
+    }
+    match /lessons/{lessonId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.published == true);
+      allow create, update, delete: if isAdmin();
+    }
+    match /users/{uid} {
+      allow read: if owns(uid) || isAdmin();
+      allow create: if owns(uid)
+        && request.resource.data.keys().hasOnly(['displayName','email','createdAt','photoURL'])
+        && request.resource.data.displayName is string;
+      allow update: if (owns(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','photoURL','updatedAt']))
+        || isAdmin();
+      allow delete: if isAdmin();
+    }
+    match /enrollments/{enrollmentId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      // Enrollment grants are server/admin controlled; clients cannot self-grant paid access.
+      allow create, update, delete: if isAdmin();
+    }
+    match /attempts/{attemptId} {
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','courseId','testId','score','correct','wrong','unanswered','total','createdAt']);
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+    match /questions/{questionId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.published == true);
+      allow create, update, delete: if isAdmin();
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
