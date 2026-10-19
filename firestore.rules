@@ -50,7 +50,7 @@ service cloud.firestore {
     match /attempts/{attemptId} {
       allow create: if signedIn()
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.keys().hasOnly(['uid','courseId','testId','score','correct','wrong','unanswered','total','createdAt']);
+        && request.resource.data.keys().hasOnly(['uid','courseId','testId','topic','score','correct','wrong','unanswered','total','createdAt']);
       allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
       allow update, delete: if isAdmin();
     }
