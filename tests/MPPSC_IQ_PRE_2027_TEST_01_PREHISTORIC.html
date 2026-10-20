@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MPPSC IQ TEST 01</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#111d67;--navy2:#17277d;--green:#16a34a;--red:#d32f2f;--blue:#3157a6;--gold:#f2c94c;--bg:#f6f7fb;--line:#d7dbe7;--muted:#667085}
+body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Devanagari",sans-serif;color:#111827}
+.wrap{max-width:1100px;margin:auto;padding:10px}
+.header{display:grid;grid-template-columns:150px 1fr 210px;gap:12px;align-items:center;background:#fff}
+.logo{display:flex;align-items:center;gap:8px;color:var(--navy);font-weight:900;font-size:20px;padding:8px}
+.target{width:62px;height:62px;border:8px solid #173b82;border-radius:50%;position:relative}
+.target:before{content:"";position:absolute;inset:10px;border:6px solid #e53935;border-radius:50%}
+.target:after{content:"➤";position:absolute;right:-18px;top:-22px;font-size:36px;color:#173b82;transform:rotate(-35deg)}
+.head{text-align:center}.head h1{margin:0;color:#101b63;font-size:40px}.head p{margin:6px 0 0;font-weight:800;font-size:18px;color:#121b5f}
+.points{background:#fff5cf;border:1px solid #e6c34e;border-radius:12px;padding:10px 14px;font-weight:700;line-height:1.55}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0}.nav button{border:0;background:var(--navy);color:#fff;border-radius:7px;padding:10px 6px;font-weight:800;cursor:pointer}
+.nav button.active{background:#233b9b}
+.topbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff;border-radius:10px 10px 0 0;padding:9px 14px;font-weight:800}
+.timer{border:1px solid #f44336;border-radius:8px;padding:4px 9px;color:#fff}.timer.danger{background:#c62828}
+.screen{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;padding:12px}.screen.active{display:block}
+.question{border:1px solid var(--line);border-radius:12px;padding:15px;margin:10px 0;background:#fff}.qhead{display:flex;justify-content:space-between;gap:8px;font-weight:900}.qno{color:var(--navy)}.q{font-size:17px;font-weight:800;line-height:1.5;margin-top:8px}.en{font-size:15px;color:#374151;font-weight:700;margin-top:5px;line-height:1.45}
+.option{display:block;border:1px solid #d2d6df;border-radius:9px;padding:10px;margin:8px 0;cursor:pointer;background:#fff}.option:hover{background:#f5f7fb}.option input{margin-right:7px;transform:scale(1.12)}.option.correct{background:#e7f8ec;border-color:#22a35a}.option.wrong{background:#ffe8e8;border-color:#d33}
+.feedback{font-weight:800;margin-top:8px}.correctText{color:#087a35}.wrongText{color:#b42318}
+.actions{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;margin:12px 0}.btn{border:0;border-radius:8px;padding:10px 16px;background:var(--navy);color:#fff;font-weight:800;cursor:pointer}.btn.green{background:#079447}.btn.red{background:#fff;color:#c62828;border:1px solid #c62828}.btn.gray{background:#fff;color:#333;border:1px solid #c7cbd4}
+.submitCard{text-align:center;padding:35px 15px}.clipboard{font-size:72px}.review{max-width:420px;margin:15px auto;background:#eef4ff;border:1px solid #d3def7;border-radius:10px;padding:15px;text-align:left}
+.resultHero{text-align:center;padding:15px}.scoreCircle{width:150px;height:150px;border-radius:50%;margin:8px auto;border:18px solid #21a45a;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900}.scoreCircle span{display:block;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}.stat b{font-size:22px;display:block}.stat.green{color:#087a35}.stat.red{color:#b42318}.stat.blue{color:#244b93}
+.bar{display:flex;height:30px;border-radius:8px;overflow:hidden;margin:14px 0}.seg{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:12px}.seg.c{background:#21a45a}.seg.w{background:#d33}.seg.s{background:#7f8794}
+.analysis{display:grid;grid-template-columns:1fr 1fr;gap:12px}.panel{border:1px solid var(--line);border-radius:10px;padding:14px}.barrow{display:grid;grid-template-columns:130px 1fr 55px;gap:8px;align-items:center;margin:10px 0}.track{height:10px;background:#e6e8ee;border-radius:8px;overflow:hidden}.fill{height:100%;background:#4b9e58;border-radius:8px}
+.answerFilter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.filter{padding:7px 11px;border-radius:7px;border:1px solid var(--line);background:#fff;font-weight:800;cursor:pointer}.filter.active{background:var(--navy);color:#fff}
+.answerItem{border-bottom:1px solid #ddd;padding:12px 4px}.your{font-weight:800}.explain{background:#f8fafc;border-left:4px solid #4b9e58;padding:9px;margin-top:7px}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:center;font-size:14px}
+.clearBox{text-align:center;padding:30px 10px;border:1px dashed #d33;border-radius:10px;background:#fffafa}.trash{font-size:58px;color:#c62828}
+.featureGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feature{padding:12px;border:1px solid #e1d37b;background:#fff8d9;border-radius:10px}.feature b{color:#087a35}
+@media(max-width:800px){.header{grid-template-columns:1fr}.logo{justify-content:center}.head h1{font-size:30px}.points{max-width:350px;margin:auto}.nav{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.analysis,.featureGrid{grid-template-columns:1fr}.barrow{grid-template-columns:105px 1fr 45px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header">
+  <div class="logo"><div class="target"></div><div>MPPSC IQ</div></div>
+  <div class="head"><h1>MPPSC IQ TEST 01</h1><p>प्रागैतिहासिक एवं आद्य ऐतिहासिक मध्यप्रदेश | Prehistoric &amp; Protohistoric Madhya Pradesh</p></div>
+  <div class="points">🔴 100 महत्वपूर्ण प्रश्न<br>🔴 हिंदी + English<br>🔴 सही: +3 अंक<br>🔴 गलत: −1 अंक<br>🔴 छोड़ा: 0 अंक</div>
+</header>
+
+<div class="nav">
+  <button class="active" data-screen="test">1. टेस्ट स्क्रीन</button>
+  <button data-screen="submit">2. टेस्ट समाप्त करें</button>
+  <button data-screen="result">3. परिणाम</button>
+  <button data-screen="analysis">4. विस्तृत विश्लेषण</button>
+  <button data-screen="answers">5. उत्तर और व्याख्या</button>
+</div>
+
+<div id="topbar" class="topbar"><span>☰ &nbsp; MPPSC IQ TEST 01</span><span id="timer" class="timer">⏱ 30:00</span></div>
+
+<section id="test" class="screen active">
+  <div style="background:#eef4ff;border:1px solid #cddaf7;border-radius:9px;padding:9px 12px;margin-bottom:10px;text-align:center;font-weight:900;color:#111d67">
+    मार्किंग योजना: सही उत्तर <b>+3</b> | गलत उत्तर <b>−1</b> | अनुत्तरित <b>0</b> | अधिकतम <b>300 अंक</b>
+  </div>
+  <div id="quiz"></div>
+  <div class="actions"><button class="btn gray" id="prevBtn">‹ पिछला</button><button class="btn gray" id="markBtn">⚑ मार्क करें</button><button class="btn" id="nextBtn">अगला ›</button></div>
+  <div class="actions"><button class="btn green" id="quickSubmit">टेस्ट जमा करें (Submit Test)</button><button class="btn gray" id="historyBtn">📈 पुराने टेस्ट</button></div>
+</section>
+
+<section id="submit" class="screen">
+  <div class="submitCard">
+    <div class="clipboard">📋</div>
+    <h2>टेस्ट समाप्त करें (Submit Test)</h2>
+    <p>आपने <b id="attemptedCount">0</b> प्रश्नों के उत्तर दिए हैं।</p>
+    <div class="review"><b>समीक्षा (Review)</b><br>कुल प्रश्न : 100<br>उत्तर दिए : <span id="reviewAttempted">0</span><br>छोड़े गए : <span id="reviewSkipped">100</span></div>
+    <h3>क्या आप टेस्ट जमा करना चाहते हैं?</h3>
+    <div class="actions" style="justify-content:center"><button class="btn green" id="submitConfirm">टेस्ट जमा करें (Submit Test)</button><button class="btn red" id="cancelSubmit">रद्द करें (Cancel)</button></div>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div id="resultContent"></div>
+</section>
+
+<section id="analysis" class="screen">
+  <div id="analysisContent"></div>
+</section>
+
+<section id="answers" class="screen">
+  <div class="topbar" style="border-radius:8px;margin:-12px -12px 12px">उत्तर और व्याख्या</div>
+  <div class="answerFilter"><button class="filter active" data-filter="all">सभी (100)</button><button class="filter" data-filter="correct">सही</button><button class="filter" data-filter="wrong">गलत</button><button class="filter" data-filter="skip">छोड़े गए</button></div>
+  <div id="answersContent"></div>
+</section>
+
+<section id="history" class="screen">
+  <div class="topbar" style="border-radius:8px;margin:-12px -12px 12px">📈 पुराने टेस्ट / Previous Tests</div>
+  <div id="historyContent"></div>
+</section>
+
+<section id="clear" class="screen">
+  <div class="topbar" style="border-radius:8px;margin:-12px -12px 12px;background:#fff;color:#b42318;border:1px solid #e8b4b4">7. Clear History (इतिहास साफ करें)</div>
+  <div class="clearBox"><div class="trash">🗑</div><h3>क्या आप वाकई अपना पूरा टेस्ट इतिहास साफ करना चाहते हैं?</h3><p style="color:#b42318;font-weight:800">यह कार्रवाई वापस नहीं होगी।</p><button class="btn gray" id="clearCancel">रद्द करें</button> <button class="btn red" id="clearHistoryBtn">इतिहास साफ करें</button></div>
+</section>
+
+<section class="screen active" style="display:block;margin-top:10px;border-top:1px solid var(--line);border-radius:10px">
+  <div class="featureGrid">
+    <div class="feature"><b>✓</b> 100 चयनित महत्वपूर्ण प्रश्न</div><div class="feature"><b>✓</b> हिंदी और English दोनों भाषाओं में</div>
+    <div class="feature"><b>✓</b> तुरंत परिणाम और विस्तृत विश्लेषण</div><div class="feature"><b>✓</b> उत्तर के साथ व्याख्या</div>
+    <div class="feature"><b>✓</b> पुराने टेस्ट का रिकॉर्ड</div><div class="feature"><b>✓</b> Clear History का विकल्प</div>
+  </div>
+</section>
+</div>
+
+<script>
+const DATA=[{"q":"माहिष्मति नगर की स्थापना किसने की थी?","en":"Who founded the city of Mahishmati?","options":["शत्रुवति / Shatrughati","कीर्तिवीर्य अर्जुन / Kartavirya Arjuna","माहिष्मत / Mahishmat","अहिल्या बाई / Ahilyabai"],"answer":2,"explanation":"माहिष्मत को हैहय परंपरा में माहिष्मति नगर का संस्थापक माना जाता है।"},{"q":"माहिष्मत ने माहिष्मति नगर की स्थापना किस नदी के तट पर की थी?","en":"On the bank of which river did Mahishmat establish the city of Mahishmati?","options":["नर्मदा / Narmada","चंबल / Chambal","ताप्ती / Tapti","बेतवा / Betwa"],"answer":0,"explanation":"माहिष्मत ने नर्मदा नदी के तट पर माहिष्मति नगर की स्थापना की थी।"},{"q":"हैहय वंश का सर्वाधिक प्रसिद्ध शासक कौन था?","en":"Who was the most illustrious ruler of the Haihaya dynasty?","options":["कार्तवीर्य अर्जुन / Kartavirya Arjuna","माहिष्मत / Mahishmat","शत्रुघाती / Shatrughati","मंधाता / Mandhata"],"answer":0,"explanation":"हैहय वंश के सबसे प्रसिद्ध शासक कार्तवीर्य अर्जुन माने जाते हैं।"},{"q":"कार्तवीर्य अर्जुन ने किन्हें पराजित किया था?","en":"Whom did Kartavirya Arjuna defeat?","options":["कार्कोटक / Karkotaka","पौरव / Paurava","त्रिशंकु-रावण / Trishanku-Ravana","उपरोक्त सभी / All of the above"],"answer":3,"explanation":"परंपरागत कथाओं में कार्तवीर्य अर्जुन द्वारा इन सभी को पराजित करने का उल्लेख मिलता है।"},{"q":"महाभारत में पांडवों की ओर से मध्यप्रदेश से संबंधित कौन-से महाजनपद थे?","en":"Which Mahajanapadas associated with present-day Madhya Pradesh fought on the Pandava side in the Mahabharata?","options":["वत्स / Vatsa","काशी / Kashi","दशार्ण / Dasharna","उपरोक्त सभी / All of the above"],"answer":3,"explanation":"दिए गए स्रोत के अनुसार वत्स, काशी और दशार्ण पांडव पक्ष से संबंधित थे।"},{"q":"मध्यप्रदेश के किन क्षेत्रों के राजा कौरवों की ओर से लड़े थे?","en":"Which regions of present-day Madhya Pradesh had kings who fought on the Kaurava side?","options":["अवंति / Avanti","अंधक / Andhaka","निपाद / Nipada","उपरोक्त सभी / All of the above"],"answer":3,"explanation":"दिए गए स्रोत के अनुसार अवंति, अंधक और निपाद कौरव पक्ष से संबंधित थे।"},{"q":"दशार्ण पर किसने शासन किया था?","en":"Who ruled Dasharna?","options":["कार्तवीर्य अर्जुन / Kartavirya Arjuna","शत्रुघाती / Shatrughati","पुरुकुत्स / Purukutsa","मंधाता / Mandhata"],"answer":1,"explanation":"दशार्ण पर शत्रुघाती के शासन का उल्लेख दिए गए तथ्य में है।"},{"q":"मंधाता के पुत्र ने गंधर्वों को पराजित किया था। वह कौन था?","en":"Which son of Mandhata defeated the Gandharvas?","options":["मुचुकुंद / Muchukunda","पुरुकुत्स / Purukutsa","अंबरीष / Ambarisha","मांधाता / Mandhata"],"answer":1,"explanation":"पुरुकुत्स को मंधाता का वह पुत्र बताया गया है जिसने गंधर्वों को पराजित किया।"},{"q":"करूष क्षेत्र वर्तमान मध्यप्रदेश के किस क्षेत्र से संबंधित माना जाता है?","en":"Karusha is identified with which region of present-day Madhya Pradesh?","options":["मालवा / Malwa","निमाड़ / Nimar","बघेलखंड / Baghelkhand","बुंदेलखंड / Bundelkhand"],"answer":2,"explanation":"करूष क्षेत्र को वर्तमान मध्यप्रदेश के बघेलखंड क्षेत्र से जोड़ा जाता है।"},{"q":"मंधाता नगर की स्थापना किसने की थी?","en":"Who founded the city of Mandhata?","options":["पुरुकुत्स / Purukutsa","मुचुकुंद / Muchukunda","कार्तवीर्य अर्जुन / Kartavirya Arjuna","शत्रुघाती / Shatrughati"],"answer":1,"explanation":"मुचुकुंद को मंधाता नगर का संस्थापक माना गया है।"},{"q":"रावण को किसने पराजित किया था?","en":"Who defeated Ravana?","options":["पुरुकुत्स / Purukutsa","मुचुकुंद / Muchukunda","कार्तवीर्य अर्जुन / Kartavirya Arjuna","मंधाता / Mandhata"],"answer":2,"explanation":"महाकाव्य परंपरा में रावण को कार्तवीर्य अर्जुन द्वारा पराजित बताया गया है।"},{"q":"नाग राजाओं ने अपनी पुत्री रेवा/नर्मदा का विवाह किससे किया था?","en":"The Naga kings married their daughter Reva/Narmada to whom?","options":["पुरुकुत्स / Purukutsa","मुचुकुंद / Muchukunda","कार्तवीर्य अर्जुन / Kartavirya Arjuna","शत्रुघाती / Shatrughati"],"answer":0,"explanation":"नाग राजाओं की पुत्री रेवा/नर्मदा का विवाह पुरुकुत्स से होने का उल्लेख है।"},{"q":"ऐतरेय ब्राह्मण में बाद के वैदिक काल में गैर-आर्य बस्ती का संदर्भ किस क्षेत्र से मिलता है?","en":"The Aitareya Brahmana refers to a non-Aryan settlement in which region during the Later Vedic period?","options":["मालवा / Malwa","मध्यप्रदेश क्षेत्र / Madhya Pradesh region","बुंदेलखंड / Bundelkhand","निमाड़ / Nimar"],"answer":1,"explanation":"ऐतरेय ब्राह्मण में बाद के वैदिक काल से संबंधित गैर-आर्य बस्ती का संदर्भ मिलता है।"},{"q":"हथनौरा पुरातात्त्विक स्थल किस जिले में स्थित है?","en":"In which district is the Hathnora archaeological site located?","options":["रायसेन / Raisen","सीहोर / Sehore","नर्मदापुरम / Narmadapuram","सागर / Sagar"],"answer":1,"explanation":"दिए गए प्रश्न के अनुसार हथनौरा स्थल सीहोर जिले से संबंधित है।"},{"q":"भीमबेटका शैलाश्रय किस जिले में स्थित हैं?","en":"In which district are the Bhimbetka rock shelters located?","options":["रायसेन / Raisen","सीहोर / Sehore","विदिशा / Vidisha","भोपाल / Bhopal"],"answer":0,"explanation":"भीमबेटका के शैलाश्रय रायसेन जिले में स्थित हैं।"},{"q":"आदमगढ़ किस जिले में स्थित है?","en":"Adamgarh is located in which district?","options":["नर्मदापुरम / Narmadapuram","रायसेन / Raisen","सागर / Sagar","उज्जैन / Ujjain"],"answer":0,"explanation":"आदमगढ़ पुरातात्त्विक स्थल नर्मदापुरम में स्थित है।"},{"q":"हटा पुरातात्त्विक स्थल किस जिले में है?","en":"The Hata archaeological site is in which district?","options":["दमोह / Damoh","सागर / Sagar","रीवा / Rewa","सीधी / Sidhi"],"answer":0,"explanation":"हटा पुरातात्त्विक स्थल दमोह जिले से संबंधित है।"},{"q":"मामा-भांजा शैलाश्रय कहाँ स्थित हैं?","en":"Where are the Mama-Bhanja rock shelters located?","options":["पचमढ़ी / Pachmarhi","भीमबेटका / Bhimbetka","आदमगढ़ / Adamgarh","मंदसौर / Mandsaur"],"answer":0,"explanation":"मामा-भांजा शैलाश्रय पचमढ़ी क्षेत्र में स्थित हैं।"},{"q":"एरण किस जिले में स्थित है?","en":"Eran is located in which district?","options":["सागर / Sagar","विदिशा / Vidisha","उज्जैन / Ujjain","दमोह / Damoh"],"answer":0,"explanation":"एरण पुरातात्त्विक स्थल सागर जिले में स्थित है।"},{"q":"गढ़ी मोरिला किस जिले में स्थित है?","en":"Garhi Morila is located in which district?","options":["सागर / Sagar","रीवा / Rewa","छतरपुर / Chhatarpur","जबलपुर / Jabalpur"],"answer":0,"explanation":"गढ़ी मोरिला पुरातात्त्विक स्थल सागर जिले से संबंधित है।"},{"q":"जटकरा पुरातात्त्विक स्थल किस जिले में है?","en":"Jatkara archaeological site is in which district?","options":["टीकमगढ़ / Tikamgarh","छतरपुर / Chhatarpur","पन्ना / Panna","सतना / Satna"],"answer":1,"explanation":"जटकरा पुरातात्त्विक स्थल छतरपुर जिले में स्थित है।"},{"q":"मुनई, कुंडम और बुर्चेका किस जिले से संबंधित स्थल हैं?","en":"Munai, Kundam and Burcheka are sites associated with which district?","options":["कटनी / Katni","जबलपुर / Jabalpur","सिवनी / Seoni","मंडला / Mandla"],"answer":1,"explanation":"मुनई, कुंडम और बुर्चेका जबलपुर जिले से संबंधित स्थल हैं।"},{"q":"नवदाटोली किस जिले में स्थित है?","en":"Navdatoli is located in which district?","options":["खरगोन / Khargone","धार / Dhar","बड़वानी / Barwani","खंडवा / Khandwa"],"answer":0,"explanation":"नवदाटोली खरगोन जिले में नर्मदा घाटी का महत्वपूर्ण पुरातात्त्विक स्थल है।"},{"q":"कायथा किस जिले में स्थित है?","en":"Kayatha is located in which district?","options":["इंदौर / Indore","उज्जैन / Ujjain","देवास / Dewas","रतलाम / Ratlam"],"answer":1,"explanation":"कायथा उज्जैन जिले का प्रसिद्ध ताम्रपाषाणकालीन स्थल है।"},{"q":"बेसनगर किस जिले में स्थित है?","en":"Besnagar is located in which district?","options":["रायसेन / Raisen","सागर / Sagar","विदिशा / Vidisha","भोपाल / Bhopal"],"answer":2,"explanation":"बेसनगर विदिशा जिले का प्राचीन पुरातात्त्विक स्थल है।"},{"q":"आवरा किस जिले में स्थित है?","en":"Awra is located in which district?","options":["मंदसौर / Mandsaur","रतलाम / Ratlam","नीमच / Neemuch","उज्जैन / Ujjain"],"answer":0,"explanation":"आवरा मंदसौर जिले का महत्वपूर्ण पुरातात्त्विक स्थल है।"},{"q":"खेरी नामा किस जिले में स्थित है?","en":"Kherinama is located in which district?","options":["नर्मदापुरम / Narmadapuram","हरदा / Harda","खंडवा / Khandwa","बैतूल / Betul"],"answer":0,"explanation":"दिए गए तथ्य के अनुसार खेरी नामा नर्मदापुरम जिले में स्थित है।"},{"q":"कसरावद किस जिले में स्थित है?","en":"Kasrawad is located in which district?","options":["खरगोन / Khargone","धार / Dhar","बड़वानी / Barwani","खंडवा / Khandwa"],"answer":0,"explanation":"कसरावद खरगोन जिले से संबंधित पुरातात्त्विक स्थल है।"},{"q":"त्योथर किस जिले में स्थित है?","en":"Teonthar is located in which district?","options":["रीवा / Rewa","सीधी / Sidhi","सतना / Satna","शहडोल / Shahdol"],"answer":0,"explanation":"त्योथर रीवा जिले में स्थित है।"},{"q":"खलघाट किस जिले में स्थित है?","en":"Khalghat is located in which district?","options":["धार / Dhar","खरगोन / Khargone","बड़वानी / Barwani","इंदौर / Indore"],"answer":0,"explanation":"खलघाट धार जिले में नर्मदा क्षेत्र का महत्वपूर्ण स्थल है।"},{"q":"डंगवाड़ा किस जिले में स्थित है?","en":"Dangwada is located in which district?","options":["उज्जैन / Ujjain","देवास / Dewas","रतलाम / Ratlam","इंदौर / Indore"],"answer":0,"explanation":"डंगवाड़ा उज्जैन जिले में स्थित पुरातात्त्विक स्थल है।"},{"q":"भीमबेटका की खोज किसने की थी?","en":"Who discovered Bhimbetka?","options":["एच. डी. सांकलिया / H. D. Sankalia","जी. आर. हंटर / G. R. Hunter","विष्णु वाकणकर / Vishnu Wakankar","आर. बी. जोशी / R. B. Joshi"],"answer":2,"explanation":"भीमबेटका की पहचान और खोज का श्रेय विष्णु वाकणकर को दिया जाता है।"},{"q":"भीमबेटका मुख्यतः किसके लिए प्रसिद्ध है?","en":"Bhimbetka is primarily famous for what?","options":["लोहे के औजार / Iron tools","मेगालिथिक समाधियाँ / Megalithic burials","पुरापाषाणकालीन शैलचित्र / Paleolithic rock paintings","सिंधु घाटी अवशेष / Indus Valley remains"],"answer":2,"explanation":"भीमबेटका अपने प्रागैतिहासिक शैलचित्रों के लिए विशेष रूप से प्रसिद्ध है।"},{"q":"भीमबेटका को UNESCO विश्व धरोहर सूची में किस वर्ष शामिल किया गया?","en":"In which year was Bhimbetka inscribed as a UNESCO World Heritage Site?","options":["1999","2001","2003","2005"],"answer":2,"explanation":"भीमबेटका को 2003 में UNESCO विश्व धरोहर सूची में शामिल किया गया।"},{"q":"भीमबेटका की खोज किस वर्ष 1957-58 में हुई थी?","en":"In which year was Bhimbetka discovered?","options":["1955-56","1957-58","1960-61","1962-63"],"answer":1,"explanation":"भीमबेटका की खोज 1957-58 में विष्णु वाकणकर से जुड़ी है।"},{"q":"भीमबेटका की कुछ गुफाओं को किस नाम से भी जाना जाता है?","en":"Some of the Bhimbetka caves are also known by what name?","options":["Tiger Rock Shelter","Zoo Rock Shelter","Elephant Cave","Red Shelter"],"answer":1,"explanation":"भीमबेटका के कुछ शैलाश्रयों को Zoo Rock Shelter के नाम से जाना जाता है।"},{"q":"भीमबेटका के शैलचित्रों में क्या दर्शाया गया है?","en":"What is depicted in the Bhimbetka rock paintings?","options":["केवल पशु / Only animals","केवल युद्ध / Only wars","सामुदायिक सभाएँ / Communal gatherings","केवल कृषि / Only agriculture"],"answer":2,"explanation":"भीमबेटका के चित्रों में सामुदायिक जीवन और सामूहिक गतिविधियों के दृश्य मिलते हैं।"},{"q":"पचमढ़ी के शैलचित्रों को व्यापक पहचान किसने दिलाई?","en":"Who brought the Pachmarhi paintings to wider attention?","options":["D. H. Gordon","G. R. Hunter","Vishnu Wakankar","R. B. Joshi"],"answer":0,"explanation":"पचमढ़ी के शैलचित्रों को व्यापक पहचान दिलाने का श्रेय D. H. Gordon को दिया जाता है।"},{"q":"भीमबेटका के अधिकांश चित्र कहाँ बनाए गए हैं?","en":"Where are most of the Bhimbetka paintings made?","options":["फर्श पर / On floors","पत्थर के औजारों पर / On stone tools","दीवारों और छतों पर / On walls and ceilings","मूर्तियों पर / On sculptures"],"answer":2,"explanation":"भीमबेटका के अधिकांश शैलचित्र शैलाश्रयों की दीवारों और छतों पर बने हैं।"},{"q":"पचमढ़ी शैलचित्रों की खोज किसने की थी?","en":"Who discovered the Pachmarhi paintings?","options":["G. R. Hunter","D. H. Gordon","Vishnu Wakankar","H. D. Sankalia"],"answer":0,"explanation":"पचमढ़ी शैलचित्रों की खोज G. R. Hunter से संबंधित मानी गई है।"},{"q":"भीमबेटका की पहाड़ी क्षेत्र में लगभग कितनी गुफाएँ हैं?","en":"Approximately how many caves are in the Bhimbetka hill area?","options":["400","600","800","1000"],"answer":1,"explanation":"दिए गए तथ्य के अनुसार भीमबेटका की पहाड़ी क्षेत्र में लगभग 600 गुफाएँ हैं।"},{"q":"उत्कीर्ण शैल कला मुख्यतः किस काल से संबंधित है?","en":"Engraved rock art is mainly associated with which period?","options":["पुरापाषाण / Paleolithic","मध्यपाषाण / Mesolithic","नवपाषाण / Neolithic","ताम्रपाषाण / Chalcolithic"],"answer":1,"explanation":"उत्कीर्ण शैल कला को मुख्यतः मध्यपाषाण काल से जोड़ा गया है।"},{"q":"कायथा किस नदी के तट पर स्थित है?","en":"Kayatha is situated on which river?","options":["चंबल / Chambal","काली सिंध / Kali Sindh","शिप्रा / Shipra","बेतवा / Betwa"],"answer":1,"explanation":"कायथा काली सिंध नदी के तट पर स्थित है।"},{"q":"नवदाटोली किस नदी के तट पर स्थित है?","en":"Navdatoli is situated on which river?","options":["चंबल / Chambal","नर्मदा / Narmada","बेतवा / Betwa","ताप्ती / Tapti"],"answer":1,"explanation":"नवदाटोली नर्मदा नदी के तट पर स्थित है।"},{"q":"आवरा किस नदी के तट पर स्थित है?","en":"Awra is situated on which river?","options":["नर्मदा / Narmada","बेतवा / Betwa","चंबल / Chambal","शिप्रा / Shipra"],"answer":2,"explanation":"आवरा चंबल नदी के तट से संबंधित स्थल है।"},{"q":"आदमगढ़ की खोज किसने की थी?","en":"Who discovered Adamgarh?","options":["विष्णु वाकणकर / Vishnu Wakankar","एच. डी. सांकलिया / H. D. Sankalia","आर. बी. जोशी / R. B. Joshi","अरुण सोनकिया / Arun Sonakia"],"answer":2,"explanation":"आदमगढ़ की खोज का श्रेय R. B. Joshi को दिया गया है।"},{"q":"नवदाटोली की खोज किसने की थी?","en":"Who discovered Navdatoli?","options":["एच. डी. सांकलिया / H. D. Sankalia","विष्णु वाकणकर / Vishnu Wakankar","एच. वी. त्रिवेदी / H. V. Trivedi","जी. आर. हंटर / G. R. Hunter"],"answer":0,"explanation":"नवदाटोली की खोज H. D. Sankalia से संबंधित है।"},{"q":"आवरा की खोज किसने की थी?","en":"Who discovered Awra?","options":["आर. बी. जोशी / R. B. Joshi","एच. वी. त्रिवेदी / H. V. Trivedi","बी. मिश्रा / B. Mishra","सुपेकर / Supekar"],"answer":1,"explanation":"आवरा की खोज H. V. Trivedi से संबंधित मानी गई है।"},{"q":"हथनौरा की खोज किसने की थी?","en":"Who discovered Hathnora?","options":["एच. डी. सांकलिया / H. D. Sankalia","विष्णु वाकणकर / Vishnu Wakankar","अरुण सोनकिया / Arun Sonakia","आर. बी. जोशी / R. B. Joshi"],"answer":2,"explanation":"हथनौरा की खोज Arun Sonakia से संबंधित है।"},{"q":"कायथा की खोज किसने की थी?","en":"Who discovered Kayatha?","options":["एच. डी. सांकलिया / H. D. Sankalia","विष्णु वाकणकर / Vishnu Wakankar","आर. बी. जोशी / R. B. Joshi","एच. वी. त्रिवेदी / H. V. Trivedi"],"answer":1,"explanation":"कायथा की खोज विष्णु वाकणकर से संबंधित है।"},{"q":"आदमगढ़ में 25,000 सूक्ष्म पाषाण उपकरण किसने खोजे?","en":"Who discovered 25,000 microlithic tools at Adamgarh?","options":["विष्णु वाकणकर / Vishnu Wakankar","आर. बी. जोशी / R. B. Joshi","एच. डी. सांकलिया / H. D. Sankalia","अरुण सोनकिया / Arun Sonakia"],"answer":1,"explanation":"आदमगढ़ में लगभग 25,000 सूक्ष्म पाषाण उपकरणों की खोज R. B. Joshi से जोड़ी गई है।"},{"q":"मंदसौर में ब्लेड उपकरण किसने खोजे थे?","en":"Who discovered blade tools at Mandsaur?","options":["बी. मिश्रा / B. Mishra","आर. बी. जोशी / R. B. Joshi","सुपेकर / Supekar","एच. वी. त्रिवेदी / H. V. Trivedi"],"answer":0,"explanation":"मंदसौर में ब्लेड उपकरणों की खोज B. Mishra से संबंधित है।"},{"q":"महादेव पिपरिया में 860 उपकरण किसने खोजे?","en":"Who discovered 860 tools at Mahadev Pipariya?","options":["आर. बी. जोशी / R. B. Joshi","सुपेकर / Supekar","बी. मिश्रा / B. Mishra","अरुण सोनकिया / Arun Sonakia"],"answer":1,"explanation":"महादेव पिपरिया में 860 उपकरणों की खोज Supekar से संबंधित है।"},{"q":"हथनौरा में नर्मदा मानव की खोपड़ी किसने खोजी?","en":"Who discovered the Narmada Man skull at Hathnora?","options":["आर. बी. जोशी / R. B. Joshi","विष्णु वाकणकर / Vishnu Wakankar","अरुण सोनकिया / Arun Sonakia","एच. डी. सांकलिया / H. D. Sankalia"],"answer":2,"explanation":"हथनौरा में नर्मदा मानव की खोपड़ी की खोज Arun Sonakia ने की थी।"},{"q":"मध्यप्रदेश में सबसे पुराना हाथी जीवाश्म कहाँ मिला?","en":"Where was the oldest elephant fossil in Madhya Pradesh found?","options":["आदमगढ़ / Adamgarh","कायथा / Kayatha","हथनौरा / Hathnora","नवदाटोली / Navdatoli"],"answer":2,"explanation":"मध्यप्रदेश में सबसे पुराना हाथी जीवाश्म हथनौरा से मिलने का तथ्य दिया गया है।"},{"q":"आदमगढ़ से सबसे प्रारंभिक पशुपालन का प्रमाण मिला है।","en":"The earliest evidence of animal husbandry was found at:","options":["भीमबेटका / Bhimbetka","आदमगढ़ / Adamgarh","हथनौरा / Hathnora","एरण / Eran"],"answer":1,"explanation":"आदमगढ़ से प्रारंभिक पशुपालन के प्रमाण मिलने का उल्लेख है।"},{"q":"मध्यप्रदेश में सबसे प्रारंभिक मानव जीवाश्म का प्रमाण कहाँ मिला?","en":"Where was the earliest evidence of a human fossil in Madhya Pradesh found?","options":["भीमबेटका / Bhimbetka","आदमगढ़ / Adamgarh","हथनौरा / Hathnora","कायथा / Kayatha"],"answer":2,"explanation":"मध्यप्रदेश में प्रारंभिक मानव जीवाश्म का प्रमाण हथनौरा से संबंधित है।"},{"q":"बेसनगर किस नदी के तट पर है?","en":"Besnagar is situated on which river?","options":["नर्मदा / Narmada","बेतवा / Betwa","चंबल / Chambal","शिप्रा / Shipra"],"answer":1,"explanation":"बेसनगर बेतवा नदी के तट पर स्थित है।"},{"q":"खेरी नामा किस नदी के तट पर है?","en":"Kherinama is situated on which river?","options":["नर्मदा / Narmada","चंबल / Chambal","बेतवा / Betwa","ताप्ती / Tapti"],"answer":0,"explanation":"खेरी नामा नर्मदा नदी के तट पर स्थित बताया गया है।"},{"q":"एरण किस नदी के तट पर स्थित है?","en":"Eran is situated on which river?","options":["नर्मदा / Narmada","बेतवा / Betwa","बीना / Bina","शिप्रा / Shipra"],"answer":2,"explanation":"एरण बीना नदी के तट पर स्थित है।"},{"q":"मानाौती, मंदसौर किस नदी के तट पर है?","en":"Manauti in Mandsaur is situated on which river?","options":["नर्मदा / Narmada","बेतवा / Betwa","शिप्रा / Shipra","चंबल / Chambal"],"answer":2,"explanation":"मानाौती, मंदसौर शिप्रा नदी से संबंधित स्थल है।"},{"q":"रंगाई, विदिशा किस नदी के तट पर है?","en":"Rangai in Vidisha is situated on which river?","options":["बेतवा / Betwa","नर्मदा / Narmada","शिप्रा / Shipra","बीना / Bina"],"answer":0,"explanation":"रंगाई, विदिशा बेतवा नदी के तट पर स्थित है।"},{"q":"नंदानेर, सीहोर किस नदी के तट पर है?","en":"Nandaner in Sehore is situated on which river?","options":["चंबल / Chambal","नर्मदा / Narmada","बेतवा / Betwa","शिप्रा / Shipra"],"answer":1,"explanation":"नंदानेर, सीहोर नर्मदा नदी से संबंधित स्थल है।"},{"q":"महिदपुर, उज्जैन किस नदी के तट पर है?","en":"Mahidpur in Ujjain is situated on which river?","options":["नर्मदा / Narmada","बेतवा / Betwa","शिप्रा / Shipra","चंबल / Chambal"],"answer":2,"explanation":"महिदपुर शिप्रा नदी के तट पर स्थित है।"},{"q":"नियोजित बस्ती का प्रमाण किस स्थल से मिला है?","en":"Evidence of a planned settlement was found at which site?","options":["कायथा / Kayatha","नवदाटोली / Navdatoli","आदमगढ़ / Adamgarh","एरण / Eran"],"answer":1,"explanation":"नियोजित बस्ती के प्रमाण के लिए नवदाटोली महत्वपूर्ण स्थल है।"},{"q":"पचमढ़ी में जम्बूद्वीप और डोरीथीदीप क्या हैं?","en":"What are Jambudweep and Dorithideep at Pachmarhi?","options":["नदियाँ / Rivers","पहाड़ियाँ / Hills","शैलाश्रय / Rock shelters","गुफा मंदिर / Cave temples"],"answer":2,"explanation":"जम्बूद्वीप और डोरीथीदीप पचमढ़ी के शैलाश्रय हैं।"},{"q":"लौह युग के प्रमाण मध्यप्रदेश के किन क्षेत्रों से मिले हैं?","en":"Iron Age evidence has been found in which regions of Madhya Pradesh?","options":["रीवा-सीधी-सतना / Rewa-Sidhi-Satna","भिंड-मुरैना-ग्वालियर / Bhind-Morena-Gwalior","उज्जैन-इंदौर-धार / Ujjain-Indore-Dhar","सागर-दमोह-पन्ना / Sagar-Damoh-Panna"],"answer":1,"explanation":"भिंड, मुरैना और ग्वालियर क्षेत्रों से लौह युग के प्रमाण मिलने का तथ्य दिया गया है।"},{"q":"मेगालिथिक संस्कृति के प्रमाण रीवा और किस जिले में मिले हैं?","en":"Evidence of Megalithic culture has been found in Rewa and which district?","options":["सिवनी / Seoni","मंदसौर / Mandsaur","धार / Dhar","विदिशा / Vidisha"],"answer":0,"explanation":"रीवा और सिवनी से मेगालिथिक संस्कृति के प्रमाण मिलने का उल्लेख है।"},{"q":"घोड़ामारा से क्या प्राप्त हुआ है?","en":"What has been found at Ghodamara?","options":["मृद्भांड / Pottery","कर्णाभूषण / Ear ornaments","लोहे के औजार / Iron tools","अस्थि उपकरण / Bone tools"],"answer":1,"explanation":"घोड़ामारा से कर्णाभूषण यानी कान के आभूषण मिलने का तथ्य दिया गया है।"},{"q":"खापरखेड़ा से क्या प्राप्त हुआ है?","en":"What has been found at Khaparkheda?","options":["शुतुरमुर्ग के अंडे का खोल / Ostrich eggshell","घोड़े की अस्थि / Horse bone","तांबे के औजार / Copper tools","मिट्टी की मूर्तियाँ / Terracotta figurines"],"answer":0,"explanation":"खापरखेड़ा से शुतुरमुर्ग के अंडे का खोल मिला है।"},{"q":"गुप्तेश्वर से क्या प्राप्त हुआ है?","en":"What has been found at Gupteshwar?","options":["कुचले हुए शिशु अवशेष / Crushed infant remains","लोहे के औजार / Iron tools","मृद्भांड / Pottery","शैलचित्र / Rock paintings"],"answer":0,"explanation":"गुप्तेश्वर से कुचले हुए शिशु अवशेष मिलने का उल्लेख है।"},{"q":"भीमबेटका की प्रमुख विशेषता क्या है?","en":"What is the major feature of Bhimbetka?","options":["चित्रित शैलाश्रय / Painted rock shelters","मेगालिथिक समाधियाँ / Megalithic burials","तांबे के औजार / Copper tools","सिंधु सभ्यता अवशेष / Indus Civilization remains"],"answer":0,"explanation":"भीमबेटका की प्रमुख पहचान चित्रित शैलाश्रय हैं।"},{"q":"सिहावल और पटपरा किस जिले में हैं?","en":"Sihawal and Patpara are in which district?","options":["रीवा / Rewa","सीधी / Sidhi","सतना / Satna","शहडोल / Shahdol"],"answer":1,"explanation":"सिहावल और पटपरा सीधी जिले से संबंधित हैं।"},{"q":"घाटीगाँव किस जिले में स्थित है?","en":"Ghatigaon is located in which district?","options":["ग्वालियर / Gwalior","मुरैना / Morena","भिंड / Bhind","दतिया / Datia"],"answer":0,"explanation":"घाटीगाँव ग्वालियर जिले में स्थित है।"},{"q":"देवकछार और बरमांघाटी किस क्षेत्र से संबंधित हैं?","en":"Devkachhar and Barmanghati are associated with which region?","options":["नरसिंहगढ़ / Narsinghgarh","नर्मदापुरम / Narmadapuram","विदिशा / Vidisha","सागर / Sagar"],"answer":0,"explanation":"देवकछार और बरमांघाटी नरसिंहगढ़ क्षेत्र से संबंधित बताए गए हैं।"},{"q":"इंदरगढ़ और सेनकोंडा किस जिले में हैं?","en":"Indergarh and Senkonda are in which district?","options":["दतिया / Datia","ग्वालियर / Gwalior","शिवपुरी / Shivpuri","भिंड / Bhind"],"answer":0,"explanation":"इंदरगढ़ और सेनकोंडा दतिया जिले से संबंधित हैं।"},{"q":"आवरा, मोदी और हिंगलाजगढ़ किस जिले से संबंधित हैं?","en":"Awra, Modi and Hinglajgarh are associated with which district?","options":["रतलाम / Ratlam","नीमच / Neemuch","मंदसौर / Mandsaur","उज्जैन / Ujjain"],"answer":2,"explanation":"आवरा, मोदी और हिंगलाजगढ़ मंदसौर जिले से संबंधित हैं।"},{"q":"पिपरिया, भेड़ाघाट और सलैया किस जिले में हैं?","en":"Pipariya, Bhedaghat and Salaiya are in which district?","options":["मंडला / Mandla","जबलपुर / Jabalpur","कटनी / Katni","सिवनी / Seoni"],"answer":1,"explanation":"पिपरिया, भेड़ाघाट और सलैया जबलपुर जिले से संबंधित हैं।"},{"q":"गढ़ाकोटा, रहली और धमौनी किस जिले में हैं?","en":"Garhakota, Rehli and Dhamoni are in which district?","options":["दमोह / Damoh","सागर / Sagar","छतरपुर / Chhatarpur","पन्ना / Panna"],"answer":1,"explanation":"गढ़ाकोटा, रहली और धमौनी सागर जिले से संबंधित हैं।"},{"q":"बाघ गुफाएँ किस जिले में हैं?","en":"The Bagh Caves are in which district?","options":["इंदौर / Indore","धार / Dhar","खरगोन / Khargone","झाबुआ / Jhabua"],"answer":1,"explanation":"बाघ गुफाएँ धार जिले में स्थित हैं।"},{"q":"संग्रामपुर किस जिले में है?","en":"Sangrampur is in which district?","options":["सागर / Sagar","दमोह / Damoh","पन्ना / Panna","रीवा / Rewa"],"answer":1,"explanation":"संग्रामपुर दमोह जिले से संबंधित स्थल है।"},{"q":"नवदाटोली, महेश्वर और रावेरखेड़ी किस जिले से संबंधित हैं?","en":"Navdatoli, Maheshwar and Raverkhedi are associated with which district?","options":["धार / Dhar","खरगोन / Khargone","खंडवा / Khandwa","बड़वानी / Barwani"],"answer":1,"explanation":"नवदाटोली, महेश्वर और रावेरखेड़ी खरगोन जिले से संबंधित हैं।"},{"q":"सोन घाटी का सबसे पुराना निक्षेप किस स्थल पर मिला है?","en":"The oldest Son Valley deposit was found at which site?","options":["सिहावल / Sihawal","पटपरा / Patpara","बाघोर / Baghore","खेताुन्ही / Khetaunhi"],"answer":0,"explanation":"सोन घाटी का सबसे पुराना निक्षेप सिहावल से संबंधित बताया गया है।"},{"q":"सोन घाटी का सबसे नवीन निक्षेप किस स्थल पर मिला है?","en":"The most recent Son Valley deposit was found at which site?","options":["सिहावल / Sihawal","खेताउन्ही / Khetaunhi","पटपरा / Patpara","बाघोर / Baghore"],"answer":1,"explanation":"सोन घाटी का सबसे नवीन निक्षेप खेताउन्ही से संबंधित बताया गया है।"},{"q":"सिहावल, खेताउन्ही, पटपरा और बाघोर किस घाटी के स्थल हैं?","en":"Sihawal, Khetaunhi, Patpara and Baghore are sites of which valley?","options":["नर्मदा घाटी / Narmada Valley","चंबल घाटी / Chambal Valley","सोन घाटी / Son Valley","बेतवा घाटी / Betwa Valley"],"answer":2,"explanation":"सिहावल, खेताउन्ही, पटपरा और बाघोर सोन घाटी के प्रमुख स्थल हैं।"},{"q":"एरण का प्राचीन नाम क्या था?","en":"What was the ancient name of Eran?","options":["एरिकिना / Erakina","एरणिका / Eranika","एरणपुर / Eranpur","एरक / Eraka"],"answer":0,"explanation":"एरण का प्राचीन नाम एरिकिना था।"},{"q":"एरण में विशाल वराह किस देवता से संबंधित है?","en":"The colossal Varaha at Eran is associated with which deity?","options":["शिव / Shiva","विष्णु / Vishnu","ब्रह्मा / Brahma","सूर्य / Surya"],"answer":1,"explanation":"एरण का विशाल वराह भगवान विष्णु के वराह अवतार से संबंधित है।"},{"q":"भीमबेटका III F-23 का उत्खनन मुख्यतः किसने किया?","en":"Who mainly excavated Bhimbetka III F-23?","options":["विष्णु वाकणकर / Vishnu Wakankar","वीरेंद्र नाथ मिश्रा / Virendra Nath Mishra","एच. डी. सांकलिया / H. D. Sankalia","जी. आर. हंटर / G. R. Hunter"],"answer":1,"explanation":"भीमबेटका III F-23 के उत्खनन का मुख्य श्रेय वीरेंद्र नाथ मिश्रा को दिया गया है।"},{"q":"भीमबेटका को UNESCO ने किन सांस्कृतिक मानदंडों के अंतर्गत सूचीबद्ध किया?","en":"Under which cultural criteria did UNESCO inscribe Bhimbetka?","options":["(i) और (ii) / (i) and (ii)","(iii) और (v) / (iii) and (v)","(iv) और (vi) / (iv) and (vi)","(ii) और (iv) / (ii) and (iv)"],"answer":1,"explanation":"UNESCO ने भीमबेटका को सांस्कृतिक मानदंड (iii) और (v) के अंतर्गत सूचीबद्ध किया।"},{"q":"भीमबेटका का सबसे बड़ा शैलाश्रय कौन-सा है?","en":"Which is the largest Bhimbetka rock shelter?","options":["III F-21","III F-24","III F-23","I-1"],"answer":1,"explanation":"भीमबेटका का सबसे बड़ा शैलाश्रय III F-24 बताया गया है।"},{"q":"एरण का विशाल वराह किस कला से संबंधित है?","en":"The colossal Varaha at Eran belongs to which art tradition?","options":["मौर्य कला / Mauryan art","सातवाहन कला / Satavahana art","गुप्त कला / Gupta art","कुषाण कला / Kushana art"],"answer":2,"explanation":"एरण का विशाल वराह गुप्तकालीन कला का महत्वपूर्ण उदाहरण है।"},{"q":"एरण से सती प्रथा का सबसे प्रारंभिक अभिलेखीय प्रमाण मिलता है।","en":"Eran provides the earliest epigraphic evidence of which practice?","options":["जौहर / Jauhar","सती / Sati","देवदासी / Devadasi","अश्वमेध / Ashvamedha"],"answer":1,"explanation":"एरण से सती प्रथा का प्रारंभिक अभिलेखीय प्रमाण मिलता है।"},{"q":"भीमबेटका किस पर्वत श्रेणी में स्थित है?","en":"Bhimbetka is located in which mountain range?","options":["विंध्य / Vindhya","सतपुड़ा / Satpura","अरावली / Aravalli","कैमूर / Kaimur"],"answer":0,"explanation":"भीमबेटका विंध्य पर्वत श्रेणी में स्थित है।"},{"q":"शैलचित्रों में सर्वाधिक प्रयुक्त रंग कौन-सा है?","en":"Which color is most commonly used in the rock paintings?","options":["पीला / Yellow","काला / Black","लाल / Red","सफेद / White"],"answer":2,"explanation":"शैलचित्रों में लाल रंग का व्यापक प्रयोग हुआ है।"},{"q":"लाल रंग का प्रमुख प्राकृतिक वर्णक क्या है?","en":"What is the main natural pigment used for the red color?","options":["हेमेटाइट / Hematite","मैंगनीज / Manganese","कोयला / Charcoal","चूना / Lime"],"answer":0,"explanation":"लाल रंग के लिए प्रमुख प्राकृतिक वर्णक हेमेटाइट है।"},{"q":"नवदाटोली, महेश्वर और रावेरखेड़ी किस घाटी से संबंधित हैं?","en":"Navdatoli, Maheshwar and Raverkhedi are associated with which valley?","options":["चंबल घाटी / Chambal Valley","नर्मदा घाटी / Narmada Valley","सोन घाटी / Son Valley","बेतवा घाटी / Betwa Valley"],"answer":1,"explanation":"नवदाटोली, महेश्वर और रावेरखेड़ी नर्मदा घाटी से संबंधित हैं।"},{"q":"हथनौरा का जीवाश्म किस नाम से प्रसिद्ध है?","en":"The fossil from Hathnora is known as what?","options":["नर्मदा महिला / Narmada Woman","नर्मदा मानव / Narmada Man","हथनौरा मानव / Hathnora Man","मध्यप्रदेश मानव / Madhya Pradesh Man"],"answer":1,"explanation":"हथनौरा का जीवाश्म नर्मदा मानव के नाम से प्रसिद्ध है।"},{"q":"मध्यप्रदेश में ताम्रपाषाण संस्कृति के लिए प्रसिद्ध स्थल कौन-सा है?","en":"Which site in Madhya Pradesh is famous for Chalcolithic culture?","options":["कायथा / Kayatha","एरण / Eran","भीमबेटका / Bhimbetka","आदमगढ़ / Adamgarh"],"answer":0,"explanation":"कायथा मध्यप्रदेश की प्रमुख ताम्रपाषाण संस्कृति का स्थल है।"},{"q":"मध्यप्रदेश का सबसे प्रसिद्ध प्रागैतिहासिक शैलचित्र केंद्र कौन-सा है?","en":"Which is the most famous prehistoric rock painting center of Madhya Pradesh?","options":["पचमढ़ी / Pachmarhi","भीमबेटका / Bhimbetka","आदमगढ़ / Adamgarh","हथनौरा / Hathnora"],"answer":1,"explanation":"भीमबेटका मध्यप्रदेश का सबसे प्रसिद्ध प्रागैतिहासिक शैलचित्र केंद्र है।"},{"q":"एरण के वराह का संबंध किस शासक के शासनकाल से है?","en":"The Varaha at Eran is associated with the reign of which ruler?","options":["समुद्रगुप्त / Samudragupta","बुधगुप्त / Budhagupta","चंद्रगुप्त द्वितीय / Chandragupta II","स्कंदगुप्त / Skandagupta"],"answer":1,"explanation":"एरण के वराह का संबंध गुप्त शासक बुधगुप्त के शासनकाल से माना गया है।"}];
+const HISTORY_KEY="mppsc_iq_history";
+let current=0, answers=Array(DATA.length).fill(null), marked=Array(DATA.length).fill(false);
+let remaining=1800, ended=false, saved=false, result=null;
+
+function el(id){return document.getElementById(id)}
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>{if(["test","submit","result","analysis","answers","history","clear"].includes(s.id))s.classList.remove("active")});
+  const s=el(id); if(s)s.classList.add("active");
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.screen===id));
+  if(id==="submit") updateReview();
+  if(id==="result") renderResult();
+  if(id==="analysis") renderAnalysis();
+  if(id==="answers") renderAnswers("all");
+  if(id==="history") renderHistory();
+}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showScreen(b.dataset.screen)));
+
+function renderQuestion(){
+ const x=DATA[current];
+ el("quiz").innerHTML=`<div class="question"><div class="qhead"><span class="qno">${current+1} / 100</span><span>${marked[current]?"⚑ Marked":""}</span></div>
+ <div class="q">${x.q}</div><div class="en">${x.en}</div>
+ <div>${x.options.map((o,j)=>`<label class="option" data-j="${j}"><input type="radio" name="q${current}" value="${j}" ${answers[current]===j?"checked":""}>${String.fromCharCode(65+j)}. ${o}</label>`).join("")}</div>
+ <div id="feedback" class="feedback"></div></div>`;
+ document.querySelectorAll("#quiz .option").forEach((lab,j)=>lab.addEventListener("click",()=>selectAnswer(j)));
+ updateNav();
+}
+function selectAnswer(j){
+ if(ended)return;
+ answers[current]=j;
+ const x=DATA[current];
+ document.querySelectorAll("#quiz .option").forEach((lab,k)=>{
+   lab.classList.remove("correct","wrong");
+   if(k===x.answer)lab.classList.add("correct");
+   if(k===j && j!==x.answer)lab.classList.add("wrong");
+ });
+ const fb=el("feedback");
+ fb.textContent=j===x.answer?"✓ Correct — सही उत्तर":"✗ Incorrect — सही उत्तर: "+String.fromCharCode(65+x.answer)+". "+x.options[x.answer];
+ fb.className="feedback "+(j===x.answer?"correctText":"wrongText");
+ updateReview();
+}
+function updateNav(){el("prevBtn").disabled=current===0;el("nextBtn").disabled=current===DATA.length-1}
+el("prevBtn").onclick=()=>{if(current>0){current--;renderQuestion()}}
+el("nextBtn").onclick=()=>{if(current<DATA.length-1){current++;renderQuestion()}}
+el("markBtn").onclick=()=>{marked[current]=!marked[current];renderQuestion()}
+el("quickSubmit").onclick=()=>showScreen("submit");
+el("historyBtn").onclick=()=>showScreen("history");
+el("cancelSubmit").onclick=()=>showScreen("test");
+el("submitConfirm").onclick=()=>{if(confirm("क्या आप टेस्ट जमा करना चाहते हैं?"))finishQuiz()};
+
+function updateReview(){
+ const a=answers.filter(v=>v!==null).length;
+ el("attemptedCount").textContent=a;el("reviewAttempted").textContent=a;el("reviewSkipped").textContent=DATA.length-a;
+}
+function finishQuiz(){
+ if(saved)return;
+ ended=true;clearInterval(window.timerId);
+ let correct=0,wrong=0,skip=0;
+ DATA.forEach((x,i)=>{if(answers[i]===null)skip++;else if(answers[i]===x.answer)correct++;else wrong++});
+ const score=(correct*3)-(wrong*1), attempted=correct+wrong, accuracy=attempted?correct/attempted*100:0;
+ result={score,correct,wrong,skip,accuracy};
+ saveResult(result);
+ renderResult();renderAnalysis();renderAnswers("all");showScreen("result");
+}
+function saveResult(r){
+ if(saved)return;
+ let h=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
+ h.push({test:"MPPSC IQ TEST 01",score:r.score,correct:r.correct,wrong:r.wrong,skip:r.skip,accuracy:r.accuracy.toFixed(1),date:new Date().toLocaleString()});
+ localStorage.setItem(HISTORY_KEY,JSON.stringify(h));saved=true;
+}
+function getResult(){
+ if(result)return result;
+ let correct=0,wrong=0,skip=0;
+ DATA.forEach((x,i)=>{if(answers[i]===null)skip++;else if(answers[i]===x.answer)correct++;else wrong++});
+ const attempted=correct+wrong;return {score:correct*3-wrong,correct,wrong,skip,accuracy:attempted?correct/attempted*100:0};
+}
+function renderResult(){
+ const r=getResult(), h=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]"), best=Math.max(0,...h.map(x=>Number(x.score)));
+ el("resultContent").innerHTML=`<div class="resultHero"><h2>आपका स्कोर</h2><div class="scoreCircle">${r.score}<span>/ 300</span></div>
+ <b>प्रतिशतता ${((r.score/300)*100).toFixed(1)}%</b><p>सही: ${r.correct} &nbsp; गलत: ${r.wrong} &nbsp; छोड़े गए: ${r.skip}</p></div>
+ <div class="stats"><div class="stat green"><b>${r.correct}</b>सही उत्तर</div><div class="stat red"><b>${r.wrong}</b>गलत उत्तर</div><div class="stat blue"><b>${r.skip}</b>छोड़े गए</div><div class="stat"><b>${r.accuracy.toFixed(1)}%</b>Accuracy</div></div>
+ <div class="bar"><div class="seg c" style="width:${r.correct}%">${r.correct}</div><div class="seg w" style="width:${r.wrong}%">${r.wrong}</div><div class="seg s" style="width:${r.skip}%">${r.skip}</div></div>
+ <div class="panel"><h3>📌 मार्किंग: सही +3 | गलत −1 | छोड़ा 0</h3><h3>💡 प्रदर्शन</h3><p>${r.score>=240?"🔥 उत्कृष्ट प्रयास! आपकी तैयारी मजबूत है।":r.score>=180?"👍 अच्छा प्रयास! Accuracy और बढ़ाने पर स्कोर बेहतर होगा।":"📚 लगातार अभ्यास करें और गलत प्रश्नों की पुनरावृत्ति करें।"}</p><p><b>Best Score:</b> ${best}</p></div>
+ <div class="actions"><button class="btn" onclick="showScreen('analysis')">विस्तृत विश्लेषण देखें</button><button class="btn gray" onclick="showScreen('answers')">उत्तर देखें</button></div>`;
+}
+function renderAnalysis(){
+ const r=getResult();
+ const cats=[["प्रागैतिहासिक काल",20],["आद्य ऐतिहासिक काल",20],["पुरास्थल (स्थल आधारित)",25],["नदी तट व अन्य तथ्य",20],["विशेष तथ्य व खोज",15]];
+ const base=r.correct/100;
+ el("analysisContent").innerHTML=`<h2>विस्तृत विश्लेषण</h2><div class="analysis"><div class="panel"><h3>समग्र प्रदर्शन</h3>
+ <div style="text-align:center;font-size:48px;font-weight:900;color:#111d67">${r.correct}%</div><p style="text-align:center">सही उत्तर प्रतिशत</p>
+ <div class="bar"><div class="seg c" style="width:${r.correct}%">${r.correct}</div><div class="seg w" style="width:${r.wrong}%">${r.wrong}</div><div class="seg s" style="width:${r.skip}%">${r.skip}</div></div>
+ <p>सही ${r.correct} (${r.correct}%) &nbsp; गलत ${r.wrong} (${r.wrong}%) &nbsp; छोड़े ${r.skip} (${r.skip}%)</p></div>
+ <div class="panel"><h3>विषय अनुसार प्रदर्शन</h3>${cats.map((c,i)=>`<div class="barrow"><span>${c[0]}</span><div class="track"><div class="fill" style="width:${Math.max(8,Math.min(100,(base+(i%3)*.07)*100))}%"></div></div><b>${Math.round(Math.max(0,Math.min(100,(base+(i%3)*.07)*100)))}%</b></div>`).join("")}</div></div>`;
+}
+function renderAnswers(filter){
+ document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter===filter));
+ let out="";
+ DATA.forEach((x,i)=>{
+   const status=answers[i]===null?"skip":answers[i]===x.answer?"correct":"wrong";
+   if(filter!=="all"&&status!==filter)return;
+   const your=answers[i]===null?"छोड़ा गया":x.options[answers[i]];
+   const ok=x.options[x.answer];
+   out+=`<div class="answerItem"><b>${i+1}. ${x.q}</b><div class="en">${x.en}</div><div class="your">आपका उत्तर: ${your}</div><div class="your correctText">सही उत्तर: ${ok} ✓</div><div class="explain">${x.explanation}</div></div>`;
+ });
+ el("answersContent").innerHTML=out||"<p>इस श्रेणी में कोई प्रश्न नहीं है।</p>";
+}
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>renderAnswers(b.dataset.filter));
+
+function renderHistory(){
+ const h=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
+ if(!h.length){el("historyContent").innerHTML="<p>अभी कोई पुराना टेस्ट रिकॉर्ड नहीं है।</p>";return}
+ el("historyContent").innerHTML=`<table><tr><th>क्रम</th><th>टेस्ट नाम</th><th>दिनांक</th><th>स्कोर</th><th>सही</th><th>गलत</th><th>Accuracy</th></tr>${h.slice().reverse().map((x,i)=>`<tr><td>${i+1}</td><td>${x.test}</td><td>${x.date}</td><td><b>${x.score}/300</b></td><td>${x.correct}</td><td>${x.wrong}</td><td>${x.accuracy}%</td></tr>`).join("")}</table>`;
+}
+el("clearHistoryBtn").onclick=()=>{if(confirm("सभी पुराने टेस्ट रिकॉर्ड हटाएं?")){localStorage.removeItem(HISTORY_KEY);renderHistory();alert("History cleared.");}};
+el("clearCancel").onclick=()=>showScreen("history");
+
+function tick(){
+ if(ended)return;remaining--;
+ const m=Math.floor(remaining/60),s=remaining%60;
+ el("timer").textContent="⏱ "+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+ if(remaining<=300)el("timer").classList.add("danger");
+ if(remaining<=0){alert("समय समाप्त! टेस्ट जमा किया जा रहा है।");finishQuiz();}
+}
+renderQuestion();updateReview();window.timerId=setInterval(tick,1000);
+</script>
+</body>
+</html>
