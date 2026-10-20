@@ -41,7 +41,12 @@ Set this claim only with the Firebase Admin SDK in a trusted environment. Never 
 - Quiz attempts written to `attempts` for signed-in students.
 - Mains draft, wrong-question list, test history, completed lessons, and quiz attempts are synced to Firebase for signed-in students.
 
-## 5. Not yet enabled
+## 5. Direct lesson-file upload (important billing limitation)
+The Admin Panel upload button stores files under `study-materials/{adminUid}/...`. Matching admin-only Storage rules are included in `storage.rules` and `firebase.json` already points to that rules file. Uploads are limited to 50 MiB and only signed-in users with the trusted Firebase custom claim `admin: true` can upload, read, or delete these files.
+
+**This upload cannot work while project `mppsc-iq` remains on the Spark plan.** Firebase's current Cloud Storage policy requires the Blaze pay-as-you-go plan for bucket access, even though usage may fall within a no-cost quota. Since the project is intentionally kept on Spark, do not expect the upload button to succeed; no billing-plan change has been made. If the project owner later explicitly chooses Blaze, review billing and budget alerts first, then provision/verify the bucket and deploy Storage rules. See the official [Firebase Storage billing FAQ](https://firebase.google.com/docs/storage/faqs-storage-changes-announced-sept-2024).
+
+## 6. Not yet enabled
 - Paid-course checkout and secure payment verification.
 - Server-controlled paid enrollment creation / payment verification (rules now require an active enrollment for paid course records and Storage files).
 - Private course-file uploads and protected video delivery.
@@ -60,7 +65,7 @@ Payment must be verified server-side using a trusted backend/Cloud Function and 
 Before publishing paid courses, add and test the trusted server-side payment verifier and create enrollment documents only after verified payment. Never put service-account private keys, payment secrets, or passwords in HTML/JavaScript. Firebase web config is project-identification data; actual authorization is enforced by Firebase rules and Auth.
 
 
-## 6. Secure, server-verified leaderboard (Cloud Functions)
+## 7. Secure, server-verified leaderboard (Cloud Functions)
 The repository now includes a callable Cloud Function, `submitRankedAttempt`. It calculates +3/−1/0 from the answer keys stored in published `questions/{questionId}` documents and writes the trusted attempt and aggregate leaderboard record with the Admin SDK. A browser must never send a score as the source of truth.
 
 ### Deploy to the existing Firebase project
@@ -84,5 +89,5 @@ Confirm the project shown by `firebase use` is `mppsc-iq` before deploying. Clou
 
 
 
-## 7. No-cost Firebase Spark plan
+## 8. No-cost Firebase Spark plan
 The automatic Firebase deployment workflow is intentionally disabled for the Spark (no-cost) plan because deploying Cloud Functions requires the Blaze plan and can incur charges. The app remains usable for authentication, Firestore-backed content, and practice tests within Firebase's free quotas. The secure competitive leaderboard must not accept client-calculated scores; server-verified leaderboard scoring remains disabled until a suitable backend is deliberately configured.
