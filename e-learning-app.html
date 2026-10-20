@@ -172,18 +172,8 @@ function renderRevision(){$('wrongList').innerHTML=db.wrong.length?db.wrong.map(
 function renderProgress(){let h=db.history,total=h.reduce((a,x)=>a+x.total,0),correct=h.reduce((a,x)=>a+x.correct,0),best=h.length?Math.max(...h.map(x=>Number(x.score)||0)):null;let days=[...new Set(h.map(x=>new Date(x.date).toDateString()))].sort((a,b)=>new Date(b)-new Date(a));let streak=0;if(days.length){let cursor=new Date();cursor.setHours(0,0,0,0);let today=cursor.toDateString();let yesterday=new Date(cursor.getTime()-86400000).toDateString();if(days[0]===today||days[0]===yesterday){for(let d of days){let expected=new Date(cursor.getTime()-streak*86400000).toDateString();if(d===expected||(!streak&&d===yesterday)){streak++;if(d===yesterday)cursor=new Date(cursor.getTime()-86400000)}else break}}} $('pTests').textContent=h.length;$('pScore').textContent=h.reduce((a,x)=>a+(Number(x.score)||0),0);$('pAcc').textContent=total?Math.round(correct/total*100)+'%':'0%';$('pWrong').textContent=db.wrong.length;if($('pBest'))$('pBest').textContent=best===null?'—':best;if($('pStreak'))$('pStreak').textContent=streak+' days';$('history').innerHTML=h.length?h.slice().reverse().map(x=>'<div class="item"><div class="itemicon">🧪</div><div class="itemmain"><b>'+new Date(x.date).toLocaleString('hi-IN',{dateStyle:'medium',timeStyle:'short'})+'</b><small>'+(esc(x.testId||'Test'))+' • '+x.correct+'/'+x.total+' सही उत्तर</small></div><b>'+x.score+' अंक</b></div>').join(''):'<div class="empty">अभी कोई टेस्ट हिस्ट्री नहीं। पहला क्विज़ हल करें।</div>';if($('leaderboard'))loadLeaderboard().catch(e=>console.warn(e))}
 async function loadLeaderboard(){const el=$('leaderboard');if(!el)return;if(!cloudUser||!cloudStore){el.innerHTML='<div class="item"><div class="itemicon">🔐</div><div class="itemmain"><b>Login required</b><small>ऑनलाइन रैंकिंग देखने के लिए लॉगिन करें।</small></div><button class="btn light" onclick="openLogin()">Login</button></div>';return}try{const snap=await cloudStore.collection('leaderboard').orderBy('score','desc').limit(50).get();const rows=snap.docs.map(d=>d.data());if(!rows.length){el.innerHTML='<div class="empty">अभी रैंकिंग उपलब्ध नहीं है। टेस्ट पूरा करें।</div>';return}const rank=rows.findIndex(x=>x.uid===cloudUser.uid)+1;el.innerHTML=(rank?'<div class="notice" style="margin-bottom:10px">आपकी रैंक: <b>#'+rank+'</b> / '+rows.length+'</div>':'')+rows.map((x,i)=>'<div class="rank-row"><span class="rank-no">'+(i===0?'🏆':i+1)+'</span><span class="rank-details"><b>'+esc(x.name||'Student')+(x.uid===cloudUser.uid?' (आप)':'')+'</b><small>'+Number(x.quizzes||0)+' tests • '+Number(x.accuracy||0)+'% accuracy</small></span><span class="rank-score">'+Number(x.score||0)+' pts</span></div>').join('')}catch(e){console.warn('Leaderboard unavailable',e);el.innerHTML='<div class="notice">Firebase में leaderboard collection के लिए अपडेटेड firestore.rules प्रकाशित करना आवश्यक है।</div>'}}
 async function submitRankedResult(result){
- if(!cloudUser||!cloudFunctions)return;
- const responses=activeQuestions.map((q,i)=>({questionId:q.cloudQuestionId||'',selectedIndex:Number.isInteger(rankedSelections[i])?rankedSelections[i]:null}));
- if(responses.some(x=>!x.questionId)){
-   toast('यह टेस्ट स्थानीय प्रश्नों से बना है; इसे सुरक्षित ऑनलाइन रैंकिंग में नहीं जोड़ा गया।');
-   return;
- }
- try{
-   const call=cloudFunctions.httpsCallable('submitRankedAttempt');
-   const res=await call({attemptId:rankedAttemptId,testId:result.testId,topic:result.topic,responses});
-   toast('ऑनलाइन रैंकिंग अपडेट: '+res.data.score+' अंक');
-   loadLeaderboard().catch(()=>{});
- }catch(e){console.warn('Verified leaderboard submission failed',e);throw e}
+ // Spark/no-cost plan: no callable Cloud Function is deployed, so never trust or publish client-calculated leaderboard scores.
+ if(cloudUser) toast('आपका टेस्ट सेव हुआ। सुरक्षित ऑनलाइन रैंकिंग के लिए सर्वर सुविधा उपलब्ध होने पर स्कोर जोड़े जाएँगे।');
 }
 
 function saveDraft(){db.draft=$('draft').value;save();toast('उत्तर का ड्राफ्ट सेव हो गया')}
