@@ -60,6 +60,15 @@ body{font-size:14px;line-height:1.5}.shell{max-width:1080px}
 /* Two clear exam sections with simple action tiles */
 .mains-coming-soon{grid-column:1/-1;border:1px solid #30333d;background:#171a22;border-radius:14px;padding:22px 16px;text-align:center;display:grid;gap:6px}.mains-coming-soon b{font-size:16px;color:#f4cf58}.mains-coming-soon span{font-size:12px;color:#a0a4b1}
 .home-tools-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:15px 0 8px}.home-tools-title h2{font-size:18px;margin:0}.home-tools-title span{font-size:11px;color:#a0a4b1}.exam-switch{display:flex}.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.home-category{min-height:92px;justify-content:center;align-items:flex-start;gap:10px;padding:13px}.home-category .category-icon{height:36px;width:36px;font-size:18px}.home-category span:last-child{font-size:13px;font-weight:750}.hidden{display:none!important}
+
+/* Keep only the requested home options; retain their destination pages */
+.topactions{display:none!important}
+.bottom{display:none!important}
+#home>.stats,#home>.heading,#home>.feature,#home>#mahabhyasDashboard,#home>#homeCourses,#home>.list{display:none!important}
+#home .announcement p{display:none}
+#home .announcement{margin-bottom:12px}
+#home .home-tools-title span{display:none}
+.main{padding-bottom:24px!important}
 </style></head><body><div class="shell">
 <header class="top"><div class="toprow"><div class="brand"><div class="logo">IQ</div><div>MPPSC IQ<small>E-LEARNING PLATFORM</small></div></div><div class="topactions"><button class="topbtn" onclick="openLogin()">👤 <span id="userLabel">Student</span></button><button class="topbtn" onclick="openAdmin()">⚙ Admin</button></div></div><div class="hero"><div><span class="badge">PRELIMS 2027 • MAHAABHYAS 2.0</span><h1>तैयारी का अगला स्तर।</h1><p>सीखें • अभ्यास करें • रिवीजन करें • आगे बढ़ें</p></div><div class="heroemoji">🎓</div></div></header>
 <main class="main">
