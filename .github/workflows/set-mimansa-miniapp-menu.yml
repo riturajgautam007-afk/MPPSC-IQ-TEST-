@@ -1,0 +1,24 @@
+name: Set MPPSC IQ Mimansa Mini App Menu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  configure-menu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Telegram Mini App menu button
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "$BOT_TOKEN" ]; then
+            echo "TELEGRAM_BOT_TOKEN secret is missing."
+            exit 1
+          fi
+          payload='{"menu_button":{"type":"web_app","text":"मीमांसा नोट्स","web_app":{"url":"https://riturajgautam007-afk.github.io/MPPSC-IQ-TEST-/mimansa-darshan-notes-miniapp.html"}}}'
+          curl --fail-with-body -sS \
+            -X POST \
+            -H "Content-Type: application/json" \
+            "https://api.telegram.org/bot${BOT_TOKEN}/setChatMenuButton" \
+            -d "$payload"
