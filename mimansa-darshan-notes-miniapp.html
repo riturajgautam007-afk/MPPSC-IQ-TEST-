@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+<html lang="hi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>MPPSC IQ | यूनिट 1</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Inter:wght@600;700;800&display=swap');
+*{box-sizing:border-box}
+body{margin:0;background:#e9eef4;color:#263445;font-family:'Hind',sans-serif;line-height:1.24}
+.sheet{width:200mm;height:300mm;margin:12px auto;padding:0;background:#fff;border:1.7px solid #173553;box-shadow:inset 0 0 0 1.6px #e6d4ae,0 8px 30px #10264122;overflow:hidden;display:flex;flex-direction:column}
+.hero{flex:0 0 auto;background:linear-gradient(110deg,#112a45,#244b70);color:#fff;padding:11px 14px 12px;text-align:center;border:0;border-bottom:1.2px solid #c49a50}
+.brand{font:800 15px Inter,sans-serif;letter-spacing:2.5px;color:#f0d69f;margin:0 0 6px}
+.hero h1{font-size:17px;margin:0;line-height:1.3}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin:3mm 4.5mm 0;align-items:stretch;flex:1;min-height:0}
+.col{min-width:0;min-height:0;display:flex;flex-direction:column;border-left:1.2px solid #9aabbb;border-right:1.2px solid #9aabbb;padding:0 1.2mm 1mm}
+.section{margin:0 0 2mm;break-inside:avoid}
+.stitle{display:flex;align-items:center;gap:5px;background:linear-gradient(100deg,#173553,#2b5277);color:#fff;border-radius:5px;padding:4px 6px;margin-bottom:2px}
+.stitle .n{background:#c49a50;color:#142d48;border-radius:4px;padding:2px 5px;font:800 8.5px Inter,sans-serif}
+.stitle h2{font-size:14px;margin:0;line-height:1.15}
+.stitle small{margin-left:auto;color:#ead8b8;font-size:8.8px;white-space:nowrap}
+table{width:100%;border-collapse:collapse;table-layout:fixed;border:1.2px solid #8296aa}
+th{background:#e2ebf4;color:#173553;text-align:left;font-size:10px;font-weight:700;padding:2.5px 4px;border:1px solid #8296aa}
+td{font-size:10.5px;padding:2.5px 4px;vertical-align:top;border:1px solid #a8b7c6;line-height:1.25}
+tbody tr:nth-child(even){background:#f0f5fa}
+td:first-child{width:34%;font-weight:700;color:#173b5d}
+td strong{color:#173b5d;font-weight:700}
+.sub{font-size:10px;font-weight:700;color:#76551f;margin:3px 0 2px;padding:3px 5px;background:#fbf3e4;border:1px solid #ead8b5;border-left:3px solid #c49a50;border-radius:4px}
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.five div{background:#edf3f9;border:1px solid #dce6f0;border-radius:4px;padding:4px 2px;text-align:center}
+.five b{display:block;color:#173553;font-size:9px}
+.five span{display:block;color:#536579;font-size:8px}
+.footer{flex:0 0 auto;text-align:center;font:700 8px Inter,sans-serif;letter-spacing:1.5px;color:#f0d69f;background:linear-gradient(100deg,#112a45,#244b70);border:0;border-top:1.2px solid #c49a50;padding:7px 8px;margin:0;width:100%}
+.download-wrap{width:200mm;max-width:100%;margin:12px auto 8px;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.download-image{appearance:none;border:0;border-radius:7px;background:#173553;color:#fff;padding:9px 16px;font:700 13px 'Hind',sans-serif;box-shadow:0 2px 8px #10264125;cursor:pointer}
+.download-image:active{transform:translateY(1px)}
+.download-image:disabled{opacity:.65;cursor:wait}
+@media screen and (max-width:800px){
+ body{background:#e9eef4}
+ .sheet{width:100%;height:auto;min-height:0;margin:0 0 12px;overflow:visible}
+ .columns{grid-template-columns:1fr;gap:10px;margin:10px;flex:none}
+ .col{height:auto}
+ .stitle h2{font-size:15px}
+ td,th{font-size:12px;padding:5px}
+ .sub{font-size:12px;padding:5px}
+ .five b{font-size:11px}.five span{font-size:10px}
+}
+@page{size:200mm 300mm;margin:0}
+@media print{
+ html,body{margin:0;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .download-wrap{display:none}
+ .sheet{width:200mm;height:300mm;margin:0;box-shadow:inset 0 0 0 1.6px #e6d4ae;break-after:page;page-break-after:always}
+ .sheet:last-child{break-after:auto;page-break-after:auto}
+}
+
+/* Full-page, reference-style two-column coverage */
+.page-sheet{
+  width:210mm!important;height:297mm!important;
+  margin:10px auto!important;
+  display:flex!important;flex-direction:column!important;
+  overflow:hidden!important;
+}
+.page-sheet .hero{flex:0 0 auto;padding:12px 14px 13px}
+.page-sheet .columns{
+  flex:1 1 auto!important;min-height:0!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:3mm!important;margin:3mm 3mm 0!important;
+  align-items:stretch!important;
+}
+.page-sheet .col{
+  display:flex!important;flex-direction:column!important;
+  min-height:0!important;height:100%!important;
+  padding:0 1mm 0!important;
+}
+.page-sheet .section{margin:0 0 2mm!important;break-inside:avoid}
+.page-sheet .col > .section:last-child{
+  flex:1 1 auto!important;min-height:0!important;
+  display:flex!important;flex-direction:column!important;
+  margin-bottom:0!important;
+}
+.page-sheet .col > .section:last-child > table:last-child{
+  flex:1 1 auto!important;height:100%!important;
+  margin-bottom:0!important;
+}
+.page-sheet .col > .section:last-child > table:last-child tbody{
+  height:100%!important;
+}
+.page-sheet .footer{margin-top:0!important;flex:0 0 auto!important}
+.page-sheet table{border-collapse:collapse!important}
+.page-sheet td{font-size:10.5px!important;line-height:1.25!important;padding:3px 4px!important}
+.page-sheet th{font-size:10px!important;padding:3px 4px!important}
+.page-sheet .stitle h2{font-size:14px!important}
+.page-sheet .sub{font-size:10px!important}
+@media screen and (max-width:800px){
+  .page-sheet{width:100%!important;height:auto!important;min-height:0!important;margin:0 0 12px!important;overflow:visible!important}
+  .page-sheet .columns{grid-template-columns:1fr!important;flex:none!important;margin:10px!important;gap:10px!important}
+  .page-sheet .col{height:auto!important}
+  .page-sheet .col > .section:last-child{flex:none!important}
+  .page-sheet .col > .section:last-child > table:last-child{flex:none!important;height:auto!important}
+}
+@page{size:A4 portrait;margin:0}
+@media print{
+  .page-sheet{width:210mm!important;height:297mm!important;margin:0!important;break-after:page;page-break-after:always}
+  .page-sheet:last-of-type{break-after:auto;page-break-after:auto}
+  .download-wrap{display:none!important}
+}
+
+
+/* Reference palette: deep maroon header with soft pink table rows */
+.page-sheet .hero,
+.page-sheet .footer,
+.page-sheet .stitle{
+  background:#8f1d27!important;
+}
+.page-sheet .brand{color:#ffe36a!important}
+.page-sheet .hero h1{color:#ffe36a!important}
+.page-sheet .stitle .n{background:#e3b34d!important;color:#3f2530!important}
+.page-sheet th{background:#f4dddd!important;color:#63323a!important;border-color:#d9a6a9!important}
+.page-sheet td{border-color:#e4c4c6!important}
+.page-sheet tbody tr:nth-child(even){background:#fff1ee!important}
+.page-sheet tbody tr:nth-child(odd){background:#fffaf8!important}
+.page-sheet .col{border-left:1px solid #d9a6a9!important;border-right:1px solid #d9a6a9!important}
+.page-sheet table{border:1.2px solid #8f1d27!important}
+.page-sheet .footer{color:#fff!important;border-top:1.2px solid #e3b34d!important}
+
+
+.page-sheet:nth-of-type(2) .added-section{margin-bottom:1.3mm!important}
+.page-sheet:nth-of-type(2) .added-section .stitle{padding:3px 5px!important;margin-bottom:1px!important}
+.page-sheet:nth-of-type(2) .added-section .stitle h2{font-size:12px!important}
+.page-sheet:nth-of-type(2) .added-section th{font-size:10px!important;padding:3px 4px!important}
+.page-sheet:nth-of-type(2) .added-section td{font-size:10.5px!important;line-height:1.25!important;padding:3px 4px!important}
+.page-sheet:nth-of-type(2) .added-section .sub{font-size:10px!important;padding:3px 5px!important;margin:3px 0 2px!important}
+
+/* Uniform typography across all sections and both pages */
+.page-sheet td{font-size:10.5px!important;line-height:1.25!important}
+.page-sheet th{font-size:10px!important}
+.page-sheet .sub{font-size:10px!important}
+.page-sheet .stitle h2{font-size:14px!important}
+.page-sheet .stitle small{font-size:10px!important}
+.page-sheet .five b{font-size:9px!important}
+.page-sheet .five span{font-size:8px!important}
+.page-sheet .added-section .stitle h2{font-size:14px!important}
+
+
+.page-sheet:nth-of-type(2) .col:nth-child(2) .section:has(.stitle h2) {margin-bottom:1.2mm!important}
+.page-sheet:nth-of-type(2) .col:nth-child(2) .section .sub {margin:2px 0 1px!important;padding:2px 4px!important}
+.page-sheet:nth-of-type(2) .col:nth-child(2) .section td {font-size:10.5px!important;line-height:1.18!important;padding:2px 4px!important}
+.page-sheet:nth-of-type(2) .col:nth-child(2) .section th {font-size:10px!important;padding:2px 4px!important}
+
+/* Expanded संस्कार and विवाह tables retain the document-wide typography */
+.page-sheet:nth-of-type(2) .added-section td,
+.page-sheet:nth-of-type(2) .added-section th{font-size:10.5px!important;line-height:1.2!important}
+.page-sheet:nth-of-type(2) .col .section td{font-size:10.5px!important}
+.page-sheet:nth-of-type(2) .col .section th{font-size:10px!important}
+.page-sheet:nth-of-type(2) .col .section .sub{font-size:10px!important}
+
+/* Right-column table text in pure black for clearer readability */
+.page-sheet .col:nth-child(2) td{color:#000000!important}
+
+.page-sheet .col:nth-child(2) td{color:#000000!important}
+
+/* Consistent row spacing and clearer reading across every page */
+.page-sheet table{
+  width:100%!important;
+  table-layout:fixed!important;
+  border-collapse:collapse!important;
+}
+.page-sheet th,
+.page-sheet td{
+  padding:5px 6px!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  vertical-align:middle!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+}
+.page-sheet td:first-child{
+  font-weight:600!important;
+}
+.page-sheet .sub{
+  line-height:1.35!important;
+  padding:5px 6px!important;
+}
+
+/* FIX: remove artificial vertical stretching that made some table rows too tall */
+.page-sheet .col > .section:last-child{
+  flex:0 0 auto!important;
+  display:block!important;
+  min-height:0!important;
+}
+.page-sheet .col > .section:last-child > table:last-child{
+  flex:0 0 auto!important;
+  height:auto!important;
+  margin-bottom:2mm!important;
+}
+.page-sheet .col > .section:last-child > table:last-child tbody{
+  height:auto!important;
+}
+.page-sheet table,
+.page-sheet table tbody,
+.page-sheet table tr{
+  height:auto!important;
+}
+.page-sheet table{
+  flex:none!important;
+  margin:0 0 2mm!important;
+}
+.page-sheet th,
+.page-sheet td{
+  padding:4px 5px!important;
+  font-size:10.5px!important;
+  line-height:1.25!important;
+  vertical-align:middle!important;
+}
+.page-sheet .sub{
+  margin:3px 0 2px!important;
+  padding:4px 5px!important;
+  line-height:1.25!important;
+}
+
+/* Desktop: let long pages grow naturally so content never disappears below footer */
+@media screen and (min-width:801px){
+  .page-sheet{
+    height:auto!important;
+    min-height:297mm!important;
+    overflow:visible!important;
+  }
+  .page-sheet .columns{
+    flex:0 0 auto!important;
+    min-height:0!important;
+    align-items:start!important;
+  }
+  .page-sheet .col{
+    height:auto!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .page-sheet .col > .section:last-child{
+    flex:0 0 auto!important;
+    display:block!important;
+  }
+  .page-sheet .col > .section:last-child > table:last-child{
+    height:auto!important;
+    flex:0 0 auto!important;
+  }
+  .page-sheet .col > .section:last-child > table:last-child tbody{
+    height:auto!important;
+  }
+  .page-sheet .footer{
+    flex:0 0 auto!important;
+    margin-top:4mm!important;
+  }
+}
+
+/* Final desktop layout: footer stays at the bottom; sections never stretch */
+@media screen and (min-width:801px){
+  .page-sheet{
+    display:flex!important;
+    flex-direction:column!important;
+    height:auto!important;
+    min-height:297mm!important;
+    overflow:visible!important;
+  }
+  .page-sheet .columns{
+    flex:0 0 auto!important;
+    align-items:start!important;
+    min-height:0!important;
+  }
+  .page-sheet .col{
+    display:block!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  .page-sheet .section{
+    flex:0 0 auto!important;
+    display:block!important;
+    margin:0 0 2mm!important;
+  }
+  .page-sheet .col > .section:last-child{
+    flex:0 0 auto!important;
+    display:block!important;
+    margin-bottom:0!important;
+  }
+  .page-sheet .col > .section:last-child > table:last-child{
+    flex:0 0 auto!important;
+    height:auto!important;
+    margin-bottom:0!important;
+  }
+  .page-sheet .col > .section:last-child > table:last-child tbody{
+    height:auto!important;
+  }
+  .page-sheet .footer{
+    flex:0 0 auto!important;
+    margin-top:auto!important;
+  }
+}
+</style><script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta name="theme-color" content="#173553"/>
+</head><body><div class="download-wrap"><button class="download-image" id="downloadPage1" type="button">⬇ पेज 1 डाउनलोड</button><button class="download-image" id="downloadPage2" type="button">⬇ पेज 2 डाउनलोड</button><button class="download-image" id="downloadPage3" type="button">⬇ पेज 3 डाउनलोड</button><button class="download-image" id="downloadPage4" type="button">⬇ पेज 4 डाउनलोड</button><button class="download-image" id="downloadPage5" type="button">⬇ पेज 5 डाउनलोड</button><button class="download-image" id="downloadPage6" type="button">⬇ पेज 6 डाउनलोड</button></div><main class="sheet page-sheet" data-page="1"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section">
+<div class="stitle"><span class="n">01</span><h2>पुराण</h2><small>18 महापुराण</small></div>
+<table><thead><tr><th style="width:34%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>रचयिता</td><td>लोमहर्ष</td></tr>
+<tr><td>संख्या</td><td>18</td></tr>
+<tr><td>सबसे प्राचीन</td><td>मत्स्य पुराण</td></tr>
+<tr><td>सबसे बड़ा</td><td>स्कन्द पुराण</td></tr>
+<tr><td>‘पुराण’ शब्द का प्रथम उल्लेख</td><td>अथर्ववेद में</td></tr>
+<tr><td>पंचम वेद</td><td>छान्दोग्य उपनिषद में इतिहास-पुराण को पंचम वेद कहा गया है।</td></tr>
+<tr><td>रचना शैली</td><td>पुराण भविष्य शैली में लिखे गए हैं।</td></tr>
+<tr><td>संगम साहित्य</td><td>संगम ग्रंथ मणिमेखलै में पुराण का उल्लेख।</td></tr>
+<tr><td>ब्रह्मवैवर्त पुराण</td><td>कृष्ण एवं राधा का वर्णन।</td></tr>
+<tr><td>स्कन्द पुराण</td><td>सत्यनारायण व्रत-कथा।</td></tr>
+<tr><td>मार्कण्डेय पुराण</td><td>दुर्गा सप्तशती इसका भाग है।</td></tr>
+<tr><td>अग्नि पुराण</td><td>विश्वकोश की संज्ञा।</td></tr>
+<tr><td>नारदीय पुराण</td><td>बौद्ध धर्म की कड़ी निंदा।</td></tr>
+<tr><td>वराह पुराण</td><td>मथुरा नगरी एवं नचिकेता का उल्लेख।</td></tr>
+<tr><td>विष्णु पुराण</td><td>मौर्य वंश से संबंधित।</td></tr>
+<tr><td>वायु पुराण</td><td>गुप्त वंश से संबंधित।</td></tr>
+<tr><td>मत्स्य पुराण</td><td>सातवाहन वंश से संबंधित।</td></tr>
+</tbody></table>
+<div class="sub">अमरकोश के अनुसार पुराण के पाँच विषय</div>
+<div class="five">
+<div><b>सर्ग</b><span>सृष्टि</span></div><div><b>प्रतिसर्ग</b><span>पुनः सृष्टि</span></div><div><b>वंश</b><span>वंशावली</span></div><div><b>मन्वंतर</b><span>मनुओं का काल</span></div><div><b>वंशानुचरित</b><span>राजवंश चरित</span></div>
+</div>
+</section><section class="section">
+<div class="stitle"><span class="n">02</span><h2>स्मृतियाँ</h2><small>विधि-विषयक ग्रंथ</small></div>
+<table><thead><tr><th style="width:34%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>स्वरूप</td><td>विधि-विषयक ग्रंथ।</td></tr>
+<tr><td>रचना शैली</td><td>सामान्यतः पद्य में रचित।</td></tr>
+<tr><td>अपवाद</td><td>विष्णु स्मृति गद्य में रचित है।</td></tr>
+<tr><td>देवल स्मृति</td><td>इस्लाम अपना चुके हिंदुओं को पुनः हिंदू धर्म में लाने का प्रावधान।</td></tr>
+<tr><td>विष्णु स्मृति</td><td>सिक्कों एवं सती प्रथा का उल्लेख।</td></tr>
+<tr><td>कात्यायन स्मृति</td><td>भूमि पर राजकीय स्वामित्व का सिद्धांत।</td></tr>
+<tr><td>नारद स्मृति</td><td>ब्राह्मण के विशेषाधिकार एवं 15 प्रकार के दास।</td></tr>
+<tr><td>पराशर स्मृति</td><td>टीकाकार माधवाचार्य।</td></tr>
+</tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">03</span><h2>धर्मसूत्र</h2><small>प्राचीन विधि परंपरा</small></div>
+<table><thead><tr><th style="width:34%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>उद्देश्य</td><td>वैदिक साहित्य को अक्षुण्ण बनाए रखने के लिए।</td></tr>
+<tr><td>रचना शैली</td><td>गद्य में रचित।</td></tr>
+<tr><td>समयकाल</td><td>6वीं से 3री शताब्दी।</td></tr>
+<tr><td>रचना क्षेत्र</td><td>उत्तर भारत।</td></tr>
+<tr><td>दक्षिण भारत</td><td>एकमात्र आपस्तम्ब धर्मसूत्र दक्षिण भारत में रचित।</td></tr>
+</tbody></table>
+<div class="sub">कल्पसूत्र के तीन प्रकार</div>
+<table><thead><tr><th style="width:34%">प्रकार</th><th>विषय-वस्तु</th></tr></thead><tbody>
+<tr><td>श्रौतसूत्र</td><td>यज्ञीय विधि-विधान।</td></tr>
+<tr><td>गृह्यसूत्र</td><td>संस्कारों का उल्लेख।</td></tr>
+<tr><td>शुल्वसूत्र</td><td>यज्ञवेदी निर्माण की ज्यामितीय माप।</td></tr>
+</tbody></table>
+<div class="sub">प्रमुख धर्मसूत्र एवं संबंधित तथ्य</div>
+<table><thead><tr><th style="width:34%">ग्रंथ / सूत्र</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>गौतम धर्मसूत्र</td><td>सबसे प्राचीन धर्मसूत्र।</td></tr>
+<tr><td>विष्णु धर्मसूत्र</td><td>सर्वप्रथम ‘अस्पृश्य’ शब्द का उल्लेख।</td></tr>
+<tr><td>आश्वलायन सूत्र</td><td>महाभारत का सर्वप्रथम उल्लेख।</td></tr>
+</tbody></table>
+</section></div><div class="col"><section class="section">
+<div class="sub">प्रमुख धर्मसूत्र एवं संबंधित तथ्य (जारी)</div>
+<table><thead><tr><th style="width:34%">ग्रंथ / सूत्र</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>बौधायन सूत्र</td><td>राजा उपज का छठा भाग पाने का अधिकारी।</td></tr><tr><td>आपस्तम्ब धर्मसूत्र</td><td>10 वर्ष के ब्राह्मण को 100 वर्ष के क्षत्रिय से श्रेष्ठ बताया गया।</td></tr><tr><td>गौतम धर्मसूत्र</td><td>वार्ता को शूद्र का वर्णधर्म बताया गया।</td></tr><tr><td>धर्मसूत्र</td><td>वर्णसंकर जातियों की जानकारी सर्वप्रथम धर्मसूत्रों में।</td></tr><tr><td>गौतम धर्मसूत्र</td><td>करों की लंबी सूची मिलती है।</td></tr><tr><td>गृह्यसूत्र</td><td>व्यापार में लाभ हेतु पण्यसिद्धि संस्कार का वर्णन।</td></tr></tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">04</span><h2>स्मृतियों के टीकाकार</h2><small>महत्त्वपूर्ण नाम</small></div>
+<table><thead><tr><th style="width:34%">स्मृति</th><th>टीकाकार</th></tr></thead><tbody>
+<tr><td>मनुस्मृति</td><td>भरुचि, मेधातिथि, कुल्लूक भट्ट, गोविन्दराज।</td></tr>
+<tr><td>याज्ञवल्क्य स्मृति</td><td>विज्ञानेश्वर, अपरार्क, विश्वरूप।</td></tr>
+<tr><td>पराशर स्मृति</td><td>माधवाचार्य।</td></tr>
+</tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">05</span><h2>मनुस्मृति</h2><small>प्रमुख स्मृति</small></div>
+<table><thead><tr><th style="width:34%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>महत्त्व</td><td>सबसे प्राचीन एवं प्रसिद्ध स्मृति।</td></tr>
+<tr><td>स्वरूप</td><td>विधि-विषयक ग्रंथ।</td></tr>
+<tr><td>अन्य नाम</td><td>मानव धर्मशास्त्र।</td></tr>
+<tr><td>काल-संबंध</td><td>मौर्योत्तर काल।</td></tr>
+</tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">06</span><h2>महाभारत</h2><small>प्रमुख तथ्य</small></div>
+<table><thead><tr><th style="width:36%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>लेखक</td><td>वेदव्यास।</td></tr>
+<tr><td>लिपिक</td><td>भगवान श्री गणेश।</td></tr>
+<tr><td>पर्वों की संख्या</td><td>18।</td></tr>
+<tr><td>परिशिष्ट ग्रंथ</td><td>हरिवंश।</td></tr>
+<tr><td>कुल श्लोक</td><td>लगभग 1,00,000।</td></tr>
+<tr><td>सबसे बड़ा पर्व</td><td>शांतिपर्व।</td></tr>
+<tr><td>सबसे छोटा पर्व</td><td>अनुशासनपर्व।</td></tr>
+<tr><td>तीन नाम</td><td>जय संहिता (8,800 श्लोक), भारत (24,000 श्लोक), महाभारत / शतसाहस्त्री संहिता (1,00,000 श्लोक)।</td></tr>
+<tr><td>युद्ध की अवधि</td><td>18 दिन।</td></tr>
+<tr><td>युद्ध स्थल</td><td>कुरुक्षेत्र।</td></tr>
+<tr><td>धर्म</td><td>राजधर्म, दानधर्म एवं मोक्षधर्म।</td></tr>
+<tr><td>फारसी अनुवाद</td><td>अब्दुल कादिर बदायूनी द्वारा।</td></tr>
+<tr><td>उपनिषदों की सूची</td><td>250 (भीष्मपर्व में)।</td></tr>
+<tr><td>रचनाकाल</td><td>लगभग 950 ई.पू.।</td></tr>
+<tr><td>राजनीति पर चर्चा</td><td>शांतिपर्व।</td></tr>
+<tr><td>कथावस्तु</td><td>कौरव-पांडव युद्ध।</td></tr>
+<tr><td>उपदेशात्मक पक्ष</td><td>भगवद्गीता (भीष्मपर्व में)।</td></tr>
+<tr><td>अन्य कथाएँ</td><td>शकुंतला, सावित्री तथा नल-दमयंती की कथा।</td></tr>
+<tr><td>वेद सुनने का विधान</td><td>सर्वप्रथम शांतिपर्व में चारों वर्णों को वेद सुनने का विधान।</td></tr>
+<tr><td>गणतंत्रात्मक राज्य</td><td>अंधक, वृष्णि, यादव, कुकुर एवं भोज।</td></tr>
+<tr><td>विदेशी जातियाँ</td><td>यवन, शक, किरात, पह्लव एवं हूण।</td></tr>
+<tr><td>शूद्रों के प्रति कर्तव्य</td><td>शांतिपर्व — “शूद्र सेवकों का भरण-पोषण द्विज का कर्तव्य है।”</td></tr>
+<tr><td>अजर-अमर पात्र</td><td>अश्वत्थामा।</td></tr>
+<tr><td>अन्य नाम</td><td>पंचम वेद।</td></tr>
+<tr><td>राजधर्म संवाद</td><td>शांतिपर्व में कृष्ण और भीष्म के संवाद।</td></tr>
+<tr><td>अर्जुन के नाम</td><td>कपिध्वज, गांडीवधारी एवं पार्थ।</td></tr>
+<tr><td>प्रथम उल्लेख</td><td>आश्वलायन गृह्यसूत्र।</td></tr>
+</tbody></table>
+</section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main><main class="sheet page-sheet" data-page="2"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section">
+<div class="stitle"><span class="n">07</span><h2>रामायण</h2><small>आदिकाव्य</small></div>
+<table><thead><tr><th style="width:36%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>विशेषण</td><td>रामायण को आदिकाव्य कहते हैं।</td></tr>
+<tr><td>रचयिता</td><td>महर्षि वाल्मीकि।</td></tr>
+<tr><td>कांड / श्लोक</td><td>7 कांड, लगभग 24,000 श्लोक।</td></tr>
+<tr><td>प्रारंभिक उल्लेख</td><td>दशरथ जातक (बौद्ध ग्रंथ)।</td></tr>
+<tr><td>मूल नाम</td><td>चतुर्विंशतिसाहस्त्री संहिता।</td></tr>
+<tr><td>तमिल अनुवाद</td><td>कम्बन।</td></tr>
+<tr><td>फारसी अनुवाद</td><td>बदायूनी (अकबर काल)।</td></tr>
+<tr><td>बंगाली अनुवाद</td><td>कृतिवास।</td></tr>
+<tr><td>सुंदरकांड</td><td>हनुमान की लंका यात्रा।</td></tr>
+<tr><td>रामचरितमानस</td><td>तुलसीदास द्वारा अवधी में।</td></tr>
+<tr><td>जैन संस्करण</td><td>विमलसुरी की पौमचरियु रामायण।</td></tr>
+<tr><td>सच्ची रामायण</td><td>रामास्वामी पेरियार द्वारा रचित।</td></tr>
+</tbody></table>
+<div class="sub">रामायण के सात कांडों का क्रम</div>
+<table><tbody><tr><td>क्रम</td><td>बालकांड → अयोध्याकांड → अरण्यकांड → किष्किंधाकांड → सुंदरकांड → लंकाकांड → उत्तरकांड।</td></tr></tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">08</span><h2>भगवद्गीता</h2><small>महाभारत का उपदेशात्मक भाग</small></div>
+<table><thead><tr><th style="width:36%">आधार</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody>
+<tr><td>स्थान</td><td>महाभारत के भीष्मपर्व में।</td></tr>
+<tr><td>अध्याय / श्लोक</td><td>18 अध्याय एवं 700 श्लोक।</td></tr>
+<tr><td>संवाद</td><td>श्रीकृष्ण और अर्जुन के बीच।</td></tr>
+<tr><td>मूल सिद्धांत</td><td>कर्मयोग, ज्ञानयोग एवं भक्तियोग।</td></tr>
+<tr><td>प्रसिद्ध श्लोक</td><td>“कर्मण्येवाधिकारस्ते...”</td></tr>
+<tr><td>विशेषता</td><td>उपनिषदों का सार।</td></tr>
+<tr><td>भाष्य</td><td>आदि शंकराचार्य द्वारा।</td></tr>
+<tr><td>गीता जयंती</td><td>मार्गशीर्ष शुक्ल एकादशी।</td></tr>
+<tr><td>बांग्ला अनुवाद</td><td>मालधर बसु।</td></tr>
+</tbody></table>
+</section><section class="section">
+<div class="stitle"><span class="n">09</span><h2>सभा एवं समिति</h2><small>प्रमुख वैदिक कालीन संस्थाएँ</small></div>
+<div class="sub">1. परिचय</div>
+<table><tbody>
+<tr><td>प्रमुख संस्थाएँ</td><td>सभा, समिति, विदथ एवं गण।</td></tr>
+<tr><td>ऋग्वेद में उल्लेख</td><td>सभा 8 बार, समिति 9 बार, गण 46 बार तथा विदथ 122 बार।</td></tr>
+<tr><td>उत्तर वैदिक काल</td><td>विदथ का प्रयोग समाप्त हो गया।</td></tr>
+<tr><td>मुख्य कार्य</td><td>राजा को सलाह देना तथा उसकी निरंकुशता पर नियंत्रण रखना।</td></tr>
+</tbody></table>
+<div class="sub">2. प्रमुख विद्वानों के मत</div>
+<table><tbody>
+<tr><td>लुडविग</td><td>सभा = उच्च सदन (राज्यसभा), समिति = निम्न सदन (लोकसभा)।</td></tr>
+<tr><td>जीमर</td><td>सभा एवं समिति क्रमशः ग्रामसभा एवं केंद्रीय सभा थीं।</td></tr>
+<tr><td>के. पी. जायसवाल</td><td>समिति राष्ट्रीय संस्था तथा सभा उसकी स्थायी समिति थी।</td></tr>
+<tr><td>अथर्ववेद</td><td>सभा एवं समिति को प्रजापति की दो पुत्रियाँ कहा गया है।</td></tr>
+</tbody></table>
+<div class="sub">3. सभा</div>
+<table><tbody>
+<tr><td>स्वरूप</td><td>कुलीन एवं अभिजात्य वर्ग की परिषद।</td></tr>
+<tr><td>उल्लेख</td><td>ऋग्वेद एवं अथर्ववेद।</td></tr>
+<tr><td>उत्पत्ति</td><td>प्रजापति से।</td></tr>
+<tr><td>अध्यक्ष</td><td>सभापति।</td></tr>
+<tr><td>महिला सदस्य</td><td>सभावती कहलाती थीं।</td></tr>
+</tbody></table>
+<div class="sub">सभा के प्रमुख कार्य</div>
+<table><tbody>
+<tr><td>न्यायिक</td><td>विवादों एवं अपराधों पर निर्णय।</td></tr>
+<tr><td>परामर्श</td><td>राजा को नीति संबंधी सलाह।</td></tr>
+<tr><td>राजनीतिक</td><td>राजा के चयन में भूमिका।</td></tr>
+<tr><td>धार्मिक</td><td>यज्ञ एवं धार्मिक विषयों पर विचार।</td></tr>
+</tbody></table>
+<div class="sub">4. समिति</div>
+<table><tbody>
+<tr><td>स्वरूप</td><td>सामान्य जनता की प्रतिनिधि संस्था।</td></tr>
+<tr><td>उत्पत्ति</td><td>ब्रह्मा से।</td></tr>
+<tr><td>अध्यक्ष</td><td>ईशान।</td></tr>
+<tr><td>सदस्य</td><td>समित्य कहलाते थे।</td></tr>
+<tr><td>प्रमुख कार्य</td><td>राजा का चुनाव।</td></tr>
+</tbody></table>
+</section><section class="section added-section"><div class="stitle"><span class="n">11</span><h2>सोलह संस्कार</h2></div><div class="sub">1. संस्कार : अर्थ एवं परिचय</div><table><thead><tr><th>विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>अर्थ</td><td>शुद्धिकरण एवं परिष्करण की प्रक्रिया</td></tr><tr><td>उद्देश्य</td><td>शरीर, मन एवं आत्मा का शुद्धिकरण तथा जीवन को नैतिक दिशा देना</td></tr><tr><td>विस्तृत वर्णन</td><td>गृह्यसूत्रों में</td></tr><tr><td>आश्वलायन गृहसूत्र</td><td>16 संस्कारों का वर्णन</td></tr><tr><td>मनुस्मृति</td><td>13 संस्कार</td></tr><tr><td>गौतम स्मृति</td><td>40 संस्कार</td></tr><tr><td>महर्षि अंगिरा</td><td>25 संस्कार</td></tr></tbody></table><div class="sub">2. सोलह संस्कारों का वर्गीकरण</div><table><thead><tr><th>अवस्था</th><th>संस्कार</th></tr></thead><tbody><tr><td>प्रसवपूर्व (3)</td><td>गर्भाधान, पुंसवन, सीमन्तोन्नयन</td></tr><tr><td>बाल्यावस्था (6)</td><td>जातकर्म, नामकरण, निष्क्रमण, अन्नप्राशन, चूड़ाकर्म, कर्णवेध</td></tr><tr><td>शैक्षणिक (5)</td><td>विद्यारंभ, उपनयन, वेदारंभ, केशांत, समावर्तन</td></tr><tr><td>विवाह (1)</td><td>विवाह</td></tr><tr><td>मृत्यु (1)</td><td>अन्त्येष्टि</td></tr></tbody></table><div class="sub">3. सोलह संस्कार : प्रमुख तथ्य</div><table><thead><tr><th>संस्कार</th><th>प्रमुख उद्देश्य / विशेषता</th></tr></thead><tbody><tr><td>1. गर्भाधान</td><td>संतान प्राप्ति हेतु गर्भ स्थापना</td></tr><tr><td>2. पुंसवन</td><td>गर्भस्थ शिशु के स्वस्थ विकास की कामना</td></tr><tr><td>3. सीमन्तोन्नयन</td><td>गर्भवती माता एवं गर्भस्थ शिशु की रक्षा</td></tr><tr><td>4. जातकर्म</td><td>जन्म के तुरंत बाद किया जाने वाला संस्कार</td></tr><tr><td>5. नामकरण</td><td>शिशु को नाम देना; सामान्यतः 10वें या 12वें दिन</td></tr><tr><td>6. निष्क्रमण</td><td>पहली बार बाहर ले जाना; तीसरे या चौथे माह</td></tr><tr><td>7. अन्नप्राशन</td><td>पहली बार अन्न खिलाना; पाँचवें-छठे माह</td></tr><tr><td>8. चूड़ाकर्म</td><td>पहली बार मुंडन</td></tr><tr><td>9. कर्णवेध</td><td>कान छेदना</td></tr><tr><td>10. विद्यारंभ</td><td>अक्षर ज्ञान एवं शिक्षा की शुरुआत</td></tr><tr><td>11. उपनयन</td><td>यज्ञोपवीत धारण एवं गुरुकुल प्रवेश</td></tr><tr><td>12. वेदारंभ</td><td>वेदों का अध्ययन प्रारंभ</td></tr><tr><td>13. केशांत</td><td>पहली बार दाढ़ी-मूँछ के बाल काटना; लगभग 16 वर्ष</td></tr><tr><td>14. समावर्तन</td><td>शिक्षा पूर्ण कर गुरुकुल से विदाई</td></tr><tr><td>15. विवाह</td><td>गृहस्थ आश्रम में प्रवेश</td></tr><tr><td>16. अन्त्येष्टि</td><td>मृत्यु के बाद अंतिम संस्कार</td></tr></tbody></table><div class="sub">4. उपनयन संस्कार : विशेष तथ्य</div><table><thead><tr><th>वर्ण</th><th>आयु</th><th>मंत्र</th><th>ऋतु</th></tr></thead><tbody><tr><td>ब्राह्मण</td><td>8 वर्ष</td><td>गायत्री</td><td>वसंत</td></tr><tr><td>क्षत्रिय</td><td>11 वर्ष</td><td>त्रिष्टुप</td><td>ग्रीष्म</td></tr><tr><td>वैश्य</td><td>12 वर्ष</td><td>जगती</td><td>शरद</td></tr></tbody></table><table><thead><tr><th>अन्य तथ्य</th><th>विवरण</th></tr></thead><tbody><tr><td>उपनयन के बाद</td><td>वेदाध्ययन का अधिकार प्राप्त होता है</td></tr><tr><td>तीन ऋण</td><td>देव ऋण, ऋषि ऋण एवं पितृ ऋण</td></tr></tbody></table></section></div><div class="col"><section class="section">
+<div class="stitle"><span class="n">10</span><h2>महाभारत के अनुवाद</h2><small>भाषा एवं अनुवादक</small></div>
+<table><thead><tr><th style="width:36%">भाषा</th><th>अनुवादक / विवरण</th></tr></thead><tbody>
+<tr><td>तमिल</td><td>पेरुंदेवनार।</td></tr>
+<tr><td>तेलुगु</td><td>नन्नय, तिक्कन्ना एवं एर्रण।</td></tr>
+<tr><td>असमिया</td><td>माधव कंदली।</td></tr>
+<tr><td>बांग्ला</td><td>कवींद्र परमेश्वर (नुसरत शाह के समय)।</td></tr>
+<tr><td>फारसी</td><td>बदायूनी — रज्मनामा नाम से।</td></tr>
+</tbody></table>
+</section><section class="section added-section"><div class="stitle"><span class="n">12</span><h2>विवाह के प्रकार</h2></div><div class="sub">विवाह के आठ प्रकार</div><table><thead><tr><th>विवाह</th><th>प्रमुख विशेषता</th></tr></thead><tbody><tr><td>1. ब्रह्म</td><td>योग्य वर को कन्यादान</td></tr><tr><td>2. दैव</td><td>यज्ञ करने वाले पुरोहित को कन्या देना</td></tr><tr><td>3. आर्ष</td><td>गाय एवं बैल देकर विवाह</td></tr><tr><td>4. प्राजापत्य</td><td>धार्मिक एवं सामाजिक कर्तव्य पालन हेतु विवाह</td></tr><tr><td>5. गांधर्व</td><td>प्रेम एवं पारस्परिक सहमति से विवाह</td></tr><tr><td>6. असुर</td><td>धन देकर विवाह</td></tr><tr><td>7. राक्षस</td><td>बलपूर्वक अपहरण करके विवाह</td></tr><tr><td>8. पैशाच</td><td>अचेतन अवस्था का लाभ उठाकर शोषण करना</td></tr></tbody></table><div class="sub">विवाह का वर्गीकरण</div><table><thead><tr><th>वर्ग</th><th>विवाह</th></tr></thead><tbody><tr><td>श्रेष्ठ (4)</td><td>ब्रह्म, दैव, आर्ष, प्राजापत्य</td></tr><tr><td>निंदनीय (4)</td><td>गांधर्व, असुर, राक्षस, पैशाच</td></tr><tr><td>विशेष तथ्य</td><td>पैशाच विवाह को निकृष्टतम विवाह माना गया है</td></tr></tbody></table></section><section class="section added-section"><div class="stitle"><span class="n">13</span><h2>कर्म सिद्धांत</h2></div><div class="sub">1. कर्म का अर्थ एवं सिद्धांत</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>कर्म</td><td>मन, वाणी एवं शरीर से किया गया कार्य</td></tr><tr><td>कर्म सिद्धांत</td><td>मनुष्य को उसके कर्मों के अनुसार फल प्राप्त होता है</td></tr><tr><td>आधार</td><td>कार्य-कारण का सिद्धांत</td></tr><tr><td>गीता</td><td>निष्काम कर्म अर्थात फल की इच्छा किए बिना कर्म करने पर बल</td></tr><tr><td>पुनर्जन्म</td><td>कर्म को पुनर्जन्म का प्रमुख कारण माना गया है</td></tr></tbody></table><div class="sub">2. कर्म के प्रमुख प्रकार एवं वर्गीकरण</div><div class="sub">(A) वेदों के अनुसार</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>शुभ कर्म</td><td>अच्छे एवं कल्याणकारी कर्म</td></tr><tr><td>अशुभ कर्म</td><td>बुरे एवं हानिकारक कर्म</td></tr></tbody></table><div class="sub">(B) फल की इच्छा के आधार पर</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>काम्य कर्म</td><td>विशेष कामना या इच्छा से प्रेरित कर्म</td></tr><tr><td>निष्काम कर्म</td><td>फल की इच्छा किए बिना किया गया कर्म</td></tr></tbody></table><div class="sub">(C) प्रकृति के आधार पर</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>कायिक कर्म</td><td>शरीर द्वारा किए गए कर्म</td></tr><tr><td>वाचिक कर्म</td><td>वाणी द्वारा किए गए कर्म</td></tr><tr><td>मानसिक कर्म</td><td>मन द्वारा किए गए कर्म</td></tr></tbody></table><div class="sub">(D) गीता के अनुसार</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>कर्म</td><td>व्यक्ति द्वारा किया गया कार्य</td></tr><tr><td>अकर्म</td><td>कर्म में आसक्ति एवं फल की इच्छा का अभाव</td></tr><tr><td>विकर्म</td><td>निषिद्ध या अनुचित कर्म</td></tr></tbody></table><div class="sub">(E) कर्मों के फल के आधार पर</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>संचित कर्म</td><td>पूर्व जन्मों में संचित किए गए कर्म</td></tr><tr><td>प्रारब्ध कर्म</td><td>संचित कर्मों का वह भाग जिसका फल वर्तमान जीवन में भोगा जा रहा है</td></tr><tr><td>क्रियमाण / संञ्चीयमान</td><td>वर्तमान जीवन में किए जा रहे कर्म, जिनका फल भविष्य में प्राप्त होता है</td></tr></tbody></table><div class="sub">(F) बौद्ध धर्म के अनुसार</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>चेतना आधारित कर्म</td><td>बुद्ध के अनुसार चेतना (इरादा) ही कर्म है</td></tr><tr><td>बंधनकारी कारण</td><td>अज्ञान, तृष्णा एवं द्वेष से प्रेरित कर्म संसार चक्र में बाँधते हैं</td></tr><tr><td>निर्वाण का मार्ग</td><td>मैत्री, करुणा एवं सम्यक दृष्टि से प्रेरित कर्म निर्वाण की ओर ले जाते हैं</td></tr></tbody></table><div class="sub">(G) जैन धर्म के अनुसार – कर्म के 8 प्रकार</div><div class="sub">घातिया कर्म – आत्मा के गुणों को प्रभावित करने वाले</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>ज्ञानावरणीय</td><td>आत्मा के ज्ञान गुण को कमजोर करता है</td></tr><tr><td>दर्शनावरण</td><td>आत्मा की दर्शन शक्ति को रोकता है</td></tr><tr><td>मोहनीय</td><td>मोह, क्रोध, मान, माया एवं लोभ उत्पन्न करता है</td></tr><tr><td>अंतराय</td><td>दान, लाभ, भोग एवं उपभोग में बाधा डालता है</td></tr></tbody></table><div class="sub">अघातिया कर्म – शरीर एवं सांसारिक स्थिति निर्धारित करने वाले</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>आयुष्य</td><td>जीवनकाल एवं जन्म की योनि निर्धारित करता है</td></tr><tr><td>नाम</td><td>शरीर के रूप, आकार एवं गुण निर्धारित करता है</td></tr><tr><td>गोत्र</td><td>उच्च या निम्न कुल में जन्म निर्धारित करता है</td></tr><tr><td>वेदनीय</td><td>सुख-दुःख का अनुभव कराता है</td></tr></tbody></table><div class="sub">3. कर्म से संबंधित अन्य महत्वपूर्ण सिद्धांत</div><table><thead><tr><th>प्रकार / विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>कृतप्रणाश</td><td>किए गए कर्म का फल नष्ट नहीं होता</td></tr><tr><td>अकृताभ्युपगम</td><td>बिना कर्म किए उसका फल प्राप्त नहीं होता</td></tr><tr><td>ऋत</td><td>जगत की नैतिक व्यवस्था</td></tr><tr><td>पुनर्जन्म</td><td>कर्मों के आधार पर पुनः जन्म की अवधारणा</td></tr><tr><td>मोक्ष</td><td>कर्म बंधन से मुक्ति</td></tr></tbody></table></section><section class="section added-section">
+<div class="stitle"><span class="n">14</span><h2>ऋत</h2></div>
+<table><thead><tr><th style="width:34%">विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>ऋत</td><td>नैतिक नियम</td></tr><tr><td>उल्लेख</td><td>ऋग्वेद</td></tr><tr><td>वरुण</td><td>ऋत के प्रमुख रक्षक देवता</td></tr></tbody></table>
+</section><section class="section added-section">
+<div class="stitle"><span class="n">15</span><h2>पुरुषार्थ</h2></div>
+<table><thead><tr><th style="width:34%">विषय</th><th>महत्त्वपूर्ण तथ्य</th></tr></thead><tbody><tr><td>अर्थ</td><td>जीवन के चार उद्देश्य</td></tr><tr><td>चार पुरुषार्थ</td><td>धर्म, अर्थ, काम और मोक्ष</td></tr><tr><td>त्रिवर्ग</td><td>धर्म, अर्थ और काम</td></tr><tr><td>अंतिम लक्ष्य</td><td>मोक्ष</td></tr></tbody></table>
+</section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main><main class="sheet page-sheet" data-page="3"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section"><div class="stitle"><span class="n">16</span><h2>भारतीय दर्शन एवं षड्दर्शन</h2><small>आस्तिक एवं नास्तिक परंपराएँ</small></div>
+<div class="sub">1. परिचय</div>
+<table><tbody>
+<tr><td>उद्देश्य</td><td>मानव को अज्ञान से ज्ञान तथा बंधन से मुक्ति (मोक्ष) की ओर ले जाना।</td></tr>
+<tr><td>प्रमुख चिंतन</td><td>ब्रह्म, आत्मा, प्रकृति, कर्म एवं मोक्ष।</td></tr>
+<tr><td>प्रमुख वर्ग</td><td>आस्तिक एवं नास्तिक दर्शन।</td></tr>
+</tbody></table>
+<table><thead><tr><th>दर्शन</th><th>अवधारणा एवं प्रकार</th></tr></thead><tbody>
+<tr><td>आस्तिक</td><td>वेदों को प्रमाणिक मानने वाले; 6 – न्याय, वैशेषिक, सांख्य, योग, मीमांसा एवं वेदांत।</td></tr>
+<tr><td>नास्तिक</td><td>वेदों के अधिकार को अस्वीकार करने वाले; चार्वाक, बौद्ध एवं जैन।</td></tr>
+</tbody></table>
+<div class="sub">2. दर्शन</div>
+<table><tbody>
+<tr><td>उत्पत्ति</td><td>संस्कृत की ‘दृश्’ धातु से; अर्थ – देखना।</td></tr>
+<tr><td>परिभाषा</td><td>‘दृश्यते यथार्थतत्त्वज्ञानम्’ – यथार्थ तत्त्व का ज्ञान ही दर्शन है।</td></tr>
+<tr><td>उपनिषदों के अनुसार</td><td>‘दृश्यते अनेन इति दर्शनम्’ – सत्य पदार्थों का ज्ञान।</td></tr>
+</tbody></table>
+<div class="sub">3. षड्दर्शन (आस्तिक दर्शन)</div>
+<table><tbody>
+<tr><td>परिभाषा</td><td>वे छह दर्शन जो वेदों की सत्ता एवं प्रमाणिकता स्वीकार करते हैं।</td></tr>
+<tr><td>उद्भव एवं विकास</td><td>दिए गए संदर्भ के अनुसार सूक्तकाल (छठी शताब्दी ईसा पूर्व) में आविर्भाव तथा गुप्तकाल में पूर्ण विकास।</td></tr>
+<tr><td>अंतिम लक्ष्य</td><td>आत्मा की मुक्ति एवं मोक्ष।</td></tr>
+</tbody></table>
+<div class="sub">षड्दर्शन के छह प्रकार</div>
+<table><tbody>
+<tr><td>1.</td><td>सांख्य</td></tr><tr><td>2.</td><td>योग</td></tr>
+<tr><td>3.</td><td>न्याय</td></tr><tr><td>4.</td><td>वैशेषिक</td></tr>
+<tr><td>5.</td><td>पूर्व मीमांसा</td></tr><tr><td>6.</td><td>वेदांत (उत्तर मीमांसा)</td></tr>
+</tbody></table>
+</section></div><div class="col"><section class="section"><div class="stitle"><span class="n">17</span><h2>षड्दर्शन एवं सांख्य दर्शन</h2><small>प्रवर्तक, ग्रंथ एवं सिद्धांत</small></div>
+<div class="sub">भारतीय दर्शन के प्रमुख तथ्य</div>
+<table><thead><tr><th>दर्शन</th><th>प्रवर्तक एवं ग्रंथ</th><th>मुख्य सिद्धांत / लक्ष्य</th></tr></thead><tbody>
+<tr><td>न्याय</td><td>गौतम<br/>न्यायसूत्र</td><td>तर्कशास्त्र एवं प्रमाण; ज्ञान द्वारा मोक्ष।</td></tr>
+<tr><td>वैशेषिक</td><td>कणाद<br/>वैशेषिकसूत्र</td><td>पदार्थ एवं परमाणुवाद; आत्मज्ञान एवं मोक्ष।</td></tr>
+<tr><td>सांख्य</td><td>कपिल<br/>सांख्यकारिका</td><td>प्रकृति-पुरुष द्वैतवाद, 25 तत्त्व; विवेकज्ञान से मोक्ष।</td></tr>
+<tr><td>योग</td><td>पतंजलि<br/>योगसूत्र</td><td>अष्टांग योग; कैवल्य।</td></tr>
+<tr><td>पूर्व मीमांसा</td><td>जैमिनि<br/>मीमांसासूत्र</td><td>वेदों का कर्मकांड, कर्म प्रधान; स्वर्ग एवं धर्मलाभ।</td></tr>
+<tr><td>उत्तर मीमांसा</td><td>व्यास (बादरायण)<br/>ब्रह्मसूत्र</td><td>ब्रह्म, आत्मा एवं ब्रह्मज्ञान; मोक्ष।</td></tr>
+</tbody></table>
+<div class="sub">1. सांख्य दर्शन – परिचय</div>
+<table><tbody>
+<tr><td>अर्थ</td><td>सं + ख्या; पूर्ण या सम्यक ज्ञान।</td></tr>
+<tr><td>प्रवर्तक</td><td>कपिल मुनि।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>सांख्यकारिका – ईश्वरकृष्ण द्वारा रचित।</td></tr>
+<tr><td>विशेषता</td><td>षड्दर्शनों में प्राचीनतम।</td></tr>
+<tr><td>प्रभाव</td><td>जैन धर्म पर इसका सर्वाधिक प्रभाव माना गया है।</td></tr>
+<tr><td>प्रकृति</td><td>आस्तिक दर्शन; वेदों की प्रमाणिकता स्वीकार करता है।</td></tr>
+</tbody></table>
+<div class="sub">2. सांख्य दर्शन के 25 तत्त्व</div>
+<table><thead><tr><th>वर्गीकरण</th><th>तत्त्व</th></tr></thead><tbody>
+<tr><td>मूल तत्त्व</td><td>प्रकृति एवं पुरुष।</td></tr>
+<tr><td>आंतरिक उपकरण (3)</td><td>मन, बुद्धि एवं अहंकार।</td></tr>
+<tr><td>ज्ञानेंद्रियाँ (5)</td><td>नाक, जीभ, आँख, त्वचा एवं कान।</td></tr>
+<tr><td>कर्मेंद्रियाँ (5)</td><td>हाथ, पैर, वाणी, गुदा एवं जननेन्द्रिय।</td></tr>
+<tr><td>तन्मात्राएँ (5)</td><td>गंध, रस, रूप, स्पर्श एवं शब्द।</td></tr>
+<tr><td>महाभूत (5)</td><td>पृथ्वी, जल, अग्नि, वायु एवं आकाश।</td></tr>
+<tr><td>विकार / विकास</td><td>महत् (बुद्धि) प्रकृति से विकसित होता है; महत्, अहंकार एवं मन को अलग-अलग गिना जाता है।</td></tr>
+</tbody></table>
+<div class="sub">सांख्य का मूल सिद्धांत</div>
+<table><tbody><tr><td>प्रकृति</td><td>अचेतन मूल तत्व, जिससे सृष्टि का विकास होता है।</td></tr>
+<tr><td>पुरुष</td><td>चेतन तत्व; प्रकृति से स्वतंत्र।</td></tr>
+</tbody></table>
+</section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main><main class="sheet page-sheet" data-page="4"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section"><div class="stitle"><span class="n">18</span><h2>सांख्य दर्शन</h2><small>प्रमुख विशेषताएँ एवं मोक्ष</small></div>
+<div class="sub">1. सांख्य दर्शन की विशेषताएँ</div>
+<table><tbody>
+<tr><td>पाँच महाभूत</td><td>पृथ्वी, अग्नि, वायु, जल एवं आकाश।</td></tr>
+<tr><td>द्वैतवादी दर्शन</td><td>प्रकृति एवं पुरुष (आत्मा) दो मूल तत्त्व हैं।</td></tr>
+<tr><td>विकासवाद</td><td>सृष्टि का विकास प्रकृति का स्वाभाविक परिणाम है।</td></tr>
+<tr><td>कारण-कार्य सिद्धांत</td><td>सत्कार्यवाद – कार्य उत्पत्ति से पूर्व कारण में विद्यमान रहता है। <b>(MPPSC PRE 2025)</b></td></tr>
+<tr><td>मुक्ति के रूप</td><td>सदेह मुक्ति एवं विदेह मुक्ति।</td></tr>
+<tr><td>त्रिगुणात्मक प्रकृति</td><td>प्रकृति में सत्त्व, रजस एवं तमस – तीन गुण होते हैं।</td></tr>
+</tbody></table>
+<div class="sub">प्रकृति के तीन गुण</div>
+<table><tbody>
+<tr><td>सत्त्व</td><td>प्रकाश, बोध, प्रेम, सुख एवं संतोष।</td></tr>
+<tr><td>रजस</td><td>गति, अस्थिरता, द्वेष, दुःख एवं असंतोष।</td></tr>
+<tr><td>तमस</td><td>अज्ञान, अंधकार, निष्क्रियता, शिथिलता, निद्रा एवं उदासीनता।</td></tr>
+</tbody></table>
+<table><tbody>
+<tr><td>अनीश्वरवादी</td><td>सृष्टि के सृजनकर्ता ईश्वर को स्वीकार नहीं करता।</td></tr>
+</tbody></table>
+<div class="sub">2. मोक्ष की अवधारणा</div>
+<table><tbody>
+<tr><td>मोक्ष का साधन</td><td>तत्त्वज्ञान (विवेकज्ञान) से मोक्ष की प्राप्ति संभव है।</td></tr>
+<tr><td>मोक्ष का स्वरूप</td><td>सांख्य में मोक्ष को आनंद की स्थिति नहीं माना गया है।</td></tr>
+</tbody></table>
+</section><section class="section"><div class="stitle"><span class="n">20</span><h2>योग दर्शन</h2><small>आत्मिक शुद्धि एवं मोक्ष का व्यावहारिक मार्ग</small></div>
+<div class="sub">1. परिचय</div>
+<table><tbody>
+<tr><td>स्वरूप</td><td>आत्मिक शुद्धि एवं मोक्ष का व्यावहारिक मार्ग।</td></tr>
+<tr><td>आधार</td><td>आत्मसंयम, साधना एवं ईश्वर ध्यान।</td></tr>
+<tr><td>अर्थ</td><td>सामान्य अर्थ – मिलाना या जोड़ना; दर्शन में पुरुष का प्रकृति से वियोग।</td></tr>
+<tr><td>प्रवर्तक</td><td>महर्षि पतंजलि।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>योगसूत्र; इसमें अष्टांग योग का वर्णन है।</td></tr>
+</tbody></table>
+<div class="sub">प्रमुख टीकाएँ</div>
+<table><tbody>
+<tr><td>व्यास</td><td>योगसूत्र पर प्रसिद्ध टीका।</td></tr>
+<tr><td>विज्ञान भिक्षु</td><td>योग-वार्तिक।</td></tr>
+</tbody></table>
+<div class="sub">2. प्रमुख विशेषताएँ</div>
+<table><tbody>
+<tr><td>कारण-कार्य सिद्धांत</td><td>सत्कार्यवाद – कार्य कारण में पहले से विद्यमान रहता है।</td></tr>
+<tr><td>सृष्टि का विकास</td><td>प्रकृति एवं पुरुष के संयोग से सृष्टि का विकास।</td></tr>
+<tr><td>पहला विकार</td><td>प्रकृति में पहला विकार चित्त होता है।</td></tr>
+<tr><td>आस्तिक दर्शन</td><td>वेदों की प्रमाणिकता स्वीकार करता है।</td></tr>
+<tr><td>ईश्वरवादी दर्शन</td><td>सांख्य के 25 तत्त्वों के साथ ईश्वर को 26वाँ तत्त्व मानता है।</td></tr>
+<tr><td>अन्य नाम</td><td>ईश्वरवादी सांख्य।</td></tr>
+</tbody></table>
+<div class="sub">3. बंधन की अवस्था</div>
+<table><tbody>
+<tr><td>पाँच क्लेश</td><td>अविद्या, अहंकार, राग, द्वेष एवं भय।</td></tr>
+<tr><td>तीन प्रकार के दुःख</td><td>शारीरिक, मानसिक एवं दैविक।</td></tr>
+</tbody></table>
+</section></div><div class="col"><section class="section"><div class="stitle"><span class="n">19</span><h2>न्याय दर्शन</h2><small>तर्कशास्त्र एवं प्रमाणशास्त्र</small></div>
+<div class="sub">1. परिचय</div>
+<table><tbody>
+<tr><td>अर्थ</td><td>न्याय अर्थात् किसी विषय की सिद्धि करना।</td></tr>
+<tr><td>अन्य नाम</td><td>तर्कशास्त्र एवं प्रमाणशास्त्र।</td></tr>
+<tr><td>प्रवर्तक</td><td>महर्षि गौतम (अक्षपाद)।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>न्यायसूत्र।</td></tr>
+<tr><td>नव्य न्याय के प्रवर्तक</td><td>गंगेश उपाध्याय।</td></tr>
+</tbody></table>
+<div class="sub">2. प्रमुख विशेषताएँ</div>
+<table><tbody>
+<tr><td>कारण-कार्य सिद्धांत</td><td>असत्कार्यवाद – कार्य की उत्पत्ति नई होती है।</td></tr>
+<tr><td>बहुतत्ववाद</td><td>16 पदार्थ स्वीकार; पाँच महाभूत – पृथ्वी, जल, अग्नि, वायु एवं आकाश।</td></tr>
+<tr><td>बंधन का कारण</td><td>अज्ञान; इसका नाश तत्त्वज्ञान से होता है।</td></tr>
+<tr><td>चार प्रमाण</td><td>प्रत्यक्ष, अनुमान, उपमान एवं शब्द।</td></tr>
+<tr><td>ज्ञान के प्रकार</td><td>प्रमा (सत्य ज्ञान) एवं अप्रमा (असत्य ज्ञान)।</td></tr>
+<tr><td>स्वरूप</td><td>आस्तिक एवं ईश्वरवादी; वेदों की प्रमाणिकता तथा ईश्वर के अस्तित्व को स्वीकार करता है।</td></tr>
+</tbody></table>
+<div class="sub">3. सृष्टि सिद्धांत</div>
+<table><tbody>
+<tr><td>सृष्टि की रचना</td><td>ईश्वर निष्क्रिय परमाणुओं को गति देकर सृष्टि की रचना करता है।</td></tr>
+<tr><td>ईश्वर</td><td>निमित्त कारण, सर्वज्ञ, शाश्वत एवं स्वतंत्र।</td></tr>
+</tbody></table>
+<div class="sub">4. आत्मा का स्वरूप</div>
+<table><tbody>
+<tr><td>आत्मा</td><td>नित्य, अविनाशी, ज्ञाता, कर्ता एवं भोक्ता।</td></tr>
+<tr><td>तुलनात्मक मत</td><td>न्याय एवं वैशेषिक में आत्मा अचेतन, जबकि सांख्य एवं वेदांत में चेतन मानी गई है।</td></tr>
+</tbody></table>
+<div class="sub">5. मोक्ष की अवधारणा</div>
+<table><tbody>
+<tr><td>साधन</td><td>श्रवण, मनन एवं ध्यान।</td></tr>
+<tr><td>अर्थ</td><td>शरीर एवं इंद्रियों के बंधन से आत्मा की पूर्ण मुक्ति।</td></tr>
+<tr><td>निःश्रेयस</td><td>मिथ्या ज्ञान से छुटकारा।</td></tr>
+<tr><td>अपर निःश्रेयस</td><td>अंतिम मुक्ति अथवा दुःखों की समाप्ति।</td></tr>
+</tbody></table>
+</section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main><main class="sheet page-sheet" data-page="5"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section"><div class="stitle"><span class="n">21</span><h2>योग दर्शन</h2><small>चित्तभूमियाँ, समाधि एवं अष्टांग योग</small></div>
+<div class="sub">4. चित्त की अवस्थाएँ (चित्तभूमियाँ)</div>
+<table><tbody>
+<tr><td>चित्त की पाँच अवस्थाएँ</td><td>मूढ़, क्षिप्त, विक्षिप्त, एकाग्र एवं निरुद्ध।</td></tr>
+<tr><td>सर्वश्रेष्ठ अवस्था</td><td>निरुद्ध अवस्था योग के लिए सर्वश्रेष्ठ मानी गई है।</td></tr>
+</tbody></table>
+<div class="sub">5. समाधि के प्रकार</div>
+<table><tbody>
+<tr><td>सम्प्रज्ञात समाधि</td><td>समाधि का एक प्रकार।</td></tr>
+<tr><td>असम्प्रज्ञात समाधि</td><td>समाधि का दूसरा प्रकार।</td></tr>
+</tbody></table>
+<div class="sub">6. अष्टांग योग</div>
+<table><tbody><tr><td colspan="2">चित्तवृत्तियों को नियंत्रित करने हेतु आठ अंगों का पालन आवश्यक है।</td></tr></tbody></table>
+<table><thead><tr><th>बहिरंग साधना (पहले 5 अंग)</th><th>अंतरंग साधना (अंतिम 3 अंग)</th></tr></thead><tbody>
+<tr><td>1. यम – नैतिक नियम</td><td>6. धारणा – मन को एक बिंदु पर स्थिर करना।</td></tr>
+<tr><td>2. नियम – व्यक्तिगत अनुशासन</td><td>7. ध्यान – एकाग्रता की निरंतरता।</td></tr>
+<tr><td>3. आसन – स्थिर एवं सुखद स्थिति</td><td>8. समाधि – ध्यान की अंतिम अवस्था।</td></tr>
+<tr><td>4. प्राणायाम – श्वास नियंत्रण</td><td></td></tr>
+<tr><td>5. प्रत्याहार – इंद्रियों का संयम</td><td></td></tr>
+</tbody></table>
+</section><section class="section"><div class="stitle"><span class="n">22</span><h2>वैशेषिक दर्शन</h2><small>पदार्थ, परमाणुवाद एवं द्रव्य</small></div>
+<div class="sub">1. परिचय</div>
+<table><tbody>
+<tr><td>प्रवर्तक</td><td>कणाद मुनि (कणभुक एवं काश्यप)।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>वैशेषिकसूत्र।</td></tr>
+<tr><td>स्वरूप</td><td>भौतिक एवं यथार्थवादी दर्शन; पदार्थों के गुण, तत्त्व, क्रिया एवं संबंधों का तार्किक विश्लेषण।</td></tr>
+</tbody></table>
+<div class="sub">नामकरण के मत</div>
+<table><tbody>
+<tr><td>प्रथम मत</td><td>विशेष को पदार्थ मानने के कारण।</td></tr>
+<tr><td>द्वितीय मत</td><td>अन्य दर्शनों से विशिष्ट होने के कारण।</td></tr>
+</tbody></table>
+<div class="sub">2. प्रमुख विशेषताएँ</div>
+<table><tbody>
+<tr><td>बहुतत्ववाद</td><td>सभी वस्तुओं का स्वतंत्र एवं वास्तविक अस्तित्व।</td></tr>
+<tr><td>मन</td><td>आंतरिक इंद्रिय; नित्य, अचेतन, अणु एवं निरवयव।</td></tr>
+<tr><td>पंचमहाभूत</td><td>पृथ्वी, जल, अग्नि, वायु एवं आकाश।</td></tr>
+</tbody></table>
+<div class="sub">3. आत्मा का स्वरूप</div>
+<table><tbody>
+<tr><td>आत्मा</td><td>नित्य, अनादि, अचेतन एवं अमर मानी गई है।</td></tr>
+<tr><td>जीवात्मा</td><td>सीमित चेतना वाली एवं अनेक।</td></tr>
+<tr><td>परमात्मा</td><td>असीम चेतना वाला एवं एकमात्र।</td></tr>
+</tbody></table>
+<div class="sub">4. सात पदार्थ</div>
+<table><tbody>
+<tr><td>1. द्रव्य</td><td>सबसे प्रमुख पदार्थ।</td></tr>
+<tr><td>2. गुण</td><td>द्रव्य में विद्यमान गुण।</td></tr>
+<tr><td>3. कर्म</td><td>गति अथवा क्रिया।</td></tr>
+<tr><td>4. सामान्य</td><td>समानता का आधार।</td></tr>
+<tr><td>5. विशेष</td><td>पृथक पहचान का आधार।</td></tr>
+<tr><td>6. समवाय</td><td>अविभाज्य संबंध।</td></tr>
+<tr><td>7. अभाव</td><td>किसी वस्तु का न होना।</td></tr>
+</tbody></table>
+</section></div><div class="col"><section class="section"><div class="stitle"><span class="n">22</span><h2>वैशेषिक दर्शन</h2><small>परमाणुवाद एवं नौ द्रव्य</small></div>
+<div class="sub">5. परमाणुवाद</div>
+<table><tbody>
+<tr><td>सृष्टि की रचना</td><td>परमाणुओं के संयोग से सृष्टि की रचना तथा उनके वियोग से विनाश होता है।</td></tr>
+<tr><td>परमाणु का स्वरूप</td><td>सूक्ष्म, अविभाज्य, नित्य एवं अनमेय (अनुमान से जानने योग्य)।</td></tr>
+<tr><td>ईश्वर की भूमिका</td><td>परमाणुओं को गति ईश्वर देता है; ईश्वर सृष्टि का निमित्त कारण है।</td></tr>
+</tbody></table>
+<div class="sub">6. नौ द्रव्य</div>
+<table><tbody>
+<tr><td>1. पृथ्वी</td><td>स्थूल भौतिक द्रव्य।</td></tr>
+<tr><td>2. जल</td><td>द्रव्य।</td></tr>
+<tr><td>3. अग्नि</td><td>द्रव्य।</td></tr>
+<tr><td>4. वायु</td><td>द्रव्य।</td></tr>
+<tr><td>5. आकाश</td><td>द्रव्य।</td></tr>
+<tr><td>6. दिशा</td><td>द्रव्य।</td></tr>
+<tr><td>7. काल</td><td>द्रव्य।</td></tr>
+<tr><td>8. आत्मा</td><td>चेतन द्रव्य।</td></tr>
+<tr><td>9. मन</td><td>अचेतन द्रव्य।</td></tr>
+</tbody></table>
+<table><tbody><tr><td>विशेष तथ्य</td><td>आत्मा चेतन द्रव्य है, शेष द्रव्य अचेतन हैं।</td></tr></tbody></table>
+</section><section class="section"><div class="stitle"><span class="n">23</span><h2>मीमांसा दर्शन</h2><small>पूर्व मीमांसा एवं उत्तर मीमांसा</small></div>
+<div class="sub">1. अर्थ एवं परिचय</div>
+<table><tbody><tr><td>अर्थ</td><td>तर्कपूर्ण चिंतन, विवेचन एवं अनुप्रयोग की कला।</td></tr></tbody></table>
+<div class="sub">2. पूर्व मीमांसा</div>
+<table><tbody>
+<tr><td>प्रवर्तक</td><td>जैमिनि।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>मीमांसा सूत्र।</td></tr>
+<tr><td>टीकाकार</td><td>शबरस्वामी।</td></tr>
+<tr><td>प्रमुख विचारक</td><td>कुमारिल भट्ट एवं प्रभाकर भट्ट।</td></tr>
+</tbody></table>
+<div class="sub">3. उत्तर मीमांसा / वेदांत दर्शन</div>
+<table><tbody>
+<tr><td>अर्थ</td><td>‘वेदांत’ शब्द ‘वेद’ एवं ‘अंत’ से बना है, अर्थात् वेदों का अंत।</td></tr>
+<tr><td>प्रवर्तक</td><td>बादरायण।</td></tr>
+<tr><td>अन्य नाम</td><td>उत्तर मीमांसा।</td></tr>
+<tr><td>प्रमुख ग्रंथ</td><td>ब्रह्मसूत्र।</td></tr>
+<tr><td>ग्रंथकार</td><td>बादरायण।</td></tr>
+</tbody></table>
+</section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main><main class="sheet page-sheet" data-page="6"><header class="hero"><div class="brand">MPPSC IQ</div><h1>यूनिट 1 | प्राचीन भारतीय ज्ञान परम्परा · पुराण • स्मृतियाँ · धर्मसूत्र</h1></header><div class="columns"><div class="col"><section class="section"><div class="stitle"><span class="n">23</span><h2>मीमांसा दर्शन</h2><small>प्रमुख विशेषताएँ एवं सृष्टि-प्रलय</small></div><div class="sub">4. मीमांसा दर्शन की विशेषताएँ</div><table><tbody>
+<tr><td>प्रमा</td><td>सही ज्ञान तथा प्रमाण (ज्ञान प्राप्ति के साधन)।</td></tr>
+<tr><td>भ्रम</td><td>मिथ्या ज्ञान।</td></tr>
+<tr><td>प्रमुख मत</td><td>प्रभाकर ने <b>अन्विताभिधानवाद</b> तथा कुमारिल भट्ट ने <b>अभिहितान्वयवाद</b> स्वीकार किया।</td></tr>
+<tr><td>ज्ञान</td><td>ज्ञान की विश्वसनीयता उसके स्रोत पर निर्भर करती है।</td></tr>
+</tbody></table><div class="sub">5. सृष्टि एवं प्रलय</div><table><tbody>
+<tr><td>सृष्टि के प्रकार</td><td>2 प्रकार – महासृष्टि एवं खण्डसृष्टि।</td></tr>
+<tr><td>प्रलय के प्रकार</td><td>3 प्रकार – प्रलय, महाप्रलय एवं खण्डप्रलय।</td></tr>
+</tbody></table></section></div><div class="col"><section class="section"><div class="stitle"><span class="n">23</span><h2>मीमांसा दर्शन</h2><small>प्रमाण, प्रामाण्यवाद, बंधन एवं मोक्ष</small></div><div class="sub">6. प्रमाण संबंधी मत</div><table><tbody>
+<tr><td>जैमिनि</td><td>3 प्रमाण।</td></tr>
+<tr><td>प्रभाकर</td><td>5 प्रमाण।</td></tr>
+<tr><td>कुमारिल भट्ट</td><td>6 प्रमाण।</td></tr>
+</tbody></table><div class="sub">7. प्रामाण्यवाद के 4 प्रकार</div><table><tbody>
+<tr><td>1.</td><td>स्वतः प्रामाण्यवाद</td></tr>
+<tr><td>2.</td><td>स्वतः अप्रामाण्यवाद</td></tr>
+<tr><td>3.</td><td>परतः प्रामाण्यवाद</td></tr>
+<tr><td>4.</td><td>परतः अप्रामाण्यवाद</td></tr>
+</tbody></table><p>मीमांसा में <b>स्वतः प्रामाण्यवाद</b> एवं <b>परतः अप्रामाण्यवाद</b> स्वीकार किए गए हैं।</p><div class="sub">8. प्रमाण के 6 प्रकार</div><table><tbody>
+<tr><td>प्रत्यक्ष</td><td>इंद्रियों द्वारा प्राप्त ज्ञान।</td></tr>
+<tr><td>अनुमान</td><td>हेतु के आधार पर निष्कर्ष का ज्ञान।</td></tr>
+<tr><td>शब्द</td><td>विश्वसनीय वचन से प्राप्त ज्ञान।</td></tr>
+<tr><td>उपमान</td><td>तुलना द्वारा अज्ञात वस्तु की पहचान।</td></tr>
+<tr><td>अर्थापत्ति</td><td>विरोधी तथ्यों में सामंजस्य हेतु तीसरे तथ्य का अनुमान।</td></tr>
+<tr><td>अनुपलब्धि</td><td>किसी वस्तु के अभाव का ज्ञान।</td></tr>
+</tbody></table><div class="sub">9. बंधन एवं मोक्ष</div><table><tbody>
+<tr><td>बंधन</td><td>अज्ञान के कारण अवैदिक कर्म आत्मा को बंधन एवं दुःख में डालते हैं।</td></tr>
+<tr><td>मोक्ष</td><td>जन्म-मृत्यु के चक्र से मुक्ति; इसके लिए मोक्ष आवश्यक है।</td></tr>
+</tbody></table></section></div></div><footer class="footer">MPPSC IQ · QUICK NOTES</footer></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+(function(){
+ async function downloadPage(pageIndex, button){
+  const old=button.textContent;
+  button.disabled=true;button.textContent='इमेज तैयार हो रही है…';
+  try{
+   if(typeof html2canvas!=='function')throw new Error('इमेज लाइब्रेरी लोड नहीं हुई। इंटरनेट कनेक्शन जाँचें।');
+   const pages=[...document.querySelectorAll('.page-sheet')];
+   const page=pages[pageIndex];
+   if(!page)throw new Error('पेज उपलब्ध नहीं है।');
+   const canvas=await html2canvas(page,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:Math.max(document.documentElement.clientWidth,900)});
+   const a=document.createElement('a');
+   a.download='MPPSC_IQ_Unit_1_Page_'+(pageIndex+1)+'.png';
+   a.href=canvas.toDataURL('image/png');a.click();
+  }catch(e){alert(e&&e.message?e.message:'इमेज डाउनलोड नहीं हो सकी।');}
+  finally{button.disabled=false;button.textContent=old;}
+ }
+ const b1=document.getElementById('downloadPage1');
+ const b2=document.getElementById('downloadPage2');
+ if(b1)b1.addEventListener('click',()=>downloadPage(0,b1));
+ if(b2)b2.addEventListener('click',()=>downloadPage(1,b2));
+  for(let i=3;i<=6;i++){const b=document.getElementById("downloadPage"+i);if(b)b.addEventListener("click",()=>downloadPage(i-1,b));}
+})();
+</script>
+<script>
+(function(){
+ try{
+  const tg=window.Telegram&&window.Telegram.WebApp;
+  if(!tg)return;
+  tg.ready();tg.expand();
+  try{tg.setHeaderColor("#173553");tg.setBackgroundColor("#e9eef4");}catch(e){}
+  document.addEventListener("click",function(e){
+   if(e.target&&e.target.closest&&e.target.closest("[id^='downloadPage']")){
+    try{tg.HapticFeedback.impactOccurred("light");}catch(err){}
+   }
+  },{passive:true});
+  tg.onEvent("themeChanged",function(){
+   try{document.documentElement.style.colorScheme=tg.colorScheme||"light";}catch(e){}
+  });
+ }catch(e){}
+})();
+</script>
+</body></html>
