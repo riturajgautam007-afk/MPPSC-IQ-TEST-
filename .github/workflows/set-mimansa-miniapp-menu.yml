@@ -1,6 +1,11 @@
 name: Set MPPSC IQ Mimansa Mini App Menu
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/set-mimansa-miniapp-menu.yml
   workflow_dispatch:
 
 jobs:
