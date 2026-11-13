@@ -5,6 +5,8 @@
 (function(){
  function getParam(){try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();const d=Telegram.WebApp.initDataUnsafe||{};if(d.start_param)return d.start_param}}catch(e){}try{const q=new URLSearchParams(location.search);return q.get("tgWebAppStartParam")||q.get("startapp")||q.get("start_param")||""}catch(e){return ""}}
  const p=getParam();
+ if(p==="pre2027pngv35"||p==="pre2027currentaffairs"){location.replace("mppsc-iq-pre-2027-current-affairs-v35.html?v=35");return;}
+
  const direct=new URLSearchParams(location.search);
  if(direct.get("openEconomicRevision02")==="1"){location.replace("mp-economic-survey-revision-test-02-clean.html?v=20261011clean1");return;}
  if(p==="economicnotesfinal20261005"){location.replace("MPPSC_IQ_MP_Economic_Survey_2025_26_Notes_Mini_App_LONG_TABLE.html?v=20261006long");return;}
