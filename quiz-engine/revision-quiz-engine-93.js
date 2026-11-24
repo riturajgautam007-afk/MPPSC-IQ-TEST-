@@ -30,7 +30,7 @@ function splitBilingual(value,l){
  if(parts.length>1)return (l==='hi'?parts[0]:parts.slice(1).join(' / ')).trim();
  return raw;
 }
-function englishOnly(value){const s=String(value??'').trim();return /[\\u0900-\\u097F]/.test(s)?'':s;}
+function englishOnly(value){const s=String(value??'').trim();return /[\u0900-\u097F]/.test(s)?'':s;}
 function localizedQuestion(q){
  if(lang==='hi')return splitBilingual(q.q??q.question??'', 'hi')||splitBilingual(q.en??'', 'hi');
  const value=q.question_en??q.en??q.q_en??q.english_question??'';
