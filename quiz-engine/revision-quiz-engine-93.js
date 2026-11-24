@@ -22,9 +22,50 @@ function shuffleArray(items){const a=items.slice();for(let i=a.length-1;i>0;i--)
 function shuffleCurrentUnit(){const base=UNIT_DATA_MAP[activeUnit]||[];if(!base.length){alert('इस यूनिट में अभी प्रश्न उपलब्ध नहीं हैं।');return;}isMixedMode=false;isUnitShuffled=true;DATA=shuffleArray(base.map((q,i)=>({...q,__unit:activeUnit,__qid:`${activeUnit}:${i}`})));resetQuizState();updateUnitButtons(activeUnit);document.querySelector('.title').textContent='MPPSC PRE 2027 | UNIT '+String(activeUnit).padStart(2,'0')+' | SHUFFLE PRACTICE';render();window.scrollTo({top:0,behavior:'smooth'});}
 function mixAllUnits(){const available=Object.entries(UNIT_DATA_MAP).filter(([,items])=>Array.isArray(items)&&items.length);if(!available.length){alert('अभी किसी यूनिट में प्रश्न उपलब्ध नहीं हैं।');return;}const combined=[];for(const [unit,items] of available){for(let i=0;i<items.length;i++)combined.push({...items[i],__unit:Number(unit),__qid:`${unit}:${i}`});}DATA=shuffleArray(combined);activeUnit=0;isMixedMode=true;isUnitShuffled=false;resetQuizState();updateUnitButtons(0);document.querySelector('.title').textContent='MPPSC PRE 2027 | ALL UNITS | MIXED PRACTICE';render();window.scrollTo({top:0,behavior:'smooth'});} 
 
-function cleanLang(s,l){let v=String(s??'');if(l==='hi'){v=v.replace(/\s*\/\s*[^/\n]+/g,'');v=v.replace(/Correct answer:/gi,'सही उत्तर:');}else{v=v.replace(/सही उत्तर:/g,'Correct answer:');v=v.replace(/([^\n/]+)\s*\/\s*/g,'');}return v.trim()}
+function splitBilingual(value,l){
+ if(value==null)return '';
+ if(typeof value==='object'&&!Array.isArray(value))return String(l==='en'?(value.en??value.english??''):(value.hi??value.hindi??''));
+ const raw=String(value).trim();if(!raw)return '';
+ const parts=raw.split(/\\s+\\/\\s+/);
+ if(parts.length>1)return (l==='hi'?parts[0]:parts.slice(1).join(' / ')).trim();
+ return raw;
+}
+function localizedQuestion(q){
+ if(lang==='hi')return splitBilingual(q.q??q.question??'', 'hi')||splitBilingual(q.en??'', 'hi');
+ const value=q.question_en??q.en??q.q_en??q.english_question??'';
+ return splitBilingual(value,'en')||splitBilingual(q.q??q.question??'','en')||'English translation unavailable for this question.';
+}
+function localizedOption(q,o,index){
+ if(lang==='hi')return splitBilingual(o,'hi');
+ const list=q.options_en??q.option_en??q.english_options;
+ if(Array.isArray(list)&&list[index]!=null)return splitBilingual(list[index],'en');
+ if(o&&typeof o==='object')return splitBilingual(o,'en')||'English translation unavailable';
+ const v=splitBilingual(o,'en');
+ return v&&v!==String(o).trim()?v:'English translation unavailable for this option.';
+}
+function localizedDetail(q,kind){
+ const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','explanation','explain','solution','description']:kind==='note'?['notes_en','note_en','facts_en','notes','note','facts']:[kind+'_en',kind];
+ for(const key of keys){if(q[key]!=null&&q[key]!==''){const value=splitBilingual(q[key],lang);if(value)return value;}}
+ return '';
+}
+function cleanLang(s,l){return splitBilingual(s,l).replace(/Correct answer:/gi,l==='hi'?'सही उत्तर:':'Correct answer:').replace(/सही उत्तर:/g,l==='hi'?'सही उत्तर:':'Correct answer:').trim()}
+function applyLanguageUI(){
+ const en=lang==='en';
+ const labels={
+  backBtn:en?'← Previous Page':'← पिछला पेज',nextBtn:en?'Next Page →':'अगला पेज →',
+  shuffleUnitBtn:en?'↻ Shuffle this unit':'↻ इस यूनिट के प्रश्न Shuffle',
+  mixAllBtn:en?'⇄ Mix all units':'⇄ सभी यूनिट के प्रश्न मिक्स',
+  pyqBtn:'PYQs',analysisBtn:en?'ANALYSIS':'विश्लेषण'
+ };
+ Object.entries(labels).forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value;});
+ const bottom=document.querySelectorAll('.bottom button');
+ if(bottom[2])bottom[2].textContent=en?'Wrong Questions':'गलत प्रश्न';
+ if(bottom[3])bottom[3].textContent=en?'↻ Refresh':'↻ रीसेट';
+ const unitbar=document.getElementById('unitbar');if(unitbar)unitbar.setAttribute('aria-label',en?'Select Unit':'यूनिट चुनें');
+ const mixbar=document.querySelector('.mixbar');if(mixbar)mixbar.setAttribute('aria-label',en?'Question order controls':'प्रश्न क्रम नियंत्रण');
+}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function setLang(l){lang=l;document.getElementById('hiBtn').classList.toggle('active',l==='hi');document.getElementById('enBtn').classList.toggle('active',l==='en');render()}
+function setLang(l){lang=l;document.getElementById('hiBtn').classList.toggle('active',l==='hi');document.getElementById('enBtn').classList.toggle('active',l==='en');applyLanguageUI();render()}
 function choose(i,k){if(answers[i]!==undefined||reviewMode)return;currentIndex=i;answers[i]=k;recordPerformance(DATA[i],i,k);render();clearTimeout(autoTimer);autoTimer=setTimeout(()=>{const pageEnd=unitWrongMode?DATA.length:Math.min(Math.floor(i/PER)*PER+PER,DATA.length);if(i+1<pageEnd){currentIndex=i+1;render();const next=document.getElementById('qcard-'+currentIndex);if(next)next.scrollIntoView({behavior:'smooth',block:'start'});}},750)}
 
 function matchTable(q, questionIndex){
@@ -184,7 +225,7 @@ function render(){
    const revisionPane=`<div class="analysis-pane ${analysisTab==='revision'?'active':''}" data-pane="revision">${renderRevisionPane(a)}</div>`;
    document.getElementById('pageInfo').textContent='CANDIDATE PERFORMANCE';
    document.getElementById('score').textContent=`Attempted: ${a.attempts} · Accuracy: ${pct(a.accuracy)}`;
-   document.getElementById('bottomScore').textContent=`सटीकता: ${pct(a.accuracy)}`;
+   document.getElementById('bottomScore').textContent=lang==='hi'?`सटीकता: ${pct(a.accuracy)}`:`Accuracy: ${pct(a.accuracy)}`;
    document.getElementById('progressFill').style.width=`${a.completion.toFixed(2)}%`;
    document.getElementById('reviewNote').textContent='';
    questionBox.innerHTML=programAnalysisHTML()+`<div class="png-export-row"><button class="ultra-png-btn" onclick="downloadUltraPNG('program-analysis','MPPSC_IQ_Program_Analysis')">⬇ Ultra HD PNG डाउनलोड</button></div><section class="analysis-panel performance-panel"><div class="analysis-kicker">MPPSC IQ<br>MPPSC PRE&nbsp;&nbsp;2027</div><h2>${lang==='hi'?'अभ्यर्थी परफॉरमेंस एनालिसिस':'CANDIDATE PERFORMANCE'}</h2><p class="analysis-sub">${lang==='hi'?'अपनी तैयारी, गलतियों और प्रगति का पूरा विश्लेषण':'A complete view of your preparation, mistakes and progress'}</p>${tabbar}${overview}${wrongPane}${unitsPane}${progressPane}${revisionPane}<p class="analysis-foot">${lang==='hi'?'नियमित अभ्यास • गलतियों का विश्लेषण • बेहतर सटीकता':'Practice regularly • Review mistakes • Improve accuracy'}</p></section><div class="png-export-row candidate-png-row"><button class="ultra-png-btn" onclick="downloadUltraPNG('performance-panel','MPPSC_IQ_Candidate_Performance')">⬇ Ultra HD PNG डाउनलोड</button></div>`;
@@ -196,7 +237,7 @@ function render(){
   }
   document.getElementById('pageInfo').textContent=`UNIT ${activeUnit} · प्रश्न उपलब्ध नहीं`;
   document.getElementById('score').textContent='Attempted: 0 | Correct: 0';
-  document.getElementById('bottomScore').textContent='Score: 0';
+  document.getElementById('bottomScore').textContent=lang==='hi'?'स्कोर: 0':'Score: 0';
   document.getElementById('progressFill').style.width='0%';
   document.getElementById('reviewNote').textContent='';
   questionBox.innerHTML=activeUnit===11?`<div class="unit-empty">PYQs का सेक्शन तैयार है।<br>इसमें अभी प्रश्न जोड़े नहीं गए हैं।</div>`:`<div class="unit-empty">UNIT ${activeUnit} में अभी प्रश्न जोड़े नहीं गए हैं।<br>वर्तमान में UNIT 01, UNIT 02, UNIT 03, UNIT 05, UNIT 06 और UNIT 10 में प्रश्न उपलब्ध हैं।</div>`;
@@ -227,18 +268,18 @@ function render(){
  document.getElementById('questions').innerHTML=indices.map(idx=>{
   const q=DATA[idx],chosen=answers[idx],opts=q.options||[];
   const separateLang=(isMixedMode?q.__unit===6:activeUnit===6)||idx>=1400;
-  const questionSource=lang==='hi'?(q.q||q.en):(q.en||q.q);const questionParts=String(questionSource??'').split(/\s*\/\s*/);let questionText=lang==='hi'?(questionParts[0]||questionSource):(questionParts.length>1?questionParts.slice(1).join(' / '):questionSource);questionText=String(questionText).replace(/^(?:प्रश्न|Question)\s*\d+\.\s*/i,'');
+  const questionText=String(localizedQuestion(q)).replace(/^(?:प्रश्न|Question)\s*\d+\.\s*/i,'');
   const isPairQuestion=/(युग्म|सुमेलित|मिलान|match(?:ing)?|correctly matched|incorrectly matched)/i.test(questionText);
-  const optionRows=opts.map((o,k)=>{let raw=String(o??'');let parts=raw.split(/\s*\/\s*/);let shown=lang==='hi'?(parts[0]||raw):(parts.length>1?parts.slice(1).join(' / '):raw);let cls=chosen!==undefined&&k===q.answer?'correct':'';if(chosen===k&&k!==q.answer)cls='wrong';return {k,shown,cls};});
+  const optionRows=opts.map((o,k)=>{const shown=localizedOption(q,o,k);let cls=chosen!==undefined&&k===q.answer?'correct':'';if(chosen===k&&k!==q.answer)cls='wrong';return {k,shown,cls};});
   const options=isPairQuestion?`<div class="match-table-wrap statement-table-wrap"><table class="match-table statement-table answer-match-table"><thead><tr><th>${lang==='hi'?'विकल्प':'Option'}</th><th>${lang==='hi'?'युग्म / मिलान':'Pair / Match'}</th></tr></thead><tbody>${optionRows.map(({k,shown,cls})=>`<tr><td><button class="option ${cls}" onclick="choose(${idx},${k})" ${chosen!==undefined||reviewMode?'disabled':''}>${'ABCD'[k]||k+1}.</button></td><td><button class="option ${cls}" onclick="choose(${idx},${k})" ${chosen!==undefined||reviewMode?'disabled':''}>${esc(shown)}</button></td></tr>`).join('')}</tbody></table></div>`:optionRows.map(({k,shown,cls})=>`<button class="option ${cls}" onclick="choose(${idx},${k})" ${chosen!==undefined||reviewMode?'disabled':''}><span class="letter">${'ABCD'[k]||k+1}.</span><span>${esc(shown)}</span></button>`).join('')+'</div>';
   const structured=structuredQuestionTable(questionText);
-  const legacyMatch=structured.table?'':matchTable(lang==='hi'?(q.q||''):(q.en||''),idx);
+  const legacyMatch=structured.table?'':matchTable(questionText,idx);
   const visibleQuestion=structured.table?(structured.intro||title):questionText;
   const cardTitle=isMixedMode?`UNIT ${String(q.__unit).padStart(2,'0')} · ${title} ${idx+1}`:`${title} ${idx+1}`;
   const sourceUnit=Number(q.__unit||activeUnit||0),sourceIndex=Number(String(q.__qid||`${sourceUnit}:${idx}`).split(':').pop());
   const saved=revisionBookmarkExists(sourceUnit,sourceIndex);
-  const actions=`<div class="revision-question-actions"><button type="button" class="revision-q-action ${saved?'saved':''}" onclick="toggleRevisionBookmark(${sourceUnit},${sourceIndex},this)">${saved?'🔖✓ बुकमार्क किया':'🔖 बुकमार्क'}</button><button type="button" class="revision-q-action" onclick="reportRevisionQuestion(${sourceUnit},${sourceIndex})">⚑ प्रश्न रिपोर्ट करें</button></div>`;
-  return `<section class="card" id="qcard-${idx}"><div class="qtext">${cardTitle}. ${esc(visibleQuestion)}</div>${structured.table||legacyMatch}${options}${actions}</section>`;
+  const actions=`<div class="revision-question-actions"><button type="button" class="revision-q-action ${saved?'saved':''}" onclick="toggleRevisionBookmark(${sourceUnit},${sourceIndex},this)">${saved?(lang==='hi'?'🔖✓ बुकमार्क किया':'🔖✓ Bookmarked'):(lang==='hi'?'🔖 बुकमार्क':'🔖 Bookmark')}</button><button type="button" class="revision-q-action" onclick="reportRevisionQuestion(${sourceUnit},${sourceIndex})">⚑ ${lang==='hi'?'प्रश्न रिपोर्ट करें':'Report question'}</button></div>`;
+  const explanation=localizedDetail(q,'explanation'),note=localizedDetail(q,'note');const details=[explanation?'<div class="quiz-explanation"><b>'+(lang==='hi'?'व्याख्या:':'Explanation:')+'</b> '+esc(explanation)+'</div>':'',note?'<div class="quiz-note"><b>'+(lang==='hi'?'महत्वपूर्ण तथ्य:':'Important facts:')+'</b> '+esc(note)+'</div>':''].join('');return `<section class="card" id="qcard-${idx}"><div class="qtext">${cardTitle}. ${esc(visibleQuestion)}</div>${structured.table||legacyMatch}${options}${details}${actions}</section>`;
  }).join('');
  const wrongBtn=document.querySelector('.bottom button[onclick="showWrong()"]');if(wrongBtn){wrongBtn.textContent=reviewMode?`Next Wrong ${reviewPos+1}/${reviewIds.length}`:`Wrong (${wrong})`;wrongBtn.style.display=unitWrongMode?'none':'';}if(unitWrongMode){['backBtn','nextBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.style.display='none';});const mb=document.querySelector('.mixbar');if(mb)mb.style.display='none';}
 }
@@ -250,8 +291,8 @@ function toggleTheme(){applyTheme(document.body.classList.contains('dark')?'ligh
 const REVISION_BOOKMARK_KEY='mppscIqRevisionBookmarks_v1';
 function revisionBookmarks(){try{const v=JSON.parse(localStorage.getItem(REVISION_BOOKMARK_KEY)||'[]');return Array.isArray(v)?v:[]}catch(e){return [];}}
 function revisionBookmarkExists(unit,index){return revisionBookmarks().some(x=>Number(x.unit)===Number(unit)&&Number(x.index)===Number(index));}
-function toggleRevisionBookmark(unit,index,button){const rows=revisionBookmarks(),pos=rows.findIndex(x=>Number(x.unit)===Number(unit)&&Number(x.index)===Number(index));if(pos>=0)rows.splice(pos,1);else{const q=(UNIT_DATA_MAP[unit]||[])[index];if(!q)return;rows.unshift({unit,index,question:q.q||'',english:q.en||'',options:q.options||[],answer:q.answer,savedAt:new Date().toISOString()});}try{localStorage.setItem(REVISION_BOOKMARK_KEY,JSON.stringify(rows));}catch(e){alert('बुकमार्क सेव नहीं हो सका।');return;}const active=pos<0;button.classList.toggle('saved',active);button.textContent=active?'🔖✓ बुकमार्क किया':'🔖 बुकमार्क';}
-async function reportRevisionQuestion(unit,index){const q=(UNIT_DATA_MAP[unit]||[])[index];if(!q)return;const reason=prompt('इस प्रश्न में क्या समस्या है?\nगलत उत्तर / प्रश्न / विकल्प / भाषा');if(!reason||!reason.trim())return;const message=`MPPSC IQ Revision Quiz · UNIT ${String(unit).padStart(2,'0')} · प्रश्न ${index+1}\nसमस्या: ${reason.trim()}\nप्रश्न: ${q.q||''}\nविकल्प: ${(q.options||[]).join(' | ')}\nउत्तर कुंजी: ${Number(q.answer)+1}`;try{const response=await fetch('/api/support',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({category:'Quiz Question Report',message})});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.error||'रिपोर्ट भेजी नहीं जा सकी');alert('प्रश्न रिपोर्ट भेज दी गई है।');}catch(error){alert(error.message||'रिपोर्ट भेजने में समस्या हुई।');}}
+function toggleRevisionBookmark(unit,index,button){const rows=revisionBookmarks(),pos=rows.findIndex(x=>Number(x.unit)===Number(unit)&&Number(x.index)===Number(index));if(pos>=0)rows.splice(pos,1);else{const q=(UNIT_DATA_MAP[unit]||[])[index];if(!q)return;rows.unshift({unit,index,question:q.q||'',english:q.question_en||q.en||'',options:q.options||[],options_en:q.options_en||[],answer:q.answer,savedAt:new Date().toISOString()});}try{localStorage.setItem(REVISION_BOOKMARK_KEY,JSON.stringify(rows));}catch(e){alert(lang==='hi'?'बुकमार्क सेव नहीं हो सका।':'Could not save bookmark.');return;}const active=pos<0;button.classList.toggle('saved',active);button.textContent=active?(lang==='hi'?'🔖✓ बुकमार्क किया':'🔖✓ Bookmarked'):(lang==='hi'?'🔖 बुकमार्क':'🔖 Bookmark');}
+async function reportRevisionQuestion(unit,index){const q=(UNIT_DATA_MAP[unit]||[])[index];if(!q)return;const en=lang==='en';const reason=prompt(en?'What is wrong with this question?\\nWrong answer / Question / Options / Language':'इस प्रश्न में क्या समस्या है?\\nगलत उत्तर / प्रश्न / विकल्प / भाषा');if(!reason||!reason.trim())return;const message=`MPPSC IQ Revision Quiz · UNIT ${String(unit).padStart(2,'0')} · ${en?'Question':'प्रश्न'} ${index+1}\n${en?'Issue':'समस्या'}: ${reason.trim()}\n${en?'Question':'प्रश्न'}: ${en?localizedQuestion(q):(q.q||'')}\n${en?'Options':'विकल्प'}: ${(q.options||[]).map((o,i)=>localizedOption(q,o,i)).join(' | ')}\n${en?'Answer key':'उत्तर कुंजी'}: ${Number(q.answer)+1}`;try{const response=await fetch('/api/support',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({category:'Quiz Question Report',message})});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.error||(en?'Report could not be sent':'रिपोर्ट भेजी नहीं जा सकी'));alert(en?'Question report submitted.':'प्रश्न रिपोर्ट भेज दी गई है।');}catch(error){alert(error.message||(en?'Could not submit report.':'रिपोर्ट भेजने में समस्या हुई।'));}}
 (async function bootRevisionQuizFromJson(){
   try {
     const response = await fetch('./quiz-data/revision-units-93.json?v=1', {cache:'no-store'});
