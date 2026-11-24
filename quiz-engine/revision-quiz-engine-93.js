@@ -26,7 +26,7 @@ function splitBilingual(value,l){
  if(value==null)return '';
  if(typeof value==='object'&&!Array.isArray(value))return String(l==='en'?(value.en??value.english??''):(value.hi??value.hindi??''));
  const raw=String(value).trim();if(!raw)return '';
- const parts=raw.split(/\\s+\\/\\s+/);
+ const parts=raw.split(/\s+\/\s+/);
  if(parts.length>1)return (l==='hi'?parts[0]:parts.slice(1).join(' / ')).trim();
  return raw;
 }
