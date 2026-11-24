@@ -30,22 +30,23 @@ function splitBilingual(value,l){
  if(parts.length>1)return (l==='hi'?parts[0]:parts.slice(1).join(' / ')).trim();
  return raw;
 }
+function englishOnly(value){const s=String(value??'').trim();return /[\\u0900-\\u097F]/.test(s)?'':s;}
 function localizedQuestion(q){
  if(lang==='hi')return splitBilingual(q.q??q.question??'', 'hi')||splitBilingual(q.en??'', 'hi');
  const value=q.question_en??q.en??q.q_en??q.english_question??'';
- return splitBilingual(value,'en')||splitBilingual(q.q??q.question??'','en')||'English translation unavailable for this question.';
+ return englishOnly(splitBilingual(value,'en'))||englishOnly(splitBilingual(q.q??q.question??'','en'))||'English translation unavailable for this question.';
 }
 function localizedOption(q,o,index){
  if(lang==='hi')return splitBilingual(o,'hi');
  const list=q.options_en??q.option_en??q.english_options;
- if(Array.isArray(list)&&list[index]!=null)return splitBilingual(list[index],'en');
- if(o&&typeof o==='object')return splitBilingual(o,'en')||'English translation unavailable';
- const v=splitBilingual(o,'en');
+ if(Array.isArray(list)&&list[index]!=null)return englishOnly(splitBilingual(list[index],'en'))||'English translation unavailable for this option.';
+ if(o&&typeof o==='object')return englishOnly(splitBilingual(o,'en'))||'English translation unavailable for this option.';
+ const v=englishOnly(splitBilingual(o,'en'));
  return v&&v!==String(o).trim()?v:'English translation unavailable for this option.';
 }
 function localizedDetail(q,kind){
  const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','answer_explanation_en','exp_en','explanation','explain','solution','description','answer_explanation','exp']:kind==='note'?['notes_en','note_en','facts_en','important_facts_en','extra_en','notes','note','facts','important_facts','extra']:[kind+'_en',kind];
- for(const key of keys){if(q[key]!=null&&q[key]!==''){const value=splitBilingual(q[key],lang);if(value)return value;}}
+ for(const key of keys){if(q[key]!=null&&q[key]!==''){const value=splitBilingual(q[key],lang);const safe=lang==='en'?englishOnly(value):value;if(safe)return safe;}}
  return '';
 }
 function cleanLang(s,l){return splitBilingual(s,l).replace(/Correct answer:/gi,l==='hi'?'सही उत्तर:':'Correct answer:').replace(/सही उत्तर:/g,l==='hi'?'सही उत्तर:':'Correct answer:').trim()}
@@ -159,7 +160,7 @@ function reviewWrongByUnit(unit){
 }
 function showAllRecordedWrong(){const a=performanceSummary();if(!a.allMistakes.length){alert(lang==='hi'?'अभी तक कोई गलत प्रश्न दर्ज नहीं है।':'No incorrect questions have been recorded yet.');return;}const rows=a.allMistakes.map(m=>`<tr><td><b>${String(m.unit).padStart(2,'0')}</b></td><td>${esc(m.question)}</td><td class=\"wrong-cell\">${m.wrong}</td><td>${m.correct}</td><td class=\"right-cell\">${esc(m.rightAnswer||'—')}</td></tr>`).join('');const modal=document.createElement('div');modal.className='wrong-review-modal';modal.innerHTML=`<div class=\"wrong-review-dialog\"><div class=\"wrong-review-head\"><div><b>${lang==='hi'?'सभी गलत प्रश्न':'All Incorrect Questions'}</b><small>${a.uniqueWrong} ${lang==='hi'?'प्रश्न':'questions'}</small></div><button onclick=\"this.closest('.wrong-review-modal').remove()\" aria-label=\"Close\">✕</button></div><div class=\"analysis-table-wrap\"><table class=\"analysis-table mistakes-table\"><thead><tr><th>${lang==='hi'?'यूनिट':'Unit'}</th><th>${lang==='hi'?'गलत प्रश्न':'Incorrect Question'}</th><th>${lang==='hi'?'गलत बार':'Wrong'}</th><th>${lang==='hi'?'सही बार':'Correct'}</th><th>${lang==='hi'?'सही उत्तर':'Correct Answer'}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});document.body.appendChild(modal);}
 
-function refreshAll(){if(confirm('वर्तमान अभ्यास के उत्तर रीसेट करें? आपकी परफॉरमेंस हिस्ट्री सुरक्षित रहेगी।')){clearTimeout(autoTimer);answers={};page=0;currentIndex=0;reviewMode=false;reviewIds=[];reviewPos=0;render();window.scrollTo({top:0,behavior:'smooth'});}}
+function refreshAll(){if(confirm(lang==='hi'?'वर्तमान अभ्यास के उत्तर रीसेट करें? आपकी परफॉरमेंस हिस्ट्री सुरक्षित रहेगी।':'Reset answers for this practice session? Your performance history will remain saved.')){clearTimeout(autoTimer);answers={};page=0;currentIndex=0;reviewMode=false;reviewIds=[];reviewPos=0;render();window.scrollTo({top:0,behavior:'smooth'});}}
 function programAnalysisHTML(){
  const en=lang==='en';
  const units=Array.from({length:10},(_,i)=>({id:i+1,count:(UNIT_DATA_MAP[i+1]||[]).length}));
@@ -252,14 +253,14 @@ function render(){
  const indices=reviewMode?[reviewIds[reviewPos]]:unitWrongMode?[currentIndex]:Array.from({length:pageEnd-pageStart},(_,n)=>pageStart+n);
  if(!reviewMode)currentIndex=Math.max(pageStart,Math.min(pageEnd-1,currentIndex));
  page=Math.floor(currentIndex/PER);
- document.getElementById('pageInfo').textContent=unitWrongMode?`UNIT ${String(DATA[0]?.__unit||0).padStart(2,'0')} WRONG QUESTIONS · ${currentIndex+1}/${DATA.length}`:isMixedMode?`ALL UNITS MIXED · Page ${page+1}/${Math.ceil(DATA.length/PER)} · Questions ${pageStart+1}–${pageEnd} of ${DATA.length}`:`UNIT ${String(activeUnit).padStart(2,'0')} · Page ${page+1}/${Math.ceil(DATA.length/PER)} · Questions ${pageStart+1}–${pageEnd} of ${DATA.length}`;
+ document.getElementById('pageInfo').textContent=unitWrongMode?(lang==='hi'?`UNIT ${String(DATA[0]?.__unit||0).padStart(2,'0')} · गलत प्रश्न · ${currentIndex+1}/${DATA.length}`:`UNIT ${String(DATA[0]?.__unit||0).padStart(2,'0')} · WRONG QUESTIONS · ${currentIndex+1}/${DATA.length}`):isMixedMode?(lang==='hi'?`सभी यूनिट मिक्स · पेज ${page+1}/${Math.ceil(DATA.length/PER)} · प्रश्न ${pageStart+1}–${pageEnd} / ${DATA.length}`:`ALL UNITS MIXED · Page ${page+1}/${Math.ceil(DATA.length/PER)} · Questions ${pageStart+1}–${pageEnd} of ${DATA.length}`):(lang==='hi'?`यूनिट ${String(activeUnit).padStart(2,'0')} · पेज ${page+1}/${Math.ceil(DATA.length/PER)} · प्रश्न ${pageStart+1}–${pageEnd} / ${DATA.length}`:`UNIT ${String(activeUnit).padStart(2,'0')} · Page ${page+1}/${Math.ceil(DATA.length/PER)} · Questions ${pageStart+1}–${pageEnd} of ${DATA.length}`);
  document.getElementById('backBtn').disabled=!reviewMode&&currentIndex<=0;
  document.getElementById('nextBtn').disabled=!reviewMode&&currentIndex>=DATA.length-1;
  document.getElementById('backBtn').style.display=reviewMode?'none':'';
  document.getElementById('nextBtn').style.display=reviewMode?'none':'';
  let attempted=Object.keys(answers).length,correct=Object.entries(answers).filter(([i,k])=>DATA[+i].answer===k).length,wrong=attempted-correct,score=correct*3-wrong;
- document.getElementById('score').textContent=`Attempted ${attempted} · Correct ${correct} · Wrong ${wrong} · Score ${score}`;
- document.getElementById('bottomScore').textContent=`Score: ${score}`;
+ document.getElementById('score').textContent=lang==='hi'?`हल ${attempted} · सही ${correct} · गलत ${wrong} · स्कोर ${score}`:`Attempted ${attempted} · Correct ${correct} · Wrong ${wrong} · Score ${score}`;
+ document.getElementById('bottomScore').textContent=lang==='hi'?`स्कोर: ${score}`:`Score: ${score}`;
  document.getElementById('bottomScore').setAttribute('aria-label',`Total Score: ${score}`);
  document.getElementById('bottomScore').title=`Total Score: ${score}`;
  document.getElementById('progressFill').style.width=`${(currentIndex+1)/DATA.length*100}%`;
@@ -281,7 +282,7 @@ function render(){
   const actions=`<div class="revision-question-actions"><button type="button" class="revision-q-action ${saved?'saved':''}" onclick="toggleRevisionBookmark(${sourceUnit},${sourceIndex},this)">${saved?(lang==='hi'?'🔖✓ बुकमार्क किया':'🔖✓ Bookmarked'):(lang==='hi'?'🔖 बुकमार्क':'🔖 Bookmark')}</button><button type="button" class="revision-q-action" onclick="reportRevisionQuestion(${sourceUnit},${sourceIndex})">⚑ ${lang==='hi'?'प्रश्न रिपोर्ट करें':'Report question'}</button></div>`;
   const explanation=localizedDetail(q,'explanation'),note=localizedDetail(q,'note');const details=[explanation?'<div class="quiz-explanation"><b>'+(lang==='hi'?'व्याख्या:':'Explanation:')+'</b> '+esc(explanation)+'</div>':'',note?'<div class="quiz-note"><b>'+(lang==='hi'?'महत्वपूर्ण तथ्य:':'Important facts:')+'</b> '+esc(note)+'</div>':''].join('');return `<section class="card" id="qcard-${idx}"><div class="qtext">${cardTitle}. ${esc(visibleQuestion)}</div>${structured.table||legacyMatch}${options}${details}${actions}</section>`;
  }).join('');
- const wrongBtn=document.querySelector('.bottom button[onclick="showWrong()"]');if(wrongBtn){wrongBtn.textContent=reviewMode?`Next Wrong ${reviewPos+1}/${reviewIds.length}`:`Wrong (${wrong})`;wrongBtn.style.display=unitWrongMode?'none':'';}if(unitWrongMode){['backBtn','nextBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.style.display='none';});const mb=document.querySelector('.mixbar');if(mb)mb.style.display='none';}
+ const wrongBtn=document.querySelector('.bottom button[onclick="showWrong()"]');if(wrongBtn){wrongBtn.textContent=reviewMode?(lang==='hi'?`अगला गलत ${reviewPos+1}/${reviewIds.length}`:`Next Wrong ${reviewPos+1}/${reviewIds.length}`):(lang==='hi'?`गलत (${wrong})`:`Wrong (${wrong})`);wrongBtn.style.display=unitWrongMode?'none':'';}if(unitWrongMode){['backBtn','nextBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.style.display='none';});const mb=document.querySelector('.mixbar');if(mb)mb.style.display='none';}
 }
 
 function changePage(d){clearTimeout(autoTimer);if(reviewMode){reviewPos=Math.max(0,Math.min(reviewIds.length-1,reviewPos+d));currentIndex=reviewIds[reviewPos];page=Math.floor(currentIndex/PER);render();window.scrollTo({top:0,behavior:'smooth'});return;}const totalPages=Math.ceil(DATA.length/PER);const targetPage=Math.max(0,Math.min(totalPages-1,Math.floor(currentIndex/PER)+d));currentIndex=targetPage*PER;page=targetPage;render();window.scrollTo({top:0,behavior:'smooth'});}
