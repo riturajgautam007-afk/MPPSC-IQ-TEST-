@@ -31,17 +31,13 @@ function splitBilingual(value,l){
  return raw;
 }
 function englishOnly(value){const s=String(value??'').trim();return /[\u0900-\u097F]/.test(s)?'':s;}
-const BUILTIN_ENGLISH_TRANSLATIONS={
- 'किस ब्राह्मण ग्रन्थ में राज्याभिषेक के नियम दिए गए हैं तथा उसके अन्तिम भाग में पुरोहित का विशेष महत्त्व निरूपित किया गया है?':{
-  question:'In which Brahmana text are the rules for royal consecration (coronation) given, and whose final section explains the special importance of the priest?',
-  options:{'कौषीतकि ब्राह्मण':'Kaushitaki Brahmana','शतपथ ब्राह्मण':'Shatapatha Brahmana','पंचविंश ब्राह्मण':'Panchavimsha Brahmana','ऐतरेय ब्राह्मण':'Aitareya Brahmana'}
- }
-};
+const BUILTIN_ENGLISH_TRANSLATIONS={"सिकल सेल एनीमिया किस प्रकार का रोग है?":["What type of disease is sickle cell anaemia?",["Infectious disease","Hereditary blood disorder","Bacterial disease","Viral disease"],"Hereditary blood disorder"],"सिकल सेल एनीमिया का वंशानुक्रम किस प्रकार का होता है?":["What is the inheritance pattern of sickle cell anaemia?",["Autosomal dominant","X-linked","Autosomal recessive","Y-linked"],"Autosomal recessive"],"सिकल सेल एनीमिया में किस गुणसूत्र का जीन प्रभावित होता है?":["Which chromosome carries the gene affected in sickle cell anaemia?",["11th","13th","18th","21st"],"11th"],"सिकल सेल एनीमिया में किस जीन में बिंदु उत्परिवर्तन होता है?":["In which gene does the point mutation occur in sickle cell anaemia?",["Alpha-globin","Beta-globin","Insulin","Haemoglobin alpha"],"Beta-globin"],"सिकल सेल एनीमिया में छठे स्थान पर किस अमीनो अम्ल का प्रतिस्थापन होता है?":["Which amino acid substitution occurs at the sixth position in sickle cell anaemia?",["Valine is replaced by glutamic acid","Glutamic acid is replaced by valine","Glycine is replaced by alanine","Alanine is replaced by valine"],"Glutamic acid is replaced by valine"],"सिकल सेल एनीमिया में असामान्य हीमोग्लोबिन को क्या कहा जाता है?":["What is the abnormal haemoglobin in sickle cell anaemia called?",["HbA","HbA₂","HbS","HbF"],"HbS"],"सिकल सेल रोग में लाल रक्त कोशिकाओं का आकार कैसा हो जाता है?":["What shape do red blood cells assume in sickle cell disease?",["Spherical","Oval","Sickle-shaped","Flattened"],"Sickle-shaped"],"सामान्य लाल रक्त कोशिकाओं का औसत जीवनकाल कितना होता है?":["What is the average lifespan of normal red blood cells?",["10–20 days","30–40 days","60–90 days","120 days"],"120 days"],"सिकल सेल रोग में लाल रक्त कोशिकाओं का जीवनकाल लगभग कितना रह जाता है?":["Approximately how long is the lifespan of red blood cells in sickle cell disease?",["10–20 days","30–40 days","60–80 days","100–120 days"],"10–20 days"],"सिकल सेल एनीमिया की जाँच के लिए निम्नलिखित में से कौन-सी विधि उपयोगी है?":["Which of the following methods are useful for diagnosing sickle cell anaemia?",["HPLC","Electrophoresis","Solubility test","All of the above"],"All of the above"],"सिकल सेल एनीमिया के उपचार में सामान्यतः किस दवा का उपयोग किया जाता है?":["Which medicine is commonly used in the treatment of sickle cell anaemia?",["Hydroxyurea","Paracetamol","Insulin","Penicillin"],"Hydroxyurea"],"विश्व सिकल सेल दिवस कब मनाया जाता है?":["When is World Sickle Cell Day observed?",["19 May","19 June","20 June","1 July"],"19 June"],"राष्ट्रीय सिकल सेल एनीमिया उन्मूलन मिशन की शुरुआत कब और कहाँ से हुई?":["When and where was the National Sickle Cell Anaemia Elimination Mission launched?",["1 July 2023, Shahdol","15 November 2021, Bhopal","19 June 2022, Indore","1 July 2022, Jabalpur"],"1 July 2023, Shahdol"],"राष्ट्रीय सिकल सेल एनीमिया उन्मूलन मिशन का लक्ष्य किस वर्ष तक सिकल सेल एनीमिया का उन्मूलन करना है?":["By which year does the National Sickle Cell Anaemia Elimination Mission aim to eliminate sickle cell anaemia?",["2030","2035","2040","2047"],"2047"],"मध्य प्रदेश राज्य हीमोग्लोबिनोपैथी मिशन की शुरुआत किस महीने और वर्ष में हुई?":["In which month and year was the Madhya Pradesh State Haemoglobinopathy Mission launched?",["June 2021","November 2021","July 2022","January 2023"],"June 2021"],"मप्र सिकल सेल नियंत्रण मिशन की शुरुआत कब हुई?":["When was the Madhya Pradesh Sickle Cell Control Mission launched?",["1 July 2023","15 November 2021","19 June 2021","15 August 2022"],"15 November 2021"],"राष्ट्रीय सिकल सेल एनीमिया उन्मूलन मिशन की घोषणा सबसे पहले किस केंद्रीय बजट में की गई थी?":["In which Union Budget was the National Sickle Cell Anaemia Elimination Mission first announced?",["Union Budget 2021–22","Union Budget 2022–23","Union Budget 2023–24","Union Budget 2024–25"],"Union Budget 2023–24"],"प्रश्न. आर्टिफिशियल इंटेलिजेंस (AI) का जनक किसे कहा जाता है?":["Who is known as the father of Artificial Intelligence (AI)?",["Alan Turing","Marvin Minsky","John McCarthy","Arthur Samuel"],"John McCarthy"]};
+
 function translationKey(q){return String(q?.q??q?.question??'').replace(/^(?:प्रश्न|Question)\\s*\\d+\\.\\s*/i,'').trim();}
 function localizedQuestion(q){
  if(lang==='hi')return splitBilingual(q.q??q.question??'', 'hi')||splitBilingual(q.en??'', 'hi');
  const value=q.question_en??q.en??q.q_en??q.english_question??'';
- return englishOnly(splitBilingual(value,'en'))||englishOnly(splitBilingual(q.q??q.question??'','en'))||BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.question||'English translation unavailable for this question.';
+ return englishOnly(splitBilingual(value,'en'))||englishOnly(splitBilingual(q.q??q.question??'','en'))||BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.[0]||'English translation unavailable for this question.';
 }
 function localizedOption(q,o,index){
  if(lang==='hi')return splitBilingual(o,'hi');
@@ -50,12 +46,13 @@ function localizedOption(q,o,index){
  if(o&&typeof o==='object')return englishOnly(splitBilingual(o,'en'))||'English translation unavailable for this option.';
  const v=englishOnly(splitBilingual(o,'en'));
  if(v&&v!==String(o).trim())return v;
- const mapped=BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.options?.[String(o).trim()];
+ const mapped=BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.[1]?.[index];
  return mapped||'English translation unavailable for this option.';
 }
 function localizedDetail(q,kind){
  const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','answer_explanation_en','exp_en','explanation','explain','solution','description','answer_explanation','exp']:kind==='note'?['notes_en','note_en','facts_en','important_facts_en','extra_en','notes','note','facts','important_facts','extra']:[kind+'_en',kind];
  for(const key of keys){if(q[key]!=null&&q[key]!==''){const value=splitBilingual(q[key],lang);const safe=lang==='en'?englishOnly(value):value;if(safe)return safe;}}
+ if(lang==='en'&&kind==='explanation')return BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.[2]||'';
  return '';
 }
 function cleanLang(s,l){return splitBilingual(s,l).replace(/Correct answer:/gi,l==='hi'?'सही उत्तर:':'Correct answer:').replace(/सही उत्तर:/g,l==='hi'?'सही उत्तर:':'Correct answer:').trim()}
