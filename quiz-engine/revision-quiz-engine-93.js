@@ -31,10 +31,17 @@ function splitBilingual(value,l){
  return raw;
 }
 function englishOnly(value){const s=String(value??'').trim();return /[\u0900-\u097F]/.test(s)?'':s;}
+const BUILTIN_ENGLISH_TRANSLATIONS={
+ 'किस ब्राह्मण ग्रन्थ में राज्याभिषेक के नियम दिए गए हैं तथा उसके अन्तिम भाग में पुरोहित का विशेष महत्त्व निरूपित किया गया है?':{
+  question:'In which Brahmana text are the rules for royal consecration (coronation) given, and whose final section explains the special importance of the priest?',
+  options:{'कौषीतकि ब्राह्मण':'Kaushitaki Brahmana','शतपथ ब्राह्मण':'Shatapatha Brahmana','पंचविंश ब्राह्मण':'Panchavimsha Brahmana','ऐतरेय ब्राह्मण':'Aitareya Brahmana'}
+ }
+};
+function translationKey(q){return String(q?.q??q?.question??'').replace(/^(?:प्रश्न|Question)\\s*\\d+\\.\\s*/i,'').trim();}
 function localizedQuestion(q){
  if(lang==='hi')return splitBilingual(q.q??q.question??'', 'hi')||splitBilingual(q.en??'', 'hi');
  const value=q.question_en??q.en??q.q_en??q.english_question??'';
- return englishOnly(splitBilingual(value,'en'))||englishOnly(splitBilingual(q.q??q.question??'','en'))||'English translation unavailable for this question.';
+ return englishOnly(splitBilingual(value,'en'))||englishOnly(splitBilingual(q.q??q.question??'','en'))||BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.question||'English translation unavailable for this question.';
 }
 function localizedOption(q,o,index){
  if(lang==='hi')return splitBilingual(o,'hi');
@@ -42,7 +49,9 @@ function localizedOption(q,o,index){
  if(Array.isArray(list)&&list[index]!=null)return englishOnly(splitBilingual(list[index],'en'))||'English translation unavailable for this option.';
  if(o&&typeof o==='object')return englishOnly(splitBilingual(o,'en'))||'English translation unavailable for this option.';
  const v=englishOnly(splitBilingual(o,'en'));
- return v&&v!==String(o).trim()?v:'English translation unavailable for this option.';
+ if(v&&v!==String(o).trim())return v;
+ const mapped=BUILTIN_ENGLISH_TRANSLATIONS[translationKey(q)]?.options?.[String(o).trim()];
+ return mapped||'English translation unavailable for this option.';
 }
 function localizedDetail(q,kind){
  const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','answer_explanation_en','exp_en','explanation','explain','solution','description','answer_explanation','exp']:kind==='note'?['notes_en','note_en','facts_en','important_facts_en','extra_en','notes','note','facts','important_facts','extra']:[kind+'_en',kind];
