@@ -44,7 +44,7 @@ function localizedOption(q,o,index){
  return v&&v!==String(o).trim()?v:'English translation unavailable for this option.';
 }
 function localizedDetail(q,kind){
- const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','explanation','explain','solution','description']:kind==='note'?['notes_en','note_en','facts_en','notes','note','facts']:[kind+'_en',kind];
+ const keys=kind==='explanation'?['explanation_en','explain_en','solution_en','description_en','answer_explanation_en','exp_en','explanation','explain','solution','description','answer_explanation','exp']:kind==='note'?['notes_en','note_en','facts_en','important_facts_en','extra_en','notes','note','facts','important_facts','extra']:[kind+'_en',kind];
  for(const key of keys){if(q[key]!=null&&q[key]!==''){const value=splitBilingual(q[key],lang);if(value)return value;}}
  return '';
 }
